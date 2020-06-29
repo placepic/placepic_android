@@ -1,0 +1,2 @@
+rootProject.name='placepic_heroid'
+include ':app'
