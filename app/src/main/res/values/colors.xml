@@ -3,4 +3,6 @@
     <color name="colorPrimary">#6200EE</color>
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
+    <color name="placepic_main">#F65C6C</color>
+    <color name="placepic_default">#F4F7F8</color>
 </resources>
