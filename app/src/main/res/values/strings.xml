@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">placepic_heroid</string>
+    <string name="select_subways">지하철역 선택하기</string>
+    <string name="regist">등록</string>
+    <string name="search_near_subway">가까운 지하철역을 검색해보세요</string>
+    <string name="add_near_subways">해당 장소와 가까운 역을 추가해보세요</string>
 </resources>

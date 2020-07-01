@@ -15,7 +15,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/btn_back"
             android:layout_width="16dp"
             android:layout_height="16dp"
             android:layout_marginStart="16dp"
@@ -29,22 +29,22 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:text="지하철역 선택하기"
+            android:text="@string/select_subways"
             android:textColor="@color/black36"
             android:textSize="15dp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/imageView"
-            app:layout_constraintStart_toEndOf="@+id/imageView"
-            app:layout_constraintTop_toTopOf="@+id/imageView" />
+            app:layout_constraintBottom_toBottomOf="@+id/btn_back"
+            app:layout_constraintStart_toEndOf="@+id/btn_back"
+            app:layout_constraintTop_toTopOf="@+id/btn_back" />
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/btn_submit_subways"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:enabled="false"
             android:padding="8dp"
-            android:text="등록"
+            android:text="@string/regist"
             android:textColor="@color/selector_enable_main_graycd_color"
             android:textSize="15dp"
             android:textStyle="bold"
@@ -93,14 +93,14 @@
             app:srcCompat="@drawable/ic_launcher_background" />
 
         <EditText
-            android:id="@+id/editTextTextPersonName"
+            android:id="@+id/et_search_subway"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
             android:background="@android:color/transparent"
             android:ems="10"
-            android:hint="가까운 지하철역을 검색해보세요"
+            android:hint="@string/search_near_subway"
             android:inputType="textPersonName"
             android:textSize="14dp"
             app:layout_constraintBottom_toBottomOf="@+id/imageView2"
@@ -109,11 +109,24 @@
             app:layout_constraintTop_toTopOf="@+id/imageView2" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_searched_subways"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="14dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/zone_search"
+        tools:listitem="@layout/item_searched_subway" />
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/notice_not_searched"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="72dp"
+        android:layout_marginTop="70dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/zone_search">
@@ -132,22 +145,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="해당 장소와 가까운 역을 추가해보세요"
+            android:text="@string/add_near_subways"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView3" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_searched_subways"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="14dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="14dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/zone_search"
-        tools:listitem="@layout/item_searched_subway" />
 </androidx.constraintlayout.widget.ConstraintLayout>
