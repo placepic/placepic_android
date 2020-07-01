@@ -9,5 +9,6 @@
     <color name="black36">#363636</color>
 
     <color name="grayCD">#CDCDCD</color>
-    <color name="grayF1">#F1F1F1</color>
+    <color name="grayE1E2E3">#E1E2E3</color>
+    <color name="grayF1F4F5">#F1F4F5</color>
 </resources>
