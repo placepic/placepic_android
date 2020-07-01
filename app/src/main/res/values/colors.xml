@@ -7,8 +7,10 @@
     <color name="mainColor">#F65C6C</color>
 
     <color name="black36">#363636</color>
+    <color name="black40">#404040</color>
 
     <color name="grayCD">#CDCDCD</color>
     <color name="grayE1E2E3">#E1E2E3</color>
     <color name="grayF1F4F5">#F1F4F5</color>
+    <color name="grayF8">#F8F8F8</color>
 </resources>
