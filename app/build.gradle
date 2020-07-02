@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: "kotlin-kapt"
 
 android {
     compileSdkVersion 29
@@ -35,8 +36,14 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+    //recyclerview를 다루기 위한 라이브러리
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
     //viewpager
     implementation 'androidx.viewpager2:viewpager2:1.0.0'
     // 동그란 이미지 커스텀 뷰
     implementation group: 'de.hdodenhof', name: 'circleimageview', version: '3.1.0'
+    //chip
+    implementation 'com.google.android.material:material:1.1.0'
+
 }

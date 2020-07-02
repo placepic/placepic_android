@@ -17,7 +17,7 @@ class GroupActivity : AppCompatActivity(),View.OnClickListener {
     }
 
     private fun init() {
-        fragmentTransaction.replace(R.id.vp_group_list_viewpager,GroupListEmptyFragment()).commitAllowingStateLoss()
+        //fragmentTransaction.replace(R.id.vp_group_list_viewpager,GroupListEmptyFragment()).commitAllowingStateLoss()
     }
 
 
