@@ -17,4 +17,14 @@
     <color name="grayCED5DA">#CED5DA</color>
     <color name="gray838788">#838788</color>
     <color name="grayBD">#BDBDBD</color>
+    <color name="grayE6">#E6E6E6</color>
+    <color name="grayA3ABB0">#A3ABB0</color>
+    <color name="grayEEEFF0">#EEEFF0</color>
+
+    <color name="mainColor">#F65C6C</color>
+    <color name="placepic_main">#F65C6C</color>
+    <color name="placepic_default">#F4F7F8</color>
+
+    <color name="whiteE5">#E5E5E5</color>
+
 </resources>
