@@ -47,10 +47,10 @@ class SubwaySearchViewModel {
     fun addSelectedSubways(subway: Subway) {
         val currentSelectedSubways = getCurrentSelectedSubways()
         if (!currentSelectedSubways.contains(subway)) {
-            _selectedSubways.value = currentSelectedSubways.apply { add(0, subway) }
+            _selectedSubways.value = currentSelectedSubways.toMutableList()
+                .apply { add(0, subway) }
         }
     }
 
-    private fun getCurrentSelectedSubways() =
-        _selectedSubways.value?.toMutableList() ?: mutableListOf()
+    fun getCurrentSelectedSubways() = _selectedSubways.value ?: emptyList()
 }
