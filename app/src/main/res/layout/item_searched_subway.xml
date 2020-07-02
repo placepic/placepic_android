@@ -5,7 +5,7 @@
 
         <variable
             name="itemClickListener"
-            type="place.pic.ui.search.subway.SubwayClickListener" />
+            type="android.view.View.OnClickListener" />
 
         <variable
             name="subway"
@@ -19,7 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@android:color/white"
-        android:onClick="@{() -> }">
+        android:onClick="@{itemClickListener}">
 
         <TextView
             android:id="@+id/textView4"

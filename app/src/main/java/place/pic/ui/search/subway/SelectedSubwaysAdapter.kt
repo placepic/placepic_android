@@ -1,6 +1,7 @@
 package place.pic.ui.search.subway
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -15,7 +16,7 @@ import place.pic.databinding.ItemSelectedSubwayBinding
 class SelectedSubwaysAdapter :
     ListAdapter<Subway, SelectedSubwaysAdapter.ViewHolder>(DiffItemCallback()) {
 
-    private var subwaySelectCancelListener: SubwayClickListener? = null
+    private var subwaySelectCancelListener: ((subway: Subway) -> Unit)? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -28,8 +29,12 @@ class SelectedSubwaysAdapter :
         holder.bind(subway)
     }
 
-    fun setSubwaySelectCancelListener(listener: SubwayClickListener) {
+    fun setSubwaySelectCancelListener(listener: ((subway: Subway) -> Unit)?) {
         this.subwaySelectCancelListener = listener
+    }
+
+    private fun createClickListener(subway: Subway) = View.OnClickListener {
+        subwaySelectCancelListener?.invoke(subway)
     }
 
     inner class ViewHolder(
@@ -38,7 +43,7 @@ class SelectedSubwaysAdapter :
 
         fun bind(subway: Subway) {
             binding.subway = subway
-            binding.clickListener = subwaySelectCancelListener
+            binding.clickListener = createClickListener(subway)
         }
     }
 

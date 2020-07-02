@@ -5,7 +5,7 @@
 
         <variable
             name="clickListener"
-            type="place.pic.ui.search.subway.SubwayClickListener" />
+            type="android.view.View.OnClickListener" />
 
         <variable
             name="subway"
@@ -44,7 +44,7 @@
             android:layout_height="16dp"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="12dp"
-            android:onClick="@{() -> clickListener.onSubwayClick(subway)}"
+            android:onClick="@{clickListener}"
             app:layout_constraintBottom_toBottomOf="@+id/textView6"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/textView6"
