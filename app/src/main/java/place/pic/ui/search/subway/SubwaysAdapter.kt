@@ -31,6 +31,7 @@ class SubwaysAdapter : ListAdapter<Subway, SubwaysAdapter.ViewHolder>(DiffItemCa
 
         fun bind(subway: Subway) {
             binding.subway = subway
+            binding.rvSubwayLines.adapter = LinesAdapter().apply { submitList(subway.line) }
         }
     }
 
