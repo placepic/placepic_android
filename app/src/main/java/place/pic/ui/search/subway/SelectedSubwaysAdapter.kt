@@ -5,20 +5,21 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import place.pic.databinding.ItemSearchedSubwayBinding
+import place.pic.databinding.ItemSelectedSubwayBinding
 
 /**
  * Created By Malibin
  * on 7월 02, 2020
  */
 
-class SubwaysAdapter : ListAdapter<Subway, SubwaysAdapter.ViewHolder>(DiffItemCallback()) {
+class SelectedSubwaysAdapter :
+    ListAdapter<Subway, SelectedSubwaysAdapter.ViewHolder>(DiffItemCallback()) {
 
-    private var subwayClickListener: SubwayClickListener? = null
+    private var subwaySelectCancelListener: SubwayClickListener? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-        val binding = ItemSearchedSubwayBinding.inflate(layoutInflater, parent, false)
+        val binding = ItemSelectedSubwayBinding.inflate(layoutInflater, parent, false)
         return ViewHolder(binding)
     }
 
@@ -27,18 +28,17 @@ class SubwaysAdapter : ListAdapter<Subway, SubwaysAdapter.ViewHolder>(DiffItemCa
         holder.bind(subway)
     }
 
-    fun setSubwayClickListener(listener: SubwayClickListener) {
-        this.subwayClickListener = listener
+    fun setSubwaySelectCancelListener(listener: SubwayClickListener) {
+        this.subwaySelectCancelListener = listener
     }
 
     inner class ViewHolder(
-        private val binding: ItemSearchedSubwayBinding
+        private val binding: ItemSelectedSubwayBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(subway: Subway) {
             binding.subway = subway
-            binding.itemClickListener = subwayClickListener
-            binding.rvSubwayLines.adapter = LinesAdapter().apply { submitList(subway.line) }
+            binding.clickListener = subwaySelectCancelListener
         }
     }
 
