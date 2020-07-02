@@ -26,9 +26,7 @@ class LoginPageActivity : AppCompatActivity(), View.OnClickListener {
     override fun onClick(v: View?) {
         when (v!!.id) {
             R.id.btn_home_signin -> {
-                val goToGroupIntent = Intent(this, GroupActivity::class.java)
-                startActivity(goToGroupIntent)
-                finish()
+               
             }
         }
     }
