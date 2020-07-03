@@ -11,8 +11,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_height="56dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,19 +19,17 @@
 
         <ImageView
             android:id="@+id/img_back"
-            android:layout_width="16dp"
-            android:layout_height="16dp"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
             android:layout_marginStart="18dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
+            android:src="@drawable/back_arrow_ic"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/tv_place_search_header"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0"
-            tools:srcCompat="@tools:sample/avatars" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/tv_place_search_header"
@@ -42,10 +39,12 @@
             android:layout_marginTop="13dp"
             android:layout_marginBottom="13dp"
             android:text="@string/string_tag"
+            android:textColor="@color/black36"
+            android:textSize="18dp"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/img_back"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.5" />
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -53,57 +52,78 @@
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
+        app:layout_constraintVertical_bias="0.0">
 
         <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chipgroup_tag"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="14dp"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             app:chipSpacing="8dp"
-            app:layout_constraintBottom_toTopOf="@+id/btn_save"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.003">
+            app:layout_constraintTop_toTopOf="parent">
 
             <!-- Chips can be declared here, or added dynamically. -->
+
             <com.google.android.material.chip.Chip
+                android:id="@+id/chip_tag1"
+                style="@style/Widget.MaterialComponents.Chip.Action"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:layout_marginBottom="4dp"
-                app:chipStrokeColor="#CED5DA"
-                app:chipBackgroundColor="#FFFFFF"
-                app:chipStrokeWidth="3dp"
-                app:chipCornerRadius="10dp"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp"
+                app:chipMinHeight="41dp"
+
                 android:text="조용한"
-                android:textSize="13dp"
-                app:chipEndPadding="16dp"
-                app:chipStartPadding="16dp" />
+                android:textColor="@color/selector_tag"
+                android:textAppearance="@style/AppTheme.TagChip"
+                android:clickable="true"
+                android:focusable="true"
+
+                app:chipBackgroundColor="#FFFFFF"
+                app:chipCornerRadius="6dp"
+                app:chipStrokeColor="#CED5DA"
+                app:chipStrokeWidth="1.5dp"
+                app:textEndPadding="16dp"
+                app:textStartPadding="16dp" />
 
         </com.google.android.material.chip.ChipGroup>
 
-        <Button
-            android:id="@+id/btn_save"
-            android:layout_width="0dp"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="14dp"
-            android:layout_marginEnd="14dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
-            android:paddingLeft="122dp"
-            android:paddingRight="123dp"
-            android:paddingTop="14dp"
-            android:paddingBottom="15dp"
-            android:radius="20dp"
-            android:textColor="@color/black40"
-            android:text="태그 등록하기"
-            android:fillColor="#E6E6E6"
+            android:background="@drawable/rectangle_gray_f1f4f5"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent">
+
+            <TextView
+                android:id="@+id/tv_tag_save"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="123dp"
+                android:layout_marginTop="13dp"
+                android:layout_marginEnd="122dp"
+                android:layout_marginBottom="13dp"
+                android:text="태그 등록하기"
+                android:textColor="@color/black4F"
+                android:textSize="15dp"
+                android:textStyle="bold"
+
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

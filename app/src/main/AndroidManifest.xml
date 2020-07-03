@@ -12,11 +12,11 @@
 
         <activity android:name=".ui.login.LoginActivity"></activity>
         <activity android:name=".ui.login.LoginPageActivity" />
-        <activity android:name=".TagActivity" />
+        <activity android:name=".PlaceSearchActivity" />
         <activity android:name=".ui.login_group.group.GroupActivity" />
 
         <activity android:name=".MainActivity" />
-        <activity android:name=".PlaceSearchActivity">
+        <activity android:name=".TagActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
