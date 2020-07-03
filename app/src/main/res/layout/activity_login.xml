@@ -73,7 +73,7 @@
             android:paddingStart="16dp"
             android:textColorHint="@color/grayCED5DA"
             android:textSize="15dp"
-            android:background="@drawable/selector_edittext_in_login_view"
+            android:background="@color/selector_edittext_in_login_view"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_login_email"
             tools:layout_editor_absoluteX="16dp"/>
@@ -111,13 +111,13 @@
             android:paddingStart="16dp"
             android:textColorHint="@color/grayCED5DA"
             android:textSize="15dp"
-            android:background="@drawable/selector_edittext_in_login_view"
+            android:background="@color/selector_edittext_in_login_view"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_login_password"
             tools:layout_editor_absoluteX="16dp"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
