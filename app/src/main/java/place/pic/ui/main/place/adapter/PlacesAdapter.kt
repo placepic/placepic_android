@@ -81,7 +81,7 @@ class PlacesAdapter : ListAdapter<Place, RecyclerView.ViewHolder>(DiffItemCallba
             val adapter = PlaceKeywordsAdapter()
             binding.rvKeywords.adapter = adapter
             adapter.submitList(place.keywordTags)
-            binding.place = place
+            binding.placeItem = place
         }
     }
 

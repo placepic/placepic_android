@@ -26,10 +26,7 @@ class PlacesFragment : Fragment() {
     }
 
     private fun initView(binding: FragmentPlacesBinding) {
-        binding.pagerFilterPlaces.adapter =
-            PlacesPagerAdapter(
-                childFragmentManager
-            )
+        binding.pagerFilterPlaces.adapter = PlacesPagerAdapter(childFragmentManager)
         binding.tabPlaceCategories.setupWithViewPager(binding.pagerFilterPlaces)
         binding.pagerFilterPlaces.offscreenPageLimit = 2
     }

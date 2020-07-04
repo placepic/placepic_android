@@ -41,7 +41,7 @@ class PlaceItemsFragment(private val placeType: Place.Type) : Fragment() {
         AsyncLayoutInflater(context!!).inflate(
             R.layout.fragment_place_items,
             container
-        ) { view, resid, parent ->
+        ) { view, _, _ ->
             target.container.addView(view)
             target.progressBar.visibility = View.GONE
             val rvPlaces = view.findViewById<RecyclerView>(R.id.rv_places)
