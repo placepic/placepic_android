@@ -1,6 +1,7 @@
 package place.pic.ui
 
 import android.text.TextUtils
+import android.view.View
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import place.pic.ui.search.subway.Subway
@@ -24,4 +25,9 @@ fun bindingSubways(textView: TextView, subways: List<Subway>?) {
     if (subways == null) return
     val subwaysText = TextUtils.join("/", subways.map { it.name })
     textView.text = subwaysText
+}
+
+@BindingAdapter("isSelected")
+fun bindingIsSelected(view: View, isSelected: Boolean?) {
+    view.isSelected = isSelected ?: false
 }

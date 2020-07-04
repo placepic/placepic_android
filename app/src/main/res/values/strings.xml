@@ -9,5 +9,6 @@
     <string name="add_near_subways">해당 장소와 가까운 역을 추가해보세요</string>
     <string name="string_tag">태그 선택하기</string>
     <string name="string_search">최애장소 검색하기</string>
+    <string name="d_counts">%d개</string>
 
 </resources>

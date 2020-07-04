@@ -1,0 +1,24 @@
+package place.pic.ui.main.place
+
+import androidx.viewpager.widget.ViewPager
+
+/**
+ * Created By Malibin
+ * on 7월 05, 2020
+ */
+
+class PlacesPageChangeListener(
+    private val placesViewModel: PlacesViewModel
+) : ViewPager.OnPageChangeListener {
+
+    override fun onPageScrollStateChanged(state: Int) {
+    }
+
+    override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
+    }
+
+    override fun onPageSelected(position: Int) {
+        placesViewModel.clearFiltering()
+    }
+
+}

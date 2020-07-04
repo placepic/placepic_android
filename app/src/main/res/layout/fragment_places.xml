@@ -3,6 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="place.pic.ui.main.place.PlacesViewModel" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -54,11 +63,13 @@
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tab_place_categories"
+            app:tabTextAppearance="@style/tabText"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@android:color/white"
             android:paddingStart="16dp"
             android:paddingEnd="16dp"
+            android:textSize="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/top_bar"
@@ -111,6 +122,7 @@
                 android:layout_marginBottom="8dp"
                 android:background="@drawable/round_rectagle_white_4dp"
                 android:backgroundTint="@color/selector_selected_main_grayf8_color"
+                app:isSelected="@{!viewModel.selectedSubways.empty}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
@@ -135,9 +147,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="4dp"
+                    android:text="@{String.format(@string/d_counts, viewModel.selectedSubways.size())}"
                     android:textColor="@color/selector_selected_white_black_color"
                     android:textSize="13dp"
                     android:textStyle="bold"
+                    android:visibility="@{viewModel.selectedSubways.empty ? View.GONE : View.VISIBLE}"
                     app:layout_constraintBottom_toBottomOf="@+id/textView6"
                     app:layout_constraintStart_toEndOf="@+id/textView6"
                     app:layout_constraintTop_toTopOf="@+id/textView6"
@@ -153,7 +167,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/textView7"
                     app:layout_constraintTop_toTopOf="@+id/textView7"
-                    app:srcCompat="@drawable/down_arrow_ic" />
+                    app:srcCompat="@drawable/selector_down_icon" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -187,6 +201,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="4dp"
+                    android:text="@string/d_counts"
                     android:textColor="@color/selector_selected_white_black_color"
                     android:textSize="13dp"
                     android:textStyle="bold"
@@ -250,6 +265,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="4dp"
+                    android:text="@string/d_counts"
                     android:textColor="@color/selector_selected_white_black_color"
                     android:textSize="13dp"
                     android:textStyle="bold"

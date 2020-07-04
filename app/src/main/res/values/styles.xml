@@ -9,4 +9,8 @@
         <item name="android:statusBarColor">@android:color/white</item>
         <item name="android:windowLightStatusBar">true</item>
     </style>
+
+    <style name="tabText" parent="@android:style/TextAppearance.Widget.TabWidget">
+        <item name="android:textSize">16dp</item>
+    </style>
 </resources>
