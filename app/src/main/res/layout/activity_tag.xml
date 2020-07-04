@@ -41,7 +41,7 @@
             android:text="@string/string_tag"
             android:textColor="@color/black36"
             android:textSize="18dp"
-            android:textStyle="bold"
+            android:fontFamily="@font/spoqa_han_sans_bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/img_back"
             app:layout_constraintTop_toTopOf="parent" />
@@ -81,12 +81,12 @@
                 app:chipMinHeight="41dp"
 
                 android:text="조용한"
-                android:textColor="@color/selector_tag"
+                android:textColor="@color/gray646363"
                 android:textAppearance="@style/AppTheme.TagChip"
+                android:fontFamily="@font/spoqa_han_sans_bold"
                 android:clickable="true"
-                android:focusable="true"
 
-                app:chipBackgroundColor="#FFFFFF"
+                app:chipBackgroundColor="@color/selector_tag"
                 app:chipCornerRadius="6dp"
                 app:chipStrokeColor="#CED5DA"
                 app:chipStrokeWidth="1.5dp"
