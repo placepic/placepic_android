@@ -7,22 +7,15 @@
     tools:context=".ui.login.LoginPageActivity"
     android:background="@color/colorPrimary">
 
-    <TextView
-        android:id="@+id/place_pic"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:gravity="center"
-        android:text="test"
-        android:paddingVertical="13dp"
-        android:textColor="@android:color/white"
-        android:textSize="24dp"
+    <ImageView
+        android:id="@+id/img_logo_place_pic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/white_placepic_ic"
         app:layout_constraintBottom_toTopOf="@+id/btn_goto_login"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <!-- home-signin-btn -->
 
