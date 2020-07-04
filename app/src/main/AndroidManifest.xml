@@ -18,7 +18,7 @@
         </activity>
         <activity android:name=".ui.login.LoginActivity"/>
         <activity android:name=".PlaceSearchActivity" />
-        <activity android:name=".ui.login_group.group.GroupActivity" />
+
         <activity android:name=".MainActivity" />
         <activity android:name=".ui.search.subway.SubwaySearchActivity" />
         <activity android:name=".TagActivity"/>
