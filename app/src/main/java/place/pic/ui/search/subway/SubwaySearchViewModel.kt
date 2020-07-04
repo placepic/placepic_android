@@ -32,6 +32,10 @@ class SubwaySearchViewModel {
         allSubways.addAll(stubSubways())
     }
 
+    fun loadAlreadySelectedSubways(subways: List<Subway>) {
+        _selectedSubways.value = subways
+    }
+
     fun filterByName(name: String) {
         if (name.isBlank()) {
             _searchedSubways.value = emptyList()
@@ -50,6 +54,10 @@ class SubwaySearchViewModel {
             _selectedSubways.value = currentSelectedSubways.toMutableList()
                 .apply { add(0, subway) }
         }
+    }
+
+    fun contains(subway: Subway): Boolean {
+        return getCurrentSelectedSubways().contains(subway)
     }
 
     fun getCurrentSelectedSubways() = _selectedSubways.value ?: emptyList()
