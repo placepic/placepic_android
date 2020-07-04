@@ -123,7 +123,7 @@
             android:layout_marginTop="4dp"
             android:layout_marginBottom="24dp"
             android:hint="비밀번호를 입력해주세요"
-            android:inputType="textEmailAddress"
+            android:inputType="textPassword"
             android:paddingVertical="8dp"
             android:paddingStart="16dp"
             android:textColorHint="@color/grayCED5DA"
@@ -141,16 +141,27 @@
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="26dp"
         android:text="로그인"
+        android:enabled="false"
         android:textStyle="bold"
         android:textSize="15dp"
         android:background="@drawable/round_rectangle_gray_8dp"
-        android:backgroundTint="@color/grayF1"
-        android:textColor="@color/grayBD"
+        android:backgroundTint="@color/selector_endable_button_gray_to_black"
+        android:textColor="@color/selector_endable_text_gray_to_white"
         app:layout_constraintTop_toBottomOf="@id/cl_login_password_view_group"
         app:layout_constraintStart_toStartOf="@id/cl_login_password_view_group"
         app:layout_constraintEnd_toEndOf="@id/cl_login_password_view_group"
         style="?android:attr/borderlessButtonStyle"
         />
+
+    <TextView
+        android:id="@+id/tv_login_fail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="로그인에 실패하였습니다. 이메일과 비밀번호를 다시 확인해주세요."
+        android:textColor="@color/colorPrimary"
+        android:textSize="14dp"
+        app:layout_constraintStart_toStartOf="@+id/btn_login"
+        app:layout_constraintTop_toBottomOf="@+id/btn_login" />
 
 
 
