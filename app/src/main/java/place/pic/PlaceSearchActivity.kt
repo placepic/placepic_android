@@ -2,8 +2,6 @@ package place.pic
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.activity_place_search.*
 
 class PlaceSearchActivity : AppCompatActivity() {
@@ -120,7 +118,6 @@ class PlaceSearchActivity : AppCompatActivity() {
                 )
             )
         }
-        //AndroidMenifest.xml에서 uses-permission INTERNET 설정을 해줘야만 이미지 로드 가능
 
         placeSearchAdapter.datas = placeDatas
         placeSearchAdapter.notifyDataSetChanged()

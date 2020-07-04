@@ -12,7 +12,7 @@ class GroupActivity : AppCompatActivity(),View.OnClickListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_group)
+        //setContentView(R.layout.activity_group)
         init()
     }
 

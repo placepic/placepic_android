@@ -6,14 +6,13 @@
     android:layout_height="match_parent"
     tools:context=".TagActivity">
 
-    <!-- *** 태그 디자인 / 클릭 시 색 변경 적용하기 -->
+    <!-- *** 태그 디자인 / 클릭 시 색 변경 적용하기 : 옛설 -->
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
         android:layout_height="56dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -50,12 +49,11 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        app:singleSelection="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout" >
 
         <com.google.android.material.chip.ChipGroup
             android:id="@+id/chipgroup_tag"
@@ -70,8 +68,8 @@
             <!-- Chips can be declared here, or added dynamically. -->
 
             <com.google.android.material.chip.Chip
-                android:id="@+id/chip_tag1"
-                style="@style/Widget.MaterialComponents.Chip.Action"
+                android:id="@+id/chip_tag"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
@@ -81,14 +79,14 @@
                 app:chipMinHeight="41dp"
 
                 android:text="조용한"
-                android:textColor="@color/gray646363"
+                android:textColor="@color/selector_tag_text_color"
                 android:textAppearance="@style/AppTheme.TagChip"
                 android:fontFamily="@font/spoqa_han_sans_bold"
                 android:clickable="true"
 
-                app:chipBackgroundColor="@color/selector_tag"
+                app:chipBackgroundColor="#FFFFFF"
                 app:chipCornerRadius="6dp"
-                app:chipStrokeColor="#CED5DA"
+                app:chipStrokeColor="@color/selector_tag_stroke_color"
                 app:chipStrokeWidth="1.5dp"
                 app:textEndPadding="16dp"
                 app:textStartPadding="16dp" />
@@ -102,6 +100,7 @@
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
             android:background="@drawable/rectangle_gray_f1f4f5"
+            android:onClick="onClick"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
