@@ -23,8 +23,7 @@
     <color name="gray646363">#646363</color>
 
     <color name="mainColor">#F65C6C</color>
-    <color name="placepic_main">#F65C6C</color>
-    <color name="placepic_default">#F4F7F8</color>
+    <color name="placepicDefault">#F4F7F8</color>
 
     <color name="whiteE5">#E5E5E5</color>
 
