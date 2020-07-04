@@ -1,4 +1,4 @@
-package place.pic.ui.main.place
+package place.pic.ui.main.place.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import place.pic.R
 import place.pic.databinding.ItemPlaceBinding
 import place.pic.databinding.ItemPlaceFilterBinding
+import place.pic.ui.main.place.Place
 
 /**
  * Created By Malibin
@@ -33,12 +34,17 @@ class PlacesAdapter : ListAdapter<Place, RecyclerView.ViewHolder>(DiffItemCallba
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if (holder is ItemViewHolder) {
             val place = getItem(position)
-            holder.bind()
+            holder.bind(place)
         }
     }
 
     override fun submitList(list: List<Place>?) {
-        val newList = list?.toMutableList()?.apply { add(0, Place.empty()) }
+        val newList = list?.toMutableList()?.apply {
+            add(
+                0,
+                Place.empty()
+            )
+        }
         super.submitList(newList)
     }
 
@@ -71,8 +77,11 @@ class PlacesAdapter : ListAdapter<Place, RecyclerView.ViewHolder>(DiffItemCallba
         private val binding: ItemPlaceBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind() {
-
+        fun bind(place: Place) {
+            val adapter = PlaceKeywordsAdapter()
+            binding.rvKeywords.adapter = adapter
+            adapter.submitList(place.keywordTags)
+            binding.place = place
         }
     }
 

@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import place.pic.databinding.FragmentPlacesBinding
+import place.pic.ui.main.place.adapter.PlacesPagerAdapter
 
 /**
  * Created By Malibin
@@ -25,8 +26,12 @@ class PlacesFragment : Fragment() {
     }
 
     private fun initView(binding: FragmentPlacesBinding) {
-        binding.pagerFilterPlaces.adapter = PlacesPagerAdapter(childFragmentManager)
+        binding.pagerFilterPlaces.adapter =
+            PlacesPagerAdapter(
+                childFragmentManager
+            )
         binding.tabPlaceCategories.setupWithViewPager(binding.pagerFilterPlaces)
+        binding.pagerFilterPlaces.offscreenPageLimit = 2
     }
 
 }
