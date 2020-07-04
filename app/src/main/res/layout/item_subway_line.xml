@@ -15,7 +15,7 @@
         android:layout_height="24dp"
         android:layout_marginLeft="6dp"
         android:background="@drawable/circle_rectangle_whtie"
-        android:backgroundTint="@{line.color}"
+        app:backgroundTint="@{line.colorCode}"
         android:minWidth="24dp"
         tools:backgroundTint="#60B057">
 

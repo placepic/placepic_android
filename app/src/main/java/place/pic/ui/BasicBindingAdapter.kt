@@ -3,6 +3,8 @@ package place.pic.ui
 import android.text.TextUtils
 import android.view.View
 import android.widget.TextView
+import androidx.annotation.ColorRes
+import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
 import place.pic.ui.search.subway.Subway
 import java.text.SimpleDateFormat
@@ -30,4 +32,13 @@ fun bindingSubways(textView: TextView, subways: List<Subway>?) {
 @BindingAdapter("isSelected")
 fun bindingIsSelected(view: View, isSelected: Boolean?) {
     view.isSelected = isSelected ?: false
+}
+
+@BindingAdapter("backgroundTint")
+fun bindingBackgroundTint(view: View, @ColorRes color: Int?) {
+    if (color == null) return
+    view.background.setColorFilter(
+        ContextCompat.getColor(view.context, color),
+        android.graphics.PorterDuff.Mode.SRC_IN
+    )
 }
