@@ -1,7 +1,8 @@
-package place.pic
+package place.pic.ui.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import place.pic.R
 
 class MainActivity : AppCompatActivity() {
 
