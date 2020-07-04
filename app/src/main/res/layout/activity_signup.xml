@@ -75,10 +75,22 @@
             android:paddingStart="16dp"
             android:textColorHint="@color/grayCED5DA"
             android:textSize="15dp"
-            android:background="@drawable/selector_edittext_in_login_view"
+            android:background="@color/selector_edittext_in_login_view"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_sign_email"
             tools:layout_editor_absoluteX="16dp"/>
+
+        <TextView
+            android:id="@+id/tv_sign_non_email"
+            android:visibility="invisible"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/et_sign_email"
+            android:text="알맞은 이메일 형식이 아닙니다."
+            android:textSize="12dp"
+            android:textColor="@color/colorPrimary"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <!--비밀번호 입력 뷰-->
@@ -115,7 +127,7 @@
             android:paddingStart="16dp"
             android:textColorHint="@color/grayCED5DA"
             android:textSize="15dp"
-            android:background="@drawable/selector_edittext_in_login_view"
+            android:background="@color/selector_edittext_in_login_view"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_sign_password"
             tools:layout_editor_absoluteX="16dp"/>
@@ -147,7 +159,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:layout_marginBottom="24dp"
-            android:background="@drawable/selector_edittext_in_login_view"
+            android:background="@color/selector_edittext_in_login_view"
             android:hint="비밀번호를 입력해주세요"
             android:inputType="textPassword"
             android:paddingVertical="8dp"
@@ -166,10 +178,13 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="25dp"
-        android:background="@drawable/round_rectangle_gray_6dp"
-        android:backgroundTint="@color/grayF1"
+        android:background="@drawable/round_rectangle_gray_8dp"
+        android:backgroundTint="@color/selector_endable_button_gray_to_black"
+        android:textColor="@color/selector_endable_text_gray_to_white"
+        style="?android:attr/borderlessButtonStyle"
+        android:textStyle="bold"
+        android:enabled="false"
         android:text="다음(1/2)"
-        android:textColor="@color/grayBD"
         android:textSize="15dp"
         app:layout_constraintEnd_toEndOf="@id/cl_sign_password_ok_view_group"
         app:layout_constraintStart_toStartOf="@id/cl_sign_password_ok_view_group"

@@ -7,52 +7,51 @@
     tools:context=".ui.login.LoginPageActivity"
     android:background="@color/colorPrimary">
 
-    <TextView
-        android:id="@+id/place_pic"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:gravity="center"
-        android:text="test"
-        android:textColor="@android:color/white"
-        android:textSize="24dp"
-        app:layout_constraintBottom_toTopOf="@+id/button"
+    <ImageView
+        android:id="@+id/img_logo_place_pic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/white_placepic_ic"
+        app:layout_constraintBottom_toTopOf="@+id/btn_goto_login"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="HardcodedText,SpUsage" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <!-- home-signin-btn -->
 
-    <Button
-        android:id="@+id/button"
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_goto_login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="14sp"
-        android:layout_marginBottom="16dp"
-        android:background="@drawable/round_rectangle_gray_6dp"
+        android:layout_marginBottom="8dp"
+        android:paddingVertical="16dp"
+        android:background="@drawable/round_rectangle_gray_8dp"
         android:backgroundTint="@color/grayF1F4F5"
         android:text="로그인"
         android:textColor="@color/black4F"
-        android:textSize="13dp"
+        android:textSize="18dp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/btn_goto_signup"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.428"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        style="?android:attr/borderlessButtonStyle"/>
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_goto_signup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="14sp"
         android:layout_marginBottom="40dp"
-        android:background="@drawable/border_round_rectangle_white_6dp"
+        android:paddingVertical="16dp"
+        android:background="@drawable/border_round_rectangle_white_8dp"
         android:text="회원가입"
         android:textColor="@android:color/white"
-        android:textSize="13dp"
+        android:textSize="18dp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
+        app:layout_constraintStart_toStartOf="parent"
+        style="?android:attr/borderlessButtonStyle"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
