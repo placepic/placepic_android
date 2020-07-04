@@ -30,4 +30,13 @@ data class Place(
             uploaderProfileUrl = ""
         )
     }
+
+    enum class Type(val position: Int, val key: String, val value: String) {
+        ALL(0, "", "전체"),
+        RESTAURANT(1, "", "맛집"),
+        ALCOHOL(2, "", "술집"),
+        CAFE(3, "", "카페"),
+        STUDY(4, "", "스터디"),
+        ETC(5, "", "기타")
+    }
 }

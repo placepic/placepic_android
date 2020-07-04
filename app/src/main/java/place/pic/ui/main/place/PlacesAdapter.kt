@@ -37,9 +37,9 @@ class PlacesAdapter : ListAdapter<Place, RecyclerView.ViewHolder>(DiffItemCallba
         }
     }
 
-    override fun submitList(list: MutableList<Place>?) {
-        list?.add(0, Place.empty())
-        super.submitList(list)
+    override fun submitList(list: List<Place>?) {
+        val newList = list?.toMutableList()?.apply { add(0, Place.empty()) }
+        super.submitList(newList)
     }
 
     private fun createHeaderViewHolder(

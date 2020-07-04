@@ -63,6 +63,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/top_bar"
             app:tabIndicatorColor="@color/black36"
+            app:tabIndicatorHeight="3dp"
+            app:tabRippleColor="@android:color/transparent"
             app:tabTextColor="@color/selector_selected_black_gray_color">
 
             <com.google.android.material.tabs.TabItem
@@ -81,12 +83,21 @@
                 android:text="술집" />
         </com.google.android.material.tabs.TabLayout>
 
+        <View
+            android:id="@+id/tab_under_line"
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            android:background="@color/grayF1F4F5"
+            app:layout_constraintBottom_toBottomOf="@+id/tab_place_categories"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/zone_filter"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@android:color/white"
-            android:elevation="4dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tab_place_categories">
@@ -113,7 +124,7 @@
                     android:layout_marginBottom="8dp"
                     android:text="주변역"
                     android:textColor="@color/selector_selected_white_black_color"
-                    android:textSize="14dp"
+                    android:textSize="13dp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -125,7 +136,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="4dp"
                     android:textColor="@color/selector_selected_white_black_color"
-                    android:textSize="14dp"
+                    android:textSize="13dp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="@+id/textView6"
                     app:layout_constraintStart_toEndOf="@+id/textView6"
@@ -165,7 +176,7 @@
                     android:layout_marginBottom="8dp"
                     android:text="키워드"
                     android:textColor="@color/selector_selected_white_black_color"
-                    android:textSize="14dp"
+                    android:textSize="13dp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -177,7 +188,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="4dp"
                     android:textColor="@color/selector_selected_white_black_color"
-                    android:textSize="14dp"
+                    android:textSize="13dp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="@+id/textView61"
                     app:layout_constraintStart_toEndOf="@+id/textView61"
@@ -217,7 +228,7 @@
                     android:layout_marginBottom="8dp"
                     android:text="장소 정보"
                     android:textColor="@color/selector_selected_white_black_color"
-                    android:textSize="14dp"
+                    android:textSize="13dp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -240,7 +251,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="4dp"
                     android:textColor="@color/selector_selected_white_black_color"
-                    android:textSize="14dp"
+                    android:textSize="13dp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="@+id/textView62"
                     app:layout_constraintStart_toEndOf="@+id/textView62"
@@ -250,15 +261,16 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_places"
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/pager_filter_places"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:clipToPadding="false"
-            android:paddingTop="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/zone_filter" />
+            app:layout_constraintTop_toBottomOf="@+id/zone_filter" >
+
+        </androidx.viewpager.widget.ViewPager>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
