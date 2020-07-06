@@ -12,4 +12,5 @@
     <string name="d_counts">%d개</string>
     <string name="already_selected_subway">이미 선택된 역입니다.</string>
     <string name="keyword">키워드</string>
+    <string name="place_feature">장소 정보</string>
 </resources>

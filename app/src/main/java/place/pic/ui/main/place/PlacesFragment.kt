@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import place.pic.databinding.FragmentPlacesBinding
 import place.pic.ui.main.place.adapter.PlacesPagerAdapter
+import place.pic.ui.main.place.bottomsheet.PlaceFeaturesFragment
 import place.pic.ui.main.place.bottomsheet.PlaceKeywordsFragment
 import place.pic.ui.search.subway.Subway
 import place.pic.ui.search.subway.SubwaySearchActivity
@@ -51,13 +52,14 @@ class PlacesFragment : Fragment() {
     private fun initView(binding: FragmentPlacesBinding) {
         binding.viewModel = placesViewModel
         binding.lifecycleOwner = this
-        binding.pagerFilterPlaces.adapter = PlacesPagerAdapter(childFragmentManager)
         binding.tabPlaceCategories.setupWithViewPager(binding.pagerFilterPlaces)
+        binding.pagerFilterPlaces.adapter = PlacesPagerAdapter(childFragmentManager)
         binding.pagerFilterPlaces.offscreenPageLimit = 2
 
         binding.pagerFilterPlaces.addOnPageChangeListener(PlacesPageChangeListener(placesViewModel))
         binding.btnSelectSubways.setOnClickListener { deploySubwaySearchActivity() }
         binding.btnSelectKeywords.setOnClickListener { showSelectKeywordBottomSheet() }
+        binding.btnSelectPlaceFeatures.setOnClickListener { showSelectPlaceFeaturesBottomSheet() }
     }
 
     private fun deploySubwaySearchActivity() {
@@ -71,6 +73,10 @@ class PlacesFragment : Fragment() {
     private fun showSelectKeywordBottomSheet() {
         PlaceKeywordsFragment()
             .show(childFragmentManager, null)
+    }
+
+    private fun showSelectPlaceFeaturesBottomSheet() {
+        PlaceFeaturesFragment().show(childFragmentManager, null)
     }
 
     companion object {
