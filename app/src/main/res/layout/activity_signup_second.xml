@@ -15,14 +15,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ImageButton
+        <ImageView
             android:id="@+id/img_sign_top_bar_back_btn2"
-            android:layout_width="16dp"
-            android:layout_height="16dp"
-            android:layout_marginStart="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="18dp"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp"
-            android:src="@drawable/ic_launcher_background"
+            android:src="@drawable/back_arrow_ic"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -35,6 +35,7 @@
             android:text="회원가입"
             android:textColor="@color/black36"
             android:textSize="15dp"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/img_sign_top_bar_back_btn2"
             app:layout_constraintStart_toEndOf="@+id/img_sign_top_bar_back_btn2"
             app:layout_constraintTop_toTopOf="@+id/img_sign_top_bar_back_btn2" />
@@ -57,8 +58,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="이름"
+            android:textStyle="bold"
             android:textColor="@color/black36"
-            android:textSize="13dp"
+            android:textSize="15dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -68,16 +70,17 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:layout_marginBottom="24dp"
+            android:background="@color/selector_edittext_in_login_view"
             android:hint="이름을 입력해주세요"
             android:inputType="text"
             android:paddingVertical="8dp"
-            android:paddingStart="16dp"
             android:textColorHint="@color/grayCED5DA"
-            android:textSize="15dp"
-            android:background="@color/selector_edittext_in_login_view"
+            android:textSize="14dp"
+            android:padding="12dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_sign_name"
-            tools:layout_editor_absoluteX="16dp"/>
+            app:layout_constraintVertical_bias="0.0"
+            tools:layout_editor_absoluteX="16dp" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <!--비밀번호 입력 뷰-->
@@ -96,9 +99,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="생일"
+            android:text="생년월일"
             android:textColor="@color/black36"
-            android:textSize="13dp"
+            android:textSize="15dp"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -108,16 +112,18 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:layout_marginBottom="24dp"
-            android:hint="생일을 입력해주세요"
+            android:hint="생년월일을 입력해주세요"
             android:inputType="text"
             android:paddingVertical="8dp"
             android:paddingStart="16dp"
             android:textColorHint="@color/grayCED5DA"
-            android:textSize="15dp"
+            android:textSize="14dp"
+            android:padding="12dp"
             android:background="@color/selector_edittext_in_login_view"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_sign_birth"
             tools:layout_editor_absoluteX="16dp"/>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -136,7 +142,8 @@
             android:layout_marginTop="8dp"
             android:text="성별"
             android:textColor="@color/black36"
-            android:textSize="13dp"
+            android:textSize="15dp"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -150,8 +157,8 @@
             android:paddingStart="16dp"
             android:text="남성"
             android:background="@drawable/round_rectangle_gray_8dp"
-            android:backgroundTint="@color/selector_endable_button_gray_to_black"
-            android:textColor="@color/selector_endable_text_gray_to_white"
+            android:backgroundTint="@color/selector_enable_button_men_women"
+            android:textColor="@color/selector_enable_text_men_women"
             style="?android:attr/borderlessButtonStyle"
             android:textStyle="bold"
             android:textSize="15dp"
@@ -189,6 +196,7 @@
         android:layout_marginTop="25dp"
         android:text="회원가입(2/2)"
         android:textSize="15dp"
+        android:padding="13dp"
         android:background="@drawable/round_rectangle_gray_8dp"
         android:backgroundTint="@color/selector_endable_button_gray_to_black"
         android:textColor="@color/selector_endable_text_gray_to_white"

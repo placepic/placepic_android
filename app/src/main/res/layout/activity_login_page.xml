@@ -30,7 +30,7 @@
         android:backgroundTint="@color/grayF1F4F5"
         android:text="로그인"
         android:textColor="@color/black4F"
-        android:textSize="18dp"
+        android:textSize="15dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/btn_goto_signup"
         app:layout_constraintEnd_toEndOf="parent"

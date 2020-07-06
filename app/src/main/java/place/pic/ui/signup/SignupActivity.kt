@@ -33,10 +33,13 @@ class SignupActivity : AppCompatActivity() {
                 showToast("빈칸이있어용")
             }
             else if(et_sign_password.getText().toString() != et_sign_ok_password.getText().toString()) {
-                //비밀번호 다를 때
-                showToast("비밀번호가 달라용")
+                et_sign_ok_password.background = getDrawable(R.drawable.border_round_rectangle_red_8dp)
+                tv_sign_non_password.visibility = View.VISIBLE
             }
             else {
+                et_sign_ok_password.background = getDrawable(R.color.selector_edittext_in_login_view)
+                tv_sign_non_password.visibility = View.INVISIBLE
+
                 val intent = Intent(this, SignupSecondActivity::class.java)
                 startActivity(intent)
                 overridePendingTransition(0, 0)
@@ -85,8 +88,5 @@ class SignupActivity : AppCompatActivity() {
     private fun SignButtonActivation(){
         btn_signnup.isEnabled = writeSignEmail && writeSignPassword
     }
-
-
-
 }
 
