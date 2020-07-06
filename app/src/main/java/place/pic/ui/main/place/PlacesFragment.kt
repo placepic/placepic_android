@@ -76,7 +76,8 @@ class PlacesFragment : Fragment() {
     }
 
     private fun showSelectPlaceFeaturesBottomSheet() {
-        PlaceFeaturesFragment().show(childFragmentManager, null)
+        PlaceFeaturesFragment()
+            .show(childFragmentManager, null)
     }
 
     companion object {

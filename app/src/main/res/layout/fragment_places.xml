@@ -63,7 +63,6 @@
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tab_place_categories"
-            app:tabTextAppearance="@style/tabText"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@android:color/white"
@@ -75,7 +74,9 @@
             app:layout_constraintTop_toBottomOf="@+id/top_bar"
             app:tabIndicatorColor="@color/black36"
             app:tabIndicatorHeight="3dp"
+            app:tabMode="scrollable"
             app:tabRippleColor="@android:color/transparent"
+            app:tabTextAppearance="@style/tabText"
             app:tabTextColor="@color/selector_selected_black_gray_color">
 
             <com.google.android.material.tabs.TabItem

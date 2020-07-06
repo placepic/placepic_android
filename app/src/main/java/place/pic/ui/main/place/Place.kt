@@ -31,12 +31,18 @@ data class Place(
         )
     }
 
-    enum class Type(val position: Int, val key: String, val value: String) {
-        ALL(0, "", "전체"),
-        RESTAURANT(1, "", "맛집"),
-        ALCOHOL(2, "", "술집"),
-        CAFE(3, "", "카페"),
-        STUDY(4, "", "스터디"),
-        ETC(5, "", "기타")
+    enum class Type(val position: Int, val value: String) {
+        ALL(0, "전체"),
+        RESTAURANT(1, "맛집"),
+        ALCOHOL(2, "술집"),
+        CAFE(3, "카페"),
+        STUDY(4, "스터디"),
+        ETC(5, "기타");
+
+        companion object {
+            fun findByName(name: String): Type = values().first { it.value == name }
+
+            fun findByPosition(position: Int): Type = values().first { it.position == position }
+        }
     }
 }
