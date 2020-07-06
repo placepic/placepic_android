@@ -79,7 +79,7 @@
             android:textSize="18dp"
             app:layout_constraintBottom_toTopOf="@+id/tv_login_non_email"
             app:layout_constraintTop_toBottomOf="@+id/tv_login_email"
-            tools:layout_editor_absoluteX="16dp" />
+            />
 
         <TextView
             android:id="@+id/tv_login_non_email"
