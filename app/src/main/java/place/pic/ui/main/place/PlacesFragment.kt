@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import place.pic.databinding.FragmentPlacesBinding
 import place.pic.ui.main.place.adapter.PlacesPagerAdapter
+import place.pic.ui.main.place.bottomsheet.PlaceKeywordsFragment
 import place.pic.ui.search.subway.Subway
 import place.pic.ui.search.subway.SubwaySearchActivity
 import java.util.*
@@ -41,6 +42,12 @@ class PlacesFragment : Fragment() {
         }
     }
 
+    private fun handleSelectedSubways(data: Intent?) {
+        if (data == null) return
+        val subways = data.getSerializableExtra(SUBWAYS_KEY) as List<Subway>
+        placesViewModel.selectSubways(subways)
+    }
+
     private fun initView(binding: FragmentPlacesBinding) {
         binding.viewModel = placesViewModel
         binding.lifecycleOwner = this
@@ -50,20 +57,23 @@ class PlacesFragment : Fragment() {
 
         binding.pagerFilterPlaces.addOnPageChangeListener(PlacesPageChangeListener(placesViewModel))
         binding.btnSelectSubways.setOnClickListener { deploySubwaySearchActivity() }
+        binding.btnSelectKeywords.setOnClickListener { showSelectKeywordBottomSheet() }
     }
 
     private fun deploySubwaySearchActivity() {
         val intent = Intent(activity, SubwaySearchActivity::class.java)
         val currentSelectedSubways = placesViewModel.selectedSubways.value ?: emptyList()
-        intent.putExtra("subways", ArrayList(currentSelectedSubways))
+        intent.putExtra(SUBWAYS_KEY, ArrayList(currentSelectedSubways))
 
         startActivityForResult(intent, SubwaySearchActivity.REQUEST_CODE)
     }
 
-    private fun handleSelectedSubways(data: Intent?) {
-        if (data == null) return
-        val subways = data.getSerializableExtra("subways") as List<Subway>
-        placesViewModel.selectSubways(subways)
+    private fun showSelectKeywordBottomSheet() {
+        PlaceKeywordsFragment()
+            .show(childFragmentManager, null)
     }
 
+    companion object {
+        const val SUBWAYS_KEY = "subways"
+    }
 }

@@ -11,5 +11,5 @@
     <string name="string_search">최애장소 검색하기</string>
     <string name="d_counts">%d개</string>
     <string name="already_selected_subway">이미 선택된 역입니다.</string>
-
+    <string name="keyword">키워드</string>
 </resources>

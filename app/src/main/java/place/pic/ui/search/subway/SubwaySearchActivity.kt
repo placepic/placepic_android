@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import place.pic.R
 import place.pic.databinding.ActivitySearchSubwayBinding
+import place.pic.ui.main.place.PlacesFragment.Companion.SUBWAYS_KEY
 import place.pic.ui.search.subway.adapter.SelectedSubwaysAdapter
 import place.pic.ui.search.subway.adapter.SubwaysAdapter
 
@@ -17,8 +18,8 @@ import place.pic.ui.search.subway.adapter.SubwaysAdapter
  */
 
 /**
-    이미 선택된 역을 나타내려면 putExtra에 "subways" 키로 ArrayList<Subway> 를 넘겨주면 됩니다.
-    또한, 선택된 역들을 받아오려면 getExtra를 통해 "subways" 키로 List<Subway> 캐스팅해오면 됩니다.
+이미 선택된 역을 나타내려면 putExtra에 "subways" 키로 ArrayList<Subway> 를 넘겨주면 됩니다.
+또한, 선택된 역들을 받아오려면 getExtra를 통해 "subways" 키로 List<Subway> 캐스팅해오면 됩니다.
  */
 
 class SubwaySearchActivity : AppCompatActivity() {
@@ -64,7 +65,7 @@ class SubwaySearchActivity : AppCompatActivity() {
     }
 
     private fun getAlreadySelectedSubways() {
-        val subways = intent.getSerializableExtra("subways") ?: return
+        val subways = intent.getSerializableExtra(SUBWAYS_KEY) ?: return
         subwaySearchViewModel.loadAlreadySelectedSubways(subways as List<Subway>)
     }
 
@@ -88,7 +89,7 @@ class SubwaySearchActivity : AppCompatActivity() {
 
     private fun finishSelectSubways() {
         val selectedSubways = ArrayList(subwaySearchViewModel.getCurrentSelectedSubways())
-        val intent = Intent().apply { putExtra("subways", selectedSubways) }
+        val intent = Intent().apply { putExtra(SUBWAYS_KEY, selectedSubways) }
         setResult(Activity.RESULT_OK, intent)
         finish()
     }
