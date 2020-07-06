@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="place.pic">
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -14,7 +17,7 @@
         <activity android:name=".ui.group.SignUpGroupActivity" />
         <activity android:name=".ui.group.JoinGroupActivity" />
         <activity android:name=".ui.group.WaitGroupActivity" />
-        <activity android:name=".ui.group.GroupListActivity" />
+
         <activity android:name=".ui.login.LoginActivity" />
         <activity android:name=".ui.login.LoginPageActivity" />
         <activity android:name=".TagActivity" />
@@ -27,6 +30,9 @@
         </activity>
         <activity android:name=".PlaceSearchActivity" />
         <activity android:name=".ui.search.subway.SubwaySearchActivity" />
+        <activity android:name=".PostplaceActivity"
+            android:windowSoftInputMode="adjustUnspecified|adjustPan">
+        </activity>
     </application>
 
 </manifest>
