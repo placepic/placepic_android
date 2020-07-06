@@ -103,7 +103,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/post_title"
-                    tools:listitem="@layout/item_upload_image" />
+                    tools:listitem="@layout/item_image_to_upload" />
 
                 <TextView
                     android:id="@+id/textView"

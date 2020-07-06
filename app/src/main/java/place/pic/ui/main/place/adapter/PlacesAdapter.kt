@@ -39,12 +39,7 @@ class PlacesAdapter : ListAdapter<Place, RecyclerView.ViewHolder>(DiffItemCallba
     }
 
     override fun submitList(list: List<Place>?) {
-        val newList = list?.toMutableList()?.apply {
-            add(
-                0,
-                Place.empty()
-            )
-        }
+        val newList = list?.toMutableList()?.apply { add(0, Place.empty()) }
         super.submitList(newList)
     }
 
