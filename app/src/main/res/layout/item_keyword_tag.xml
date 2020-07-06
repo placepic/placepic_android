@@ -4,35 +4,34 @@
     <data>
 
         <variable
-            name="line"
-            type="place.pic.ui.search.subway.Subway.Line" />
+            name="keyword"
+            type="String" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="wrap_content"
-        android:layout_height="24dp"
-        android:layout_marginLeft="6dp"
-        android:background="@drawable/circle_rectangle_whtie"
-        app:backgroundTint="@{line.colorCode}"
-        android:minWidth="24dp"
-        tools:backgroundTint="#60B057">
+        android:layout_height="wrap_content"
+        android:layout_marginRight="4dp"
+        android:background="@drawable/round_rectagle_white_4dp"
+        android:backgroundTint="@color/grayF1F4F5">
 
         <TextView
-            android:id="@+id/textView5"
+            android:id="@+id/textView15"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:text="@{line.value}"
-            android:textColor="@android:color/white"
-            android:textSize="14dp"
-            android:textStyle="bold"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="12dp"
+            android:layout_marginBottom="8dp"
+            android:text="@{keyword}"
+            android:textColor="@color/black40"
+            android:textSize="13dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="2" />
+            tools:text="공부하기좋은" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

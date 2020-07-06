@@ -9,23 +9,24 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.group.EndGroupJoinActivity"></activity>
+
+        <activity android:name=".ui.group.EndGroupJoinActivity"/>
         <activity android:name=".ui.group.SignUpGroupActivity" />
         <activity android:name=".ui.group.JoinGroupActivity" />
         <activity android:name=".ui.group.WaitGroupActivity" />
         <activity android:name=".ui.group.GroupListActivity" />
-        <activity android:name=".ui.login.LoginPageActivity">
+        <activity android:name=".ui.login.LoginActivity" />
+        <activity android:name=".ui.login.LoginPageActivity" />
+        <activity android:name=".TagActivity" />
+        <activity android:name=".ui.login_group.group.GroupActivity" />
+        <activity android:name=".ui.main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.login.LoginActivity" />
         <activity android:name=".PlaceSearchActivity" />
-        <activity android:name=".MainActivity" />
         <activity android:name=".ui.search.subway.SubwaySearchActivity" />
-        <activity android:name=".TagActivity" />
     </application>
 
 </manifest>
