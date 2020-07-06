@@ -16,7 +16,7 @@
             android:layout_height="match_parent"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             android:orientation="vertical"
-            tools:listitem="@layout/list_exist_group_item"
+            tools:listitem="@layout/item_group_list"
             />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
