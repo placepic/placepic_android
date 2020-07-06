@@ -6,11 +6,9 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_marginStart="4dp"
-    android:layout_marginTop="4dp"
     android:clickable="true"
     android:fontFamily="@font/spoqa_han_sans_bold"
     android:paddingTop="4dp"
-
     android:paddingBottom="4dp"
     android:text="textView"
     android:textAppearance="@style/AppTheme.TagChip"
