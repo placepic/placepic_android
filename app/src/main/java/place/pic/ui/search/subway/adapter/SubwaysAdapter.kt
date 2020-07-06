@@ -1,4 +1,4 @@
-package place.pic.ui.search.subway
+package place.pic.ui.search.subway.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,21 +6,21 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import place.pic.databinding.ItemSelectedSubwayBinding
+import place.pic.databinding.ItemSearchedSubwayBinding
+import place.pic.ui.search.subway.Subway
 
 /**
  * Created By Malibin
  * on 7월 02, 2020
  */
 
-class SelectedSubwaysAdapter :
-    ListAdapter<Subway, SelectedSubwaysAdapter.ViewHolder>(DiffItemCallback()) {
+class SubwaysAdapter : ListAdapter<Subway, SubwaysAdapter.ViewHolder>(DiffItemCallback()) {
 
-    private var subwaySelectCancelListener: ((subway: Subway) -> Unit)? = null
+    private var subwayClickListener: ((subway: Subway) -> Unit)? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-        val binding = ItemSelectedSubwayBinding.inflate(layoutInflater, parent, false)
+        val binding = ItemSearchedSubwayBinding.inflate(layoutInflater, parent, false)
         return ViewHolder(binding)
     }
 
@@ -29,21 +29,22 @@ class SelectedSubwaysAdapter :
         holder.bind(subway)
     }
 
-    fun setSubwaySelectCancelListener(listener: ((subway: Subway) -> Unit)?) {
-        this.subwaySelectCancelListener = listener
+    fun setSubwayClickListener(listener: ((subway: Subway) -> Unit)?) {
+        this.subwayClickListener = listener
     }
 
     private fun createClickListener(subway: Subway) = View.OnClickListener {
-        subwaySelectCancelListener?.invoke(subway)
+        subwayClickListener?.invoke(subway)
     }
 
     inner class ViewHolder(
-        private val binding: ItemSelectedSubwayBinding
+        private val binding: ItemSearchedSubwayBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(subway: Subway) {
             binding.subway = subway
-            binding.clickListener = createClickListener(subway)
+            binding.itemClickListener = createClickListener(subway)
+            binding.rvSubwayLines.adapter = LinesAdapter().apply { submitList(subway.line) }
         }
     }
 

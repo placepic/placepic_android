@@ -1,9 +1,10 @@
-package place.pic.ui.search.subway
+package place.pic.ui.search.subway.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import place.pic.databinding.ItemSubwayLineBinding
+import place.pic.ui.search.subway.Subway
 
 /**
  * Created By Malibin

@@ -3,7 +3,6 @@
     <color name="colorPrimary">#F65C6C</color>
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
-
     <color name="black36">#363636</color>
     <color name="black40">#404040</color>
     <color name="black4F">#4F4F4F</color>
@@ -27,5 +26,33 @@
 
     <color name="whiteE5">#E5E5E5</color>
     <color name="whiteFF">#FFFFFF</color>
+
+    <color name="subway1">#263c96</color>
+    <color name="subway2">#60b057</color>
+    <color name="subway3">#f06e00</color>
+    <color name="subway4">#2c9ede</color>
+    <color name="subway5">#8936e0</color>
+    <color name="subway6">#b5500b</color>
+    <color name="subway7">#697215</color>
+    <color name="subway8">#e51e6e</color>
+    <color name="subway9">#d1a62c</color>
+    <color name="subway10">#6f99d0</color>
+    <color name="subway11">#f4ab3e</color>
+    <color name="subway12">#eba900</color>
+    <color name="subway13">#a71e31</color>
+    <color name="subway14">#7cc4a5</color>
+    <color name="subway15">#08af7b</color>
+    <color name="subway16">#73b6e4</color>
+    <color name="subway17">#ff9d27</color>
+    <color name="subway18">#eba900</color>
+    <color name="subway19">#77c371</color>
+    <color name="subway20">#2673f2</color>
+    <color name="subway21">#c6c100</color>
+    <color name="subway22">#8bc53f</color>
+    <color name="subway23">#96710a</color>
+
+    <color name="pinkF6">#F65C6C</color>
+    <color name="grayF3">#F3F3F3</color>
+    <color name="gray64">#646363</color>
 
 </resources>
