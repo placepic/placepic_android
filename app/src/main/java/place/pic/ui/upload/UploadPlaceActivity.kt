@@ -1,4 +1,4 @@
-package place.pic
+package place.pic.ui.upload
 
 import android.app.Activity
 import android.content.ClipData
@@ -10,13 +10,13 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_postplace.*
+import place.pic.R
 import place.pic.ui.main.MainActivity
 
 
-class PostplaceActivity : AppCompatActivity(), View.OnClickListener {
+class UploadPlaceActivity : AppCompatActivity(), View.OnClickListener {
     private val REQUEST_CODE_PICK_IMAGE = 1001
     var selectedImage = arrayListOf<Uri>()
-    private lateinit var imageAdapter: PhotoAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,15 +27,10 @@ class PostplaceActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun init() {
-        btn_photo.setOnClickListener(this)
 
     }
     override fun onClick(v: View?) {
-        when (v!!.id) {
-            R.id.btn_photo -> {
-                openImageChooser()
-            }
-        }
+
     }
 
     private fun openImageChooser() {
@@ -66,22 +61,15 @@ class PostplaceActivity : AppCompatActivity(), View.OnClickListener {
                             }
                             selectedImage.clear()
                             selectedImage = selectedImageArrayList
-                            setImageAndAdpater()
                     }
                     }
                 }else{//멀티 선택 미지원 기기에서 clipData가 없음.
                     Log.d("test","멀티셀렉트 미지원")
                     selectedImageArrayList.add(data.data!!)
                     selectedImage = selectedImageArrayList
-                    setImageAndAdpater()
                 }
 
         }
-    }
-
-    private fun setImageAndAdpater() {
-        imageAdapter = PhotoAdapter(selectedImage,this)
-        rv_photo_list.adapter = imageAdapter
     }
 
     private fun gotoMain() {

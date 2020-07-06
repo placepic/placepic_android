@@ -30,7 +30,7 @@
         </activity>
         <activity android:name=".PlaceSearchActivity" />
         <activity android:name=".ui.search.subway.SubwaySearchActivity" />
-        <activity android:name=".PostplaceActivity"
+        <activity android:name=".ui.upload.UploadPlaceActivity"
             android:windowSoftInputMode="adjustUnspecified|adjustPan">
         </activity>
     </application>
