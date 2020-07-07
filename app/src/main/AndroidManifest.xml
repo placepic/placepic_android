@@ -21,7 +21,6 @@
         <activity android:name=".ui.login.LoginActivity" />
         <activity android:name=".ui.login.LoginPageActivity" />
         <activity android:name=".ui.main.MainActivity" />
-        <activity android:name=".ui.login_group.group.GroupActivity" />
         <activity android:name=".KeywordTagActivity" />
         <activity android:name=".UsefulTagActivity"/>
         <activity android:name=".PlaceSearchActivity" />
