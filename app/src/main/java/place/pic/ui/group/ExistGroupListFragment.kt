@@ -10,11 +10,9 @@ import kotlinx.android.synthetic.main.activity_group_list.*
 import kotlinx.android.synthetic.main.fragment_exist_group_list.*
 import place.pic.R
 
-class ExistGroupListFragment(
-    val isHaveWaitList :Boolean
-) : Fragment(){
+class ExistGroupListFragment : Fragment(){
 
-    private var testListData = mutableListOf<ListGroupData>()
+    var testListData = mutableListOf<ListGroupData>()
     lateinit var existGroupListAdapter: ExistGroupListAdapter
 
     override fun onCreateView(
@@ -37,11 +35,6 @@ class ExistGroupListFragment(
     private fun setAdpater(){
         existGroupListAdapter = ExistGroupListAdapter(testListData, this.context!!)
         rv_exist_group_list.adapter = existGroupListAdapter
-    }
-
-    private fun useRecyclerViewPaddingTop(){
-        val newPadding = cl_btn_wait_group_list.height + 32
-        rv_exist_group_list.setPadding(0, newPadding , 0,0)
     }
 
     private fun loadTestList(){

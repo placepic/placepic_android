@@ -4,6 +4,7 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import place.pic.R
 
 class ExistGroupListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -14,7 +15,6 @@ class ExistGroupListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemVie
 
 
     fun bind(customData: ListGroupData) {
-
         val groupCount =
             itemView.context
                 .getString(
@@ -22,5 +22,8 @@ class ExistGroupListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemVie
                     customData.people_count,
                     customData.write_count
                 )
+        tv_group_title.text = customData.title
+        tv_group.text = groupCount
+        Glide.with(itemView).load(customData.url).into(img_group_profile)
     }
 }
