@@ -3,6 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="place.pic.ui.upload.UploadPlaceViewModel" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -187,9 +196,10 @@
                         android:id="@+id/btn_modify_subways"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="수정"
+                        android:text="@string/modify"
                         android:textSize="15dp"
                         android:textStyle="bold"
+                        android:visibility="@{viewModel.subways.empty ? View.GONE : View.VISIBLE}"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="@+id/constraintLayout4" />
 
@@ -197,6 +207,7 @@
                         android:id="@+id/btn_select_subways"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:visibility="@{viewModel.subways.empty ? View.VISIBLE : View.GONE}"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
@@ -284,7 +295,7 @@
                         android:id="@+id/btn_modify_keywords"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="수정"
+                        android:text="@string/modify"
                         android:textSize="15dp"
                         android:textStyle="bold"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -379,7 +390,7 @@
                         android:id="@+id/btn_modify_features"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="수정"
+                        android:text="@string/modify"
                         android:textSize="15dp"
                         android:textStyle="bold"
                         app:layout_constraintEnd_toEndOf="parent"

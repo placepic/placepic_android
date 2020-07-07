@@ -8,8 +8,12 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.lifecycle.Observer
+import kotlinx.android.synthetic.main.item_place.*
 import place.pic.R
 import place.pic.databinding.ActivityUploadPlaceBinding
+import place.pic.ui.main.place.PlacesFragment.Companion.SUBWAYS_KEY
+import place.pic.ui.search.subway.Subway
+import place.pic.ui.search.subway.SubwaySearchActivity
 import place.pic.ui.upload.adapter.ImagesToUploadAdapter
 import place.pic.ui.upload.adapter.SubwaysAdapter
 
@@ -27,6 +31,7 @@ class UploadPlaceActivity : AppCompatActivity() {
         initView(binding)
         subscribeToastMessages()
         subscribeImages()
+        subscribeSubways()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -34,6 +39,11 @@ class UploadPlaceActivity : AppCompatActivity() {
         if (requestCode == REQUEST_CODE_PICK_IMAGES) {
             if (resultCode == Activity.RESULT_OK) {
                 uploadPlacesViewModel.handleImageUris(data)
+            }
+        }
+        if (requestCode == SubwaySearchActivity.REQUEST_CODE) {
+            if (resultCode == Activity.RESULT_OK) {
+                uploadPlacesViewModel.handleSubwaysIntent(data)
             }
         }
     }
@@ -55,13 +65,22 @@ class UploadPlaceActivity : AppCompatActivity() {
         }
     }
 
+    private fun showPermissionRejected() {
+        Toast.makeText(this, R.string.galleryPermissionRejected, Toast.LENGTH_SHORT).show()
+    }
+
     private fun initView(binding: ActivityUploadPlaceBinding) {
+        binding.lifecycleOwner = this
+        binding.viewModel = uploadPlacesViewModel
         imagesAdapter = ImagesToUploadAdapter().apply { submitList(emptyList()) }
         imagesAdapter.setGettingImageButtonListener { deployGalleryOrRequestPermission() }
         imagesAdapter.setOnImageDeleteListener { uploadPlacesViewModel.deleteImageUri(it) }
         binding.rvPhotos.adapter = imagesAdapter
         subwaysAdapter = SubwaysAdapter()
         binding.rvSubways.adapter = subwaysAdapter
+        binding.btnBack.setOnClickListener { finish() }
+        binding.btnSelectSubways.setOnClickListener { deploySelectSubwaysActivity() }
+        binding.btnModifySubways.setOnClickListener { deploySelectSubwaysActivity() }
     }
 
     private fun subscribeToastMessages() {
@@ -73,6 +92,12 @@ class UploadPlaceActivity : AppCompatActivity() {
     private fun subscribeImages() {
         uploadPlacesViewModel.imageUris.observe(this, Observer {
             imagesAdapter.submitList(it)
+        })
+    }
+
+    private fun subscribeSubways() {
+        uploadPlacesViewModel.subways.observe(this, Observer {
+            subwaysAdapter.submitList(it)
         })
     }
 
@@ -105,8 +130,11 @@ class UploadPlaceActivity : AppCompatActivity() {
         )
     }
 
-    private fun showPermissionRejected() {
-        Toast.makeText(this, R.string.galleryPermissionRejected, Toast.LENGTH_SHORT).show()
+    private fun deploySelectSubwaysActivity() {
+        val intent = Intent(this, SubwaySearchActivity::class.java)
+        val alreadySelectedSubways = uploadPlacesViewModel.subways.value ?: emptyList()
+        intent.putExtra(SUBWAYS_KEY, ArrayList<Subway>(alreadySelectedSubways))
+        startActivityForResult(intent, SubwaySearchActivity.REQUEST_CODE)
     }
 
     companion object {
