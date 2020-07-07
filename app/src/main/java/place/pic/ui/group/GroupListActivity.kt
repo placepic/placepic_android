@@ -1,47 +1,67 @@
 package place.pic.ui.group
 
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.fragment.app.FragmentActivity
 import kotlinx.android.synthetic.main.activity_group_list.*
-import kotlinx.android.synthetic.main.fragment_exist_group_list.*
 import place.pic.R
 
-class ExistGroupListFragment(
-    val isHaveWaitList :Boolean
-) : Fragment(){
+class GroupListActivity : AppCompatActivity() {
+
+    private val transaction = supportFragmentManager.beginTransaction()
 
     private var testListData = mutableListOf<ListGroupData>()
-    lateinit var existGroupListAdapter: ExistGroupListAdapter
+    private var testWaitListData = mutableListOf<WaitListGroupData>()
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_exist_group_list, container, false)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_group_list)
+        init()
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    private fun init(){
         loadTestList()
-        rv_exist_group_list.addItemDecoration(
-            DividerItemDecoration(this.context,DividerItemDecoration.VERTICAL)
-        )
-        setAdpater()
+        if (testListData.count() == 0) {
+            loadEmptyGroup()
+            return
+        }
+        loadExistGroup()
     }
 
-    private fun setAdpater(){
-        existGroupListAdapter = ExistGroupListAdapter(testListData, this.context!!)
-        rv_exist_group_list.adapter = existGroupListAdapter
+    private fun loadEmptyGroup(){
+        tv_btn_join_group.visibility = View.GONE
+        haveWaitGroupList()
+        loadGroupFragment(EmptyGroupListFragment())
     }
 
-    private fun useRecyclerViewPaddingTop(){
-        val newPadding = cl_btn_wait_group_list.height + 32
-        rv_exist_group_list.setPadding(0, newPadding , 0,0)
+    private fun loadExistGroup(){
+        tv_btn_join_group.visibility= View.VISIBLE
+        val havingWaitList = haveWaitGroupList()
+        loadGroupFragment(ExistGroupListFragment(havingWaitList))
+    }
+
+    private fun loadGroupFragment(fragment: Fragment) {
+        transaction.replace(R.id.frame_group_list, fragment)
+        transaction.commit()
+    }
+
+    private fun enableWaitGroupListButton() {
+        cl_btn_wait_group_list.visibility = View.VISIBLE
+    }
+
+    private fun disableWaitGroupListButton(){
+        cl_btn_wait_group_list.visibility = View.GONE
+    }
+
+    private fun haveWaitGroupList():Boolean{
+        if (testWaitListData.count() > 0) {
+            enableWaitGroupListButton()
+            return true
+        }
+        disableWaitGroupListButton()
+        return false
     }
 
     private fun loadTestList(){
@@ -70,6 +90,7 @@ class ExistGroupListFragment(
                     write_count = 13
                 )
             )
+
         }
     }
 }

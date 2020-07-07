@@ -33,6 +33,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ui.group.GroupListActivity"/>
+        <activity android:name=".ui.signup.SignuplastActivity"></activity>
+        <activity android:name=".ui.signup.SignupSecondActivity" />
+        <activity android:name=".ui.signup.SignupActivity" />
 
     </application>
 
