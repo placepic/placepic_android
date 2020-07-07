@@ -7,12 +7,13 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+        android:usesCleartextTraffic="true"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme" >
 
         <activity android:name=".ui.group.EndGroupJoinActivity" />
         <activity android:name=".ui.group.SignUpGroupActivity" />
@@ -21,10 +22,9 @@
         <activity android:name=".ui.login.LoginActivity" />
         <activity android:name=".ui.login.LoginPageActivity" />
         <activity android:name=".ui.main.MainActivity" />
-        <activity android:name=".ui.login_group.group.GroupActivity" />
-        <activity android:name=".KeywordTagActivity" />
-        <activity android:name=".UsefulTagActivity"/>
-        <activity android:name=".PlaceSearchActivity" />
+        <activity android:name=".ui.tag.KeywordTagActivity" />
+        <activity android:name=".ui.tag.UsefulTagActivity"/>
+        <activity android:name=".ui.search.place.PlaceSearchActivity" />
         <activity android:name=".ui.search.subway.SubwaySearchActivity" />
         <activity android:name=".ui.upload.UploadPlaceActivity">
             <intent-filter>

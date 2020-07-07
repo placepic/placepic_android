@@ -1,10 +1,11 @@
-package place.pic
+package place.pic.ui.tag
 
 //시스템 R파일이 import 되지않도록 주의하기
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_keyword_tag.*
+import place.pic.R
 
 /**
  * Created By kimdahyee
@@ -20,7 +21,7 @@ class KeywordTagActivity : AppCompatActivity() {
 
         val chipGroup = chipgroup_keyword_tag
         for (tags in resturantKeywordTagList) {
-            val chip = FactoryKeywordChip.newInstance(layoutInflater) //object method 호출하기
+            val chip = KeywordChipFactory.newInstance(layoutInflater) //object method 호출하기
             chip.isClickable = true
             chip.text = tags
             chipGroup.addView(chip)

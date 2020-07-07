@@ -1,8 +1,9 @@
-package place.pic
+package place.pic.ui.search.place
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_place_search.*
+import place.pic.R
 
 /**
  * Created By kimdahyee

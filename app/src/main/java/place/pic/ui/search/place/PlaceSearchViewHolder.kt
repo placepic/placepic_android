@@ -1,8 +1,9 @@
-package place.pic
+package place.pic.ui.search.place
 
 import android.view.View
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import place.pic.R
 
 /**
  * Created By kimdahyee

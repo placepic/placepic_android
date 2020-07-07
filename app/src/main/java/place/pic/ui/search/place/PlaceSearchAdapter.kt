@@ -1,9 +1,9 @@
-package place.pic
+package place.pic.ui.search.place
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import place.pic.R
 
 class PlaceSearchAdapter : RecyclerView.Adapter<PlaceSearchViewHolder>() {
 

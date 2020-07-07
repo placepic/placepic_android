@@ -1,9 +1,10 @@
-package place.pic
+package place.pic.ui.tag
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import kotlinx.android.synthetic.main.activity_useful_tag.*
+import place.pic.R
 
 /**
  * Created By kimdahyee
@@ -19,7 +20,7 @@ class UsefulTagActivity : AppCompatActivity() {
 
         val chipGroup = chipgroup_useful_tag
         for (tags in resturantUsefulTagList) {
-            val chip = FactoryKeywordChip.newInstance(layoutInflater) //object method 호출하기
+            val chip = KeywordChipFactory.newInstance(layoutInflater) //object method 호출하기
             chip.isClickable = true
             chip.text = tags
             chipGroup.addView(chip)

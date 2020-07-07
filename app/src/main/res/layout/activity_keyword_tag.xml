@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".KeywordTagActivity">
+    tools:context=".ui.tag.KeywordTagActivity">
 
     <!-- *** 태그 디자인 / 클릭 시 색 변경 적용하기 : 옛설 -->
 
