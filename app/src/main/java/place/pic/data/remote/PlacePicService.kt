@@ -24,7 +24,7 @@ interface PlacePicService {
 
         fun getInstance() = instance ?: synchronized(this) {
             instance ?: provideService(PlacePicService::class.java)
-                .also { instance = it }
+                .apply { instance = this }
         }
     }
 }
