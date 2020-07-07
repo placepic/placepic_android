@@ -1,81 +1,101 @@
 package place.pic.ui.upload
 
 import android.app.Activity
-import android.content.ClipData
 import android.content.Intent
-import android.net.Uri
+import android.content.pm.PackageManager
 import android.os.Bundle
-import android.util.Log
-import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import kotlinx.android.synthetic.main.activity_postplace.*
+import androidx.core.app.ActivityCompat
 import place.pic.R
-import place.pic.ui.main.MainActivity
+import place.pic.databinding.ActivityUploadPlaceBinding
 
 
-class UploadPlaceActivity : AppCompatActivity(), View.OnClickListener {
-    private val REQUEST_CODE_PICK_IMAGE = 1001
-    var selectedImage = arrayListOf<Uri>()
+class UploadPlaceActivity : AppCompatActivity() {
+
+    private lateinit var imagesAdapter: ImagesToUploadAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setContentView(R.layout.activity_postplace)
-        init()
-
-    }
-
-    private fun init() {
-
-    }
-    override fun onClick(v: View?) {
-
-    }
-
-    private fun openImageChooser() {
-        Intent(Intent.ACTION_PICK).also {
-            it.type = "image/*"
-            it.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true)
-            val mimeTypes = arrayOf("image/jpeg", "image/png")
-            it.putExtra(Intent.EXTRA_MIME_TYPES, mimeTypes)
-            startActivityForResult(it, REQUEST_CODE_PICK_IMAGE)
-        }
+        val binding = ActivityUploadPlaceBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        initView(binding)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-
-        if (requestCode == REQUEST_CODE_PICK_IMAGE && resultCode == Activity.RESULT_OK && data != null && data.data != null) {
-            val selectedImageArrayList = arrayListOf<Uri>()
-                if (data.clipData != null) {
-                    val clipdata: ClipData = data.clipData!!
-                    when {
-                        clipdata.itemCount > 10 -> {
-                            Toast.makeText(this, "사진은 10개까지 선택 가능합니다", Toast.LENGTH_SHORT).show()
-
-                        }else -> {
-                            Log.d("test","멀티셀렉트 지원")
-                            for (i in 0 until clipdata.itemCount) {
-                                selectedImageArrayList.add(clipdata.getItemAt(i).uri)
-                            }
-                            selectedImage.clear()
-                            selectedImage = selectedImageArrayList
-                    }
-                    }
-                }else{//멀티 선택 미지원 기기에서 clipData가 없음.
-                    Log.d("test","멀티셀렉트 미지원")
-                    selectedImageArrayList.add(data.data!!)
-                    selectedImage = selectedImageArrayList
-                }
-
+        if (requestCode == REQUEST_CODE_PICK_IMAGES) {
+            if (resultCode == Activity.RESULT_OK) {
+                loadImages(ImageUriExtractor.from(data))
+            }
         }
     }
 
-    private fun gotoMain() {
-        val intent = Intent(this, MainActivity::class.java)
-
-        startActivity(intent)
-        finish()
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == REQUEST_CODE_GALLERY_PERMISSION) {
+            val isPermissionGranted =
+                grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED
+            if (isPermissionGranted) {
+                deployGallery()
+                return
+            }
+            showPermissionRejected()
+        }
     }
+
+    private fun initView(binding: ActivityUploadPlaceBinding) {
+        imagesAdapter = ImagesToUploadAdapter().apply { submitList(emptyList()) }
+        imagesAdapter.setGettingImageButtonListener { deployGalleryOrRequestPermission() }
+        imagesAdapter.setOnImageDeleteListener { }
+        binding.rvPhotos.adapter = imagesAdapter
+    }
+
+    private fun deployGalleryOrRequestPermission() {
+        val previousPermissionGranted = ActivityCompat.checkSelfPermission(
+            this,
+            android.Manifest.permission.READ_EXTERNAL_STORAGE
+        )
+        val isPermissionGranted = previousPermissionGranted == PackageManager.PERMISSION_GRANTED
+        if (isPermissionGranted) {
+            deployGallery()
+            return
+        }
+        requestPermissions(
+            arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE),
+            REQUEST_CODE_GALLERY_PERMISSION
+        )
+    }
+
+    private fun deployGallery() {
+        val photoPickerIntent = Intent()
+        photoPickerIntent.apply {
+            type = "image/*"
+            action = Intent.ACTION_GET_CONTENT
+            putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true)
+        }
+        startActivityForResult(
+            Intent.createChooser(photoPickerIntent, "select picture"),
+            REQUEST_CODE_PICK_IMAGES
+        )
+    }
+
+    private fun showPermissionRejected() {
+        Toast.makeText(this, R.string.galleryPermissionRejected, Toast.LENGTH_SHORT).show()
+    }
+
+    private fun loadImages(images: List<ImageUri>) {
+        imagesAdapter.submitList(images)
+    }
+
+    companion object {
+        const val REQUEST_CODE_PICK_IMAGES = 3000
+        const val REQUEST_CODE_GALLERY_PERMISSION = 3001
+    }
+
 }

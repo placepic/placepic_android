@@ -14,5 +14,7 @@
     <string name="keyword">키워드</string>
     <string name="place_feature">장소 정보</string>
     <string name="n_amount_of_ten">%d / 10</string>
+    <string name="galleryPermissionRejected">권한을 거부하시면 이미지를 업로드 하실 수 없습니다.</string>
+    <string name="imageCountMaxIsTen">이미지는 10개 까지만 첨부 가능합니다.</string>
 
 </resources>

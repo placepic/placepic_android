@@ -16,20 +16,20 @@ import place.pic.databinding.*
  * on 7월 07, 2020
  */
 
-class UploadImagesAdapter : ListAdapter<ImageUri, RecyclerView.ViewHolder>(DiffItemCallback()) {
+class ImagesToUploadAdapter : ListAdapter<ImageUri, RecyclerView.ViewHolder>(DiffItemCallback()) {
 
     private var imageDeleteListener: ((imageUri: ImageUri) -> Unit)? = null
-    private var getImageButtonListener: View.OnClickListener? = null
+    private var getImageButtonListener: ((view: View) -> Unit)? = null
 
     override fun getItemViewType(position: Int) = when (position) {
-        0 -> R.layout.item_get_image_buttonn
+        0 -> R.layout.item_get_image_button
         else -> R.layout.item_image_to_upload
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         return when (viewType) {
-            R.layout.item_get_image_buttonn ->
+            R.layout.item_get_image_button ->
                 createGetImageButtonViewHolder(layoutInflater, parent)
             R.layout.item_image_to_upload ->
                 createImageViewHolder(layoutInflater, parent)
@@ -55,7 +55,7 @@ class UploadImagesAdapter : ListAdapter<ImageUri, RecyclerView.ViewHolder>(DiffI
         inflater: LayoutInflater,
         parent: ViewGroup
     ): GetImageButtonViewHolder {
-        val binding = ItemGetImageButtonnBinding.inflate(inflater, parent, false)
+        val binding = ItemGetImageButtonBinding.inflate(inflater, parent, false)
         return GetImageButtonViewHolder(binding).apply { bind() }
     }
 
@@ -75,7 +75,7 @@ class UploadImagesAdapter : ListAdapter<ImageUri, RecyclerView.ViewHolder>(DiffI
         this.imageDeleteListener = listener
     }
 
-    fun setGettingImageButtonListener(listener: View.OnClickListener?) {
+    fun setGettingImageButtonListener(listener: ((view: View) -> Unit)?) {
         this.getImageButtonListener = listener
     }
 
@@ -91,7 +91,7 @@ class UploadImagesAdapter : ListAdapter<ImageUri, RecyclerView.ViewHolder>(DiffI
     }
 
     inner class GetImageButtonViewHolder(
-        private val binding: ItemGetImageButtonnBinding
+        private val binding: ItemGetImageButtonBinding
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind() {
             binding.btnGetImages.setOnClickListener(getImageButtonListener)

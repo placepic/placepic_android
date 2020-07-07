@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/btn_get_images"
         android:layout_width="92dp"
         android:layout_height="92dp"
+        android:layout_marginRight="8dp"
         android:background="@drawable/round_rectagle_white_6dp"
         android:backgroundTint="@color/grayE6"
         app:layout_constraintBottom_toBottomOf="parent"

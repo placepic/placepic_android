@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.upload.UploadPlaceActivity">
@@ -40,7 +40,7 @@
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/btn_back"
                 app:layout_constraintStart_toEndOf="@+id/btn_back"
-                app:layout_constraintTop_toTopOf="@+id/btn_back"></TextView>
+                app:layout_constraintTop_toTopOf="@+id/btn_back" />
 
             <TextView
                 android:id="@+id/btn_submit"
@@ -57,7 +57,7 @@
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/textView14"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/textView14"></TextView>
+                app:layout_constraintTop_toTopOf="@+id/textView14" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <ScrollView
@@ -88,7 +88,7 @@
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    tools:text="그녀의 한정식"></TextView>
+                    tools:text="그녀의 한정식" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_photos"
@@ -97,6 +97,7 @@
                     android:layout_marginTop="24dp"
                     android:clipToPadding="false"
                     android:orientation="horizontal"
+                    android:overScrollMode="never"
                     android:paddingStart="16dp"
                     android:paddingEnd="16dp"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
@@ -117,7 +118,7 @@
                     android:textColor="@color/black36"
                     android:textSize="14dp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/rv_photos"></TextView>
+                    app:layout_constraintTop_toBottomOf="@+id/rv_photos" />
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -127,7 +128,7 @@
                     android:src="@drawable/mdi_navigate_next"
                     app:layout_constraintBottom_toBottomOf="@+id/textView"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/textView"></ImageView>
+                    app:layout_constraintTop_toTopOf="@+id/textView" />
 
                 <ImageView
                     android:id="@+id/imageView3"
@@ -139,7 +140,7 @@
                     android:src="@drawable/line"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/textView"
-                    app:layout_constraintTop_toBottomOf="@+id/textView"></ImageView>
+                    app:layout_constraintTop_toBottomOf="@+id/textView" />
 
                 <TextView
                     android:id="@+id/textView2"
@@ -153,7 +154,7 @@
                     android:textColor="@color/black36"
                     android:textSize="14dp"
                     app:layout_constraintStart_toStartOf="@+id/textView"
-                    app:layout_constraintTop_toBottomOf="@+id/imageView3"></TextView>
+                    app:layout_constraintTop_toBottomOf="@+id/imageView3" />
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -163,7 +164,7 @@
                     android:src="@drawable/mdi_navigate_next"
                     app:layout_constraintBottom_toBottomOf="@+id/textView2"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/textView2"></ImageView>
+                    app:layout_constraintTop_toTopOf="@+id/textView2" />
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/appCompatImageView2"
@@ -187,7 +188,7 @@
                     android:text="유용한 정보"
                     android:textColor="@color/black36"
                     app:layout_constraintStart_toStartOf="@+id/textView2"
-                    app:layout_constraintTop_toBottomOf="@+id/appCompatImageView2"></TextView>
+                    app:layout_constraintTop_toBottomOf="@+id/appCompatImageView2" />
 
                 <TextView
                     android:id="@+id/textView4"
@@ -204,7 +205,7 @@
                     android:textColor="@color/gray64"
                     android:textSize="13dp"
                     app:layout_constraintStart_toStartOf="@+id/textView3"
-                    app:layout_constraintTop_toBottomOf="@+id/textView3"></TextView>
+                    app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
                 <TextView
                     android:id="@+id/textView5"
@@ -223,7 +224,7 @@
                     app:layout_constraintBottom_toBottomOf="@+id/textView4"
                     app:layout_constraintStart_toEndOf="@+id/textView4"
                     app:layout_constraintTop_toTopOf="@+id/textView4"
-                    app:layout_constraintVertical_bias="1.0"></TextView>
+                    app:layout_constraintVertical_bias="1.0" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -240,7 +241,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/textView5"
                     app:layout_constraintTop_toTopOf="@+id/textView5"
-                    app:layout_constraintVertical_bias="0.0"></TextView>
+                    app:layout_constraintVertical_bias="0.0" />
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/appCompatImageView3"
@@ -252,8 +253,7 @@
                     android:src="@drawable/line"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/textView4"
-                    app:layout_constraintTop_toBottomOf="@+id/textView4"></androidx.appcompat.widget.AppCompatImageView>
-
+                    app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
                 <TextView
                     android:id="@+id/textView6"
@@ -263,7 +263,7 @@
                     android:text="다녀온 후기"
                     android:textColor="@color/black36"
                     app:layout_constraintStart_toStartOf="@+id/textView3"
-                    app:layout_constraintTop_toBottomOf="@+id/appCompatImageView3"></TextView>
+                    app:layout_constraintTop_toBottomOf="@+id/appCompatImageView3" />
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:layout_width="match_parent"
