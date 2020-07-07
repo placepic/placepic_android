@@ -203,7 +203,7 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_signnup_second"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
