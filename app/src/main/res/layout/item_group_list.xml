@@ -34,7 +34,6 @@
         android:id="@+id/tv_group_count"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="90명 · 전체글 30개"
         android:textSize="15dp"
         android:layout_marginBottom="6dp"
         app:layout_constraintBottom_toBottomOf="@+id/img_group_profile"

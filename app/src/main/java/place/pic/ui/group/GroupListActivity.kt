@@ -2,15 +2,18 @@ package place.pic.ui.group
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
+import kotlinx.android.synthetic.main.activity_group_list.*
 import place.pic.R
 
 class GroupListActivity : AppCompatActivity() {
 
-    val transaction = supportFragmentManager.beginTransaction()
+    private val transaction = supportFragmentManager.beginTransaction()
 
-    var testListData = mutableListOf<ListGroupData>()
-    var testWaitListData = mutableListOf<WaitListGroupData>()
+    private var testListData = mutableListOf<ListGroupData>()
+    private var testWaitListData = mutableListOf<WaitListGroupData>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,6 +22,7 @@ class GroupListActivity : AppCompatActivity() {
     }
 
     private fun init(){
+        loadTestList()
         if (testListData.count() == 0) {
             loadEmptyGroup()
             return
@@ -27,13 +31,37 @@ class GroupListActivity : AppCompatActivity() {
     }
 
     private fun loadEmptyGroup(){
-        transaction.replace(R.id.frame_group_list, EmptyGroupListFragment())
-        transaction.commit()
+        tv_btn_join_group.visibility = View.GONE
+        haveWaitGroupList()
+        loadGroupFragment(EmptyGroupListFragment())
     }
 
     private fun loadExistGroup(){
-        transaction.add(R.id.frame_group_list, ExistGroupListFragment())
+        tv_btn_join_group.visibility= View.VISIBLE
+        val havingWaitList = haveWaitGroupList()
+        loadGroupFragment(ExistGroupListFragment(havingWaitList))
+    }
+
+    private fun loadGroupFragment(fragment: Fragment) {
+        transaction.replace(R.id.frame_group_list, fragment)
         transaction.commit()
+    }
+
+    private fun enableWaitGroupListButton() {
+        cl_btn_wait_group_list.visibility = View.VISIBLE
+    }
+
+    private fun disableWaitGroupListButton(){
+        cl_btn_wait_group_list.visibility = View.GONE
+    }
+
+    private fun haveWaitGroupList():Boolean{
+        if (testWaitListData.count() > 0) {
+            enableWaitGroupListButton()
+            return true
+        }
+        disableWaitGroupListButton()
+        return false
     }
 
     private fun loadTestList(){
@@ -65,6 +93,4 @@ class GroupListActivity : AppCompatActivity() {
 
         }
     }
-
-
 }

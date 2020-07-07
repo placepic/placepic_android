@@ -17,16 +17,16 @@
         <activity android:name=".ui.group.SignUpGroupActivity" />
         <activity android:name=".ui.group.JoinGroupActivity" />
         <activity android:name=".ui.group.WaitGroupActivity" />
-        <activity android:name=".ui.login.LoginActivity" />
-        <activity android:name=".ui.login.LoginPageActivity" />
-        <activity android:name=".TagActivity" />
-        <activity android:name=".ui.login_group.group.GroupActivity" />
-        <activity android:name=".ui.main.MainActivity">
+        <activity android:name=".ui.group.GroupListActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ui.login.LoginActivity" />
+        <activity android:name=".ui.login.LoginPageActivity" />
+        <activity android:name=".TagActivity" />
+        <activity android:name=".ui.main.MainActivity"/>
         <activity android:name=".PlaceSearchActivity" />
         <activity android:name=".ui.search.subway.SubwaySearchActivity" />
         <activity android:name=".PostplaceActivity"

@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import place.pic.R
 
-class ExistGroupListAdapter (private var datas:MutableList<ListGroupData>,private val context: Context) : RecyclerView.Adapter<ExistGroupListViewHolder>() {
+class ExistGroupListAdapter(private var datas: MutableList<ListGroupData>, private val context: Context) : RecyclerView.Adapter<ExistGroupListViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ExistGroupListViewHolder {
         val view = LayoutInflater.from(context).inflate(R.layout.item_group_list,parent,false)

@@ -13,5 +13,6 @@
     <string name="already_selected_subway">이미 선택된 역입니다.</string>
     <string name="keyword">키워드</string>
     <string name="place_feature">장소 정보</string>
+    <string name="group_count">%1$d명 · 전체글 %2$d개</string>
 
 </resources>

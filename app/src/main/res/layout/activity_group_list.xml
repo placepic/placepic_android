@@ -35,7 +35,7 @@
             android:layout_height="wrap_content"
             android:text="참여"
             android:textColor="@color/colorPrimary"
-            android:textSize="18dp"
+            android:textSize="17dp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/tv_group_list_top_bar"
             app:layout_constraintEnd_toEndOf="parent"
@@ -45,8 +45,8 @@
 
     <!--승인 대기중인 버튼 뷰 그룹-->
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:visibility="gone"
-        android:id="@+id/btn_wait_group_list"
+        android:visibility="visible"
+        android:id="@+id/cl_btn_wait_group_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
@@ -58,7 +58,7 @@
         app:layout_constraintTop_toBottomOf="@+id/cl_group_list_top_bar">
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/tv_wait_group_list"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="승인 대기중인 그룹"
