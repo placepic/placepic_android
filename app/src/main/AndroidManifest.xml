@@ -25,14 +25,14 @@
         <activity android:name=".UsefulTagActivity"/>
         <activity android:name=".PlaceSearchActivity" />
         <activity android:name=".ui.search.subway.SubwaySearchActivity" />
-        <activity android:name=".ui.upload.UploadPlaceActivity">
+        <activity android:name=".ui.upload.UploadPlaceActivity"/>
+        <activity android:name=".ui.group.GroupListActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
     </application>
 
 </manifest>
