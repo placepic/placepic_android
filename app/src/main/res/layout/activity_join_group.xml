@@ -42,9 +42,9 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
+        android:id="@+id/rv_join_group_list"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintEnd_toEndOf="@+id/cl_join_group_top_bar"
@@ -60,9 +60,9 @@
         android:backgroundTint="@color/grayF1F4F5"
         android:padding="16dp"
         android:layout_margin="16dp"
-        app:layout_constraintEnd_toEndOf="@+id/recyclerView"
-        app:layout_constraintStart_toStartOf="@+id/recyclerView"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerView">
+        app:layout_constraintEnd_toEndOf="@+id/rv_join_group_list"
+        app:layout_constraintStart_toStartOf="@+id/rv_join_group_list"
+        app:layout_constraintTop_toBottomOf="@+id/rv_join_group_list">
 
         <TextView
             android:id="@+id/tv_creat_new_group"
