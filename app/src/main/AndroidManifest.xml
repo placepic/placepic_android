@@ -19,20 +19,24 @@
         <activity android:name=".ui.group.JoinGroupActivity" />
         <activity android:name=".ui.group.WaitGroupActivity" />
         <activity android:name=".ui.login.LoginActivity" />
-        <activity android:name=".ui.login.LoginPageActivity" />
-        <activity android:name=".ui.main.MainActivity" />
-        <activity android:name=".KeywordTagActivity" />
-        <activity android:name=".UsefulTagActivity"/>
-        <activity android:name=".PlaceSearchActivity" />
-        <activity android:name=".ui.search.subway.SubwaySearchActivity" />
-        <activity android:name=".ui.upload.UploadPlaceActivity"/>
-        <activity android:name=".ui.group.GroupListActivity">
+        <activity android:name=".ui.login.LoginPageActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ui.main.MainActivity" />
+        <activity android:name=".KeywordTagActivity" />
+        <activity android:name=".UsefulTagActivity"/>
+        <activity android:name=".PlaceSearchActivity" />
+        <activity android:name=".ui.search.subway.SubwaySearchActivity" />
+        <activity android:name=".ui.upload.UploadPlaceActivity"/>
+        <activity android:name=".ui.group.GroupListActivity"/>
+        <activity android:name=".ui.signup.SignuplastActivity"></activity>
+        <activity android:name=".ui.signup.SignupSecondActivity" />
+        <activity android:name=".ui.signup.SignupActivity" />
+
     </application>
 
 </manifest>

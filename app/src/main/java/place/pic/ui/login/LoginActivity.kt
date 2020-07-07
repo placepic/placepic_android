@@ -1,6 +1,7 @@
 package place.pic.ui.login
 
 import android.app.Activity
+import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -10,6 +11,7 @@ import place.pic.R
 import place.pic.ui.extands.customTextChangedListener
 import android.util.Patterns
 import androidx.core.content.ContextCompat
+import place.pic.ui.signup.SignupActivity
 
 /*
 * Button 관련
@@ -35,7 +37,6 @@ class LoginActivity : AppCompatActivity(),View.OnClickListener {
 
     private fun buttonMapping(){
         img_login_top_bar_back_btn.setOnClickListener(this)
-
     }
 
     private fun editTextChangedMapping(){
@@ -59,7 +60,6 @@ class LoginActivity : AppCompatActivity(),View.OnClickListener {
         when (v!!.id) {
             R.id.img_login_top_bar_back_btn -> onBackPressed()
             R.id.btn_login -> {
-
             }
         }
     }

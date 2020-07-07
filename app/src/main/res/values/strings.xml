@@ -25,4 +25,7 @@
     <string name="imageCountMaxIsTen">이미지는 10개 까지만 첨부 가능합니다.</string>
     <string name="group_count">%1$d명 · 전체글 %2$d개</string>
 
+    <string name="toggle_men">남성</string>
+    <string name="toggle_women">여성</string>
+    <string name="toggle_gitar">기타</string>
 </resources>
