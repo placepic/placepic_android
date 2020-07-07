@@ -46,36 +46,45 @@
     <!--승인 대기중인 버튼 뷰 그룹-->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:visibility="visible"
-        android:id="@+id/cl_btn_wait_group_list"
+        android:id="@+id/cl_wait_group"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:background="@drawable/round_rectangle_gray_8dp"
-        android:backgroundTint="@color/black40"
         android:padding="16dp"
-        app:layout_constraintEnd_toEndOf="@+id/cl_group_list_top_bar"
-        app:layout_constraintStart_toStartOf="@+id/cl_group_list_top_bar"
         app:layout_constraintTop_toBottomOf="@+id/cl_group_list_top_bar">
 
-        <TextView
-            android:id="@+id/tv_wait_group_list"
-            android:layout_width="wrap_content"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_btn_wait_group_list"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="승인 대기중인 그룹"
-            android:textColor="@android:color/white"
-            android:textSize="15dp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/white_next_arrow_ic"
+            android:background="@drawable/round_rectangle_gray_8dp"
+            android:backgroundTint="@color/black40"
+            android:padding="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/tv_wait_group_list"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="승인 대기중인 그룹"
+                android:textColor="@android:color/white"
+                android:textSize="15dp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/white_next_arrow_ic"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <FrameLayout
@@ -85,6 +94,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cl_group_list_top_bar" />
+        app:layout_constraintTop_toBottomOf="@+id/cl_wait_group" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
