@@ -1,18 +1,11 @@
 package place.pic.ui.signup
 
-import android.app.DatePickerDialog
-import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
-import android.text.TextUtils
-import android.view.View
-import android.widget.*
+import android.widget.ToggleButton
 import androidx.appcompat.app.AppCompatActivity
-import kotlinx.android.synthetic.*
-import kotlinx.android.synthetic.main.activity_signup.*
 import kotlinx.android.synthetic.main.activity_signup_second.*
 import place.pic.R
-import place.pic.showToast
 import place.pic.ui.extands.customTextChangedListener
 import java.util.*
 
@@ -49,6 +42,8 @@ class SignupSecondActivity : AppCompatActivity() {
                 }})
         }
         SignButtonActivation()
+
+
 
         //중복 선택 막기위한 코드
         btn_signup_men.setOnClickListener{
