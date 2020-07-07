@@ -1,6 +1,5 @@
-package place.pic.ui.upload
+package place.pic.ui.upload.adapter
 
-import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,13 +9,16 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import place.pic.R
 import place.pic.databinding.*
+import place.pic.ui.upload.ImageUri
 
 /**
  * Created By Malibin
  * on 7월 07, 2020
  */
 
-class ImagesToUploadAdapter : ListAdapter<ImageUri, RecyclerView.ViewHolder>(DiffItemCallback()) {
+class ImagesToUploadAdapter : ListAdapter<ImageUri, RecyclerView.ViewHolder>(
+    DiffItemCallback()
+) {
 
     private var imageDeleteListener: ((imageUri: ImageUri) -> Unit)? = null
     private var getImageButtonListener: ((view: View) -> Unit)? = null
@@ -45,7 +47,9 @@ class ImagesToUploadAdapter : ListAdapter<ImageUri, RecyclerView.ViewHolder>(Dif
     }
 
     override fun submitList(list: List<ImageUri>?) {
-        val newList = list?.toMutableList()?.apply { add(0, ImageUri.EMPTY) }
+        val newList = list?.toMutableList()?.apply { add(0,
+            ImageUri.EMPTY
+        ) }
         super.submitList(newList)
     }
 

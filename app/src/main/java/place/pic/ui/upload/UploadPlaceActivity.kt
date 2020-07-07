@@ -4,19 +4,20 @@ import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
-import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.lifecycle.Observer
-import com.google.android.material.snackbar.Snackbar
 import place.pic.R
 import place.pic.databinding.ActivityUploadPlaceBinding
+import place.pic.ui.upload.adapter.ImagesToUploadAdapter
+import place.pic.ui.upload.adapter.SubwaysAdapter
 
 class UploadPlaceActivity : AppCompatActivity() {
 
     private val uploadPlacesViewModel = UploadPlaceViewModel()
     private lateinit var imagesAdapter: ImagesToUploadAdapter
+    private lateinit var subwaysAdapter: SubwaysAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,6 +60,8 @@ class UploadPlaceActivity : AppCompatActivity() {
         imagesAdapter.setGettingImageButtonListener { deployGalleryOrRequestPermission() }
         imagesAdapter.setOnImageDeleteListener { uploadPlacesViewModel.deleteImageUri(it) }
         binding.rvPhotos.adapter = imagesAdapter
+        subwaysAdapter = SubwaysAdapter()
+        binding.rvSubways.adapter = subwaysAdapter
     }
 
     private fun subscribeToastMessages() {
@@ -110,5 +113,4 @@ class UploadPlaceActivity : AppCompatActivity() {
         const val REQUEST_CODE_PICK_IMAGES = 3000
         const val REQUEST_CODE_GALLERY_PERMISSION = 3001
     }
-
 }
