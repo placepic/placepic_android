@@ -10,6 +10,10 @@ import retrofit2.http.GET
  */
 
 interface RequestInterface {
-    @GET("/tag/{categoryIdx}")
+    @GET("/tag/{categoryIdx}") //param
     fun requestKeywordTag(@Body body: RequestKeywordTag): Call<ResponseKeywordTag>
 }
+
+
+// 127.0.0.1:3000/search/groudIdx/1?tagIdx=1,2,3 //이게 query
+
