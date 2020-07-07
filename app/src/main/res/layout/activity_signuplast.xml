@@ -4,49 +4,52 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
     tools:context=".ui.signup.SignuplastActivity">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/cl_sign_top_bar2"
-        android:layout_width="0dp"
+
+    <TextView
+        android:id="@+id/textView22"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:fontFamily="@font/spoqa_han_sans_bold"
+        android:gravity="center_horizontal|top"
+        android:text="회원가입이 완료되었습니다!"
+        android:textColor="@color/black36"
+        android:textSize="18dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
-            android:id="@+id/img_sign_top_bar_back_btn2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="18dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp"
-            android:src="@drawable/back_arrow_ic"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+    <ImageView
+        android:id="@+id/imageView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        app:layout_constraintBottom_toTopOf="@+id/textView22"
+        app:layout_constraintEnd_toEndOf="@+id/textView22"
+        app:layout_constraintStart_toStartOf="@+id/textView22"
+        app:srcCompat="@drawable/done_ic" />
 
-        <TextView
-            android:id="@+id/tv_sign_top_bar_title2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:text="회원가입"
-            android:textColor="@color/black36"
-            android:textSize="15dp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/img_sign_top_bar_back_btn2"
-            app:layout_constraintStart_toEndOf="@+id/img_sign_top_bar_back_btn2"
-            app:layout_constraintTop_toTopOf="@+id/img_sign_top_bar_back_btn2" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-
-
-
-
-
+    <Button
+        android:id="@+id/btn_signnup_last"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:background="@drawable/round_rectangle_gray_8dp"
+        android:backgroundTint="@color/selector_endable_button_gray_to_black"
+        android:padding="13dp"
+        android:text="로그인하기"
+        android:textColor="@color/selector_endable_text_gray_to_white"
+        android:textSize="15dp"
+        android:textStyle="bold"
+        android:layout_marginTop="230dp"
+        app:layout_constraintEnd_toEndOf="@+id/textView22"
+        app:layout_constraintStart_toStartOf="@+id/textView22"
+        app:layout_constraintTop_toBottomOf="@+id/textView22" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

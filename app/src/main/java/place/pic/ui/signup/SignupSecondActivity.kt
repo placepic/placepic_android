@@ -1,17 +1,11 @@
 package place.pic.ui.signup
 
-import android.app.DatePickerDialog
-import android.content.DialogInterface
+import android.content.Intent
 import android.os.Bundle
-import android.text.TextUtils
-import android.view.View
-import android.widget.*
+import android.widget.ToggleButton
 import androidx.appcompat.app.AppCompatActivity
-import kotlinx.android.synthetic.*
-import kotlinx.android.synthetic.main.activity_signup.*
 import kotlinx.android.synthetic.main.activity_signup_second.*
 import place.pic.R
-import place.pic.showToast
 import place.pic.ui.extands.customTextChangedListener
 import java.util.*
 
@@ -42,12 +36,14 @@ class SignupSecondActivity : AppCompatActivity() {
 
         et_sign_birth.setOnClickListener {
             datePicker.showDialog(day, month, year, object : DatePickerHelper.Callback {
-                override fun onDateSelected(day: Int, month: Int, year: Int) {
-                    et_sign_birth.setText(""  + year + "." + (month+1) + "." + day)
+                override fun onDateSelected(dayofMonth: Int, month: Int, year: Int) {
+                    et_sign_birth.setText(""  + year + "." + (month+1) + "." + dayofMonth)
                     BirthCheck()
                 }})
         }
         SignButtonActivation()
+
+
 
         //중복 선택 막기위한 코드
         btn_signup_men.setOnClickListener{
@@ -99,6 +95,8 @@ class SignupSecondActivity : AppCompatActivity() {
         }
 
         btn_signnup_second.setOnClickListener {
+            val intent = Intent(this, SignuplastActivity::class.java)
+            startActivity(intent)
         }
 
         et_sign_name.customTextChangedListener {
@@ -122,7 +120,6 @@ class SignupSecondActivity : AppCompatActivity() {
         if(et_sign_birth.text.toString().isBlank()==false) {
             writeSignBirth = true
         }
-        showToast(writeSignBirth.toString())
         SignButtonActivation()
     }
 
