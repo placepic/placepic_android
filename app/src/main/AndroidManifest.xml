@@ -9,24 +9,21 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.signup.SignupSecondActivity"/>
-        <activity android:name=".ui.signup.SignupActivity"/>
-
+        <activity android:name=".ui.signup.SignuplastActivity"></activity>
+        <activity android:name=".ui.signup.SignupSecondActivity" />
+        <activity android:name=".ui.signup.SignupActivity" />
         <activity android:name=".ui.login.LoginPageActivity">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity android:name=".ui.login.LoginActivity" />
         <activity android:name=".PlaceSearchActivity" />
         <activity android:name=".MainActivity" />
         <activity android:name=".ui.search.subway.SubwaySearchActivity" />
         <activity android:name=".TagActivity" />
-
     </application>
 
 </manifest>

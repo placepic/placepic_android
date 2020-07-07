@@ -10,4 +10,7 @@
     <string name="string_tag">태그 선택하기</string>
     <string name="string_search">최애장소 검색하기</string>
 
+    <string name="toggle_men">남성</string>
+    <string name="toggle_women">여성</string>
+    <string name="toggle_gitar">기타</string>
 </resources>

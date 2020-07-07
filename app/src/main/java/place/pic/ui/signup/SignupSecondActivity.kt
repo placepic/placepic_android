@@ -1,38 +1,34 @@
 package place.pic.ui.signup
 
-import android.app.Activity
 import android.app.DatePickerDialog
-import android.content.Context
-import android.content.Intent
-import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
+import android.content.DialogInterface
 import android.os.Bundle
-import android.provider.Settings.System.DATE_FORMAT
-import android.util.Patterns
+import android.text.TextUtils
 import android.view.View
-import android.widget.DatePicker
-import androidx.annotation.RequiresApi
-import kotlinx.android.synthetic.main.activity_login.*
+import android.widget.*
+import androidx.appcompat.app.AppCompatActivity
+import kotlinx.android.synthetic.*
 import kotlinx.android.synthetic.main.activity_signup.*
 import kotlinx.android.synthetic.main.activity_signup_second.*
 import place.pic.R
 import place.pic.showToast
 import place.pic.ui.extands.customTextChangedListener
-import place.pic.ui.login.LoginActivity
-import java.text.ParseException
-import java.text.SimpleDateFormat
 import java.util.*
 
-class SignupSecondActivity : AppCompatActivity() {
 
+class SignupSecondActivity : AppCompatActivity() {
+    lateinit var datePicker : DatePickerHelper
     private var writeSignName = false
     private var writeSignBirth = false
+    private var writeSexCode=false
+    var sexcode:Int? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_signup_second)
-        init()
 
+
+        datePicker= DatePickerHelper(this, true)
         val c = Calendar.getInstance()
         val year = c.get(Calendar.YEAR)
         val month = c.get(Calendar.MONTH)
@@ -43,34 +39,97 @@ class SignupSecondActivity : AppCompatActivity() {
             overridePendingTransition(0, 0)
             //이전 화면으로 이동
         }
-        btn_sign_men.setOnClickListener {
-                btn_sign_men.isEnabled
+
+        et_sign_birth.setOnClickListener {
+            datePicker.showDialog(day, month, year, object : DatePickerHelper.Callback {
+                override fun onDateSelected(day: Int, month: Int, year: Int) {
+                    et_sign_birth.setText(""  + year + "." + (month+1) + "." + day)
+                    BirthCheck()
+                }})
+        }
+        SignButtonActivation()
+
+        //중복 선택 막기위한 코드
+        btn_signup_men.setOnClickListener{
+           if (btn_signup_men.isChecked()) {
+               btn_signup_women.isChecked = false
+               btn_signup_gitar.isChecked = false
+               sexcode=0
+               writeSexCode=true;
+
+           }
+            if(!btn_signup_men.isChecked())
+            {
+                sexcode=null
+                writeSexCode=false;
+            }
+            Check(btn_signup_men)
+       }
+
+        btn_signup_women.setOnClickListener{
+            if (btn_signup_women.isChecked())
+            {
+                btn_signup_men.isChecked = false
+                btn_signup_gitar.isChecked = false
+                sexcode=1
+                writeSexCode=true;
+            }
+            if(!btn_signup_women.isChecked())
+            {
+                sexcode=null
+                writeSexCode=false;
+            }
+            Check(btn_signup_women)
+        }
+
+        btn_signup_gitar.setOnClickListener{
+            if (btn_signup_gitar.isChecked())
+            {
+                btn_signup_women.isChecked = false
+                btn_signup_men.isChecked = false
+                sexcode=2
+                writeSexCode=true;
+            }
+            if(!btn_signup_gitar.isChecked())
+            {
+                sexcode=null
+                writeSexCode=false;
+            }
+            Check(btn_signup_gitar)
         }
 
         btn_signnup_second.setOnClickListener {
-            if (et_sign_name.text.isNullOrBlank() || et_sign_birth.text.isNullOrBlank()) //sex도 추가 해야돼!!!!
-            {
-                //빈칸이 있을 때
-                showToast("빈칸이있어용")
-            } else {
-                //setResult
-            }
         }
 
-        et_sign_birth.setOnClickListener {
-            val datePicker = DatePickerDialog(this, DatePickerDialog.OnDateSetListener { view, year, month, day ->
-                    et_sign_birth.setText(""  + year + "." + (month+1) + "." + day)}, year, month, day)
-
-            datePicker.show()
+        et_sign_name.customTextChangedListener {
+            writeSignName = !it.isNullOrBlank()
+            SignButtonActivation()
         }
+
     }
 
-    private fun init() {
-       SignButtonActivation()
+    private fun Check(button: ToggleButton)
+    {
+        if(button.isChecked==true)
+         {
+             writeSexCode=true
+         }
+        SignButtonActivation()
     }
 
-    private fun SignButtonActivation(){
-        btn_signnup_second.isEnabled = writeSignName && writeSignBirth
+    private fun BirthCheck()
+    {
+        if(et_sign_birth.text.toString().isBlank()==false) {
+            writeSignBirth = true
+        }
+        showToast(writeSignBirth.toString())
+        SignButtonActivation()
+    }
+
+
+    private fun SignButtonActivation() {
+        btn_signnup_second.isEnabled = writeSignName && writeSexCode && writeSignBirth
     }
 }
+
 

@@ -1,17 +1,14 @@
 package place.pic.ui.signup
 
-import android.app.Activity
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Patterns
 import android.view.View
-import kotlinx.android.synthetic.main.activity_login.*
+import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_signup.*
 import place.pic.R
 import place.pic.showToast
 import place.pic.ui.extands.customTextChangedListener
-import place.pic.ui.login.LoginActivity
 
 class SignupActivity : AppCompatActivity() {
 
