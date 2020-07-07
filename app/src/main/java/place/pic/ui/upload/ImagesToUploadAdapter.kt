@@ -45,9 +45,7 @@ class ImagesToUploadAdapter : ListAdapter<ImageUri, RecyclerView.ViewHolder>(Dif
     }
 
     override fun submitList(list: List<ImageUri>?) {
-        val newList = list?.toMutableList()?.apply {
-            add(0, ImageUri(Uri.EMPTY))
-        }
+        val newList = list?.toMutableList()?.apply { add(0, ImageUri.EMPTY) }
         super.submitList(newList)
     }
 
@@ -100,7 +98,7 @@ class ImagesToUploadAdapter : ListAdapter<ImageUri, RecyclerView.ViewHolder>(Dif
 
     private class DiffItemCallback : DiffUtil.ItemCallback<ImageUri>() {
         override fun areItemsTheSame(oldItem: ImageUri, newItem: ImageUri): Boolean {
-            return oldItem.uri == newItem.uri
+            return oldItem.id == newItem.id
         }
 
         override fun areContentsTheSame(oldItem: ImageUri, newItem: ImageUri): Boolean {

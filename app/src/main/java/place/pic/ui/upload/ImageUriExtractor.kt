@@ -30,14 +30,10 @@ class ImageUriExtractor {
             val clipData = intent.clipData
                 ?: throw IllegalArgumentException("getMultipleImages should not be called when single image loaded")
 
-            val imageCount = clipData.itemCount
-                .run { if (this > MAX_IMAGE_COUNT) MAX_IMAGE_COUNT else this }
-
-            return IntRange(0, imageCount - 1)
+            return IntRange(0, clipData.itemCount - 1)
                 .map { clipData.getItemAt(it).uri }
                 .map { ImageUri(it) }
         }
 
-        private const val MAX_IMAGE_COUNT = 10
     }
 }

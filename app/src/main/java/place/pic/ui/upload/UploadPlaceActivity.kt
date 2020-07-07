@@ -4,15 +4,18 @@ import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import androidx.lifecycle.Observer
+import com.google.android.material.snackbar.Snackbar
 import place.pic.R
 import place.pic.databinding.ActivityUploadPlaceBinding
 
-
 class UploadPlaceActivity : AppCompatActivity() {
 
+    private val uploadPlacesViewModel = UploadPlaceViewModel()
     private lateinit var imagesAdapter: ImagesToUploadAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,13 +24,15 @@ class UploadPlaceActivity : AppCompatActivity() {
         val binding = ActivityUploadPlaceBinding.inflate(layoutInflater)
         setContentView(binding.root)
         initView(binding)
+        subscribeToastMessages()
+        subscribeImages()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == REQUEST_CODE_PICK_IMAGES) {
             if (resultCode == Activity.RESULT_OK) {
-                loadImages(ImageUriExtractor.from(data))
+                uploadPlacesViewModel.handleImageUris(data)
             }
         }
     }
@@ -52,8 +57,20 @@ class UploadPlaceActivity : AppCompatActivity() {
     private fun initView(binding: ActivityUploadPlaceBinding) {
         imagesAdapter = ImagesToUploadAdapter().apply { submitList(emptyList()) }
         imagesAdapter.setGettingImageButtonListener { deployGalleryOrRequestPermission() }
-        imagesAdapter.setOnImageDeleteListener { }
+        imagesAdapter.setOnImageDeleteListener { uploadPlacesViewModel.deleteImageUri(it) }
         binding.rvPhotos.adapter = imagesAdapter
+    }
+
+    private fun subscribeToastMessages() {
+        uploadPlacesViewModel.toastEvent.observe(this, Observer {
+            Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
+        })
+    }
+
+    private fun subscribeImages() {
+        uploadPlacesViewModel.imageUris.observe(this, Observer {
+            imagesAdapter.submitList(it)
+        })
     }
 
     private fun deployGalleryOrRequestPermission() {
@@ -87,10 +104,6 @@ class UploadPlaceActivity : AppCompatActivity() {
 
     private fun showPermissionRejected() {
         Toast.makeText(this, R.string.galleryPermissionRejected, Toast.LENGTH_SHORT).show()
-    }
-
-    private fun loadImages(images: List<ImageUri>) {
-        imagesAdapter.submitList(images)
     }
 
     companion object {

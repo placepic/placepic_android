@@ -1,6 +1,7 @@
 package place.pic.ui.upload
 
 import android.net.Uri
+import java.util.*
 
 /**
  * Created By Malibin
@@ -8,7 +9,10 @@ import android.net.Uri
  */
 
 data class ImageUri(
-    val uri: Uri
+    val uri: Uri,
+    val id: String = UUID.randomUUID().toString()
 ) {
-
+    companion object {
+        val EMPTY = ImageUri(Uri.EMPTY, "empty")
+    }
 }
