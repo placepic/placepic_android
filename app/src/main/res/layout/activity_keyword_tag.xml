@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".TagActivity">
+    tools:context=".KeywordTagActivity">
 
     <!-- *** 태그 디자인 / 클릭 시 색 변경 적용하기 : 옛설 -->
 
@@ -22,23 +22,21 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="18dp"
             android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
             android:src="@drawable/back_arrow_ic"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/tv_place_search_header"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/tv_place_search_header"
+            android:id="@+id/tv_keyword_tag_header"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="13dp"
             android:layout_marginBottom="13dp"
             android:fontFamily="@font/spoqa_han_sans_bold"
-            android:text="@string/string_tag"
+            android:text="@string/string_keyword_tag"
             android:textColor="@color/black36"
             android:textSize="18dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -59,11 +57,11 @@
         app:singleSelection="false">
 
         <com.google.android.material.chip.ChipGroup
-            android:id="@+id/chipgroup_tag"
+            android:id="@+id/chipgroup_keyword_tag"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
             app:chipSpacing="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -90,9 +88,9 @@
                 android:layout_marginEnd="122dp"
                 android:layout_marginBottom="13dp"
                 android:text="태그 등록하기"
+                android:fontFamily="@font/spoqa_han_sans_bold"
                 android:textColor="@color/black4F"
                 android:textSize="15dp"
-                android:textStyle="bold"
 
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

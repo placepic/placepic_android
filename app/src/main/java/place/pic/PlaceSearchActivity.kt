@@ -4,6 +4,11 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_place_search.*
 
+/**
+ * Created By kimdahyee
+ * on 7월 , 2020
+ */
+
 class PlaceSearchActivity : AppCompatActivity() {
 
     lateinit var placeSearchAdapter: PlaceSearchAdapter
