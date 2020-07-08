@@ -42,8 +42,10 @@
  
 - **git branch**
 ```
-기능별로 branch를 새로 팜
+이슈별로 branch 구성 
 ```
+[이슈](https://github.com/placepic/placepic_android/issues)
+
 
 - **git commit message role** 
 ```
@@ -66,7 +68,7 @@
 
 ### [PlacePic - Kanban board](https://github.com/orgs/placepic/projects/1)
 
-### [Server - Kanban board](https://github.com/placepic/placepic_android/projects/1)
+### [Android - Kanban board](https://github.com/placepic/placepic_android/projects/1)
 
 ### Notion 
 
@@ -81,7 +83,25 @@
  - 회원가입  **SPRINT#1**
  - 최애장소 업로드 View Layout  **SPRINT#1**
  - 이미지 업로드 초기 구현  **SPRINT#1**
+ - 서버 작업 중 ... 
 
+ ### 혁
+ - 장소리스트  **SPRINT#1**
+ - 지하철검색  **SPRINT#1**
+ - 최애장소 업로드 View  **SPRINT#1**
+ - 이미지 업로드 구현  **SPRINT#1**
+
+ ### 다혜
+ - 장소검색  **SPRINT#1**
+ - 태그선택  **SPRINT#1**
+ - Chip 구현  **SPRINT#1**
+ - 서버 작업 중 ...
+
+ ### 진수
+ - 로그인  **SPRINT#1**
+ - 그룹신청  **SPRINT#1**
+ - 관리자 페이지  **SPRINT#1**
+ - 서버 작업 중 ...
 
 <br/>
 
@@ -154,20 +174,11 @@
 일단 크게 주제가 나누어진 부분은 패키지로 구분하여 각 부분에 들어가있으며. 아직 패키지로 구분하기 애매한 것을은 패키지로 묶어두지 않았습니다.
 
 
-
-
-
-
-
-
-
 2020.07.07 기준
 
 
 
 ## 3. 핵심 기능 구현 방법 정리 & 구현 화면
-
-
 
 
 <br/>
