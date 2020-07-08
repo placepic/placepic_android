@@ -9,6 +9,8 @@ import place.pic.R
 import place.pic.ui.signup.SignupActivity
 
 class LoginPageActivity : AppCompatActivity(), View.OnClickListener{
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login_page)
@@ -21,7 +23,6 @@ class LoginPageActivity : AppCompatActivity(), View.OnClickListener{
 
     private fun buttonMapping(){
         btn_goto_login.setOnClickListener(this)
-        //수정이가 추가했음!
         btn_goto_signup.setOnClickListener(this)
     }
 
@@ -29,11 +30,11 @@ class LoginPageActivity : AppCompatActivity(), View.OnClickListener{
         when (v!!.id) {
             R.id.btn_goto_login -> {
                 val gotoLoginIntent = Intent(this,LoginActivity::class.java)
+                //gotoLoginIntent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
                 startActivity(gotoLoginIntent)
             }
             R.id.btn_goto_signup->
             {
-                //수정이가 추가했음
                 val gotoSignupIntent = Intent(this,SignupActivity::class.java)
                 startActivity(gotoSignupIntent)
             }

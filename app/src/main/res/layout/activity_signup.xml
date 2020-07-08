@@ -208,4 +208,14 @@
         style="?android:attr/borderlessButtonStyle"
         />
 
+    <TextView
+        android:id="@+id/tv_sign_stop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="이미 가입된 회원입니다. 이메일을 확인해주세요"
+        android:textColor="@color/colorPrimary"
+        android:textSize="11dp"
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="@+id/btn_signnup"
+        app:layout_constraintTop_toBottomOf="@+id/btn_signnup" />
 </androidx.constraintlayout.widget.ConstraintLayout>

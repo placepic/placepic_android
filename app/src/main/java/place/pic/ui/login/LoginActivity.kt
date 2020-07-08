@@ -2,6 +2,7 @@ package place.pic.ui.login
 
 import android.app.Activity
 import android.content.Intent
+import android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -11,7 +12,18 @@ import place.pic.R
 import place.pic.ui.extands.customTextChangedListener
 import android.util.Patterns
 import androidx.core.content.ContextCompat
+import kotlinx.android.synthetic.main.activity_signup.*
+import place.pic.data.remote.PlacePicService
+import place.pic.data.remote.RequestLogin
+import place.pic.data.remote.RequestRegister
+import place.pic.data.remote.response.BaseResponse
+import place.pic.ui.group.GroupListActivity
+import place.pic.ui.main.MainActivity
 import place.pic.ui.signup.SignupActivity
+import place.pic.ui.signup.SignupSecondActivity
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 /*
 * Button 관련
@@ -20,9 +32,16 @@ import place.pic.ui.signup.SignupActivity
 * Text color = white*/
 class LoginActivity : AppCompatActivity(),View.OnClickListener {
 
+
     private var writeEmail = false
     private var writePassword = false
 
+    override fun onBackPressed() {
+        super.onBackPressed()
+        val gotoLoginPageIntent = Intent(this,LoginPageActivity::class.java)
+        gotoLoginPageIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        startActivity(gotoLoginPageIntent)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,6 +56,7 @@ class LoginActivity : AppCompatActivity(),View.OnClickListener {
 
     private fun buttonMapping(){
         img_login_top_bar_back_btn.setOnClickListener(this)
+        btn_login.setOnClickListener(this)
     }
 
     private fun editTextChangedMapping(){
@@ -58,8 +78,37 @@ class LoginActivity : AppCompatActivity(),View.OnClickListener {
 
     override fun onClick(v: View?) {
         when (v!!.id) {
-            R.id.img_login_top_bar_back_btn -> onBackPressed()
+            R.id.img_login_top_bar_back_btn -> {
+                val gotoLoginPageIntent = Intent(this,LoginPageActivity::class.java)
+                gotoLoginPageIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                startActivity(gotoLoginPageIntent)
+            }
             R.id.btn_login -> {
+                PlacePicService.getInstance().requestLogin(RequestLogin(
+                    et_login_email.text.toString(),
+                    et_login_password.text.toString())
+                ).enqueue(object: Callback<BaseResponse<RequestLogin>> {
+                    override fun onFailure(call: Call<BaseResponse<RequestLogin>>, t: Throwable) {
+                        //통신실패
+                    }
+                    override fun onResponse(
+                        call: Call<BaseResponse<RequestLogin>>,
+                        response: Response<BaseResponse<RequestLogin>>) {
+                        if(response.isSuccessful)
+                        {
+                            if(response.body()!!.success)
+                            {
+                                val intent = Intent(this@LoginActivity, GroupListActivity::class.java)
+                                startActivity(intent)
+                                finish()
+                            }
+                        }
+                        else {
+                            tv_login_fail.visibility = View.VISIBLE
+                            btn_login.isEnabled = false
+                        }
+                    }
+                })
             }
         }
     }
@@ -84,4 +133,5 @@ class LoginActivity : AppCompatActivity(),View.OnClickListener {
     private fun loginButtonActivation(){
         btn_login.isEnabled = writeEmail && writePassword
     }
+
 }
