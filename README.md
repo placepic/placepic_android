@@ -124,11 +124,11 @@
 
 - item_get_image_button.xml
 
-- item_image_to_upload
+- item_image_to_upload.xml
 
-- item_place.xm
+- item_place.xml
 
-- item_subway_line
+- item_subway_line.xml
 
 ```
 
@@ -150,15 +150,15 @@
 
 ```
 
-- activity_upload_place 
+- activity_upload_place.xml
 
-- fragment_places
+- fragment_places.xml
 
-- item_place
+- item_place.xml
 
-- item_place_search
+- item_place_search.xml
 
-- item_search_subway
+- item_search_subway.xml
 
 ```
 
@@ -174,21 +174,21 @@ match_constraint 사용 뷰
 
 - activity_keword_tag.xml 
 
-- activity_login
+- activity_login.xml
 
-- activity_place_search
+- activity_place_search.xml
 
-- activity_search_subway
+- activity_search_subway.xml
 
-- activity_sign_up, activiy_sign_up_second
+- activity_sign_up, activiy_sign_up_second.xml
 
-- activity_upload_place
+- activity_upload_place.xml
 
-- activivty_useful_tag 
+- activivty_useful_tag.xml
 
-- fragment_places
+- fragment_places.xml
 
-- item_place
+- item_place.xml
 
 ```
 
