@@ -28,15 +28,12 @@
             app:layout_constraintStart_toEndOf="@+id/img_login_top_bar_back_btn"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
+        <ImageView
             android:id="@+id/tv_btn_join_group"
-            android:visibility="invisible"
+            android:visibility="visible"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="참여"
-            android:textColor="@color/colorPrimary"
-            android:textSize="17dp"
-            android:textStyle="bold"
+            android:src="@drawable/group_ic"
             app:layout_constraintBottom_toBottomOf="@+id/tv_group_list_top_bar"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/tv_group_list_top_bar" />
