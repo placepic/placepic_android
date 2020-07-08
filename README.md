@@ -3,8 +3,7 @@
 <br/>
 
 **![placepic_bedge](https://img.shields.io/badge/placepic-Sprint1-%23ff7adc)**
-![npm_bedge](https://img.shields.io/badge/npm-6.13.7-%23ff7adc)
-![node_bedge](https://img.shields.io/badge/node-13.11.0-%23ff7adc)
+
 <br/>
 * SOPT 26th APPJAM - Team **placepic**
     
