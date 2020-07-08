@@ -58,7 +58,7 @@ class SubwaySearchActivity : AppCompatActivity() {
     }
 
     private fun onSearchedSubwayClick(binding: ActivitySearchSubwayBinding, subway: Subway) {
-        if (subwaySearchViewModel.getCurrentSelectedSubways().size >= MAX_PICK_SUBWAYS_COUNT) {
+                if (subwaySearchViewModel.getCurrentSelectedSubways().size >= MAX_PICK_SUBWAYS_COUNT) {
             Toast.makeText(this, R.string.subways_pick_count_three, Toast.LENGTH_SHORT).show()
             return
         }

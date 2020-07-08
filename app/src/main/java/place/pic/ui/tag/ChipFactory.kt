@@ -9,7 +9,7 @@ import place.pic.R
  * on 7월 06일, 2020
  */
 
-class KeywordChipFactory {
+class ChipFactory {
 
     //객체를 생성하지않고 함수 호출만으로도 칩을 생성할 수 있도록 유틸성 method 만들어보기
     //factory pattern

@@ -7,7 +7,6 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import com.google.android.material.chip.Chip
-import kotlinx.android.synthetic.main.activity_keyword_tag.*
 import kotlinx.android.synthetic.main.activity_useful_tag.*
 import place.pic.R
 import place.pic.data.remote.PlacePicService
@@ -23,7 +22,8 @@ import retrofit2.Response
 
 class UsefulTagActivity : AppCompatActivity() {
 
-    private val token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZHgiOjMsIm5hbWUiOiLstZzsmIHtm4giLCJpYXQiOjE1OTM2OTkxODMsImV4cCI6MTU5NjI5MTE4MywiaXNzIjoicGxhY2VwaWMifQ.rmFbeBfviyEzbMlMM4b3bMMiRcNDDbiX8bQtwL_cuN0"
+    private val token =
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZHgiOjMsIm5hbWUiOiLstZzsmIHtm4giLCJpYXQiOjE1OTM2OTkxODMsImV4cCI6MTU5NjI5MTE4MywiaXNzIjoicGxhY2VwaWMifQ.rmFbeBfviyEzbMlMM4b3bMMiRcNDDbiX8bQtwL_cuN0"
 
     private val restaurantUsefulTagList = mutableListOf<String>()
     private val usefulTagChipList = mutableListOf<Chip>()
@@ -33,12 +33,19 @@ class UsefulTagActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_useful_tag)
 
+        getConnection()
+    }
+
+    private fun getConnection() {
         placePicService.getInstance()
             .requestUsefulTag(
                 token,
                 1
-            ).enqueue(object: Callback<BaseResponse<List<UsefulTagData>>> {
-                override fun onFailure(call: Call<BaseResponse<List<UsefulTagData>>>, t: Throwable) { //통신 실패
+            ).enqueue(object : Callback<BaseResponse<List<UsefulTagData>>> {
+                override fun onFailure(
+                    call: Call<BaseResponse<List<UsefulTagData>>>,
+                    t: Throwable
+                ) { //통신 실패
                     Log.d("fail", t.message)
                 }
 
@@ -49,7 +56,7 @@ class UsefulTagActivity : AppCompatActivity() {
                     //통신 성공
                     if (response.isSuccessful) { //status
                         if (response.body()!!.success) {
-                            Log.d("response data check","${response.body()?.data.toString()}")
+                            Log.d("response data check", "${response.body()?.data.toString()}")
 
                             for (i in response.body()!!.data.indices) {
                                 restaurantUsefulTagList.add(i, response.body()!!.data[i].tagName)
@@ -59,7 +66,8 @@ class UsefulTagActivity : AppCompatActivity() {
 
                             val chipGroup = chipgroup_useful_tag
                             for (tags in restaurantUsefulTagList) {
-                                val chip = KeywordChipFactory.newInstance(layoutInflater) //object method 호출하기
+                                val chip =
+                                    ChipFactory.newInstance(layoutInflater) //object method 호출하기
                                 usefulTagChipList.add(chip)
                                 chip.isClickable = true
                                 chip.text = tags
@@ -68,15 +76,21 @@ class UsefulTagActivity : AppCompatActivity() {
                             }
 
                             for (i in 0 until usefulTagChipList.size) { //chipList.forEach로도 가능
-                                usefulTagChipList[i].setOnClickListener{view ->
+                                usefulTagChipList[i].setOnClickListener { view ->
                                     if (checkChipIsChecked()) {//true
-                                        tv_useful_tag_save.setTextColor(Color.parseColor("#FFFFFF"))
-                                        useful_tag_save.setBackgroundResource(R.drawable.rectangle_main_color)
-                                        useful_tag_save.isClickable = true
-                                    } else {
-                                        tv_useful_tag_save.setTextColor(Color.parseColor("#4F4F4F"))
-                                        useful_tag_save.setBackgroundResource(R.drawable.rectangle_gray_f1f4f5)
-                                        useful_tag_save.isClickable = false
+                                        changeButtonColor(
+                                            "#FFFFFF",
+                                            R.drawable.rectangle_main_color,
+                                            true
+                                        )
+                                    }
+
+                                    if (!checkChipIsChecked()) {
+                                        changeButtonColor(
+                                            "#4F4F4F",
+                                            R.drawable.rectangle_gray_f1f4f5,
+                                            false
+                                        )
                                     }
                                 }
                             }
@@ -85,6 +99,12 @@ class UsefulTagActivity : AppCompatActivity() {
                 }
 
             })
+    }
+
+    private fun changeButtonColor(colorString: String, drawable: Int, clickable: Boolean) {
+        tv_useful_tag_save.setTextColor(Color.parseColor(colorString))
+        useful_tag_save.setBackgroundResource(drawable)
+        useful_tag_save.isClickable = clickable
     }
 
     private fun checkChipIsChecked(): Boolean {
