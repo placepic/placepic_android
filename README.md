@@ -43,11 +43,8 @@
 ## 🖥 Code convention
  
 - **git branch**
-```
-이슈별로 branch 구성 
-```
-[이슈](https://github.com/placepic/placepic_android/issues)
 
+>[이슈](https://github.com/placepic/placepic_android/issues) 별로 branch 구성 
 
 - **git commit message role** 
 ```
@@ -113,6 +110,8 @@
 
 아래와 같은 화면만 절대 크기를 지정하였는데,
 
+```
+
 - activity_end_group_join.xml
 
 - activity_join_group.xml
@@ -129,17 +128,24 @@
 
 - item_subway_line
 
+```
+
+
 서버에 업로드될 사진의 크기가 일정하지 않으므로 
 
 사용자에게 보여주는 사진은 절대 크기로 지정하였음.
 
 이외 이유가 없는 부분은 모두 wrap_content로 변경함
 
+```
 
 - activity_join_group.xml
 
+```
+
 RecyclerView 사용 시 일부분만 보여주기 위해 height로 크기 정함 
 
+```
 
 - activity_upload_place 
 
@@ -151,11 +157,15 @@ RecyclerView 사용 시 일부분만 보여주기 위해 height로 크기 정함
 
 - item_search_subway
 
+```
+
 디자인된 line을 넣기 위해 height=1dp 속성 지정  
 
 
 
 match_constraint 사용 뷰
+
+```
 
 - 모든 뷰의 상단 바 
 
@@ -176,6 +186,8 @@ match_constraint 사용 뷰
 - fragment_places
 
 - item_place
+
+```
 
 <br/>
 
