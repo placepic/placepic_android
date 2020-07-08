@@ -116,6 +116,7 @@
             android:inputType="text"
             android:paddingVertical="8dp"
             android:paddingStart="16dp"
+            android:textColor="@color/black36"
             android:textColorHint="@color/grayCED5DA"
             android:textSize="14dp"
             android:padding="12dp"

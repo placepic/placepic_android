@@ -11,7 +11,6 @@ import place.pic.ui.login.LoginActivity
 class SignuplastActivity : AppCompatActivity() {
 
     override fun onBackPressed() {
-        //super.onBackPressed();
     }
     
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,7 +19,9 @@ class SignuplastActivity : AppCompatActivity() {
 
         btn_signnup_last.setOnClickListener {
             val intent = Intent(this, LoginActivity::class.java)
+            //intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
             startActivity(intent)
+            finish()
         }
     }
 
