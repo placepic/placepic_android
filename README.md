@@ -5,9 +5,11 @@
 **![placepic_bedge](https://img.shields.io/badge/placepic-Sprint1-%23ff7adc)**
 
 <br/>
+
 * SOPT 26th APPJAM - Team **placepic**
     
 * 프로젝트 기간: 2020.06.28 ~ 2020.07.18
+
 <br>
 
 
@@ -46,6 +48,7 @@
 >[이슈](https://github.com/placepic/placepic_android/issues) 별로 branch 구성 
 
 - **git commit message role** 
+
 ```
 [Feat] 기능 추가
 
@@ -129,6 +132,7 @@
 
 ```
 
+-> 
 
 서버에 업로드될 사진의 크기가 일정하지 않으므로 
 
@@ -142,7 +146,7 @@
 
 ```
 
-RecyclerView 사용 시 일부분만 보여주기 위해 height로 크기 정함 
+-> RecyclerView 사용 시 일부분만 보여주기 위해 height로 크기 정함 
 
 ```
 
@@ -158,9 +162,9 @@ RecyclerView 사용 시 일부분만 보여주기 위해 height로 크기 정함
 
 ```
 
-디자인된 line을 넣기 위해 height=1dp 속성 지정  
+-> 디자인된 line을 넣기 위해 height=1dp 속성 지정  
 
-
+<br>
 
 match_constraint 사용 뷰
 
@@ -211,9 +215,16 @@ match_constraint 사용 뷰
     kapt "com.github.bumptech.glide:compiler:4.10.0"
     //동그란 이미지 커스텀 뷰 라이브러리 : https://github.com/hdodenhof/CircleImageView
     implementation 'de.hdodenhof:circleimageview:3.1.0'
+    
+    //retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.6.2'
+    implementation 'com.squareup.retrofit2:converter-gson:2.6.2'
+
+    implementation 'com.squareup.retrofit2:retrofit-mock:2.6.2'
+    implementation 'com.google.code.gson:gson:2.8.6'
 ```
 
-2020.07.07 현재 사용 라이브러리 정리
+2020.07.08 현재 사용 라이브러리 정리
 
 <br/>
 
@@ -223,24 +234,33 @@ match_constraint 사용 뷰
 
 추후 변경될 가능성이 매우 높음
 
+- data.remote
+  - response
+- network
 - ui
   - extands
   - group
   - login
   - main
+    - place
+  - signup
   - upload
+  - tag
   - search
     - subway
+    - place
 
-일단 크게 주제가 나누어진 부분은 패키지로 구분하여 각 부분에 들어가있으며. 아직 패키지로 구분하기 애매한 것을은 패키지로 묶어두지 않았습니다.
+크게 주제가 나누어진 부분은 패키지로 구분하여 각 부분에 들어가있으며, 
 
+아직 패키지로 구분하기 애매한 것을은 패키지로 묶어두지 않았습니다.
 
-2020.07.07 기준
+2020.07.08 기준
 
-
+<br/>
 
 ## 3. 핵심 기능 구현 방법 정리 & 구현 화면
 
+-> 추후 업데이트 예정 
 
 <br/>
 
