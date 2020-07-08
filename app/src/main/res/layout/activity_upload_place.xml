@@ -422,7 +422,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:layout_marginBottom="76dp"
-                    android:background="@color/selector_edittext_in_login_view"
+                    android:background="@drawable/selector_edittext_in_login_view"
                     android:ems="10"
                     android:gravity="start|top"
                     android:hint="친구들에게 상세한 후기를 전달해주세요.\n좋은 후기들이 모여 즐거운 플레이스픽을 만듭니다!"

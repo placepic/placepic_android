@@ -76,7 +76,7 @@ class LoginActivity : AppCompatActivity(),View.OnClickListener {
 
     // 이메일 입력이 정확할 경우 EditText 설정
     private fun emailForm(){
-        et_login_email.background = getDrawable(R.color.selector_edittext_in_login_view)
+        et_login_email.background = getDrawable(R.drawable.selector_edittext_in_login_view)
         tv_login_non_email.visibility = View.INVISIBLE
     }
 
