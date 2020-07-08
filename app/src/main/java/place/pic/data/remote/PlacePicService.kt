@@ -1,10 +1,12 @@
 package place.pic.data.remote
 
-import place.pic.RequestKeywordTag
-import place.pic.ResponseKeywordTag
+import place.pic.data.remote.RequestKeywordTag
+import place.pic.data.remote.response.ResponseKeywordTag
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.Header
+import retrofit2.http.Path
 
 /**
  * Created By kimdahyee
@@ -14,7 +16,10 @@ import retrofit2.http.GET
 interface PlacePicService {
 
     @GET("/tag/{categoryIdx}")
-    fun requestKeywordTag(@Body body: RequestKeywordTag): Call<ResponseKeywordTag>
+    fun requestKeywordTag(
+        @Header("token") token: String,
+        @Path("categoryIdx") categoryIdx: Int
+    ): Call<ResponseKeywordTag>
 
     companion object {
         const val BASE_URL = "http://3.34.209.95:3000"

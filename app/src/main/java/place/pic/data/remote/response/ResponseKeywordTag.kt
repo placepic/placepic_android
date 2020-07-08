@@ -1,4 +1,4 @@
-package place.pic
+package place.pic.data.remote.response
 
 /**
  * Created By kimdahyee
@@ -6,7 +6,10 @@ package place.pic
  */
 
  data class ResponseKeywordTag (
-    val data : KeywordTagData?
+    val status: Int,
+    val success: Boolean,
+    val message: String,
+    val data : List<KeywordTagData>
 )
 
 data class KeywordTagData (

@@ -23,7 +23,7 @@ class UsefulTagActivity : AppCompatActivity() {
         setContentView(R.layout.activity_useful_tag)
 
         val resturantUsefulTagList
-                = arrayOf("24시간", "콘센트있음", "화장실공용", "태그4", "태그5")
+                = arrayOf("24시간", "콘센트있음", "화장실공용")
 
         val chipGroup = chipgroup_useful_tag
         for (tags in resturantUsefulTagList) {
