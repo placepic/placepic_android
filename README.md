@@ -38,6 +38,8 @@
 * 린 스타트업 정신
 * PRIDE✨
 
+<br/>
+
 ## 🖥 Code convention
  
 - **git branch**
@@ -74,7 +76,6 @@
 
 ### SLACK
 
-<br/>
 <br/>
 
 ## 🤝 Role
