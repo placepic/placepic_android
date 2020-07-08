@@ -24,6 +24,13 @@ class JoinGroupActivity : AppCompatActivity() {
             DividerItemDecoration(this, DividerItemDecoration.VERTICAL)
         )
         setAdapter()
+        buttonMapping()
+    }
+
+    private fun buttonMapping(){
+        img_join_group_top_back_btn.setOnClickListener {
+            onBackPressed()
+        }
     }
 
     private fun setAdapter(){
