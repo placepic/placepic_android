@@ -1,5 +1,5 @@
 package place.pic.data.remote
 
-class RequestRegister {
-
-}
+data class RequestRegister(
+    val email : String
+)
