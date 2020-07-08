@@ -3,6 +3,7 @@ package place.pic.ui.group
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import place.pic.R
@@ -15,15 +16,28 @@ class ExistGroupListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemVie
 
 
     fun bind(customData: ListGroupData) {
-        val groupCount =
-            itemView.context
-                .getString(
+        tv_group_title.text = customData.title
+        tv_group.text = stringDataMapping(customData)
+        Glide.with(itemView).load(customData.url).into(img_group_profile)
+        itemViewClickEvent()
+    }
+    
+    private fun stringDataMapping(customData: ListGroupData):String{
+        return itemView.context
+            .getString(
                     R.string.group_count,
                     customData.people_count,
                     customData.write_count
                 )
-        tv_group_title.text = customData.title
-        tv_group.text = groupCount
-        Glide.with(itemView).load(customData.url).into(img_group_profile)
+    }
+
+    private fun itemViewClickEvent(){
+        itemView.setOnClickListener {
+            Toast.makeText(
+                itemView.context,
+                "DetailClick",
+                Toast.LENGTH_SHORT
+            ).show()
+        }
     }
 }
