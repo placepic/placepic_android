@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import place.pic.databinding.ItemSearchedSubwayBinding
-import place.pic.ui.search.subway.Subway
+import place.pic.data.entity.Subway
 
 /**
  * Created By Malibin

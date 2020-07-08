@@ -1,4 +1,4 @@
-package place.pic.ui.search.subway
+package place.pic.data.entity
 
 import androidx.annotation.ColorRes
 import place.pic.R

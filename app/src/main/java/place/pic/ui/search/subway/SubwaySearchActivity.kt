@@ -7,6 +7,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import place.pic.R
+import place.pic.data.entity.Subway
 import place.pic.databinding.ActivitySearchSubwayBinding
 import place.pic.ui.main.place.PlacesFragment.Companion.SUBWAYS_KEY
 import place.pic.ui.search.subway.adapter.SelectedSubwaysAdapter

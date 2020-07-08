@@ -1,6 +1,6 @@
 package place.pic.ui.main.place
 
-import place.pic.ui.search.subway.Subway
+import place.pic.data.entity.Subway
 import java.util.*
 
 /**

@@ -2,7 +2,7 @@ package place.pic.ui.main.place
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import place.pic.ui.search.subway.Subway
+import place.pic.data.entity.Subway
 
 /**
  * Created By Malibin

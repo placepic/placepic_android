@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import place.pic.databinding.ItemSubwayLineBinding
-import place.pic.ui.search.subway.Subway
+import place.pic.data.entity.Subway
 
 /**
  * Created By Malibin
