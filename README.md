@@ -142,14 +142,6 @@
 
 ```
 
-- activity_join_group.xml
-
-```
-
--> RecyclerView 사용 시 일부분만 보여주기 위해 height로 크기 정함 
-
-```
-
 - activity_upload_place.xml
 
 - fragment_places.xml
