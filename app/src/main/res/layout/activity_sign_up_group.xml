@@ -65,6 +65,7 @@
             />
 
         <EditText
+            android:id="@+id/et_sign_up_group"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
@@ -106,6 +107,7 @@
             />
 
         <EditText
+            android:id="@+id/et_sign_up_phone_num"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
