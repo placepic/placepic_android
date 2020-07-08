@@ -17,8 +17,9 @@ interface PlacePicService {
 
     @GET("/tag/{categoryIdx}")
     fun requestKeywordTag(
-        @Header("token") token: String = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZHgiOjMsIm5hbWUiOiLstZzsmIHtm4giLCJpYXQiOjE1OTM2OTkxODMsImV4cCI6MTU5NjI5MTE4MywiaXNzIjoicGxhY2VwaWMifQ.rmFbeBfviyEzbMlMM4b3bMMiRcNDDbiX8bQtwL_cuN0",
-        @Path("categoryIdx") categoryIdx: Int): Call<ResponseKeywordTag>
+        @Header("token") token: String,
+        @Path("categoryIdx") categoryIdx: Int
+    ): Call<ResponseKeywordTag>
 
     companion object {
         const val BASE_URL = "http://3.34.209.95:3000"

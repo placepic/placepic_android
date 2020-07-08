@@ -9,7 +9,7 @@ package place.pic.data.remote.response
     val status: Int,
     val success: Boolean,
     val message: String,
-    val data : KeywordTagData?
+    val data : List<KeywordTagData>
 )
 
 data class KeywordTagData (

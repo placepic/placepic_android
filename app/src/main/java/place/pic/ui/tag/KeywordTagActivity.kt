@@ -38,11 +38,11 @@ class KeywordTagActivity : AppCompatActivity() {
 
         placePicService.getInstance()
             .requestKeywordTag(
-                token = token,
-                categoryIdx = 1
+                token,
+                1
             ).enqueue(object: Callback<ResponseKeywordTag> {
             override fun onFailure(call: Call<ResponseKeywordTag>, t: Throwable) { //통신 실패
-
+                Log.d("fail", t.message)
             }
 
             override fun onResponse(
@@ -52,43 +52,42 @@ class KeywordTagActivity : AppCompatActivity() {
                 //통신 성공
                 if (response.isSuccessful) { //status
                     if (response.body()!!.success) {
-                        showToast("키워드 태그 통신 성공!")
-                        Log.d("keyword tag server","통신을 성공해버렸다")
-                        //response.body()!!.data?.tagName?.let { restaurantKeywordTagList.add(it) }
+                        Log.d("response data check","${response.body()?.data.toString()}")
+
+                        for (i in response.body()!!.data.indices) {
+                            restaurantKeywordTagList.add(i, response.body()!!.data[i].tagName)
+                            Log.d("태그네임확인", "${response.body()!!.data[i].tagName}")
+                            Log.d("태그리스트확인", "${restaurantKeywordTagList.get(i)}")
+                        }
+
+                        val chipGroup = chipgroup_keyword_tag
+                        for (tags in restaurantKeywordTagList) {
+                            val chip = KeywordChipFactory.newInstance(layoutInflater) //object method 호출하기
+                            keywordTagChipList.add(chip)
+                            chip.isClickable = true
+                            chip.text = tags
+                            Log.d("키워드 칩 확인", "${tags}")
+                            chipGroup.addView(chip)
+                        }
+
+                        for (i in 0 until keywordTagChipList.size) { //chipList.forEach로도 가능
+                            keywordTagChipList[i].setOnClickListener{view ->
+                                if (checkChipIsChecked()) {//true
+                                    tv_tag_save.setTextColor(Color.parseColor("#FFFFFF"))
+                                    keyword_tag_save.setBackgroundResource(R.drawable.rectangle_main_color)
+                                    keyword_tag_save.isClickable = true
+                                } else {
+                                    tv_tag_save.setTextColor(Color.parseColor("#4F4F4F"))
+                                    keyword_tag_save.setBackgroundResource(R.drawable.rectangle_gray_f1f4f5)
+                                    keyword_tag_save.isClickable = false
+                                }
+                            }
+                        }
                     }
                 }
             }
 
         })
-
-        //안드로이드에서 ui가 동작하는 곳이 메인 스레드
-        //ANR //백그라운드 스레드에서 갱신시키면 터져
-        /*
-        val restaurantKeywordTagList
-                = arrayOf("조용한", "갬성있는", "공부하기좋은", "뷰가좋은", "커피가맛있는", "의자가편한") */
-
-        val chipGroup = chipgroup_keyword_tag
-        for (tags in restaurantKeywordTagList) {
-            val chip = KeywordChipFactory.newInstance(layoutInflater) //object method 호출하기
-            keywordTagChipList.add(chip)
-            chip.isClickable = true
-            chip.text = tags
-            chipGroup.addView(chip)
-        }
-
-        for (i in 0 until keywordTagChipList.size) { //chipList.forEach로도 가능
-            keywordTagChipList[i].setOnClickListener{view ->
-                if (checkChipIsChecked()) {//true
-                    tv_tag_save.setTextColor(Color.parseColor("#FFFFFF"))
-                    keyword_tag_save.setBackgroundResource(R.drawable.rectangle_main_color)
-                    keyword_tag_save.isClickable = true
-                } else {
-                    tv_tag_save.setTextColor(Color.parseColor("#4F4F4F"))
-                    keyword_tag_save.setBackgroundResource(R.drawable.rectangle_gray_f1f4f5)
-                    keyword_tag_save.isClickable = false
-                }
-            }
-        }
     }
 
     private fun checkChipIsChecked(): Boolean {
