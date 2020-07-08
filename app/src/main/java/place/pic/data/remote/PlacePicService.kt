@@ -1,8 +1,5 @@
 package place.pic.data.remote
-
-import place.pic.data.remote.response.BaseResponse
-import place.pic.data.remote.response.ResponseKeywordTag
-import place.pic.data.remote.response.SubwayResponse
+import place.pic.data.remote.response.*
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Header
@@ -19,7 +16,13 @@ interface PlacePicService {
     fun requestKeywordTag(
         @Header("token") token: String,
         @Path("categoryIdx") categoryIdx: Int
-    ): Call<ResponseKeywordTag>
+    ): Call<BaseResponse<List<KeywordTagData>>>
+
+    @GET("/tag/default/{categoryIdx}")
+    fun requestUsefulTag(
+        @Header("token") token: String,
+        @Path("categoryIdx") categoryIdx: Int
+    ): Call<BaseResponse<List<UsefulTagData>>>
 
     @GET("/subway")
     fun getAllSubways(

@@ -13,7 +13,8 @@ import kotlinx.android.synthetic.main.activity_keyword_tag.*
 import place.pic.R
 import place.pic.data.remote.PlacePicService
 import place.pic.data.remote.RequestKeywordTag
-import place.pic.data.remote.response.ResponseKeywordTag
+import place.pic.data.remote.response.BaseResponse
+import place.pic.data.remote.response.KeywordTagData
 import place.pic.showToast
 import retrofit2.Call
 import retrofit2.Callback
@@ -40,20 +41,21 @@ class KeywordTagActivity : AppCompatActivity() {
             .requestKeywordTag(
                 token,
                 1
-            ).enqueue(object: Callback<ResponseKeywordTag> {
-            override fun onFailure(call: Call<ResponseKeywordTag>, t: Throwable) { //통신 실패
+            ).enqueue(object: Callback<BaseResponse<List<KeywordTagData>>> {
+            override fun onFailure(call: Call<BaseResponse<List<KeywordTagData>>>, t: Throwable) { //통신 실패
                 Log.d("fail", t.message)
             }
 
             override fun onResponse(
-                call: Call<ResponseKeywordTag>,
-                response: Response<ResponseKeywordTag>
+                call: Call<BaseResponse<List<KeywordTagData>>>,
+                response: Response<BaseResponse<List<KeywordTagData>>>
             ) {
                 //통신 성공
                 if (response.isSuccessful) { //status
                     if (response.body()!!.success) {
                         Log.d("response data check","${response.body()?.data.toString()}")
 
+                        response
                         for (i in response.body()!!.data.indices) {
                             restaurantKeywordTagList.add(i, response.body()!!.data[i].tagName)
                             Log.d("태그네임확인", "${response.body()!!.data[i].tagName}")

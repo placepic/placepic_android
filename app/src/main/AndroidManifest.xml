@@ -23,10 +23,10 @@
         <activity android:name=".ui.login.LoginPageActivity" />
         <activity android:name=".ui.main.MainActivity" />
         <activity android:name=".ui.upload.UploadPlaceActivity" />
-        <activity android:name=".ui.tag.UsefulTagActivity" />
+        <activity android:name=".ui.tag.KeywordTagActivity"/>
         <activity android:name=".ui.search.place.PlaceSearchActivity" />
-        <activity android:name=".ui.tag.KeywordTagActivity" />
-        <activity android:name=".ui.search.subway.SubwaySearchActivity">
+        <activity android:name=".ui.search.subway.SubwaySearchActivity" />
+        <activity android:name=".ui.tag.UsefulTagActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
