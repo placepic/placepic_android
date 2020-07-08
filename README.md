@@ -115,11 +115,19 @@
 
 - activity_end_group_join.xml
 
+- activity_join_group.xml
+
 - item_group_list.xml
 
 - item_photo.xml
 
+- item_get_image_button.xml
+
+- item_image_to_upload
+
 - item_place.xm
+
+- item_subway_line
 
 서버에 업로드될 사진의 크기가 일정하지 않으므로 
 
@@ -128,8 +136,48 @@
 이외 이유가 없는 부분은 모두 wrap_content로 변경함
 
 
-<br/>
+- activity_join_group.xml
 
+RecyclerView 사용 시 일부분만 보여주기 위해 height로 크기 정함 
+
+
+- activity_upload_place 
+
+- fragment_places
+
+- item_place
+
+- item_place_search
+
+- item_search_subway
+
+디자인된 line을 넣기 위해 height=1dp 속성 지정  
+
+
+
+match_constraint 사용 뷰
+
+- 모든 뷰의 상단 바 
+
+- activity_keword_tag.xml 
+
+- activity_login
+
+- activity_place_search
+
+- activity_search_subway
+
+- activity_sign_up, activiy_sign_up_second
+
+- activity_upload_place
+
+- activivty_useful_tag 
+
+- fragment_places
+
+- item_place
+
+<br/>
 
 ## 1. 프로젝트 사용 라이브러리
 
