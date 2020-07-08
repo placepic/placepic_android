@@ -34,7 +34,7 @@ class SignupActivity : AppCompatActivity() {
                 tv_sign_non_password.visibility = View.VISIBLE
             }
             else {
-                et_sign_ok_password.background = getDrawable(R.color.selector_edittext_in_login_view)
+                et_sign_ok_password.background = getDrawable(R.drawable.selector_edittext_in_login_view)
                 tv_sign_non_password.visibility = View.INVISIBLE
 
                 val intent = Intent(this, SignupSecondActivity::class.java)
@@ -77,7 +77,7 @@ class SignupActivity : AppCompatActivity() {
 
     // 이메일 입력이 정확할 경우 EditText 설정
     private fun emailForm(){
-        et_sign_email.background = getDrawable(R.color.selector_edittext_in_login_view)
+        et_sign_email.background = getDrawable(R.drawable.selector_edittext_in_login_view)
         tv_sign_non_email.visibility = View.INVISIBLE
     }
 

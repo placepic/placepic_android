@@ -69,7 +69,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:background="@color/selector_edittext_in_login_view"
+            android:background="@drawable/selector_edittext_in_login_view"
             android:hint="이메일을 입력해주세요"
             android:inputType="textEmailAddress"
             android:paddingVertical="12dp"
@@ -128,7 +128,7 @@
             android:paddingStart="16dp"
             android:textColorHint="@color/grayCED5DA"
             android:textSize="14dp"
-            android:background="@color/selector_edittext_in_login_view"
+            android:background="@drawable/selector_edittext_in_login_view"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_login_password"
             tools:layout_editor_absoluteX="16dp"/>

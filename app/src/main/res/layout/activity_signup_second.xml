@@ -70,7 +70,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:layout_marginBottom="24dp"
-            android:background="@color/selector_edittext_in_login_view"
+            android:background="@drawable/selector_edittext_in_login_view"
             android:hint="이름을 입력해주세요"
             android:inputType="text"
             android:paddingVertical="8dp"
@@ -119,7 +119,7 @@
             android:textColorHint="@color/grayCED5DA"
             android:textSize="14dp"
             android:padding="12dp"
-            android:background="@color/selector_edittext_in_login_view"
+            android:background="@drawable/selector_edittext_in_login_view"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_sign_birth"
             tools:layout_editor_absoluteX="16dp"/>

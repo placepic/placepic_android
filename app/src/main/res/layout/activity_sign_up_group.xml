@@ -65,10 +65,11 @@
             />
 
         <EditText
+            android:id="@+id/et_sign_up_group"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:background="@color/selector_edittext_in_login_view"
+            android:background="@drawable/selector_edittext_in_login_view"
             android:hint="Ex) SOPT 00기 000"
             app:layout_goneMarginTop="4dp"
             android:layout_marginBottom="25dp"
@@ -106,15 +107,16 @@
             />
 
         <EditText
+            android:id="@+id/et_sign_up_phone_num"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:layout_marginBottom="25dp"
-            android:background="@color/selector_edittext_in_login_view"
+            android:background="@drawable/selector_edittext_in_login_view"
             app:layout_goneMarginTop="4dp"
             app:layout_goneMarginBottom="25dp"
-            android:hint="이메일을 입력해주세요"
-            android:inputType="textEmailAddress"
+            android:hint="핸드폰 번호를 입력해주세요"
+            android:inputType="numberDecimal"
             android:paddingVertical="8dp"
             android:paddingStart="16dp"
 

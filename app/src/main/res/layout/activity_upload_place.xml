@@ -434,7 +434,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:layout_marginBottom="76dp"
-                    android:background="@color/selector_edittext_in_login_view"
+                    android:background="@drawable/selector_edittext_in_login_view"
                     android:ems="10"
                     android:gravity="start|top"
                     android:hint="@string/review_hint"
