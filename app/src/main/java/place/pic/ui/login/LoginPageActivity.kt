@@ -30,12 +30,13 @@ class LoginPageActivity : AppCompatActivity(), View.OnClickListener{
         when (v!!.id) {
             R.id.btn_goto_login -> {
                 val gotoLoginIntent = Intent(this,LoginActivity::class.java)
-                //gotoLoginIntent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
+                gotoLoginIntent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
                 startActivity(gotoLoginIntent)
             }
             R.id.btn_goto_signup->
             {
                 val gotoSignupIntent = Intent(this,SignupActivity::class.java)
+                gotoSignupIntent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
                 startActivity(gotoSignupIntent)
             }
         }
