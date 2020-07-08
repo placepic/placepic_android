@@ -28,4 +28,5 @@
     <string name="toggle_men">남성</string>
     <string name="toggle_women">여성</string>
     <string name="toggle_gitar">기타</string>
+    <string name="subways_pick_count_three">지하철 역은 3개까지만 선택할 수 있습니다.</string>
 </resources>

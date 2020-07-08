@@ -1,4 +1,4 @@
-package place.pic.ui.search.subway
+package place.pic.data.entity
 
 import androidx.annotation.ColorRes
 import place.pic.R
@@ -10,7 +10,6 @@ import java.io.Serializable
  */
 
 data class Subway(
-    val id: Int,
     val name: String,
     val line: List<Line>
 ) : Serializable {

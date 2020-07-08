@@ -1,9 +1,9 @@
 package place.pic.data.remote
 
-import place.pic.data.remote.RequestKeywordTag
+import place.pic.data.remote.response.BaseResponse
 import place.pic.data.remote.response.ResponseKeywordTag
+import place.pic.data.remote.response.SubwayResponse
 import retrofit2.Call
-import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.Path
@@ -20,6 +20,12 @@ interface PlacePicService {
         @Header("token") token: String,
         @Path("categoryIdx") categoryIdx: Int
     ): Call<ResponseKeywordTag>
+
+    @GET("/subway")
+    fun getAllSubways(
+        @Header("Content-Type") contentType: String = "application/json",
+        @Header("token") token: String
+    ): Call<BaseResponse<List<SubwayResponse>>>
 
     companion object {
         const val BASE_URL = "http://3.34.209.95:3000"

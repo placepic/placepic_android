@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import place.pic.databinding.ItemSelectedSubwayBinding
-import place.pic.ui.search.subway.Subway
+import place.pic.data.entity.Subway
 
 /**
  * Created By Malibin
@@ -50,7 +50,7 @@ class SelectedSubwaysAdapter :
 
     private class DiffItemCallback : DiffUtil.ItemCallback<Subway>() {
         override fun areItemsTheSame(oldItem: Subway, newItem: Subway): Boolean {
-            return oldItem.id == newItem.id
+            return oldItem.name == newItem.name
         }
 
         override fun areContentsTheSame(oldItem: Subway, newItem: Subway): Boolean {

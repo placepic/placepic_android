@@ -6,7 +6,7 @@
     <data>
         <variable
             name="subway"
-            type="place.pic.ui.search.subway.Subway" />
+            type="place.pic.data.entity.Subway" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

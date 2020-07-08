@@ -6,7 +6,7 @@ import android.widget.TextView
 import androidx.annotation.ColorRes
 import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
-import place.pic.ui.search.subway.Subway
+import place.pic.data.entity.Subway
 import java.text.SimpleDateFormat
 import java.util.*
 

@@ -7,6 +7,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import place.pic.R
+import place.pic.data.entity.Subway
 import place.pic.databinding.ActivitySearchSubwayBinding
 import place.pic.ui.main.place.PlacesFragment.Companion.SUBWAYS_KEY
 import place.pic.ui.search.subway.adapter.SelectedSubwaysAdapter
@@ -57,6 +58,10 @@ class SubwaySearchActivity : AppCompatActivity() {
     }
 
     private fun onSearchedSubwayClick(binding: ActivitySearchSubwayBinding, subway: Subway) {
+        if (subwaySearchViewModel.getCurrentSelectedSubways().size >= MAX_PICK_SUBWAYS_COUNT) {
+            Toast.makeText(this, R.string.subways_pick_count_three, Toast.LENGTH_SHORT).show()
+            return
+        }
         if (subwaySearchViewModel.contains(subway)) {
             Toast.makeText(this, R.string.already_selected_subway, Toast.LENGTH_SHORT).show()
         }
@@ -96,5 +101,7 @@ class SubwaySearchActivity : AppCompatActivity() {
 
     companion object {
         const val REQUEST_CODE = 2000
+
+        const val MAX_PICK_SUBWAYS_COUNT = 3
     }
 }
