@@ -79,18 +79,18 @@
 <br/>
 
 ## 🤝 Role
-  
- ### 이수정 
- - 회원가입  **SPRINT#1**
- - 최애장소 업로드 View Layout  **SPRINT#1**
- - 이미지 업로드 초기 구현  **SPRINT#1**
- - 서버 작업 중 ... 
-
+ 
  ### 혁
  - 장소리스트  **SPRINT#1**
  - 지하철검색  **SPRINT#1**
  - 최애장소 업로드 View  **SPRINT#1**
  - 이미지 업로드 구현  **SPRINT#1**
+ 
+  ### 진수
+ - 로그인  **SPRINT#1**
+ - 그룹신청  **SPRINT#1**
+ - 관리자 페이지  **SPRINT#1**
+ - 서버 작업 중 ...
 
  ### 다혜
  - 장소검색  **SPRINT#1**
@@ -98,11 +98,12 @@
  - Chip 구현  **SPRINT#1**
  - 서버 작업 중 ...
 
- ### 진수
- - 로그인  **SPRINT#1**
- - 그룹신청  **SPRINT#1**
- - 관리자 페이지  **SPRINT#1**
- - 서버 작업 중 ...
+ ### 수정 
+ - 회원가입  **SPRINT#1**
+ - 최애장소 업로드 View Layout  **SPRINT#1**
+ - 이미지 업로드 초기 구현  **SPRINT#1**
+ - 서버 작업 중 ... 
+
 
 <br/>
 
@@ -188,9 +189,13 @@
 
 ### **🙋 [혁] https://github.com/nightmare73** 
 
-### **🙋‍ [수정] https://github.com/LeeSuJung-dodung**
+### **🙋‍ [진수] https://github.com/jinsu4755**
 
 ### **🙋‍ [다혜] https://github.com/kimdahyee**
 
-### **🙋‍ [진수] https://github.com/jinsu4755**
+### **🙋‍ [수정] https://github.com/LeeSuJung-dodung**
+
+
+
+
 
