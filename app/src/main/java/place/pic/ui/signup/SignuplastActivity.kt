@@ -19,7 +19,7 @@ class SignuplastActivity : AppCompatActivity() {
 
         btn_signnup_last.setOnClickListener {
             val intent = Intent(this, LoginActivity::class.java)
-            //intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
             startActivity(intent)
             finish()
         }
