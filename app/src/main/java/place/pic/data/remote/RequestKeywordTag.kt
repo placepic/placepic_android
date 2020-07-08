@@ -1,4 +1,4 @@
-package place.pic
+package place.pic.data.remote
 
 /**
  * Created By kimdahyee
