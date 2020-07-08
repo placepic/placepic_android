@@ -47,7 +47,7 @@
 
 >[이슈](https://github.com/placepic/placepic_android/issues) 별로 branch 구성 
 
-- **git commit message role** 
+- **git commit message rule** 
 
 ```
 [Feat] 기능 추가
