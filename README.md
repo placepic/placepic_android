@@ -186,11 +186,11 @@
 
 ## 💻 place pig's server developer 
 
-### **🙋 [혁]**
+### **🙋 [혁] https://github.com/nightmare73** 
 
-### **🙋‍ [수정]**
+### **🙋‍ [수정] https://github.com/LeeSuJung-dodung**
 
-### **🙋‍ [다혜]**
+### **🙋‍ [다혜] https://github.com/kimdahyee**
 
-### **🙋‍ [진수]**
+### **🙋‍ [진수] https://github.com/jinsu4755**
 
