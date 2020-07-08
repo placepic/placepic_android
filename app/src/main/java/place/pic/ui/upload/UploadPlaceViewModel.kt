@@ -1,5 +1,6 @@
 package place.pic.ui.upload
 
+import android.content.Context
 import android.content.Intent
 import androidx.annotation.StringRes
 import androidx.lifecycle.LiveData
@@ -14,6 +15,8 @@ import place.pic.ui.main.place.PlacesFragment
  */
 
 class UploadPlaceViewModel {
+
+    val placeReview = MutableLiveData<String>()
 
     private val _imageUris = MutableLiveData<List<ImageUri>>()
     val imageUris: LiveData<List<ImageUri>>
@@ -32,8 +35,12 @@ class UploadPlaceViewModel {
         _subways.value = emptyList()
     }
 
+    fun uploadPlace(context: Context) {
+
+    }
+
     fun handleSubwaysIntent(intent: Intent?) {
-        if(intent == null) return
+        if (intent == null) return
         val subways = intent.getSerializableExtra(PlacesFragment.SUBWAYS_KEY) ?: return
         _subways.value = subways as List<Subway>
     }
