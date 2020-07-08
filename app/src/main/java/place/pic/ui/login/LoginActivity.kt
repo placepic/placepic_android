@@ -35,7 +35,6 @@ class LoginActivity : AppCompatActivity(),View.OnClickListener {
 
     private fun buttonMapping(){
         img_login_top_bar_back_btn.setOnClickListener(this)
-
     }
 
     private fun editTextChangedMapping(){

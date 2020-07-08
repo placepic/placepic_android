@@ -23,9 +23,11 @@ class GroupListActivity : AppCompatActivity() {
         init()
     }
 
-    private fun init(){
+    private fun init() {
         //loadTestList()
-        //loadTestWaitList()
+        loadTestWaitList()
+        waitListTextMapping()
+        buttonEventMapping()
         if (testListData.count() == 0) {
             loadEmptyGroup()
             return
@@ -33,7 +35,14 @@ class GroupListActivity : AppCompatActivity() {
         loadExistGroup()
     }
 
-    private fun loadEmptyGroup(){
+    private fun buttonEventMapping() {
+        cl_btn_wait_group_list.setOnClickListener {
+            val gotoWaitGroupIntent = Intent(this, WaitGroupActivity::class.java)
+            startActivity(gotoWaitGroupIntent)
+        }
+    }
+
+    private fun loadEmptyGroup() {
         Log.d("그룹 리스트", "빈그룹")
         tv_btn_join_group.visibility = View.GONE
         val emptyGroupFragment = EmptyGroupListFragment()
@@ -44,9 +53,9 @@ class GroupListActivity : AppCompatActivity() {
         loadGroupFragment(emptyGroupFragment)
     }
 
-    private fun loadExistGroup(){
+    private fun loadExistGroup() {
         Log.d("그룹 리스트", "그룹 리스트")
-        tv_btn_join_group.visibility= View.VISIBLE
+        tv_btn_join_group.visibility = View.VISIBLE
         tv_btn_join_group.setOnClickListener {
             gotoJoinActivity()
         }
@@ -64,12 +73,12 @@ class GroupListActivity : AppCompatActivity() {
         cl_wait_group.visibility = View.VISIBLE
     }
 
-    private fun disableWaitGroupListButton(){
+    private fun disableWaitGroupListButton() {
         Log.d("승인 대기 버튼 테스트", "버튼 비활성화")
         cl_wait_group.visibility = View.GONE
     }
 
-    private fun haveWaitGroupList():Boolean{
+    private fun haveWaitGroupList(): Boolean {
         if (testWaitListData.size > 0) {
             Log.d("승인 대기 데이터", "데이터 있음")
             enableWaitGroupListButton()
@@ -80,12 +89,20 @@ class GroupListActivity : AppCompatActivity() {
         return false
     }
 
-    private fun gotoJoinActivity(){
+    private fun gotoJoinActivity() {
         val gotoJoinIntent = Intent(this, JoinGroupActivity::class.java)
         startActivity(gotoJoinIntent)
     }
 
-    private fun loadTestList(){
+    private fun waitListTextMapping() {
+        val waitListCount = getString(
+            R.string.wait_group_count,
+            testWaitListData.size
+        )
+        tv_wait_group_list.text = waitListCount
+    }
+
+    private fun loadTestList() {
         testListData.apply {
             add(
                 ListGroupData(
@@ -114,7 +131,7 @@ class GroupListActivity : AppCompatActivity() {
         }
     }
 
-    private fun loadTestWaitList(){
+    private fun loadTestWaitList() {
         testWaitListData.apply {
             add(
                 WaitListGroupData(
