@@ -8,11 +8,10 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.lifecycle.Observer
-import kotlinx.android.synthetic.main.item_place.*
 import place.pic.R
+import place.pic.data.entity.Subway
 import place.pic.databinding.ActivityUploadPlaceBinding
 import place.pic.ui.main.place.PlacesFragment.Companion.SUBWAYS_KEY
-import place.pic.ui.search.subway.Subway
 import place.pic.ui.search.subway.SubwaySearchActivity
 import place.pic.ui.upload.adapter.ImagesToUploadAdapter
 import place.pic.ui.upload.adapter.SubwaysAdapter

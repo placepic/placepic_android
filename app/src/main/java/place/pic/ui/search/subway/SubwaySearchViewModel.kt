@@ -5,7 +5,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import place.pic.data.entity.Subway
 import place.pic.data.remote.request.SubwaysRequest
-import place.pic.data.remote.response.BaseResponse
 import place.pic.data.remote.response.SubwayResponse
 import place.pic.data.tempToken
 

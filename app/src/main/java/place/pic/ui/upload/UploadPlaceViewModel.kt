@@ -5,8 +5,8 @@ import androidx.annotation.StringRes
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import place.pic.R
+import place.pic.data.entity.Subway
 import place.pic.ui.main.place.PlacesFragment
-import place.pic.ui.search.subway.Subway
 
 /**
  * Created By Malibin
