@@ -24,9 +24,10 @@
     <string name="galleryPermissionRejected">권한을 거부하시면 이미지를 업로드 하실 수 없습니다.</string>
     <string name="imageCountMaxIsTen">이미지는 10개 까지만 첨부 가능합니다.</string>
     <string name="group_count">%1$d명 · 전체글 %2$d개</string>
-
+    <string name="modify">수정</string>
     <string name="toggle_men">남성</string>
     <string name="toggle_women">여성</string>
     <string name="toggle_gitar">기타</string>
     <string name="subways_pick_count_three">지하철 역은 3개까지만 선택할 수 있습니다.</string>
+    <string name="review_hint">친구들에게 상세한 후기를 전달해주세요.\n좋은 후기들이 모여 즐거운 플레이스픽을 만듭니다!</string>
 </resources>

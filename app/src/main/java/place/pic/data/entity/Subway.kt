@@ -41,7 +41,8 @@ data class Subway(
         LINE_20(20, "경강", R.color.subway20),
         LINE_21(21, "우이신설", R.color.subway21),
         LINE_22(22, "서해", R.color.subway22),
-        LINE_23(23, "김포골드", R.color.subway23);
+        LINE_23(23, "김포골드", R.color.subway23),
+        LINE_24(24, "자기부상", R.color.subway24);
 
         companion object {
             fun findByNumber(number: Int): Line {

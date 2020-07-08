@@ -1,15 +1,16 @@
-package place.pic.ui.upload
+package place.pic.ui.upload.adapter
 
-import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import place.pic.R
 import place.pic.databinding.*
+import place.pic.ui.upload.ImageUri
 
 /**
  * Created By Malibin
@@ -18,6 +19,7 @@ import place.pic.databinding.*
 
 class ImagesToUploadAdapter : ListAdapter<ImageUri, RecyclerView.ViewHolder>(DiffItemCallback()) {
 
+    private var imageCountTextView: TextView? = null
     private var imageDeleteListener: ((imageUri: ImageUri) -> Unit)? = null
     private var getImageButtonListener: ((view: View) -> Unit)? = null
 
@@ -45,8 +47,17 @@ class ImagesToUploadAdapter : ListAdapter<ImageUri, RecyclerView.ViewHolder>(Dif
     }
 
     override fun submitList(list: List<ImageUri>?) {
-        val newList = list?.toMutableList()?.apply { add(0, ImageUri.EMPTY) }
+        val newList = list?.toMutableList()?.apply {
+            add(0, ImageUri.EMPTY)
+        }
+        updateImageCount(list?.size ?: 0)
         super.submitList(newList)
+    }
+
+    private fun updateImageCount(size: Int) {
+        val formatString =
+            imageCountTextView?.context?.resources?.getString(R.string.n_amount_of_ten) ?: ""
+        imageCountTextView?.text = String.format(formatString, size)
     }
 
     private fun createGetImageButtonViewHolder(
@@ -92,6 +103,7 @@ class ImagesToUploadAdapter : ListAdapter<ImageUri, RecyclerView.ViewHolder>(Dif
         private val binding: ItemGetImageButtonBinding
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind() {
+            imageCountTextView = binding.tvImageCount
             binding.btnGetImages.setOnClickListener(getImageButtonListener)
         }
     }

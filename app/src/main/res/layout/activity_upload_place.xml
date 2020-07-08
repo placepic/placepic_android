@@ -3,6 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="place.pic.ui.upload.UploadPlaceViewModel" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -82,6 +91,7 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="24dp"
                     android:gravity="top"
+                    android:text="그녀의 한정식"
                     android:textColor="@color/black36"
                     android:textSize="22dp"
                     android:textStyle="bold"
@@ -98,7 +108,7 @@
                     android:orientation="horizontal"
                     android:overScrollMode="never"
                     android:paddingStart="16dp"
-                    android:paddingEnd="16dp"
+                    android:paddingEnd="8dp"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -124,6 +134,7 @@
                         android:layout_marginTop="4dp"
                         android:layout_marginEnd="8dp"
                         android:layout_marginBottom="4dp"
+                        android:text="맛집"
                         android:textColor="@color/black36"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -148,10 +159,9 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
-                        android:layout_marginEnd="24dp"
                         android:layout_marginBottom="20dp"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/btn_modify_subways"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent">
 
@@ -187,9 +197,10 @@
                         android:id="@+id/btn_modify_subways"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="수정"
+                        android:text="@string/modify"
                         android:textSize="15dp"
                         android:textStyle="bold"
+                        android:visibility="@{viewModel.subways.empty ? View.GONE : View.VISIBLE}"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="@+id/constraintLayout4" />
 
@@ -197,6 +208,7 @@
                         android:id="@+id/btn_select_subways"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:visibility="@{viewModel.subways.empty ? View.VISIBLE : View.GONE}"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
@@ -284,7 +296,7 @@
                         android:id="@+id/btn_modify_keywords"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="수정"
+                        android:text="@string/modify"
                         android:textSize="15dp"
                         android:textStyle="bold"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -379,7 +391,7 @@
                         android:id="@+id/btn_modify_features"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="수정"
+                        android:text="@string/modify"
                         android:textSize="15dp"
                         android:textStyle="bold"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -425,13 +437,14 @@
                     android:background="@color/selector_edittext_in_login_view"
                     android:ems="10"
                     android:gravity="start|top"
-                    android:hint="친구들에게 상세한 후기를 전달해주세요.\n좋은 후기들이 모여 즐거운 플레이스픽을 만듭니다!"
+                    android:hint="@string/review_hint"
                     android:inputType="textMultiLine"
                     android:minHeight="280dp"
                     android:paddingStart="16dp"
                     android:paddingTop="12dp"
                     android:paddingEnd="16dp"
                     android:paddingBottom="12dp"
+                    android:text="@={viewModel.placeReview}"
                     android:textSize="16dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="@+id/zone_features"
