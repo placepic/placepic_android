@@ -5,7 +5,7 @@
 
         <variable
             name="line"
-            type="place.pic.data.entity.Subway" />
+            type="place.pic.data.entity.Subway.Line" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"

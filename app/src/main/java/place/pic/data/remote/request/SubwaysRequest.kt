@@ -10,55 +10,9 @@ import place.pic.data.remote.response.SubwayResponse
 
 class SubwaysRequest : BaseRequest<List<SubwayResponse>>() {
 
-    fun send() {
+    fun send(token: String) {
         PlacePicService.getInstance()
-            .getAllSubways(token = "")
+            .getAllSubways(token = token)
             .enqueue(this)
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

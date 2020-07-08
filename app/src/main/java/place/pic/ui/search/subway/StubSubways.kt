@@ -10,12 +10,10 @@ import place.pic.data.entity.Subway
 fun stubSubways(): List<Subway> {
     return listOf(
         Subway(
-            0,
             "범계역",
             listOf(Subway.Line.LINE_4)
         ),
         Subway(
-            1,
             "사당역",
             listOf(
                 Subway.Line.LINE_4,
@@ -23,7 +21,6 @@ fun stubSubways(): List<Subway> {
             )
         ),
         Subway(
-            2,
             "공덕역",
             listOf(
                 Subway.Line.LINE_5,

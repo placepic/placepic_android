@@ -1,8 +1,13 @@
 package place.pic.ui.search.subway
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import place.pic.data.entity.Subway
+import place.pic.data.remote.request.SubwaysRequest
+import place.pic.data.remote.response.BaseResponse
+import place.pic.data.remote.response.SubwayResponse
+import place.pic.data.tempToken
 
 /**
  * Created By Malibin
@@ -10,6 +15,8 @@ import place.pic.data.entity.Subway
  */
 
 class SubwaySearchViewModel {
+
+    private val subwaysRequest = SubwaysRequest()
 
     private val allSubways = mutableListOf<Subway>()
 
@@ -30,7 +37,14 @@ class SubwaySearchViewModel {
     }
 
     private fun loadAllSubways() {
-        allSubways.addAll(stubSubways())
+        subwaysRequest.apply {
+            addOnSuccessListener { allSubways.addAll(getRemoteSubways(it.data)) }
+            addOnFailureListener { Log.d("Malibin Debug", it.toString()) }
+        }.send(tempToken)
+    }
+
+    private fun getRemoteSubways(response: List<SubwayResponse>): List<Subway> {
+        return response.map { it.toSubway() }
     }
 
     fun loadAlreadySelectedSubways(subways: List<Subway>) {
@@ -46,7 +60,7 @@ class SubwaySearchViewModel {
     }
 
     fun removeSelectedSubways(subway: Subway) {
-        _selectedSubways.value = getCurrentSelectedSubways().filter { it.id != subway.id }
+        _selectedSubways.value = getCurrentSelectedSubways().filter { it.name != subway.name }
     }
 
     fun addSelectedSubways(subway: Subway) {
@@ -62,4 +76,5 @@ class SubwaySearchViewModel {
     }
 
     fun getCurrentSelectedSubways() = _selectedSubways.value ?: emptyList()
+
 }

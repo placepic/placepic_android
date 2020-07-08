@@ -24,14 +24,16 @@
         <activity android:name=".ui.main.MainActivity" />
         <activity android:name=".ui.tag.KeywordTagActivity" />
         <activity android:name=".ui.tag.UsefulTagActivity"/>
-        <activity android:name=".ui.search.place.PlaceSearchActivity" />
-        <activity android:name=".ui.search.subway.SubwaySearchActivity" />
-        <activity android:name=".ui.upload.UploadPlaceActivity">
+        <activity android:name=".ui.search.place.PlaceSearchActivity"/>
+        <activity android:name=".ui.search.subway.SubwaySearchActivity">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".ui.upload.UploadPlaceActivity">
         </activity>
         <activity android:name=".ui.group.GroupListActivity"/>
         <activity android:name=".ui.signup.SignuplastActivity"></activity>

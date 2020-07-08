@@ -50,7 +50,7 @@ class SubwaysAdapter : ListAdapter<Subway, SubwaysAdapter.ViewHolder>(DiffItemCa
 
     private class DiffItemCallback : DiffUtil.ItemCallback<Subway>() {
         override fun areItemsTheSame(oldItem: Subway, newItem: Subway): Boolean {
-            return oldItem.id == newItem.id
+            return oldItem.name == newItem.name
         }
 
         override fun areContentsTheSame(oldItem: Subway, newItem: Subway): Boolean {

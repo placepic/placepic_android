@@ -29,11 +29,11 @@ open class BaseRequest<T> : Callback<BaseResponse<T>> {
         onFailureListener?.invoke(errorResponse)
     }
 
-    fun setOnSuccessListener(onSuccessListener: ((response: BaseResponse<T>) -> Unit)?) {
+    fun addOnSuccessListener(onSuccessListener: ((response: BaseResponse<T>) -> Unit)?) {
         this.onSuccessListener = onSuccessListener
     }
 
-    fun setOnFailureListener(onFailureListener: ((response: BaseResponse<Unit>) -> Unit)?) {
+    fun addOnFailureListener(onFailureListener: ((response: BaseResponse<Unit>) -> Unit)?) {
         this.onFailureListener = onFailureListener
     }
 

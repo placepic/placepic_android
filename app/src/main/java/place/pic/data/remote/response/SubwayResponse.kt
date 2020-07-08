@@ -12,7 +12,6 @@ data class SubwayResponse(
     val subwayLine: List<Int>
 ) {
     fun toSubway() = Subway(
-        id = 0,
         name = subwayName,
         line = subwayLine.map { Subway.Line.findByNumber(it) }
     )
