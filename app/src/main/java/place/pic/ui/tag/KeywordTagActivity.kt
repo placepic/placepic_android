@@ -1,15 +1,16 @@
 package place.pic.ui.tag
 
-//시스템 R파일이 import 되지않도록 주의하기
+import android.app.Activity
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.chip.Chip
 import kotlinx.android.synthetic.main.activity_keyword_tag.*
 import place.pic.R
+import place.pic.data.entity.KeywordTag
 import place.pic.data.remote.PlacePicService
 import place.pic.data.remote.response.BaseResponse
 import place.pic.data.remote.response.KeywordTagData
@@ -27,7 +28,7 @@ class KeywordTagActivity : AppCompatActivity() {
     private val token =
         "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZHgiOjMsIm5hbWUiOiLstZzsmIHtm4giLCJpYXQiOjE1OTM2OTkxODMsImV4cCI6MTU5NjI5MTE4MywiaXNzIjoicGxhY2VwaWMifQ.rmFbeBfviyEzbMlMM4b3bMMiRcNDDbiX8bQtwL_cuN0"
 
-    private val keywordTagList = mutableListOf<String>()
+    private val keywordTagList = mutableListOf<KeywordTag>()
     private val keywordTagChipList = mutableListOf<Chip>()
     private val placePicService = PlacePicService
 
@@ -35,10 +36,31 @@ class KeywordTagActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_keyword_tag)
 
-        getConnection()
+        //categoryIdx 꺼내기
+        val intent = getIntent()
+        val categoryIdx = intent.getIntExtra("categoryIdx", 1)
+
+        getConnection(categoryIdx)
+
+        keyword_tag_save.setOnClickListener {
+
+            //선택된 chip 관련 정보 ArrayList<KeywordTag>에 넣어서 전달
+            var checkedTagList = ArrayList<KeywordTag>()
+
+            for (i in 0 until keywordTagChipList.size) {
+                if (keywordTagChipList[i].isChecked) {
+                    var keywordTag = KeywordTag(keywordTagList[i].tagIdx, keywordTagList[i].tagName)
+                    checkedTagList.add(keywordTag)
+                }
+            }
+
+            val checkedChipIntent = Intent()
+            checkedChipIntent.putExtra("checkedChip", checkedTagList)
+            setResult(Activity.RESULT_OK, checkedChipIntent)
+        }
     }
 
-    private fun getConnection() {
+    private fun getConnection(categoryIdx: Int) {
         placePicService.getInstance()
             .requestKeywordTag(
                 token,
@@ -60,7 +82,11 @@ class KeywordTagActivity : AppCompatActivity() {
                         if (response.body()!!.success) {
                             response
                             for (i in response.body()!!.data.indices) {
-                                keywordTagList.add(i, response.body()!!.data[i].tagName)
+                                var keywordTag: KeywordTag = KeywordTag(
+                                    tagIdx = response.body()!!.data[i].tagIdx,
+                                    tagName = response.body()!!.data[i].tagName
+                                )
+                                keywordTagList.add(keywordTag)
                             }
 
                             val chipGroup = chipgroup_keyword_tag
@@ -69,18 +95,26 @@ class KeywordTagActivity : AppCompatActivity() {
                                     ChipFactory.newInstance(layoutInflater) //object method 호출하기
                                 keywordTagChipList.add(chip)
                                 chip.isClickable = true
-                                chip.text = tags
+                                chip.text = tags.tagName
                                 chipGroup.addView(chip)
                             }
 
                             for (i in 0 until keywordTagChipList.size) { //chipList.forEach로도 가능
-                                keywordTagChipList[i].setOnClickListener { view ->
+                                keywordTagChipList[i].setOnClickListener {
                                     if (checkChipIsChecked()) {//true
-                                        changeButtonColor("#FFFFFF", R.drawable.rectangle_main_color, true)
+                                        changeButtonColor(
+                                            "#FFFFFF",
+                                            R.drawable.rectangle_main_color,
+                                            true
+                                        )
                                     }
 
                                     if (!checkChipIsChecked()) {
-                                        changeButtonColor("#4F4F4F", R.drawable.rectangle_gray_f1f4f5, false)
+                                        changeButtonColor(
+                                            "#4F4F4F",
+                                            R.drawable.rectangle_gray_f1f4f5,
+                                            false
+                                        )
                                     }
                                 }
                             }
@@ -103,10 +137,6 @@ class KeywordTagActivity : AppCompatActivity() {
                 checkResult = true
         }
         return checkResult
-    }
-
-    fun onClick(view: View) {
-        Toast.makeText(this@KeywordTagActivity, "클릭 가능", Toast.LENGTH_SHORT).show()
     }
 }
 

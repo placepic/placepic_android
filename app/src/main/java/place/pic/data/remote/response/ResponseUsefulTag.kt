@@ -6,7 +6,7 @@ package place.pic.data.remote.response
  */
 
 data class UsefulTagData (
-    val tagInx : Int,
+    val tagIdx : Int,
     val tagName : String,
     val tagIsBasic : Int,
     val categoryIdx : Int

@@ -2,9 +2,9 @@ package place.pic.data.remote
 
 /**
  * Created By kimdahyee
- * on 07월 07일, 2020
+ * on 07월 09일, 2020
  */
 
-data class RequestKeywordTag (
+data class UsefulTagRequest (
     val categoryIdx : Int
 )
