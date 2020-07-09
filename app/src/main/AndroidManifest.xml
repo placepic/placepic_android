@@ -14,7 +14,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".network.RegisterActivity"></activity>
+        <activity android:name=".ui.main.mypage.userlist.UserInfoActivity"></activity>
+        <activity android:name=".ui.main.mypage.userlist.WaitUserListActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".network.RegisterActivity" />
         <activity android:name=".ui.group.EndGroupJoinActivity" />
         <activity android:name=".ui.group.SignUpGroupActivity" />
         <activity android:name=".ui.group.JoinGroupActivity" />
@@ -26,15 +34,9 @@
         <activity android:name=".ui.search.place.PlaceSearchActivity" />
         <activity android:name=".ui.search.subway.SubwaySearchActivity" />
         <activity android:name=".ui.tag.UsefulTagActivity" />
-        <activity android:name=".ui.upload.UploadPlaceActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".ui.upload.UploadPlaceActivity" />
         <activity android:name=".ui.group.GroupListActivity" />
-        <activity android:name=".ui.signup.SignuplastActivity"></activity>
+        <activity android:name=".ui.signup.SignuplastActivity" />
         <activity android:name=".ui.signup.SignupSecondActivity" />
         <activity android:name=".ui.signup.SignupActivity" />
     </application>
