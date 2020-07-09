@@ -3,7 +3,7 @@ package place.pic.ui.main.place.adapter
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
-import place.pic.ui.main.place.Place
+import place.pic.data.entity.Place
 import place.pic.ui.main.place.PlaceItemsFragment
 
 /**

@@ -1,5 +1,7 @@
 package place.pic.ui.main.place
 
+import place.pic.data.entity.Place
+
 /**.
  *
  * Created By Malibin

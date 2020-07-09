@@ -2,12 +2,7 @@ package place.pic.data.remote
 
 import place.pic.data.remote.response.*
 import retrofit2.Call
-import retrofit2.http.GET
-import retrofit2.http.Header
-import retrofit2.http.Path
-import place.pic.data.remote.response.BaseResponse
-import retrofit2.http.Body
-import retrofit2.http.POST
+import retrofit2.http.*
 
 /**
  * Created By kimdahyee
@@ -35,13 +30,21 @@ interface PlacePicService {
     ): Call<BaseResponse<List<SubwayResponse>>>
 
     @POST("/auth/checkemail")
-    fun requestRegister(@Body body : RequestRegister): Call<BaseResponse<RequestRegister>>
+    fun requestRegister(@Body body: RequestRegister): Call<BaseResponse<RequestRegister>>
 
     @POST("/auth/signup")
-    fun requestRegisterSecond(@Body body : RequestRegisterSecond) : Call<BaseResponse<Unit>>
+    fun requestRegisterSecond(@Body body: RequestRegisterSecond): Call<BaseResponse<Unit>>
 
     @POST("/auth/signin")
-    fun requestLogin(@Body body : RequestLogin): Call<BaseResponse<RequestLogin>>
+    fun requestLogin(@Body body: RequestLogin): Call<BaseResponse<RequestLogin>>
+
+    @GET("/places/group/{groupIdx}")
+    fun getFilteredPlaces(
+        @Header("Content-Type") contentType: String = "application/json",
+        @Header("token") token: String,
+        @Path("groupIdx") groupIdx: Int,
+        @QueryMap queries: Map<String, String?>
+    ): Call<BaseResponse<List<PlaceResponse>>>
 
     companion object {
         const val BASE_URL = "http://3.34.209.95:3000"

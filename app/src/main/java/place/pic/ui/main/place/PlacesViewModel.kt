@@ -2,6 +2,7 @@ package place.pic.ui.main.place
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import place.pic.data.entity.Place
 import place.pic.data.entity.Subway
 
 /**

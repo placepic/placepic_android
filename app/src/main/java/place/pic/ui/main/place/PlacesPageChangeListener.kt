@@ -1,6 +1,7 @@
 package place.pic.ui.main.place
 
 import androidx.viewpager.widget.ViewPager
+import place.pic.data.entity.Place
 
 /**
  * Created By Malibin

@@ -1,6 +1,5 @@
-package place.pic.ui.main.place
+package place.pic.data.entity
 
-import place.pic.data.entity.Subway
 import java.util.*
 
 /**
@@ -9,11 +8,11 @@ import java.util.*
  */
 
 data class Place(
-    val id: Int,
+    val id: Long,
     val name: String,
     val imageUrl: String,
     val subways: List<Subway>,
-    val keywordTags: List<String>,
+    val keywordTags: List<KeywordTag>,
     val uploadDate: Date,
     val uploaderName: String,
     val uploaderProfileUrl: String

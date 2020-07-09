@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import place.pic.R
 import place.pic.databinding.ItemPlaceBinding
 import place.pic.databinding.ItemPlaceFilterBinding
-import place.pic.ui.main.place.Place
+import place.pic.data.entity.Place
 
 /**
  * Created By Malibin
@@ -75,7 +75,7 @@ class PlacesAdapter : ListAdapter<Place, RecyclerView.ViewHolder>(DiffItemCallba
         fun bind(place: Place) {
             val adapter = PlaceKeywordsAdapter()
             binding.rvKeywords.adapter = adapter
-            adapter.submitList(place.keywordTags)
+            adapter.submitList(place.keywordTags.map { it.tagName })
             binding.placeItem = place
         }
     }

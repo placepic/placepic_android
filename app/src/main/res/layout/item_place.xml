@@ -7,7 +7,7 @@
 
         <variable
             name="placeItem"
-            type="place.pic.ui.main.place.Place" />
+            type="place.pic.data.entity.Place" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

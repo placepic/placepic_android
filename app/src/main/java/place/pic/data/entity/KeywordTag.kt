@@ -11,4 +11,3 @@ data class KeywordTag (
     var tagIdx: Int,
     var tagName: String
 ) : Serializable
- 

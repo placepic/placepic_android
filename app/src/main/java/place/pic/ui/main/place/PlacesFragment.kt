@@ -7,11 +7,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import place.pic.data.entity.Subway
 import place.pic.databinding.FragmentPlacesBinding
 import place.pic.ui.main.place.adapter.PlacesPagerAdapter
 import place.pic.ui.main.place.bottomsheet.PlaceFeaturesFragment
 import place.pic.ui.main.place.bottomsheet.PlaceKeywordsFragment
-import place.pic.data.entity.Subway
 import place.pic.ui.search.subway.SubwaySearchActivity
 import java.util.*
 
