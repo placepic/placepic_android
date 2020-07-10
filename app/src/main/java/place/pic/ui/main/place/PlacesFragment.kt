@@ -71,13 +71,11 @@ class PlacesFragment : Fragment() {
     }
 
     private fun showSelectKeywordBottomSheet() {
-        PlaceKeywordsFragment()
-            .show(childFragmentManager, null)
+        PlaceKeywordsFragment().show(childFragmentManager, null)
     }
 
     private fun showSelectPlaceFeaturesBottomSheet() {
-        PlaceFeaturesFragment()
-            .show(childFragmentManager, null)
+        PlaceFeaturesFragment().show(childFragmentManager, null)
     }
 
     companion object {

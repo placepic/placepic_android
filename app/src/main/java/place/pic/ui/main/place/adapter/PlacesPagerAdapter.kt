@@ -4,7 +4,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
 import place.pic.data.entity.Place
-import place.pic.ui.main.place.PlaceItemsFragment
+import place.pic.ui.main.place.items.PlaceItemsFragment
 
 /**
  * Created By Malibin

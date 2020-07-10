@@ -16,11 +16,9 @@ class PlacesRequest(
     private val groupIdx: Int,
     private val placeCategory: Int? = null,
     private val keywordTags: List<KeywordTag>? = null,
-    private val features: List<UsefulTag>? = null,
+    private val usefulTags: List<UsefulTag>? = null,
     private val subways: List<Subway>? = null
 ) : BaseRequest<List<PlaceResponse>>() {
-
-
 
     fun send(token: String) {
         PlacePicService.getInstance()
@@ -42,7 +40,7 @@ class PlacesRequest(
 
     private fun createKeywordsAndFeaturesQuery(): String? {
         val keywords = this.keywordTags?.map { it.tagName } ?: emptyList()
-        val features = this.features?.map { it.tagName } ?: emptyList()
+        val features = this.usefulTags?.map { it.tagName } ?: emptyList()
         return TextUtils.join(",", keywords + features).run {
             if (this.isBlank()) null
             else this

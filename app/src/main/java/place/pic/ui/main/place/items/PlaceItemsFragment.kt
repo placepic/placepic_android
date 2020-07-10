@@ -1,4 +1,4 @@
-package place.pic.ui.main.place
+package place.pic.ui.main.place.items
 
 import android.os.Bundle
 import android.util.Log
@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.asynclayoutinflater.view.AsyncLayoutInflater
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.RecyclerView
 import place.pic.R
 import place.pic.data.entity.Place
@@ -21,9 +22,10 @@ import place.pic.ui.main.place.adapter.PlacesAdapter
  * on 7월 04, 2020
  */
 
-class PlaceItemsFragment(private val placeType: Place.Type) : Fragment() {
+class PlaceItemsFragment(placeType: Place.Type) : Fragment() {
 
     private var placeItemsAdapter = PlacesAdapter()
+    private val placeViewModel = PlaceItemsViewModel(placeType)
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -38,18 +40,15 @@ class PlaceItemsFragment(private val placeType: Place.Type) : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        placeViewModel.placeItems.observe(this, Observer {
+            placeItemsAdapter.submitList(it)
+        })
     }
 
     override fun onResume() {
         super.onResume()
 
-        PlacesRequest(
-            groupIdx = tempGroupId,
-            placeCategory = placeType.position.run { if (this == 0) null else this }
-        ).apply {
-            addOnSuccessListener { placeItemsAdapter.submitList(it.data.map { it.toPlace() }) }
-            addOnFailureListener { Log.d("Malibin", it.toString()) }
-        }.send(tempToken)
+        placeViewModel.loadPlaceItems()
     }
 
     private fun inflateAsyncLayout(target: FragmentLoadingBinding, container: ViewGroup?) {
