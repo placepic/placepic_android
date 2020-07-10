@@ -1,4 +1,4 @@
-package place.pic.ui.group
+package place.pic.ui.group.waitgrouplist
 
 import android.content.Context
 import android.view.LayoutInflater

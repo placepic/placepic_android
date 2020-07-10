@@ -14,7 +14,7 @@ import place.pic.data.remote.PlacePicService
 import place.pic.data.remote.response.ResponseGroupList
 import place.pic.databinding.ActivityGroupListBinding
 import place.pic.ui.extands.customEnqueue
-import place.pic.ui.group.joinGroupList.JoinGroupActivity
+import place.pic.ui.group.joingrouplist.JoinGroupActivity
 
 class GroupListActivity : AppCompatActivity() {
 

@@ -9,6 +9,8 @@ import place.pic.data.PlacepicAuthRepository
 import place.pic.data.remote.PlacePicService
 import place.pic.data.remote.response.ResponseGroupList
 import place.pic.ui.extands.customEnqueue
+import place.pic.ui.group.waitgrouplist.WaitGroupAdapter
+import place.pic.ui.group.waitgrouplist.WaitListGroupData
 
 class WaitGroupActivity : AppCompatActivity() {
 
@@ -36,7 +38,8 @@ class WaitGroupActivity : AppCompatActivity() {
     }
 
     private fun setAdpater(list:List<ResponseGroupList>){
-        waitGroupAdapter = WaitGroupAdapter(list,this)
+        waitGroupAdapter =
+            WaitGroupAdapter(list, this)
         rv_wait_group_list.adapter = waitGroupAdapter
     }
 

@@ -1,4 +1,4 @@
-package place.pic.ui.group.joinGroupList
+package place.pic.ui.group.joingrouplist
 
 import android.content.Context
 import android.view.LayoutInflater

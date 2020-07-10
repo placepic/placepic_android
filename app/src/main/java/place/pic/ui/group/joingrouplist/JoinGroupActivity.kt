@@ -1,4 +1,4 @@
-package place.pic.ui.group.joinGroupList
+package place.pic.ui.group.joingrouplist
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

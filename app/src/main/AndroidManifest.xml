@@ -19,7 +19,7 @@
         <activity android:name=".network.RegisterActivity" />
         <activity android:name=".ui.group.EndGroupJoinActivity" />
         <activity android:name=".ui.group.SignUpGroupActivity" />
-        <activity android:name=".ui.group.joinGroupList.JoinGroupActivity" />
+        <activity android:name=".ui.group.joingrouplist.JoinGroupActivity" />
         <activity android:name=".ui.group.WaitGroupActivity" />
         <activity android:name=".ui.login.LoginActivity" />
         <activity android:name=".ui.login.LoginPageActivity"/>
