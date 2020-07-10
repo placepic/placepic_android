@@ -3,8 +3,10 @@ package place.pic.ui.main.place
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import place.pic.data.entity.KeywordTag
 import place.pic.data.entity.Place
 import place.pic.data.entity.Subway
+import place.pic.data.entity.UsefulTag
 import place.pic.data.remote.request.PlaceTypeDetailsRequest
 import place.pic.data.remote.response.PlaceTypeDetailsResponse
 import place.pic.data.tempToken
@@ -26,17 +28,33 @@ class PlacesViewModel {
     val selectedSubways: LiveData<List<Subway>>
         get() = _selectedSubways
 
+    private val _selectedKeywords = MutableLiveData<List<KeywordTag>>()
+    val selectedKeywords: LiveData<List<KeywordTag>>
+        get() = _selectedKeywords
+
+    private val _selectedFeatures = MutableLiveData<List<UsefulTag>>()
+    val selectedFeatures: LiveData<List<UsefulTag>>
+        get() = _selectedFeatures
+
     init {
         _selectedSubways.value = emptyList()
         requestRemotePlaceTypeDetails()
+    }
+
+    fun clearFiltering() {
+        _selectedSubways.value = emptyList()
     }
 
     fun selectSubways(subways: List<Subway>) {
         _selectedSubways.value = subways
     }
 
-    fun clearFiltering() {
-        _selectedSubways.value = emptyList()
+    fun selectKeywords(keywords: List<KeywordTag>) {
+        _selectedKeywords.value = keywords
+    }
+
+    fun selectFeatures(features: List<UsefulTag>) {
+        _selectedFeatures.value = features
     }
 
     private fun requestRemotePlaceTypeDetails() {

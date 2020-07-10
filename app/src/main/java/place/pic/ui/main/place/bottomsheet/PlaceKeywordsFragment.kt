@@ -1,6 +1,9 @@
 package place.pic.ui.main.place.bottomsheet
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,9 +20,11 @@ import place.pic.ui.tag.ChipFactory
  * on 7월 06, 2020
  */
 
-class PlaceKeywordsFragment(private val keywords: List<KeywordTag>) : BottomSheetDialogFragment() {
+class PlaceKeywordsFragment(
+    private val keywords: List<KeywordTag>
+) : BottomSheetDialogFragment() {
 
-    private val keywordChipViews = mutableListOf<Chip>()
+    private val selectedKeywords = mutableListOf<KeywordTag>()
 
     override fun getTheme() = R.style.Widget_AppTheme_BottomSheet
 
@@ -33,6 +38,14 @@ class PlaceKeywordsFragment(private val keywords: List<KeywordTag>) : BottomShee
         return binding.root
     }
 
+    private fun onKeywordClick(keyword: KeywordTag) {
+        if (selectedKeywords.contains(keyword)) {
+            selectedKeywords.remove(keyword)
+            return
+        }
+        selectedKeywords.add(keyword)
+    }
+
     private fun initView(binding: BottomSheetPlaceChipsBinding) {
         binding.tvTitle.setText(R.string.keyword)
         binding.btnCancel.setOnClickListener { dismiss() }
@@ -41,17 +54,23 @@ class PlaceKeywordsFragment(private val keywords: List<KeywordTag>) : BottomShee
     }
 
     private fun onSubmitClick() {
-
+        val intent = Intent()
+        intent.putExtra(KEYWORDS_KEY, ArrayList(selectedKeywords))
+        targetFragment?.onActivityResult(targetRequestCode, Activity.RESULT_OK, intent)
+        dismiss()
     }
 
     private fun insertKeywordChipViews(chipGroup: ChipGroup) {
         for (keyword in keywords) {
             val chip = ChipFactory.newInstance(layoutInflater)
             chip.text = keyword.tagName
-
+            chip.setOnClickListener { onKeywordClick(keyword) }
             chipGroup.addView(chip)
-            keywordChipViews.add(chip)
         }
     }
 
+    companion object {
+        const val REQUEST_CODE = 2002
+        const val KEYWORDS_KEY = "keywords"
+    }
 }
