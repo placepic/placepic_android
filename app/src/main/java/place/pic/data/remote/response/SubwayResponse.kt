@@ -8,10 +8,12 @@ import place.pic.data.entity.Subway
  */
 
 data class SubwayResponse(
+    val subwayIdx: Int,
     val subwayName: String,
     val subwayLine: List<Int>
 ) {
     fun toSubway() = Subway(
+        id = subwayIdx,
         name = subwayName,
         line = subwayLine.map { Subway.Line.findByNumber(it) }
     )

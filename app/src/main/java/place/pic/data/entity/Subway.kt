@@ -10,6 +10,7 @@ import java.io.Serializable
  */
 
 data class Subway(
+    val id: Int,
     val name: String,
     val line: List<Line>
 ) : Serializable {

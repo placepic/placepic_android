@@ -50,7 +50,7 @@ class SelectedSubwaysAdapter :
 
     private class DiffItemCallback : DiffUtil.ItemCallback<Subway>() {
         override fun areItemsTheSame(oldItem: Subway, newItem: Subway): Boolean {
-            return oldItem.name == newItem.name
+            return oldItem.id == newItem.id
         }
 
         override fun areContentsTheSame(oldItem: Subway, newItem: Subway): Boolean {
