@@ -36,7 +36,7 @@ class KeywordTagActivity : AppCompatActivity() {
         setContentView(R.layout.activity_keyword_tag)
 
         //categoryIdx 꺼내기
-        val intent = getIntent()
+        val intent = intent
         val categoryIdx = intent.getIntExtra("categoryIdx", 1)
 
         getConnection(categoryIdx)

@@ -34,7 +34,7 @@ class UsefulTagActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_useful_tag)
 
-        val intent = getIntent()
+        val intent = intent
         val categoryIdx = intent.getIntExtra("categoryIdx", 1)
 
         getConnection(categoryIdx)
