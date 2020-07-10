@@ -28,6 +28,11 @@ interface PlacePicService {
         @Path("categoryIdx") categoryIdx: Int
     ): Call<BaseResponse<List<UsefulTagData>>>
 
+    @GET("/search/place/{groupIdx}")
+    fun requestPlaceSearch(
+
+    )
+
     @GET("/subway")
     fun getAllSubways(
         @Header("Content-Type") contentType: String = "application/json",

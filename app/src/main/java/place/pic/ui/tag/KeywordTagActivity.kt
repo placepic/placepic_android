@@ -16,6 +16,7 @@ import place.pic.data.remote.response.KeywordTagData
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.security.Key
 
 /**
  * Created By kimdahyee
@@ -38,23 +39,26 @@ class KeywordTagActivity : AppCompatActivity() {
         //categoryIdx 꺼내기
         val intent = intent
         val categoryIdx = intent.getIntExtra("categoryIdx", 1)
-        val tagListForUpdate: ArrayList<KeywordTag> =
-            intent.getSerializableExtra("checkedChipIntent") as ArrayList<KeywordTag>
+        //getAlreadySelectedChip(intent)
 
-        getConnection(categoryIdx)
-
-        //수정을 위해 click된 chip인지 확인
-        checkChipForUpdate(tagListForUpdate)
+        getConnection(3)
 
         keyword_tag_save.setOnClickListener { onSaveClick() }
     }
+
+    /*private fun getAlreadySelectedChip(intent: Intent) {
+        val tagListForUpdate = intent.getSerializableExtra("chipIntent") ?: return
+        //elbis  ?: null이면 : 뒤에를 실행해라
+
+        //수정을 위해 click된 chip인지 확인
+        checkChipForUpdate(tagListForUpdate)
+    }*/
 
     private fun getConnection(categoryIdx: Int) { //getConnection(categoryIdx: Int)
         placePicService.getInstance()
             .requestKeywordTag(
                 token,
-                2
-                //categoryIdx
+                categoryIdx
             ).enqueue(object : Callback<BaseResponse<List<KeywordTagData>>> {
                 override fun onFailure(
                     call: Call<BaseResponse<List<KeywordTagData>>>,
@@ -114,13 +118,13 @@ class KeywordTagActivity : AppCompatActivity() {
             })
     }
 
-    private fun checkChipForUpdate(tagListForUpdate: ArrayList<KeywordTag>) {
+    /*private fun checkChipForUpdate(tagListForUpdate: MutableList<KeywordTag>) {
         for (i in 0 until keywordTagChipList.size) {
             if (keywordTagChipList[i].text == tagListForUpdate[i].tagName) {
                 keywordTagChipList[i].isChecked = true
             }
         }
-    }
+    }*/
 
     private fun changeButtonColor(colorString: String, drawable: Int, clickable: Boolean) {
         tv_tag_save.setTextColor(Color.parseColor(colorString))
