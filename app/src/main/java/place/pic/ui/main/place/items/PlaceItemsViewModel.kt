@@ -34,7 +34,7 @@ class PlaceItemsViewModel(
         }
     }
 
-    private fun requestRemotePlaceItems(
+    fun requestRemotePlaceItems(
         keywordTags: List<KeywordTag>? = null,
         usefulTags: List<UsefulTag>? = null,
         subways: List<Subway>? = null

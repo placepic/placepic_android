@@ -1,6 +1,7 @@
 package place.pic.ui.main.place
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -17,6 +18,7 @@ import place.pic.ui.main.place.bottomsheet.PlaceFeaturesFragment
 import place.pic.ui.main.place.bottomsheet.PlaceFeaturesFragment.Companion.FEATURES_KEY
 import place.pic.ui.main.place.bottomsheet.PlaceKeywordsFragment
 import place.pic.ui.main.place.bottomsheet.PlaceKeywordsFragment.Companion.KEYWORDS_KEY
+import place.pic.ui.main.place.items.PlaceItemsFragment
 import place.pic.ui.search.subway.SubwaySearchActivity
 import java.util.*
 
@@ -28,6 +30,13 @@ import java.util.*
 class PlacesFragment : Fragment() {
 
     private val placesViewModel = PlacesViewModel()
+    private lateinit var pagerAdapter: PlacesPagerAdapter
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+
+        pagerAdapter = PlacesPagerAdapter(childFragmentManager)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -51,6 +60,7 @@ class PlacesFragment : Fragment() {
             if (requestCode == PlaceFeaturesFragment.REQUEST_CODE) {
                 handleSelectedFeatures(data ?: return)
             }
+            updatePlaceItems(pagerAdapter.getItem(placesViewModel.currentPagerPosition) as PlaceItemsFragment)
         }
     }
 
@@ -69,11 +79,19 @@ class PlacesFragment : Fragment() {
         placesViewModel.selectFeatures(features)
     }
 
+    private fun updatePlaceItems(fragment: PlaceItemsFragment) {
+        fragment.updatePlaceItems(
+            placesViewModel.selectedSubways.value,
+            placesViewModel.selectedKeywords.value,
+            placesViewModel.selectedFeatures.value
+        )
+    }
+
     private fun initView(binding: FragmentPlacesBinding) {
         binding.viewModel = placesViewModel
         binding.lifecycleOwner = this
         binding.tabPlaceCategories.setupWithViewPager(binding.pagerFilterPlaces)
-        binding.pagerFilterPlaces.adapter = PlacesPagerAdapter(childFragmentManager)
+        binding.pagerFilterPlaces.adapter = pagerAdapter
         binding.pagerFilterPlaces.offscreenPageLimit = 2
 
         binding.pagerFilterPlaces.addOnPageChangeListener(PlacesPageChangeListener(placesViewModel))

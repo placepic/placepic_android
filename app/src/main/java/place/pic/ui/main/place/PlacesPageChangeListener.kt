@@ -22,6 +22,7 @@ class PlacesPageChangeListener(
         placesViewModel.clearFiltering()
         val currentPlaceType = Place.Type.findByPosition(position)
         placesViewModel.currentPlaceType.value = currentPlaceType
+        placesViewModel.currentPagerPosition = position
     }
 
 }

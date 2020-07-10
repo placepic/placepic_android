@@ -9,7 +9,10 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.RecyclerView
 import place.pic.R
+import place.pic.data.entity.KeywordTag
 import place.pic.data.entity.Place
+import place.pic.data.entity.Subway
+import place.pic.data.entity.UsefulTag
 import place.pic.databinding.FragmentLoadingBinding
 import place.pic.databinding.FragmentPlaceItemsBinding
 import place.pic.ui.main.place.adapter.PlacesAdapter
@@ -59,9 +62,18 @@ class PlaceItemsFragment(placeType: Place.Type) : Fragment() {
             binding.viewModel = placeItemsViewModel
             binding.lifecycleOwner = this
             binding.rvPlaces.adapter = placeItemsAdapter
-//            val rvPlaces = view.findViewById<RecyclerView>(R.id.rv_places)
-//            rvPlaces.adapter = placeItemsAdapter
         }
     }
 
+    fun updatePlaceItems(
+        subways: List<Subway>?,
+        keywords: List<KeywordTag>?,
+        features: List<UsefulTag>?
+    ) {
+        placeItemsViewModel.requestRemotePlaceItems(
+            subways = subways,
+            keywordTags = keywords,
+            usefulTags = features
+        )
+    }
 }

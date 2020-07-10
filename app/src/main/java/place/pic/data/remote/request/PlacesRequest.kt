@@ -39,8 +39,8 @@ class PlacesRequest(
     }
 
     private fun createKeywordsAndFeaturesQuery(): String? {
-        val keywords = this.keywordTags?.map { it.tagName } ?: emptyList()
-        val features = this.usefulTags?.map { it.tagName } ?: emptyList()
+        val keywords = this.keywordTags?.map { it.tagIdx } ?: emptyList()
+        val features = this.usefulTags?.map { it.tagIdx } ?: emptyList()
         return TextUtils.join(",", keywords + features).run {
             if (this.isBlank()) null
             else this
