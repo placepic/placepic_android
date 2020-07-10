@@ -6,6 +6,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import place.pic.R
+import place.pic.data.remote.response.ResponseGroupList
 
 class WaitGroupViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
@@ -14,19 +15,19 @@ class WaitGroupViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     val tv_group = itemView.findViewById<TextView>(R.id.tv_group_count)
     val img_btn_goto_group = itemView.findViewById<ImageView>(R.id.img_btn_goto_group)
 
-    fun bind(customData: WaitListGroupData) {
+    fun bind(customData: ResponseGroupList) {
         img_btn_goto_group.visibility = View.INVISIBLE
-        tv_group_title.text = customData.title
+        tv_group_title.text = customData.groupName
         tv_group.text = stringDataMapping(customData)
-        Glide.with(itemView).load(customData.url).into(img_group_profile)
+        Glide.with(itemView).load(customData.groupImage).into(img_group_profile)
     }
 
-    private fun stringDataMapping(customData: WaitListGroupData):String{
+    private fun stringDataMapping(customData: ResponseGroupList):String{
         return itemView.context
             .getString(
                 R.string.group_count,
-                customData.people_count,
-                customData.write_count
+                customData.UserCount,
+                customData.PostCount
             )
     }
 }
