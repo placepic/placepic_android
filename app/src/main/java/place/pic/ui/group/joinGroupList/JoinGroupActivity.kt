@@ -1,10 +1,11 @@
-package place.pic.ui.group
+package place.pic.ui.group.joinGroupList
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.DividerItemDecoration
 import kotlinx.android.synthetic.main.activity_join_group.*
 import place.pic.R
+import place.pic.ui.group.ListGroupData
 
 class JoinGroupActivity : AppCompatActivity() {
 
@@ -34,7 +35,11 @@ class JoinGroupActivity : AppCompatActivity() {
     }
 
     private fun setAdapter(){
-        joinGroupListAdapter = JoinGroupListAdapter(testJoinGroupData, this)
+        joinGroupListAdapter =
+            JoinGroupListAdapter(
+                testJoinGroupData,
+                this
+            )
         rv_join_group_list.adapter = joinGroupListAdapter
     }
 

@@ -1,4 +1,4 @@
-package place.pic.ui.group
+package place.pic.ui.group.joinGroupList
 
 import android.content.Intent
 import android.view.View
@@ -8,6 +8,8 @@ import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import place.pic.R
+import place.pic.ui.group.ListGroupData
+import place.pic.ui.group.SignUpGroupActivity
 
 class JoinGroupListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
@@ -38,7 +40,8 @@ class JoinGroupListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView
                 "DetailClick",
                 Toast.LENGTH_SHORT
             ).show()
-            val gotoSignUpIntent = Intent(itemView.context,SignUpGroupActivity::class.java)
+            val gotoSignUpIntent = Intent(itemView.context,
+                SignUpGroupActivity::class.java)
             itemView.context
                 .startActivity(gotoSignUpIntent)
         }

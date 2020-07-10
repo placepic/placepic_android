@@ -1,10 +1,11 @@
-package place.pic.ui.group
+package place.pic.ui.group.joinGroupList
 
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import place.pic.R
+import place.pic.ui.group.ListGroupData
 
 class JoinGroupListAdapter (
     private val datas:MutableList<ListGroupData>,
