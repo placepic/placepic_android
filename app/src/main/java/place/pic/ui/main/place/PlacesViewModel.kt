@@ -37,12 +37,14 @@ class PlacesViewModel {
         get() = _selectedFeatures
 
     init {
-        _selectedSubways.value = emptyList()
+        clearFiltering()
         requestRemotePlaceTypeDetails()
     }
 
     fun clearFiltering() {
         _selectedSubways.value = emptyList()
+        _selectedKeywords.value = emptyList()
+        _selectedFeatures.value = emptyList()
     }
 
     fun selectSubways(subways: List<Subway>) {

@@ -29,6 +29,12 @@ class PlaceKeywordsAdapter : RecyclerView.Adapter<PlaceKeywordsAdapter.ViewHolde
 
     fun submitList(keywords: List<String>) {
         clearKeywords()
+        if (keywords.size >= 3) {
+            val ellipseKeyword = listOf("...")
+            this.keywords.addAll(keywords.subList(0, 2) + ellipseKeyword)
+            notifyItemRangeInserted(0, itemCount)
+            return
+        }
         this.keywords.addAll(keywords)
         notifyItemRangeInserted(0, itemCount)
     }

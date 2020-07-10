@@ -1,7 +1,6 @@
 package place.pic.ui.main.place.items
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,10 +10,8 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.RecyclerView
 import place.pic.R
 import place.pic.data.entity.Place
-import place.pic.data.remote.request.PlacesRequest
-import place.pic.data.tempGroupId
-import place.pic.data.tempToken
 import place.pic.databinding.FragmentLoadingBinding
+import place.pic.databinding.FragmentPlaceItemsBinding
 import place.pic.ui.main.place.adapter.PlacesAdapter
 
 /**
@@ -25,7 +22,7 @@ import place.pic.ui.main.place.adapter.PlacesAdapter
 class PlaceItemsFragment(placeType: Place.Type) : Fragment() {
 
     private var placeItemsAdapter = PlacesAdapter()
-    private val placeViewModel = PlaceItemsViewModel(placeType)
+    private val placeItemsViewModel = PlaceItemsViewModel(placeType)
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -40,7 +37,7 @@ class PlaceItemsFragment(placeType: Place.Type) : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        placeViewModel.placeItems.observe(this, Observer {
+        placeItemsViewModel.placeItems.observe(this, Observer {
             placeItemsAdapter.submitList(it)
         })
     }
@@ -48,7 +45,7 @@ class PlaceItemsFragment(placeType: Place.Type) : Fragment() {
     override fun onResume() {
         super.onResume()
 
-        placeViewModel.loadPlaceItems()
+        placeItemsViewModel.loadPlaceItems()
     }
 
     private fun inflateAsyncLayout(target: FragmentLoadingBinding, container: ViewGroup?) {
@@ -56,10 +53,14 @@ class PlaceItemsFragment(placeType: Place.Type) : Fragment() {
             R.layout.fragment_place_items,
             container
         ) { view, _, _ ->
-            target.container.addView(view)
+            val binding = FragmentPlaceItemsBinding.bind(view)
+            target.container.addView(binding.root)
             target.progressBar.visibility = View.GONE
-            val rvPlaces = view.findViewById<RecyclerView>(R.id.rv_places)
-            rvPlaces.adapter = placeItemsAdapter
+            binding.viewModel = placeItemsViewModel
+            binding.lifecycleOwner = this
+            binding.rvPlaces.adapter = placeItemsAdapter
+//            val rvPlaces = view.findViewById<RecyclerView>(R.id.rv_places)
+//            rvPlaces.adapter = placeItemsAdapter
         }
     }
 

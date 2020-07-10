@@ -20,6 +20,10 @@ import place.pic.data.tempToken
 class PlaceItemsViewModel(
     private val placeType: Place.Type
 ) {
+    private val _isLoading = MutableLiveData<Boolean>()
+    val isLoading: LiveData<Boolean>
+        get() = _isLoading
+
     private val _placeItems = MutableLiveData<List<Place>>()
     val placeItems: LiveData<List<Place>>
         get() = _placeItems
@@ -35,6 +39,7 @@ class PlaceItemsViewModel(
         usefulTags: List<UsefulTag>? = null,
         subways: List<Subway>? = null
     ) {
+        _isLoading.value = true
         PlacesRequest(
             groupIdx = tempGroupId,
             placeCategory = placeType.position.run { if (this == 0) null else this },
@@ -42,12 +47,13 @@ class PlaceItemsViewModel(
             usefulTags = usefulTags,
             subways = subways
         ).apply {
-            addOnSuccessListener { _placeItems.value = getPlaceItemsFrom(it.data) }
+            addOnSuccessListener { loadRemotePlacesItems(it.data) }
             addOnFailureListener { Log.d("Malibin", it.toString()) }
         }.send(tempToken)
     }
 
-    private fun getPlaceItemsFrom(response: List<PlaceResponse>): List<Place> {
-        return response.map { it.toPlace() }
+    private fun loadRemotePlacesItems(response: List<PlaceResponse>) {
+        _placeItems.value = response.map { it.toPlace() }
+        _isLoading.value = false
     }
 }
