@@ -7,6 +7,7 @@ class PlacepicAuthRepository private constructor() {
     companion object {
         @Volatile
         private var instance: PlacepicAuthRepository? = null
+
         private lateinit var sharedPreference: SharedPreferences
 
         private var PLACEPIC_AUTH = "placepic_auth"
@@ -19,7 +20,7 @@ class PlacepicAuthRepository private constructor() {
             }
         }
     }
-
+    
     private var editer = sharedPreference.edit()
 
     val userToken : String?
