@@ -46,6 +46,11 @@ class PlaceKeywordsFragment(
         selectedKeywords.add(keyword)
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        selectedKeywords.clear()
+    }
+
     private fun initView(binding: BottomSheetPlaceChipsBinding) {
         binding.tvTitle.setText(R.string.keyword)
         binding.btnCancel.setOnClickListener { dismiss() }
@@ -64,9 +69,18 @@ class PlaceKeywordsFragment(
         for (keyword in keywords) {
             val chip = ChipFactory.newInstance(layoutInflater)
             chip.text = keyword.tagName
+            chip.isChecked = isAlreadySelectedKeyword(keyword)
             chip.setOnClickListener { onKeywordClick(keyword) }
             chipGroup.addView(chip)
         }
+    }
+
+    private fun isAlreadySelectedKeyword(keyword: KeywordTag): Boolean {
+        return selectedKeywords.contains(keyword)
+    }
+
+    fun setAlreadySelectedKeywords(keywords: List<KeywordTag>?) {
+        selectedKeywords.addAll(keywords ?: emptyList())
     }
 
     companion object {

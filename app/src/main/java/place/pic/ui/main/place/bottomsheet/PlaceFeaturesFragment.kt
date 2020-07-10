@@ -7,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
 import place.pic.R
 import place.pic.data.entity.UsefulTag
@@ -37,6 +36,11 @@ class PlaceFeaturesFragment(
         return binding.root
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        selectedFeatures.clear()
+    }
+
     private fun onFeatureClick(feature: UsefulTag) {
         if (selectedFeatures.contains(feature)) {
             selectedFeatures.remove(feature)
@@ -63,9 +67,18 @@ class PlaceFeaturesFragment(
         for (feature in features) {
             val chip = ChipFactory.newInstance(layoutInflater)
             chip.text = feature.tagName
+            chip.isChecked = isAlreadySelectedFeature(feature)
             chip.setOnClickListener { onFeatureClick(feature) }
             chipGroup.addView(chip)
         }
+    }
+
+    private fun isAlreadySelectedFeature(feature: UsefulTag): Boolean {
+        return selectedFeatures.contains(feature)
+    }
+
+    fun setAlreadySelectedFeatures(feature: List<UsefulTag>?) {
+        selectedFeatures.addAll(feature ?: emptyList())
     }
 
     companion object {

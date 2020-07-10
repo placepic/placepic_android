@@ -48,7 +48,7 @@ class PlacesRequest(
     }
 
     private fun createSubwaysQuery(): String? {
-        val subways = this.subways?.map { it.name } ?: emptyList()
+        val subways = this.subways?.map { it.id } ?: emptyList()
         return TextUtils.join(",", subways).run {
             if (this.isBlank()) null
             else this

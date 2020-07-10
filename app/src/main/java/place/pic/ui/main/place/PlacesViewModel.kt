@@ -21,8 +21,7 @@ class PlacesViewModel {
     var currentPagerPosition = 0
     var currentPlaceType = MutableLiveData<Place.Type>().apply { value = Place.Type.ALL }
 
-    private val placeTypeDetails =
-        mutableListOf<PlaceTypeDetails>()//MutableLiveData<List<PlaceTypeDetails>>()
+    private val placeTypeDetails = mutableListOf<PlaceTypeDetails>()
 
     private val _selectedSubways = MutableLiveData<List<Subway>>()
     val selectedSubways: LiveData<List<Subway>>

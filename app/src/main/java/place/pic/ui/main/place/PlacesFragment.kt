@@ -111,14 +111,20 @@ class PlacesFragment : Fragment() {
     private fun showSelectKeywordBottomSheet() {
         val placeKeywords = placesViewModel.getCurrentPlaceTypeDetails().placeKeywords
         PlaceKeywordsFragment(placeKeywords)
-            .apply { setTargetFragment(this@PlacesFragment, PlaceKeywordsFragment.REQUEST_CODE) }
+            .apply {
+                setTargetFragment(this@PlacesFragment, PlaceKeywordsFragment.REQUEST_CODE)
+                setAlreadySelectedKeywords(placesViewModel.selectedKeywords.value)
+            }
             .show(getSupportFragmentManager(), null)
     }
 
     private fun showSelectPlaceFeaturesBottomSheet() {
         val placeFeatures = placesViewModel.getCurrentPlaceTypeDetails().placeFeatures
         PlaceFeaturesFragment(placeFeatures)
-            .apply { setTargetFragment(this@PlacesFragment, PlaceFeaturesFragment.REQUEST_CODE) }
+            .apply {
+                setTargetFragment(this@PlacesFragment, PlaceFeaturesFragment.REQUEST_CODE)
+                setAlreadySelectedFeatures(placesViewModel.selectedFeatures.value)
+            }
             .show(getSupportFragmentManager(), null)
     }
 
