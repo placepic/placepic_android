@@ -7,6 +7,8 @@
 
         <import type="android.view.View" />
 
+        <import type="place.pic.data.entity.Place.Type" />
+
         <variable
             name="viewModel"
             type="place.pic.ui.main.place.PlacesViewModel" />
@@ -178,6 +180,7 @@
                 android:layout_marginStart="8dp"
                 android:background="@drawable/round_rectagle_white_4dp"
                 android:backgroundTint="@color/selector_selected_main_grayf8_color"
+                android:visibility="@{viewModel.currentPlaceType == Type.ALL ? View.GONE : View.VISIBLE}"
                 app:layout_constraintBottom_toBottomOf="@+id/btn_select_subways"
                 app:layout_constraintStart_toEndOf="@+id/btn_select_subways"
                 app:layout_constraintTop_toTopOf="@+id/btn_select_subways">
@@ -221,7 +224,6 @@
                     app:layout_constraintStart_toEndOf="@id/textView8"
                     app:layout_constraintTop_toTopOf="@id/textView8"
                     app:srcCompat="@drawable/down_arrow_ic" />
-
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -231,6 +233,7 @@
                 android:layout_marginStart="8dp"
                 android:background="@drawable/round_rectagle_white_4dp"
                 android:backgroundTint="@color/selector_selected_main_grayf8_color"
+                android:visibility="@{viewModel.currentPlaceType == Type.ALL ? View.GONE : View.VISIBLE}"
                 app:layout_constraintBottom_toBottomOf="@+id/btn_select_keywords"
                 app:layout_constraintStart_toEndOf="@+id/btn_select_keywords"
                 app:layout_constraintTop_toTopOf="@+id/btn_select_keywords">

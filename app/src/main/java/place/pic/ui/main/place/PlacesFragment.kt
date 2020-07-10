@@ -71,11 +71,15 @@ class PlacesFragment : Fragment() {
     }
 
     private fun showSelectKeywordBottomSheet() {
-        PlaceKeywordsFragment().show(childFragmentManager, null)
+        val placeKeywords = placesViewModel.getCurrentPlaceTypeDetails().placeKeywords
+        PlaceKeywordsFragment(placeKeywords)
+            .show(childFragmentManager, null)
     }
 
     private fun showSelectPlaceFeaturesBottomSheet() {
-        PlaceFeaturesFragment().show(childFragmentManager, null)
+        val placeFeatures = placesViewModel.getCurrentPlaceTypeDetails().placeFeatures
+        PlaceFeaturesFragment(placeFeatures)
+            .show(childFragmentManager, null)
     }
 
     companion object {

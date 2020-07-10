@@ -21,7 +21,7 @@ class PlacesPageChangeListener(
     override fun onPageSelected(position: Int) {
         placesViewModel.clearFiltering()
         val currentPlaceType = Place.Type.findByPosition(position)
-        placesViewModel.setCurrentPlaceType(currentPlaceType)
+        placesViewModel.currentPlaceType.value = currentPlaceType
     }
 
 }

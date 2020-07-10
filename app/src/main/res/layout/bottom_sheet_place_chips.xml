@@ -89,43 +89,6 @@
             app:layout_constraintBottom_toTopOf="@+id/btn_submit"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/tv_title"
-            app:layout_constraintTop_toBottomOf="@+id/tv_title">
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chip7"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="수정이의" />
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chip6"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="고난이 느껴집니다" />
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chip5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="이미지 업로드를" />
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chip4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="포기하고 싶어합니다" />
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chip3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="어떻게하면" />
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chip2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="좋을까요? 조언부탁드립니다" />
-        </com.google.android.material.chip.ChipGroup>
+            app:layout_constraintTop_toBottomOf="@+id/tv_title"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

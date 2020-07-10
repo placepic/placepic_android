@@ -16,7 +16,7 @@ import place.pic.data.tempToken
 
 class PlacesViewModel {
 
-    private var currentPlaceType = Place.Type.ALL
+    var currentPlaceType = MutableLiveData<Place.Type>().apply { value = Place.Type.ALL }
 
     private val _placeTypeDetails = MutableLiveData<List<PlaceTypeDetails>>()
     val placeTypeDetails: LiveData<List<PlaceTypeDetails>>
@@ -29,10 +29,6 @@ class PlacesViewModel {
     init {
         _selectedSubways.value = emptyList()
         requestRemotePlaceTypeDetails()
-    }
-
-    fun setCurrentPlaceType(placeType: Place.Type) {
-        currentPlaceType = placeType
     }
 
     fun selectSubways(subways: List<Subway>) {
@@ -52,13 +48,13 @@ class PlacesViewModel {
     }
 
     private fun loadPlaceTypeDetailsList(response: List<PlaceTypeDetailsResponse>) {
-        Log.d("Malibin Debug",response.toString())
+        Log.d("Malibin Debug", response.toString())
         _placeTypeDetails.value = response.map { it.toPlaceTypeDetail() }
     }
 
     fun getCurrentPlaceTypeDetails(): PlaceTypeDetails {
-        return getCurrentPlaceTypeDetailsList().find { it.placeType == currentPlaceType }
-            ?: throw IllegalStateException("cannot exist place type of $currentPlaceType")
+        return getCurrentPlaceTypeDetailsList().find { it.placeType == currentPlaceType.value }
+            ?: throw IllegalStateException("cannot exist place type of ${currentPlaceType.value}")
     }
 
     private fun getCurrentPlaceTypeDetailsList() = _placeTypeDetails.value
