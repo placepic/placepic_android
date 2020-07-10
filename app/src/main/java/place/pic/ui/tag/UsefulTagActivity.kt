@@ -36,23 +36,15 @@ class UsefulTagActivity : AppCompatActivity() {
 
         val intent = intent
         val categoryIdx = intent.getIntExtra("categoryIdx", 1)
+        val tagListForUpdate: ArrayList<UsefulTag> =
+            intent.getSerializableExtra("checkedChipIntent") as ArrayList<UsefulTag>
 
         getConnection(categoryIdx)
 
-        useful_tag_save.setOnClickListener {
-            var checkedTagList = ArrayList<UsefulTag>()
+        //수정을 위해 click된 chip인지 확인
+        checkChipForUpdate(tagListForUpdate)
 
-            for (i in 0 until usefulTagChipList.size) {
-                if (usefulTagChipList[i].isChecked) {
-                    var usefulTag = UsefulTag(usefulTagList[i].tagIdx, usefulTagList[i].tagName)
-                    checkedTagList.add(usefulTag)
-                }
-            }
-
-            val checkedChipIntent = Intent()
-            checkedChipIntent.putExtra("checkedChip", checkedTagList)
-            setResult(Activity.RESULT_OK, checkedChipIntent)
-        }
+        useful_tag_save.setOnClickListener { onSaveClick() }
     }
 
     private fun getConnection(categoryIdx: Int) {
@@ -77,7 +69,7 @@ class UsefulTagActivity : AppCompatActivity() {
                         if (response.body()!!.success) {
 
                             for (i in response.body()!!.data.indices) {
-                                var usefulTag: UsefulTag = UsefulTag(
+                                var usefulTag = UsefulTag(
                                     tagIdx = response.body()!!.data[i].tagIdx,
                                     tagName = response.body()!!.data[i].tagName
                                 )
@@ -120,6 +112,14 @@ class UsefulTagActivity : AppCompatActivity() {
             })
     }
 
+    private fun checkChipForUpdate(tagListForUpdate: ArrayList<UsefulTag>) {
+        for (i in 0 until usefulTagChipList.size) {
+            if (usefulTagChipList[i].text == tagListForUpdate[i].tagName) {
+                usefulTagChipList[i].isChecked = true
+            }
+        }
+    }
+
     private fun changeButtonColor(colorString: String, drawable: Int, clickable: Boolean) {
         tv_useful_tag_save.setTextColor(Color.parseColor(colorString))
         useful_tag_save.setBackgroundResource(drawable)
@@ -133,5 +133,20 @@ class UsefulTagActivity : AppCompatActivity() {
                 checkResult = true
         }
         return checkResult
+    }
+
+    private fun onSaveClick() {
+        var checkedTagList = ArrayList<UsefulTag>()
+
+        for (i in 0 until usefulTagChipList.size) {
+            if (usefulTagChipList[i].isChecked) {
+                var usefulTag = UsefulTag(usefulTagList[i].tagIdx, usefulTagList[i].tagName)
+                checkedTagList.add(usefulTag)
+            }
+        }
+
+        val checkedChipIntent = Intent()
+        checkedChipIntent.putExtra("checkedChip", checkedTagList)
+        setResult(Activity.RESULT_OK, checkedChipIntent)
     }
 }
