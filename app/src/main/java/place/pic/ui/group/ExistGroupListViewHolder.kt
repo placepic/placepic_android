@@ -7,6 +7,7 @@ import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import place.pic.R
+import place.pic.data.remote.response.ResponseGroupList
 
 class ExistGroupListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
@@ -15,19 +16,19 @@ class ExistGroupListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemVie
     val tv_group = itemView.findViewById<TextView>(R.id.tv_group_count)
 
 
-    fun bind(customData: ListGroupData) {
-        tv_group_title.text = customData.title
+    fun bind(customData: ResponseGroupList) {
+        tv_group_title.text = customData.groupName
         tv_group.text = stringDataMapping(customData)
-        Glide.with(itemView).load(customData.url).into(img_group_profile)
+        Glide.with(itemView).load(customData.groupImage).into(img_group_profile)
         itemViewClickEvent()
     }
     
-    private fun stringDataMapping(customData: ListGroupData):String{
+    private fun stringDataMapping(customData: ResponseGroupList):String{
         return itemView.context
             .getString(
                     R.string.group_count,
-                    customData.people_count,
-                    customData.write_count
+                    customData.UserCount,
+                    customData.PostCount
                 )
     }
 

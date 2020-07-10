@@ -1,13 +1,10 @@
 package place.pic.data.remote
 
+import place.pic.data.remote.response.ResponseGroupList
 import place.pic.data.remote.response.*
 import retrofit2.Call
-import retrofit2.http.GET
-import retrofit2.http.Header
-import retrofit2.http.Path
 import place.pic.data.remote.response.BaseResponse
-import retrofit2.http.Body
-import retrofit2.http.POST
+import retrofit2.http.*
 
 /**
  * Created By kimdahyee
@@ -42,6 +39,20 @@ interface PlacePicService {
 
     @POST("/auth/signin")
     fun requestLogin(@Body body : RequestLogin): Call<BaseResponse<RequestLogin>>
+
+    //그룹 관련 서버 연결
+    @GET("/auth/groups")
+    fun requestMyGroupList(
+        @Header("Content-Type") contentType: String = "application/json",
+        @Header("token") token: String
+    ):Call<BaseResponse<List<ResponseGroupList>>>
+
+    @GET("/auth/groups")
+    fun requestGroupList(
+        @Header("Content-Type") contentType: String = "application/json",
+        @Header("token") token: String,
+        @Query("filter") filter:String
+    ):Call<BaseResponse<List<ResponseGroupList>>>
 
     companion object {
         const val BASE_URL = "http://3.34.209.95:3000"
