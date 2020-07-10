@@ -5,7 +5,6 @@ import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.chip.Chip
 import kotlinx.android.synthetic.main.activity_keyword_tag.*
@@ -64,7 +63,7 @@ class KeywordTagActivity : AppCompatActivity() {
         placePicService.getInstance()
             .requestKeywordTag(
                 token,
-                1
+                categoryIdx
             ).enqueue(object : Callback<BaseResponse<List<KeywordTagData>>> {
                 override fun onFailure(
                     call: Call<BaseResponse<List<KeywordTagData>>>,

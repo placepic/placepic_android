@@ -1,14 +1,15 @@
 package place.pic.ui.tag
 
+import android.app.Activity
+import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.View
-import android.widget.Toast
 import com.google.android.material.chip.Chip
 import kotlinx.android.synthetic.main.activity_useful_tag.*
 import place.pic.R
+import place.pic.data.entity.UsefulTag
 import place.pic.data.remote.PlacePicService
 import place.pic.data.remote.response.*
 import retrofit2.Call
@@ -25,7 +26,7 @@ class UsefulTagActivity : AppCompatActivity() {
     private val token =
         "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZHgiOjMsIm5hbWUiOiLstZzsmIHtm4giLCJpYXQiOjE1OTM2OTkxODMsImV4cCI6MTU5NjI5MTE4MywiaXNzIjoicGxhY2VwaWMifQ.rmFbeBfviyEzbMlMM4b3bMMiRcNDDbiX8bQtwL_cuN0"
 
-    private val restaurantUsefulTagList = mutableListOf<String>()
+    private val usefulTagList = mutableListOf<UsefulTag>()
     private val usefulTagChipList = mutableListOf<Chip>()
     private val placePicService = PlacePicService
 
@@ -33,14 +34,32 @@ class UsefulTagActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_useful_tag)
 
-        getConnection()
+        val intent = getIntent()
+        val categoryIdx = intent.getIntExtra("categoryIdx", 1)
+
+        getConnection(categoryIdx)
+
+        useful_tag_save.setOnClickListener {
+            var checkedTagList = ArrayList<UsefulTag>()
+
+            for (i in 0 until usefulTagChipList.size) {
+                if (usefulTagChipList[i].isChecked) {
+                    var usefulTag = UsefulTag(usefulTagList[i].tagIdx, usefulTagList[i].tagName)
+                    checkedTagList.add(usefulTag)
+                }
+            }
+
+            val checkedChipIntent = Intent()
+            checkedChipIntent.putExtra("checkedChip", checkedTagList)
+            setResult(Activity.RESULT_OK, checkedChipIntent)
+        }
     }
 
-    private fun getConnection() {
+    private fun getConnection(categoryIdx: Int) {
         placePicService.getInstance()
             .requestUsefulTag(
                 token,
-                1
+                categoryIdx
             ).enqueue(object : Callback<BaseResponse<List<UsefulTagData>>> {
                 override fun onFailure(
                     call: Call<BaseResponse<List<UsefulTagData>>>,
@@ -56,22 +75,22 @@ class UsefulTagActivity : AppCompatActivity() {
                     //통신 성공
                     if (response.isSuccessful) { //status
                         if (response.body()!!.success) {
-                            Log.d("response data check", "${response.body()?.data.toString()}")
 
                             for (i in response.body()!!.data.indices) {
-                                restaurantUsefulTagList.add(i, response.body()!!.data[i].tagName)
-                                Log.d("태그네임확인", "${response.body()!!.data[i].tagName}")
-                                Log.d("태그리스트확인", "${restaurantUsefulTagList.get(i)}")
+                                var usefulTag: UsefulTag = UsefulTag(
+                                    tagIdx = response.body()!!.data[i].tagIdx,
+                                    tagName = response.body()!!.data[i].tagName
+                                )
+                                usefulTagList.add(usefulTag)
                             }
 
                             val chipGroup = chipgroup_useful_tag
-                            for (tags in restaurantUsefulTagList) {
+                            for (tags in usefulTagList) {
                                 val chip =
                                     ChipFactory.newInstance(layoutInflater) //object method 호출하기
                                 usefulTagChipList.add(chip)
                                 chip.isClickable = true
-                                chip.text = tags
-                                Log.d("키워드 칩 확인", "${tags}")
+                                chip.text = tags.tagName
                                 chipGroup.addView(chip)
                             }
 
@@ -114,9 +133,5 @@ class UsefulTagActivity : AppCompatActivity() {
                 checkResult = true
         }
         return checkResult
-    }
-
-    fun onClick(view: View) {
-        Toast.makeText(this@UsefulTagActivity, "클릭 가능", Toast.LENGTH_SHORT).show()
     }
 }
