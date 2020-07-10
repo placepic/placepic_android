@@ -1,9 +1,13 @@
 package place.pic.ui.main.place
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import place.pic.data.entity.Place
 import place.pic.data.entity.Subway
+import place.pic.data.remote.request.PlaceTypeDetailsRequest
+import place.pic.data.remote.response.PlaceTypeDetailsResponse
+import place.pic.data.tempToken
 
 /**
  * Created By Malibin
@@ -24,7 +28,7 @@ class PlacesViewModel {
 
     init {
         _selectedSubways.value = emptyList()
-        loadPlaceTypeDetailsFromRemote()
+        requestRemotePlaceTypeDetails()
     }
 
     fun setCurrentPlaceType(placeType: Place.Type) {
@@ -39,8 +43,17 @@ class PlacesViewModel {
         _selectedSubways.value = emptyList()
     }
 
-    private fun loadPlaceTypeDetailsFromRemote() {
+    private fun requestRemotePlaceTypeDetails() {
+        PlaceTypeDetailsRequest().apply {
+            addOnSuccessListener { loadPlaceTypeDetailsList(it.data) }
+            addOnFailureListener { Log.d("Malibin Debug", it.toString()) }
+            addOnErrorListener { _placeTypeDetails.value = emptyList() }
+        }.send(tempToken)
+    }
 
+    private fun loadPlaceTypeDetailsList(response: List<PlaceTypeDetailsResponse>) {
+        Log.d("Malibin Debug",response.toString())
+        _placeTypeDetails.value = response.map { it.toPlaceTypeDetail() }
     }
 
     fun getCurrentPlaceTypeDetails(): PlaceTypeDetails {

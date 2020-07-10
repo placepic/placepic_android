@@ -38,6 +38,12 @@ interface PlacePicService {
     @POST("/auth/signin")
     fun requestLogin(@Body body: RequestLogin): Call<BaseResponse<RequestLogin>>
 
+    @GET("/category/all")
+    fun getPlaceTypeDetails(
+        @Header("Content-Type") contentType: String = "application/json",
+        @Header("token") token: String
+    ): Call<BaseResponse<List<PlaceTypeDetailsResponse>>>
+
     @GET("/places/group/{groupIdx}")
     fun getFilteredPlaces(
         @Header("Content-Type") contentType: String = "application/json",
