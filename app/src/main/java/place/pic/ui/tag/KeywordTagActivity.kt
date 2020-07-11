@@ -12,11 +12,10 @@ import place.pic.R
 import place.pic.data.entity.KeywordTag
 import place.pic.data.remote.PlacePicService
 import place.pic.data.remote.response.BaseResponse
-import place.pic.data.remote.response.KeywordTagData
+import place.pic.data.remote.response.KeywordTagResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.security.Key
 
 /**
  * Created By kimdahyee
@@ -27,6 +26,7 @@ class KeywordTagActivity : AppCompatActivity() {
 
     private val token =
         "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZHgiOjMsIm5hbWUiOiLstZzsmIHtm4giLCJpYXQiOjE1OTM2OTkxODMsImV4cCI6MTU5NjI5MTE4MywiaXNzIjoicGxhY2VwaWMifQ.rmFbeBfviyEzbMlMM4b3bMMiRcNDDbiX8bQtwL_cuN0"
+    private val contentType: String = "application/json"
 
     private val keywordTagList = mutableListOf<KeywordTag>()
     private val keywordTagChipList = mutableListOf<Chip>()
@@ -42,10 +42,10 @@ class KeywordTagActivity : AppCompatActivity() {
         //getAlreadySelectedChip(intent)
 
         getConnection(3)
-
         keyword_tag_save.setOnClickListener { onSaveClick() }
     }
 
+    //추가 구현 필요
     /*private fun getAlreadySelectedChip(intent: Intent) {
         val tagListForUpdate = intent.getSerializableExtra("chipIntent") ?: return
         //elbis  ?: null이면 : 뒤에를 실행해라
@@ -57,24 +57,24 @@ class KeywordTagActivity : AppCompatActivity() {
     private fun getConnection(categoryIdx: Int) { //getConnection(categoryIdx: Int)
         placePicService.getInstance()
             .requestKeywordTag(
+                contentType,
                 token,
                 categoryIdx
-            ).enqueue(object : Callback<BaseResponse<List<KeywordTagData>>> {
+            ).enqueue(object : Callback<BaseResponse<List<KeywordTagResponse>>> {
                 override fun onFailure(
-                    call: Call<BaseResponse<List<KeywordTagData>>>,
+                    call: Call<BaseResponse<List<KeywordTagResponse>>>,
                     t: Throwable
                 ) { //통신 실패
                     Log.d("fail", t.message)
                 }
 
                 override fun onResponse(
-                    call: Call<BaseResponse<List<KeywordTagData>>>,
-                    response: Response<BaseResponse<List<KeywordTagData>>>
+                    call: Call<BaseResponse<List<KeywordTagResponse>>>,
+                    response: Response<BaseResponse<List<KeywordTagResponse>>>
                 ) {
                     //통신 성공
                     if (response.isSuccessful) { //status
                         if (response.body()!!.success) {
-                            response
                             for (i in response.body()!!.data.indices) {
                                 var keywordTag = KeywordTag(
                                     tagIdx = response.body()!!.data[i].tagIdx,

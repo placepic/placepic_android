@@ -25,6 +25,7 @@ class UsefulTagActivity : AppCompatActivity() {
 
     private val token =
         "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZHgiOjMsIm5hbWUiOiLstZzsmIHtm4giLCJpYXQiOjE1OTM2OTkxODMsImV4cCI6MTU5NjI5MTE4MywiaXNzIjoicGxhY2VwaWMifQ.rmFbeBfviyEzbMlMM4b3bMMiRcNDDbiX8bQtwL_cuN0"
+    private val contentType: String = "application/json"
 
     private val usefulTagList = mutableListOf<UsefulTag>()
     private val usefulTagChipList = mutableListOf<Chip>()
@@ -50,24 +51,24 @@ class UsefulTagActivity : AppCompatActivity() {
     private fun getConnection(categoryIdx: Int) {
         placePicService.getInstance()
             .requestUsefulTag(
+                contentType,
                 token,
                 categoryIdx
-            ).enqueue(object : Callback<BaseResponse<List<UsefulTagData>>> {
+            ).enqueue(object : Callback<BaseResponse<List<UsefulTagResponse>>> {
                 override fun onFailure(
-                    call: Call<BaseResponse<List<UsefulTagData>>>,
+                    call: Call<BaseResponse<List<UsefulTagResponse>>>,
                     t: Throwable
                 ) { //통신 실패
                     Log.d("fail", t.message)
                 }
 
                 override fun onResponse(
-                    call: Call<BaseResponse<List<UsefulTagData>>>,
-                    response: Response<BaseResponse<List<UsefulTagData>>>
+                    call: Call<BaseResponse<List<UsefulTagResponse>>>,
+                    response: Response<BaseResponse<List<UsefulTagResponse>>>
                 ) {
                     //통신 성공
                     if (response.isSuccessful) { //status
                         if (response.body()!!.success) {
-
                             for (i in response.body()!!.data.indices) {
                                 var usefulTag = UsefulTag(
                                     tagIdx = response.body()!!.data[i].tagIdx,

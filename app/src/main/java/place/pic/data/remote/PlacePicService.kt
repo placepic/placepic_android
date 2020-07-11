@@ -1,13 +1,10 @@
 package place.pic.data.remote
 
+import android.text.Editable
 import place.pic.data.remote.response.*
 import retrofit2.Call
-import retrofit2.http.GET
-import retrofit2.http.Header
-import retrofit2.http.Path
 import place.pic.data.remote.response.BaseResponse
-import retrofit2.http.Body
-import retrofit2.http.POST
+import retrofit2.http.*
 
 /**
  * Created By kimdahyee
@@ -18,20 +15,25 @@ interface PlacePicService {
 
     @GET("/tag/{categoryIdx}")
     fun requestKeywordTag(
+        @Header("Content-Type") contentType: String,
         @Header("token") token: String,
         @Path("categoryIdx") categoryIdx: Int
-    ): Call<BaseResponse<List<KeywordTagData>>>
+    ): Call<BaseResponse<List<KeywordTagResponse>>>
 
     @GET("/tag/default/{categoryIdx}")
     fun requestUsefulTag(
+        @Header("Content-Type") contentType: String,
         @Header("token") token: String,
         @Path("categoryIdx") categoryIdx: Int
-    ): Call<BaseResponse<List<UsefulTagData>>>
+    ): Call<BaseResponse<List<UsefulTagResponse>>>
 
     @GET("/search/place/{groupIdx}")
     fun requestPlaceSearch(
-
-    )
+        @Header("Content-Type") contentType: String,
+        @Header("token") token: String,
+        @Path("groupIdx") groupIdx: Int,
+        @Query("query") query: String
+    ): Call<BaseResponse<List<PlaceSearchResponse>>>
 
     @GET("/subway")
     fun getAllSubways(

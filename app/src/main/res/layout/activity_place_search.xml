@@ -97,7 +97,8 @@
             app:layout_constraintBottom_toBottomOf="@+id/view_box"
             app:layout_constraintEnd_toEndOf="@+id/view_box"
             app:layout_constraintStart_toEndOf="@+id/img_question"
-            app:layout_constraintTop_toTopOf="@+id/view_box" />
+            app:layout_constraintTop_toTopOf="@+id/view_box"
+            android:imeOptions="actionSearch" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerview_place_search"

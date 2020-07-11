@@ -5,7 +5,7 @@ package place.pic.data.remote.response
  * on 07월 07일, 2020
  */
 
-data class KeywordTagData (
+data class KeywordTagResponse (
     val tagIdx : Int,
     val tagName : String,
     val tagIsBasic : Int,
