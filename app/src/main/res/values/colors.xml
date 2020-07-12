@@ -29,6 +29,9 @@
 
     <color name="whiteE5">#E5E5E5</color>
     <color name="whiteFF">#FFFFFF</color>
+    <color name="whiteFEFFFF">#FEFFFF</color>
+
+
 
     <color name="subway1">#263c96</color>
     <color name="subway2">#60b057</color>

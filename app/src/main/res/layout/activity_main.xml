@@ -23,9 +23,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-            android:background="@color/grayF1F4F5"
+            android:background="@color/whiteFEFFFF"
+            app:behavior_hideable="false"
+            app:behavior_peekHeight="56dp"
             android:visibility="visible"
-            app:layout_behavior="com.google.android.material.behavior.HideBottomViewOnScrollBehavior"
+            app:itemIconTint="@color/selector_select_button_btn"
+            app:itemTextColor="@color/selector_select_button_btn"
+            app:layout_behavior="android.support.design.widget.BottomSheetBehavior"
             app:menu="@menu/menu_main" />
     </FrameLayout>
 
@@ -38,14 +42,14 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent">
 
-        <androidx.appcompat.widget.AppCompatImageButton
+        <ImageButton
             android:src="@drawable/write_selected_ic"
             android:id="@+id/fab_write"
             android:layout_width="60dp"
             android:layout_height="56dp"
             android:stateListAnimator="@null"
-            android:backgroundTint="@color/grayF1F4F5"
-            android:background="@color/grayF1F4F5"
+            android:background="@color/whiteFEFFFF"
+            android:tint="@color/selector_select_button_btn"
             android:clickable="true"
             android:focusable="true"
             android:layout_gravity="center"

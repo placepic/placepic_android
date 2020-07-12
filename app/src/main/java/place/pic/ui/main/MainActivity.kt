@@ -1,22 +1,15 @@
 package place.pic.ui.main
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.MenuItem
 import android.view.View
-import android.widget.Toolbar
-import androidx.annotation.RequiresPermission
-import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentTransaction
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_search_subway.*
 import place.pic.R
 import place.pic.ui.main.place.PlacesFragment
+
 
 class MainActivity : AppCompatActivity(),WriteFragment.BottomSheetListener {
 
@@ -64,6 +57,7 @@ class MainActivity : AppCompatActivity(),WriteFragment.BottomSheetListener {
         fab_write.setOnClickListener{
             WriteFragment().show(supportFragmentManager, "BottomSheetEx")
         }
+
     }
     override fun onOptionClick(text: String) {
         TODO("Not yet implemented")
@@ -71,7 +65,15 @@ class MainActivity : AppCompatActivity(),WriteFragment.BottomSheetListener {
         textView.text = text
     }
 
-
-
+    override fun onBackPressed() {
+        val mBottomNavigationView =
+            findViewById<BottomNavigationView>(R.id.bottom_nav)
+        if (mBottomNavigationView.selectedItemId == R.id.action_menu) {
+            super.onBackPressed()
+            finish()
+        } else {
+            mBottomNavigationView.selectedItemId = R.id.action_menu
+        }
+    }
 }
 

@@ -5,14 +5,14 @@
         android:id="@+id/action_menu"
         app:showAsAction="ifRoom"
         android:enabled="true"
-        android:icon="@drawable/home_selected_ic"
+        android:icon="@drawable/ic_place_selected"
         android:title="장소" />
     <item
         android:id="@+id/action_people"
         app:showAsAction="ifRoom"
         android:enabled="true"
         android:icon="@drawable/ranking_selected_ic"
-        android:title="사람" />
+        android:title="순위" />
     <item
         android:id="@+id/action_write"
         app:showAsAction="ifRoom"
@@ -25,8 +25,8 @@
         android:id="@+id/action_scrap"
         app:showAsAction="ifRoom"
         android:enabled="true"
-        android:icon="@drawable/next_arrow_ic"
-        android:title="스크랩" />
+        android:icon="@drawable/ic_save_selected"
+        android:title="저장" />
     <item
         android:id="@+id/action_mypage"
         app:showAsAction="ifRoom"
