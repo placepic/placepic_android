@@ -261,37 +261,13 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
-
                             android:visibility="@{viewModel.keywords.empty ? View.GONE : View.VISIBLE}"
+                            app:chipSpacingHorizontal="4dp"
+                            app:chipSpacingVertical="4dp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/textView21" >
-
-                            <com.google.android.material.chip.Chip
-                                android:id="@+id/chip1"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="공부하기조은" />
-
-                            <com.google.android.material.chip.Chip
-                                android:id="@+id/chip10"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="데이트하기좋은" />
-
-                            <com.google.android.material.chip.Chip
-                                android:id="@+id/chip9"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="공간이 넓은" />
-
-                            <com.google.android.material.chip.Chip
-                                android:id="@+id/chip8"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="잇힝잇힝좋은" />
-                        </com.google.android.material.chip.ChipGroup>
+                            app:layout_constraintTop_toBottomOf="@+id/textView21" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -362,6 +338,8 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
+                            app:chipSpacingHorizontal="3dp"
+                            app:chipSpacingVertical="3dp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"

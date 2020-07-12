@@ -155,8 +155,8 @@ class UploadPlaceActivity : AppCompatActivity() {
 
     private fun deploySelectKeywordsActivity() {
         val intent = Intent(this, KeywordTagActivity::class.java)
-
-
+        val alreadySelectedKeywords = uploadPlacesViewModel.keywords.value ?: emptyList()
+        intent.putExtra("checkedChip", ArrayList<KeywordTag>(alreadySelectedKeywords))
         startActivityForResult(intent, KeywordTagActivity.REQUEST_CODE)
     }
 

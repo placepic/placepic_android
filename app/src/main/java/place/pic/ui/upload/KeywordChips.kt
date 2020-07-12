@@ -27,7 +27,7 @@ class KeywordChips(private val chipGroup: ChipGroup) {
 
     private fun convertToChip(keyword: KeywordTag): Chip {
         val layoutInflater = LayoutInflater.from(chipGroup.context)
-        val chip = ChipFactory.newInstance(layoutInflater)
+        val chip = ChipFactory.createSmallChip(layoutInflater)
         chip.text = keyword.tagName
         chip.setOnClickListener { onKeywordClick(keyword) }
         return chip
