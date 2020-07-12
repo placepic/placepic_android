@@ -26,7 +26,6 @@ class KeywordTagActivity : AppCompatActivity() {
 
     private val token =
         "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZHgiOjMsIm5hbWUiOiLstZzsmIHtm4giLCJpYXQiOjE1OTM2OTkxODMsImV4cCI6MTU5NjI5MTE4MywiaXNzIjoicGxhY2VwaWMifQ.rmFbeBfviyEzbMlMM4b3bMMiRcNDDbiX8bQtwL_cuN0"
-    private val contentType: String = "application/json"
 
     private val keywordTagList = mutableListOf<KeywordTag>()
     private val keywordTagChipList = mutableListOf<Chip>()
@@ -36,30 +35,34 @@ class KeywordTagActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_keyword_tag)
 
-        //categoryIdx 꺼내기
         val intent = intent
         val categoryIdx = intent.getIntExtra("categoryIdx", 1)
-        //getAlreadySelectedChip(intent)
+        getAlreadySelectedTags(intent) //수정 시 사용자가 이전에 선택한 태그 가져오기
 
-        getTagListFromServer(3)
+        getTagListFromServer(categoryIdx)
         keyword_tag_save.setOnClickListener { onSaveClick() }
     }
 
-    //추가 구현 필요
-    /*private fun getAlreadySelectedChip(intent: Intent) {
-        val tagListForUpdate = intent.getSerializableExtra("chipIntent") ?: return
+    private fun getAlreadySelectedTags(intent: Intent) {
+        val tagListForUpdate: MutableList<KeywordTag> =
+            (intent.getSerializableExtra("chipIntent") ?: return) as MutableList<KeywordTag>
         //elbis  ?: null이면 : 뒤에를 실행해라
+        checkChipForUpdate(tagListForUpdate) //수정을 위해 click된 chip인지 확인
+    }
 
-        //수정을 위해 click된 chip인지 확인
-        checkChipForUpdate(tagListForUpdate)
-    }*/
+    private fun checkChipForUpdate(tagListForUpdate: MutableList<KeywordTag>) {
+        for (i in 0 until keywordTagChipList.size) {
+            if (keywordTagChipList[i].text == tagListForUpdate[i].tagName) {
+                keywordTagChipList[i].isChecked = true
+            }
+        }
+    }
 
     private fun getTagListFromServer(categoryIdx: Int) { //getConnection(categoryIdx: Int)
         placePicService.getInstance()
             .requestKeywordTag(
-                contentType,
-                token,
-                categoryIdx
+                token = token,
+                categoryIdx = categoryIdx
             ).enqueue(object : Callback<BaseResponse<List<KeywordTagResponse>>> {
                 override fun onFailure(
                     call: Call<BaseResponse<List<KeywordTagResponse>>>,
@@ -118,14 +121,6 @@ class KeywordTagActivity : AppCompatActivity() {
             })
     }
 
-    /*private fun checkChipForUpdate(tagListForUpdate: MutableList<KeywordTag>) {
-        for (i in 0 until keywordTagChipList.size) {
-            if (keywordTagChipList[i].text == tagListForUpdate[i].tagName) {
-                keywordTagChipList[i].isChecked = true
-            }
-        }
-    }*/
-
     private fun changeButtonColor(colorString: String, drawable: Int, clickable: Boolean) {
         tv_tag_save.setTextColor(Color.parseColor(colorString))
         keyword_tag_save.setBackgroundResource(drawable)
@@ -149,6 +144,7 @@ class KeywordTagActivity : AppCompatActivity() {
             if (keywordTagChipList[i].isChecked) {
                 var keywordTag = KeywordTag(keywordTagList[i].tagIdx, keywordTagList[i].tagName)
                 checkedTagList.add(keywordTag)
+                Log.d("selected checking", keywordTag.toString())
             }
         }
 
