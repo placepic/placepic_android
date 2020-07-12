@@ -40,7 +40,7 @@ class UsefulTagActivity : AppCompatActivity() {
         val tagListForUpdate: ArrayList<UsefulTag> =
             intent.getSerializableExtra("checkedChipIntent") as ArrayList<UsefulTag>
 
-        getConnection(categoryIdx)
+        getTagListFromServer(categoryIdx)
 
         //수정을 위해 click된 chip인지 확인
         checkChipForUpdate(tagListForUpdate)
@@ -48,7 +48,7 @@ class UsefulTagActivity : AppCompatActivity() {
         useful_tag_save.setOnClickListener { onSaveClick() }
     }
 
-    private fun getConnection(categoryIdx: Int) {
+    private fun getTagListFromServer(categoryIdx: Int) {
         placePicService.getInstance()
             .requestUsefulTag(
                 contentType,

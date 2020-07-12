@@ -41,7 +41,7 @@ class KeywordTagActivity : AppCompatActivity() {
         val categoryIdx = intent.getIntExtra("categoryIdx", 1)
         //getAlreadySelectedChip(intent)
 
-        getConnection(3)
+        getTagListFromServer(3)
         keyword_tag_save.setOnClickListener { onSaveClick() }
     }
 
@@ -54,7 +54,7 @@ class KeywordTagActivity : AppCompatActivity() {
         checkChipForUpdate(tagListForUpdate)
     }*/
 
-    private fun getConnection(categoryIdx: Int) { //getConnection(categoryIdx: Int)
+    private fun getTagListFromServer(categoryIdx: Int) { //getConnection(categoryIdx: Int)
         placePicService.getInstance()
             .requestKeywordTag(
                 contentType,

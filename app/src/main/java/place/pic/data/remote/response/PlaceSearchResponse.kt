@@ -6,12 +6,12 @@ package place.pic.data.remote.response
  */
  
 data class PlaceSearchResponse (
-    val placeId: Number,
     val placeName: String,
     val placeAddress: String,
     val placeRoadAddress: String,
     val placeMapX: Number,
     val placeMapY: Number,
     val link: String,
+    val mobileNaverMapLink: String,
     val alreadyIn: Boolean
 )
