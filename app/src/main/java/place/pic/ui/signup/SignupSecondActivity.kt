@@ -2,15 +2,12 @@ package place.pic.ui.signup
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
 import android.widget.ToggleButton
 import androidx.appcompat.app.AppCompatActivity
-import kotlinx.android.synthetic.main.activity_signup.*
 import kotlinx.android.synthetic.main.activity_signup_second.*
 import place.pic.R
 import place.pic.data.remote.PlacePicService
-import place.pic.data.remote.RequestRegister
-import place.pic.data.remote.RequestRegisterSecond
+import place.pic.data.remote.request.RequestRegisterSecond
 import place.pic.data.remote.response.BaseResponse
 import place.pic.showToast
 import place.pic.ui.extands.customTextChangedListener

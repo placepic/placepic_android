@@ -1,4 +1,4 @@
-package place.pic.data.remote
+package place.pic.data.remote.request
 
 data class RequestRegisterSecond(
     val email : String,

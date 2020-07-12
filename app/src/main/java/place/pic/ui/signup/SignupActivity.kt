@@ -2,17 +2,14 @@ package place.pic.ui.signup
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.util.Patterns
 import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_signup.*
 import place.pic.R
 import place.pic.data.remote.PlacePicService
-import place.pic.data.remote.RequestRegister
+import place.pic.data.remote.request.RequestRegister
 import place.pic.data.remote.response.BaseResponse
-import place.pic.showToast
 import place.pic.ui.extands.customTextChangedListener
 import retrofit2.Call
 import retrofit2.Callback
@@ -45,7 +42,7 @@ class SignupActivity : AppCompatActivity() {
                 tv_sign_non_password.visibility = View.INVISIBLE
 
                 PlacePicService.getInstance().requestRegister(
-                        RequestRegister(et_sign_email.text.toString())
+                    RequestRegister(et_sign_email.text.toString())
                     ).enqueue(object:Callback<BaseResponse<RequestRegister>>{
                         override fun onFailure(call: Call<BaseResponse<RequestRegister>>, t: Throwable) {
                         //통신 실패
