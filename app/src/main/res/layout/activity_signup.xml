@@ -92,7 +92,7 @@
             app:layout_constraintStart_toStartOf="@+id/et_sign_email"
             android:text="알맞은 이메일 형식이 아닙니다."
             android:textSize="11dp"
-            android:textColor="@color/colorPrimary"/>
+            android:textColor="@color/redDE4446"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <!--비밀번호 입력 뷰-->
@@ -185,7 +185,7 @@
             app:layout_constraintStart_toStartOf="@+id/et_sign_ok_password"
             android:text="비밀번호가 일치하지 않습니다. 다시 확인해보세요."
             android:textSize="11dp"
-            android:textColor="@color/colorPrimary"/>
+            android:textColor="@color/redDE4446"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.appcompat.widget.AppCompatButton
