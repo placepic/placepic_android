@@ -155,6 +155,7 @@ class KeywordTagActivity : AppCompatActivity() {
         val checkedChipIntent = Intent()
         checkedChipIntent.putExtra("checkedChip", checkedTagList)
         setResult(Activity.RESULT_OK, checkedChipIntent)
+        finish()
     }
 }
 
