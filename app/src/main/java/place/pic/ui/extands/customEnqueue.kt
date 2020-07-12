@@ -10,11 +10,11 @@ private const val NETWORK = "placepicNetwork"
 fun <ResponseType> Call<ResponseType>.customEnqueue(
     onFail: () -> Unit = {},
     onSuccess: (Response<ResponseType>) -> Unit,
-    onError: () -> Unit = {}
+    onError: (Response<ResponseType>) -> Unit = {}
 )
 {
     val networkLog = "Network"
-    this.enqueue(object : Callback<ResponseType> {
+    this.enqueue(object : Callback<ResponseType>{
         override fun onFailure(call: Call<ResponseType>, t: Throwable) {
             Log.d(networkLog, t.message)
             Log.d(networkLog, call.request().toString())
@@ -28,7 +28,7 @@ fun <ResponseType> Call<ResponseType>.customEnqueue(
                 return
             }
             Log.d(NETWORK,"통신 에러")
-            onError()
+            onError(response)
         }
     })
 }

@@ -1,4 +1,4 @@
-package place.pic.ui.group
+package place.pic.ui.group.waitgrouplist
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -9,12 +9,9 @@ import place.pic.data.PlacepicAuthRepository
 import place.pic.data.remote.PlacePicService
 import place.pic.data.remote.response.ResponseGroupList
 import place.pic.ui.extands.customEnqueue
-import place.pic.ui.group.waitgrouplist.WaitGroupAdapter
-import place.pic.ui.group.waitgrouplist.WaitListGroupData
 
 class WaitGroupActivity : AppCompatActivity() {
 
-    private var testWaitListData = mutableListOf<WaitListGroupData>()
     lateinit var waitGroupAdapter: WaitGroupAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,32 +22,32 @@ class WaitGroupActivity : AppCompatActivity() {
 
     private fun init() {
         rv_wait_group_list.addItemDecoration(
-            DividerItemDecoration(this,DividerItemDecoration.VERTICAL)
+            DividerItemDecoration(this, DividerItemDecoration.VERTICAL)
         )
         requestToWaitGroupList()
         buttonEventMapping()
     }
 
-    private fun buttonEventMapping(){
+    private fun buttonEventMapping() {
         img_wait_group_top_back_btn.setOnClickListener {
             onBackPressed()
         }
     }
 
-    private fun setAdpater(list:List<ResponseGroupList>){
+    private fun setAdpater(list: List<ResponseGroupList>) {
         waitGroupAdapter =
             WaitGroupAdapter(list, this)
         rv_wait_group_list.adapter = waitGroupAdapter
     }
 
-    private fun requestToWaitGroupList(){
+    private fun requestToWaitGroupList() {
         PlacepicAuthRepository.getInstance(this).userToken?.let {
             PlacePicService.getInstance()
                 .requestGroupList(
                     token = it,
                     filter = "wait"
                 ).customEnqueue(
-                    onSuccess = {response->
+                    onSuccess = { response ->
                         response.body()?.data?.let { list ->
                             setAdpater(list)
                         }

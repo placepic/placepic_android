@@ -30,6 +30,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
             android:gravity="center"
+            android:text="@{completeTitle}"
             android:textColor="@color/black40"
             android:textSize="18dp"
             android:textStyle="bold"
@@ -44,6 +45,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:gravity="center"
+            android:text="@{completeContent}"
             app:layout_constraintEnd_toEndOf="@id/tv_end_group_result"
             app:layout_constraintStart_toStartOf="@id/tv_end_group_result"
             app:layout_constraintTop_toBottomOf="@id/tv_end_group_result"
@@ -51,7 +53,6 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.appcompat.widget.AppCompatButton
-        android:visibility="invisible"
         android:id="@+id/btn_retry_group_sign_up"
         style="?android:attr/borderlessButtonStyle"
         android:layout_width="match_parent"
@@ -64,6 +65,7 @@
         android:textColor="@color/black4F"
         android:textSize="15dp"
         android:textStyle="bold"
+        android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@+id/btn_goto_group_list"
         app:layout_constraintEnd_toEndOf="@+id/btn_goto_group_list"
         app:layout_constraintHorizontal_bias="0.0"
@@ -82,6 +84,25 @@
         android:textColor="@android:color/white"
         android:textSize="15dp"
         android:textStyle="bold"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/constraintLayout2"
+        app:layout_constraintStart_toStartOf="@+id/constraintLayout2" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_goto_main_list"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginBottom="40dp"
+        android:background="@drawable/round_rectangle_gray_8dp"
+        android:backgroundTint="@color/colorPrimary"
+        android:text="시작하기"
+        android:textColor="@android:color/white"
+        android:textSize="15dp"
+        android:textStyle="bold"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/constraintLayout2"
         app:layout_constraintStart_toStartOf="@+id/constraintLayout2" />

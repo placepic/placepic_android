@@ -5,10 +5,10 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import place.pic.R
-import place.pic.ui.group.ListGroupData
+import place.pic.data.remote.response.ResponseGroupList
 
-class JoinGroupListAdapter (
-    private val datas:MutableList<ListGroupData>,
+class JoinGroupListAdapter(
+    private val datas: List<ResponseGroupList>,
     private val context: Context
 ) : RecyclerView.Adapter<JoinGroupListViewHolder>() {
 
