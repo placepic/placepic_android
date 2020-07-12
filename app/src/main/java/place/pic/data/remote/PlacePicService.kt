@@ -34,7 +34,7 @@ interface PlacePicService {
         @Header("token") token: String,
         @Path("groupIdx") groupIdx: Int,
         @Query("query") query: String
-    ): Call<BaseResponse<List<PlaceSearchResponse>>>
+    ): Call<BaseResponse<PlaceSearchResponse>>
 
     @GET("/subway")
     fun getAllSubways(
