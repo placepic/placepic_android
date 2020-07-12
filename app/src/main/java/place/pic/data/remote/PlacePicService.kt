@@ -16,21 +16,21 @@ interface PlacePicService {
 
     @GET("/tag/{categoryIdx}")
     fun requestKeywordTag(
-        @Header("Content-Type") contentType: String,
+        @Header("Content-Type") contentType: String = "application/json",
         @Header("token") token: String,
         @Path("categoryIdx") categoryIdx: Int
     ): Call<BaseResponse<List<KeywordTagResponse>>>
 
     @GET("/tag/default/{categoryIdx}")
     fun requestUsefulTag(
-        @Header("Content-Type") contentType: String,
+        @Header("Content-Type") contentType: String = "application/json",
         @Header("token") token: String,
         @Path("categoryIdx") categoryIdx: Int
     ): Call<BaseResponse<List<UsefulTagResponse>>>
 
     @GET("/search/place/{groupIdx}")
     fun requestPlaceSearch(
-        @Header("Content-Type") contentType: String,
+        @Header("Content-Type") contentType: String = "application/json",
         @Header("token") token: String,
         @Path("groupIdx") groupIdx: Int,
         @Query("query") query: String

@@ -50,7 +50,7 @@ class PlaceSearchActivity : AppCompatActivity() {
 
         initRcv()
 
-        img_back.setOnClickListener{
+        img_back.setOnClickListener {
             onBackPressed()
         }
 
@@ -103,10 +103,9 @@ class PlaceSearchActivity : AppCompatActivity() {
     private fun getPlaceSearchResult(groupIdx: Int) {
         placePicService.getInstance()
             .requestPlaceSearch(
-                contentType,
-                token,
-                groupIdx,
-                et_place_search_input.text.toString()
+                token = token,
+                groupIdx = groupIdx,
+                query = et_place_search_input.text.toString()
             ).enqueue(object : Callback<BaseResponse<List<PlaceSearchResponse>>> {
                 override fun onFailure(
                     call: Call<BaseResponse<List<PlaceSearchResponse>>>,
@@ -157,7 +156,6 @@ class PlaceSearchActivity : AppCompatActivity() {
                                         )
                                     )
                                 }
-
                             }
                         }
                     }
