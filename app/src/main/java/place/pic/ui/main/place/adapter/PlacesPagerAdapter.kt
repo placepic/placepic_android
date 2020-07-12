@@ -3,8 +3,11 @@ package place.pic.ui.main.place.adapter
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
-import place.pic.ui.main.place.Place
-import place.pic.ui.main.place.PlaceItemsFragment
+import place.pic.data.entity.KeywordTag
+import place.pic.data.entity.Place
+import place.pic.data.entity.Subway
+import place.pic.data.entity.UsefulTag
+import place.pic.ui.main.place.items.PlaceItemsFragment
 
 /**
  * Created By Malibin

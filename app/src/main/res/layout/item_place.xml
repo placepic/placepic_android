@@ -7,7 +7,7 @@
 
         <variable
             name="placeItem"
-            type="place.pic.ui.main.place.Place" />
+            type="place.pic.data.entity.Place" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -21,10 +21,11 @@
             android:layout_height="24dp"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="12dp"
+            android:scaleType="centerCrop"
+            app:imageUrl="@{placeItem.uploaderProfileUrl}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@+id/rv_keywords"
             app:layout_constraintTop_toBottomOf="@+id/rv_keywords"
-            app:srcCompat="@mipmap/ic_launcher"
             tools:srcCompat="@tools:sample/avatars" />
 
         <TextView
@@ -84,7 +85,8 @@
                 android:id="@+id/imageView6"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:src="@drawable/ic_launcher_background"
+                android:scaleType="centerCrop"
+                app:imageUrl="@{placeItem.imageUrl}"
                 tools:src="@drawable/ic_launcher_background" />
         </androidx.cardview.widget.CardView>
 

@@ -18,6 +18,7 @@ open class BaseRequest<T> : Callback<BaseResponse<T>> {
 
     private var onSuccessListener: ((response: BaseResponse<T>) -> Unit)? = null
     private var onFailureListener: ((response: BaseResponse<Unit>) -> Unit)? = null
+    private var onErrorListener: ((t: Throwable) -> Unit)? = null
 
     override fun onResponse(call: Call<BaseResponse<T>>, response: Response<BaseResponse<T>>) {
         if (response.isSuccessful) {
@@ -37,6 +38,10 @@ open class BaseRequest<T> : Callback<BaseResponse<T>> {
         this.onFailureListener = onFailureListener
     }
 
+    fun addOnErrorListener(onErrorListener: ((t: Throwable) -> Unit)?) {
+        this.onErrorListener = onErrorListener
+    }
+
     private fun createFailureResponseBody(errorBody: String): BaseResponse<Unit> {
         val gson = GsonBuilder().create()
         val responseType = object : TypeToken<BaseResponse<Unit>>() {}.type
@@ -45,6 +50,7 @@ open class BaseRequest<T> : Callback<BaseResponse<T>> {
 
     override fun onFailure(call: Call<BaseResponse<T>>, t: Throwable) {
         printErrorMessage(t)
+        onErrorListener?.invoke(t)
     }
 
     private fun printErrorMessage(t: Throwable) {
