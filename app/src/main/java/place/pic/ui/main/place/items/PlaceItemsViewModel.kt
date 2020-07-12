@@ -20,6 +20,8 @@ import place.pic.data.tempToken
 class PlaceItemsViewModel(
     private val placeType: Place.Type
 ) {
+    private var isFilterPreviousApplied = false
+
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean>
         get() = _isLoading
@@ -28,13 +30,21 @@ class PlaceItemsViewModel(
     val placeItems: LiveData<List<Place>>
         get() = _placeItems
 
-    fun loadPlaceItems(isForced: Boolean = false) {
-        if (isForced || _placeItems.value == null) {
-            requestRemotePlaceItems()
+    fun loadPlaceItems(
+        keywordTags: List<KeywordTag>? = null,
+        usefulTags: List<UsefulTag>? = null,
+        subways: List<Subway>? = null
+    ) {
+        if (_placeItems.value == null
+            || isFilterApplied(keywordTags, usefulTags, subways)
+            || isFilterPreviousApplied
+        ) {
+            requestRemotePlaceItems(keywordTags, usefulTags, subways)
+            isFilterPreviousApplied = isFilterApplied(keywordTags, usefulTags, subways)
         }
     }
 
-    fun requestRemotePlaceItems(
+    private fun requestRemotePlaceItems(
         keywordTags: List<KeywordTag>? = null,
         usefulTags: List<UsefulTag>? = null,
         subways: List<Subway>? = null
@@ -55,5 +65,15 @@ class PlaceItemsViewModel(
     private fun loadRemotePlacesItems(response: List<PlaceResponse>) {
         _placeItems.value = response.map { it.toPlace() }
         _isLoading.value = false
+    }
+
+    private fun isFilterApplied(
+        keywordTags: List<KeywordTag>? = null,
+        usefulTags: List<UsefulTag>? = null,
+        subways: List<Subway>? = null
+    ): Boolean {
+        return !keywordTags.isNullOrEmpty() or
+                !usefulTags.isNullOrEmpty() or
+                !subways.isNullOrEmpty()
     }
 }

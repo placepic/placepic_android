@@ -1,13 +1,13 @@
 package place.pic.ui.main.place.items
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.asynclayoutinflater.view.AsyncLayoutInflater
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.RecyclerView
 import place.pic.R
 import place.pic.data.entity.KeywordTag
 import place.pic.data.entity.Place
@@ -26,6 +26,8 @@ class PlaceItemsFragment(placeType: Place.Type) : Fragment() {
 
     private var placeItemsAdapter = PlacesAdapter()
     private val placeItemsViewModel = PlaceItemsViewModel(placeType)
+
+    private var isUpdatedFromFilter = false
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -48,6 +50,10 @@ class PlaceItemsFragment(placeType: Place.Type) : Fragment() {
     override fun onResume() {
         super.onResume()
 
+        if (isUpdatedFromFilter) {
+            isUpdatedFromFilter = false
+            return
+        } //쉬바
         placeItemsViewModel.loadPlaceItems()
     }
 
@@ -70,10 +76,15 @@ class PlaceItemsFragment(placeType: Place.Type) : Fragment() {
         keywords: List<KeywordTag>?,
         features: List<UsefulTag>?
     ) {
-        placeItemsViewModel.requestRemotePlaceItems(
+        isUpdatedFromFilter = true
+        placeItemsViewModel.loadPlaceItems(
             subways = subways,
             keywordTags = keywords,
             usefulTags = features
         )
     }
 }
+
+// 이놈이 PlacesViewModel을 들고있는게나은거같다.. 더이상의 시간 지체는 내 욕심일 뿐으로
+// updatePlaceItems 이후 바로 onResume이 호출되어 통신 두번하는 현상은 대충 onResume에 이상한 코드와
+// 이 Fragment에 이상한 상태값을 추가하는걸로 응급처치했다... 에휴 나레기

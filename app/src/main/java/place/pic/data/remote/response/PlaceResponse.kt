@@ -23,7 +23,7 @@ data class PlaceResponse(
         imageUrl = imageUrl.getOrElse(0) { "" },
         subways = subway.map { it.toSubway() },
         keywordTags = tag.map { it.toKeywordTag() },
-        uploadDate = Date(placeCreatedAt),
+        uploadDate = Date(placeCreatedAt * 1000),
         uploaderName = user.userName,
         uploaderProfileUrl = user.profileURL
     )
