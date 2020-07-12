@@ -17,6 +17,6 @@ class PlaceSearchViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) 
 
     fun bind(placeSearchData : PlaceSearchData) {
         placeName.text = placeSearchData.placeName
-        placeLocation.text = placeSearchData.placeLocation
+        placeLocation.text = placeSearchData.placeRoadAddress
     }
 }

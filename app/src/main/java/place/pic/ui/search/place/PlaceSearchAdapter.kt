@@ -1,6 +1,7 @@
 package place.pic.ui.search.place
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import place.pic.R
@@ -26,5 +27,23 @@ class PlaceSearchAdapter : RecyclerView.Adapter<PlaceSearchViewHolder>() {
 
     override fun onBindViewHolder(holder: PlaceSearchViewHolder, position: Int) {
         holder.bind(datas[position])
+
+        //view에 onClickListener를 달고 그 안에서 직접 만든 itemClickListener를 연결
+        holder.itemView.setOnClickListener{
+            itemClickListener.onClick(it, position)
+        }
+    }
+
+    //클릭인터페이스 정의
+    interface ItemClickListener {
+        fun onClick(view: View, position: Int)
+    }
+    
+    //클릭리스너 선언
+    private lateinit var itemClickListener: ItemClickListener
+
+    //클릭리스너 등록 메소드
+    fun setItemClickListener(itemClickListener: ItemClickListener) {
+        this.itemClickListener = itemClickListener
     }
 }
