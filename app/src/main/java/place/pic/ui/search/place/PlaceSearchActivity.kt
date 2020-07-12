@@ -49,6 +49,10 @@ class PlaceSearchActivity : AppCompatActivity() {
 
         initRcv()
 
+        img_back.setOnClickListener{
+            onBackPressed()
+        }
+
         et_place_search_input.setOnEditorActionListener { textView, action, event ->
             onSearchClick(action, groupIdx)
         }
@@ -120,14 +124,21 @@ class PlaceSearchActivity : AppCompatActivity() {
                             placeDatas.clear()
                             placeSearchResult.clear()
                             for (i in response.body()!!.data.indices) {
+
+                                var address: String = response.body()!!.data[i].placeRoadAddress
+                                if (address.isEmpty()) { //도로명 주소가 없으면 (""이면)
+                                    address = response.body()!!.data[i].placeAddress
+                                }
+
                                 placeDatas.apply {
                                     add(
                                         PlaceSearchData(
                                             placeName = response.body()!!.data[i].placeName,
-                                            placeLocation = response.body()!!.data[i].placeRoadAddress
+                                            placeLocation = address
                                         )
                                     )
                                 }
+
                                 placeSearchAdapter.datas = placeDatas
                                 placeSearchAdapter.notifyDataSetChanged()
 
