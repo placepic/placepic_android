@@ -79,7 +79,7 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="1000dp"
+                android:layout_height="wrap_content"
                 android:orientation="vertical">
 
                 <TextView
@@ -184,6 +184,7 @@
                             android:orientation="horizontal"
                             android:overScrollMode="never"
                             android:scrollbars="none"
+                            android:visibility="@{viewModel.subways.empty ? View.GONE : View.VISIBLE}"
                             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
@@ -257,16 +258,18 @@
 
                         <com.google.android.material.chip.ChipGroup
                             android:id="@+id/chip_group_keywords"
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
+
+                            android:visibility="@{viewModel.keywords.empty ? View.GONE : View.VISIBLE}"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/textView21">
+                            app:layout_constraintTop_toBottomOf="@+id/textView21" >
 
                             <com.google.android.material.chip.Chip
-                                android:id="@+id/chip11"
+                                android:id="@+id/chip1"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="공부하기조은" />
@@ -299,6 +302,7 @@
                         android:text="@string/modify"
                         android:textSize="15dp"
                         android:textStyle="bold"
+                        android:visibility="@{viewModel.keywords.empty ? View.GONE : View.VISIBLE}"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="@+id/constraintLayout5" />
 
@@ -306,6 +310,7 @@
                         android:id="@+id/btn_select_keywords"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:visibility="@{viewModel.keywords.empty ? View.VISIBLE : View.GONE}"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
@@ -331,11 +336,13 @@
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/constraintLayout51"
-                        android:layout_width="352dp"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
+                        android:layout_marginEnd="24dp"
                         android:layout_marginBottom="20dp"
                         app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/btn_select_features"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent">
 
@@ -352,7 +359,7 @@
 
                         <com.google.android.material.chip.ChipGroup
                             android:id="@+id/chip_group_features"
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
                             app:layout_constraintBottom_toBottomOf="parent"
