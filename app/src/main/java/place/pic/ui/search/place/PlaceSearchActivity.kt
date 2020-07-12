@@ -4,11 +4,9 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.view.MotionEvent
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.activity_place_search.*
 import place.pic.R
 import place.pic.data.entity.PlaceSearch
@@ -22,7 +20,7 @@ import retrofit2.Response
 
 /**
  * Created By kimdahyee
- * on 7월 , 2020
+ * on 7월 10일, 2020
  */
 
 class PlaceSearchActivity : AppCompatActivity() {
@@ -52,12 +50,14 @@ class PlaceSearchActivity : AppCompatActivity() {
         initRcv()
 
         et_place_search_input.setOnEditorActionListener { textView, action, event ->
-            onSearchClick(action)
+            onSearchClick(action, groupIdx)
         }
 
         //클릭리스너 등록
         placeSearchAdapter.setItemClickListener( object : PlaceSearchAdapter.ItemClickListener{
             override fun onClick(view: View, position: Int) {
+                Log.d("check check", "${placeSearchResult[position].placeName} 선택")
+
                 val clickedPlaceIntent = Intent()
 
                 clickedPlaceIntent.putExtra("groupIdx", groupIdx)
@@ -84,11 +84,11 @@ class PlaceSearchActivity : AppCompatActivity() {
         //recyclerView의 어댑터를 instaAdapter로 지정
     }
 
-    private fun onSearchClick(action: Int): Boolean {
+    private fun onSearchClick(action: Int, groupIdx: Int): Boolean {
         var handled = false
         when (action) {
             EditorInfo.IME_ACTION_SEARCH -> {
-                getPlaceSearchResult(1)
+                getPlaceSearchResult(groupIdx)
                 handled = true
             }
         }
@@ -124,7 +124,7 @@ class PlaceSearchActivity : AppCompatActivity() {
                                     add(
                                         PlaceSearchData(
                                             placeName = response.body()!!.data[i].placeName,
-                                            placeRoadAddress = response.body()!!.data[i].placeAddress
+                                            placeLocation = response.body()!!.data[i].placeRoadAddress
                                         )
                                     )
                                 }
