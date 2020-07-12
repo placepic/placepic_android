@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import androidx.appcompat.app.AppCompatActivity
+import kotlinx.android.synthetic.main.activity_keyword_tag.*
 import kotlinx.android.synthetic.main.activity_place_search.*
 import place.pic.R
 import place.pic.data.entity.PlaceSearch

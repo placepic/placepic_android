@@ -5,30 +5,32 @@
         android:id="@+id/action_menu"
         app:showAsAction="ifRoom"
         android:enabled="true"
-        android:icon="@android:drawable/ic_dialog_info"
+        android:icon="@drawable/ic_place_selected"
         android:title="장소" />
     <item
         android:id="@+id/action_people"
         app:showAsAction="ifRoom"
         android:enabled="true"
-        android:icon="@android:drawable/ic_dialog_info"
-        android:title="사람" />
+        android:icon="@drawable/ranking_selected_ic"
+        android:title="순위" />
     <item
         android:id="@+id/action_write"
         app:showAsAction="ifRoom"
-        android:enabled="true"
+        android:enabled="false"
+        android:clickable="false"
+        android:focusable="false"
         android:icon="@android:drawable/ic_dialog_info"
         android:title="글쓰기" />
     <item
         android:id="@+id/action_scrap"
         app:showAsAction="ifRoom"
         android:enabled="true"
-        android:icon="@android:drawable/ic_dialog_info"
-        android:title="스크랩" />
+        android:icon="@drawable/ic_save_selected"
+        android:title="저장" />
     <item
         android:id="@+id/action_mypage"
         app:showAsAction="ifRoom"
         android:enabled="true"
-        android:icon="@android:drawable/ic_dialog_info"
+        android:icon="@drawable/user_selected_ic"
         android:title="내정보" />
 </menu>

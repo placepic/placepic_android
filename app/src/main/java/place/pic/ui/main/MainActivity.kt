@@ -1,22 +1,20 @@
 package place.pic.ui.main
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.MenuItem
 import android.view.View
-import android.widget.Toolbar
-import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentTransaction
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_search_subway.*
 import place.pic.R
 import place.pic.ui.main.place.PlacesFragment
 
-class MainActivity : AppCompatActivity(){
+
+class MainActivity : AppCompatActivity(),WriteFragment.BottomSheetListener {
+
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -31,6 +29,7 @@ class MainActivity : AppCompatActivity(){
         //바텀 네비게이션 구현
         bottom_nav.setOnNavigationItemSelectedListener{
             val transaction: FragmentTransaction = supportFragmentManager.beginTransaction()
+
             when(it.itemId){
                 R.id.action_menu -> {
                     val fragmentA = PlacesFragment()
@@ -39,10 +38,6 @@ class MainActivity : AppCompatActivity(){
                 R.id.action_people -> {
                     val fragmentB = PeopleFragment()
                     transaction.replace(R.id.main_frame, fragmentB, "people")
-                }
-                R.id.action_write -> {
-                    val fragmentC = WriteFragment()
-                    transaction.replace(R.id.main_frame, fragmentC, "write")
                 }
                 R.id.action_scrap -> {
                     val fragmentD = ScrapFragment()
@@ -57,6 +52,27 @@ class MainActivity : AppCompatActivity(){
             transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
             transaction.commit()
             true
+        }
+
+        fab_write.setOnClickListener{
+            WriteFragment().show(supportFragmentManager, "BottomSheetEx")
+        }
+
+    }
+    override fun onOptionClick(text: String) {
+        TODO("Not yet implemented")
+        //change text on each item click
+        textView.text = text
+    }
+
+    override fun onBackPressed() {
+        val mBottomNavigationView =
+            findViewById<BottomNavigationView>(R.id.bottom_nav)
+        if (mBottomNavigationView.selectedItemId == R.id.action_menu) {
+            super.onBackPressed()
+            finish()
+        } else {
+            mBottomNavigationView.selectedItemId = R.id.action_menu
         }
     }
 }

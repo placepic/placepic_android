@@ -1,5 +1,8 @@
 package place.pic.data.remote
 
+import place.pic.data.remote.request.RequestLogin
+import place.pic.data.remote.request.RequestRegister
+import place.pic.data.remote.request.RequestRegisterSecond
 import place.pic.data.remote.response.*
 import retrofit2.Call
 import retrofit2.http.*
