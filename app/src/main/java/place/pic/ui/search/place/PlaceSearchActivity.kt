@@ -47,7 +47,7 @@ class PlaceSearchActivity : AppCompatActivity() {
         //groupIdx 꺼내기
         val intent = intent
         val groupIdx = intent.getIntExtra("groupIdx", 1)
-        val categoryIdx = intent.getIntExtra("categoryIdx", Place.Type.ALL.position)
+        val categoryIdx = intent.getIntExtra(Place.Type.toString(), Place.Type.ALL.position)
 
         initRcv()
 
