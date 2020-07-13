@@ -5,15 +5,16 @@ import android.view.View
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import place.pic.R
+import place.pic.data.remote.response.ResponseWaitUserList
 
 class WaitUserViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     val userName = itemView.findViewById<TextView>(R.id.tv_wait_user_title)
     val userGroup = itemView.findViewById<TextView>(R.id.tv_wait_user_group)
 
-    fun bind(customData: UserListData) {
+    fun bind(customData: ResponseWaitUserList) {
         userName.text = customData.userName
-        userGroup.text = customData.userGroup
+        userGroup.text = customData.part
         itemViewClickEvent()
     }
 

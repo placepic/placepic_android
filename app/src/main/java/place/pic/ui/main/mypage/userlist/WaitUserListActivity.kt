@@ -5,6 +5,10 @@ import android.os.Bundle
 import androidx.recyclerview.widget.DividerItemDecoration
 import kotlinx.android.synthetic.main.activity_wait_user_list.*
 import place.pic.R
+import place.pic.data.PlacepicAuthRepository
+import place.pic.data.remote.PlacePicService
+import place.pic.data.remote.response.ResponseWaitUserList
+import place.pic.ui.extands.customEnqueue
 
 class WaitUserListActivity : AppCompatActivity() {
 
@@ -19,49 +23,30 @@ class WaitUserListActivity : AppCompatActivity() {
     }
 
     private fun init(){
-        loadTestUserData() 
         rv_wait_user_list.addItemDecoration(
-            DividerItemDecoration(this,DividerItemDecoration.VERTICAL)
+        DividerItemDecoration(this,DividerItemDecoration.VERTICAL)
         )
-        setAdapter()
+        requestToWaitUserList()
     }
 
-    private fun setAdapter(){
-        waitUserListAdapter = WaitUserListAdapter(userListData,this)
+    private fun setAdapter(list: List<ResponseWaitUserList>){
+        waitUserListAdapter = WaitUserListAdapter(list,this)
         rv_wait_user_list.adapter = waitUserListAdapter
     }
 
-    private fun loadTestUserData(){
-        userListData.apply {
-            add(
-                UserListData(
-                    "조희연",
-                    "27기 부회장"
-                )
-            )
-            add(
-                UserListData(
-                    "이정연",
-                    "26기 디자인"
-                )
-            )
-            add(
-                UserListData(
-                    "윤혁",
-                    "27기 안팟장"
-                )
-            )
-            add(
-                UserListData(
-                    "배민주",
-                    "27기 디팟장"
-                )
-            )
-            add(
-                UserListData(
-                    "김한솔",
-                    "27기 기팟장"
-                )
+    /*request to Server*/
+    //TODO : groupIdx 저장하는 부분이 생기면 해당 아이디 불러오기
+    private fun requestToWaitUserList(){
+        PlacepicAuthRepository.getInstance(this).userToken?.let { token ->
+            PlacePicService.getInstance().requestWaitGroupList(
+                token = token,
+                groupIdx = 3
+            ).customEnqueue(
+                onSuccess = {response ->
+                    response.body()?.data?.let {list ->
+                        setAdapter(list)
+                    }
+                }
             )
         }
     }
