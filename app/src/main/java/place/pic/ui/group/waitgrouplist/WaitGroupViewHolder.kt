@@ -26,8 +26,8 @@ class WaitGroupViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         return itemView.context
             .getString(
                 R.string.group_count,
-                customData.UserCount,
-                customData.PostCount
+                customData.userCount,
+                customData.postCount
             )
     }
 }

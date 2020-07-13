@@ -6,8 +6,8 @@ package place.pic.data.remote.response
  */
 
 data class ResponseGroupList(
-    val PostCount: Int,
-    val UserCount: Int,
+    val postCount: Int,
+    val userCount: Int,
     val groupIdx: Int,
     val groupImage: String,
     val groupName: String,
