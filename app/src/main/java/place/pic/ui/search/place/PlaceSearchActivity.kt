@@ -13,6 +13,7 @@ import place.pic.data.entity.PlaceSearch
 import place.pic.data.remote.PlacePicService
 import place.pic.data.remote.response.BaseResponse
 import place.pic.data.remote.response.PlaceSearchResponse
+import place.pic.ui.main.place.Place
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -46,6 +47,7 @@ class PlaceSearchActivity : AppCompatActivity() {
         //groupIdx 꺼내기
         val intent = intent
         val groupIdx = intent.getIntExtra("groupIdx", 1)
+        val categoryIdx = intent.getIntExtra("categoryIdx", Place.Type.ALL.position)
 
         initRcv()
 
@@ -64,7 +66,7 @@ class PlaceSearchActivity : AppCompatActivity() {
 
                 val clickedPlaceIntent = Intent()
 
-                clickedPlaceIntent.putExtra("groupIdx", groupIdx)
+                clickedPlaceIntent.putExtra("categoryIdx", categoryIdx)
                 clickedPlaceIntent.putExtra("placeName", placeSearchResult[position].placeName)
                 clickedPlaceIntent.putExtra("placeAddress", placeSearchResult[position].placeAddress)
                 clickedPlaceIntent.putExtra("placeRoadAddress", placeSearchResult[position].placeRoadAddress)
