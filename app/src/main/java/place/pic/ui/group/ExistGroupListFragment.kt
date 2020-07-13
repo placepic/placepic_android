@@ -1,6 +1,8 @@
 package place.pic.ui.group
 
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,11 +10,13 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import kotlinx.android.synthetic.main.fragment_exist_group_list.*
 import place.pic.R
+import place.pic.data.PlacepicAuthRepository
 import place.pic.data.remote.response.ResponseGroupList
+import place.pic.ui.main.MainActivity
 
 class ExistGroupListFragment(
-    val groupListData:List<ResponseGroupList>
-) : Fragment(){
+    private val groupListData: List<ResponseGroupList>
+) : Fragment() {
 
     lateinit var existGroupListAdapter: ExistGroupListAdapter
 
@@ -29,8 +33,21 @@ class ExistGroupListFragment(
         setAdpater()
     }
 
-    private fun setAdpater(){
-        existGroupListAdapter = ExistGroupListAdapter(groupListData, this.context!!)
+    private fun setAdpater() {
+        existGroupListAdapter =
+            ExistGroupListAdapter(
+                groupListData,
+                this.context!!,
+                PlacepicAuthRepository.getInstance(requireContext())
+            ){
+                existDetailClickEvent()
+            }
         rv_exist_group_list.adapter = existGroupListAdapter
+    }
+
+    private fun existDetailClickEvent(){
+        Log.d("ExistDetailClick","Detail Click")
+        val gotoMain = Intent(requireActivity(),MainActivity::class.java)
+        startActivity(gotoMain)
     }
 }

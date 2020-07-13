@@ -11,29 +11,29 @@ class PlacepicAuthRepository private constructor(context: Context) {
     private var editor = sharedPreferences.edit()
 
     val userToken : String?
-        get() = sharedPreferences.getString(PLACEPIC_AUTH,"")
+        get() = sharedPreferences.getString(PLACEPIC_AUTH+"token","")
 
    val groupId : Int?
-        get() = sharedPreferences.getInt(PLACEPIC_AUTH,0)
+        get() = sharedPreferences.getInt(PLACEPIC_AUTH+"groupId",0)
 
-    fun saveUserToken(userToken:String){
-        editor.putString(PLACEPIC_AUTH,userToken).apply()
+    fun saveUserToken(token:String){
+        editor.putString(PLACEPIC_AUTH+"token",token).apply()
     }
 
     fun saveGroupId(groupId: Int) {
-        editor.putInt(PLACEPIC_AUTH,groupId).apply()
+        editor.putInt(PLACEPIC_AUTH+"groupId",groupId).apply()
     }
 
     fun removeUserToken(){
-        editor.remove(PLACEPIC_AUTH)
+        editor.remove(PLACEPIC_AUTH+"token")
     }
 
     fun removeGroupId(){
-        editor.remove(PLACEPIC_AUTH)
+        editor.remove(PLACEPIC_AUTH+"groupId")
     }
 
     companion object {
-        private const val PLACEPIC_AUTH = "placepic_auth"
+        private const val PLACEPIC_AUTH = "placepic_auth_"
 
         @Volatile
         private var instance: PlacepicAuthRepository? = null

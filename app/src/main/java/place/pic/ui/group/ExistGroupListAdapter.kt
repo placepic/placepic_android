@@ -5,9 +5,15 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import place.pic.R
+import place.pic.data.PlacepicAuthRepository
 import place.pic.data.remote.response.ResponseGroupList
 
-class ExistGroupListAdapter(private var datas: List<ResponseGroupList>, private val context: Context) : RecyclerView.Adapter<ExistGroupListViewHolder>() {
+class ExistGroupListAdapter(
+    private var datas: List<ResponseGroupList>,
+    private val context: Context,
+    private val placepicAuthRepository: PlacepicAuthRepository,
+    private val detailGroupClickListener: (()->Unit)
+) : RecyclerView.Adapter<ExistGroupListViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ExistGroupListViewHolder {
         val view = LayoutInflater.from(context).inflate(R.layout.item_group_list,parent,false)
@@ -18,6 +24,8 @@ class ExistGroupListAdapter(private var datas: List<ResponseGroupList>, private 
 
     override fun onBindViewHolder(holder: ExistGroupListViewHolder, position: Int) {
         holder.bind(datas[position])
+        holder.setDetailGroupClickListener(detailGroupClickListener)
+        holder.setPlacepicAuthRepository(placepicAuthRepository)
     }
 
 }
