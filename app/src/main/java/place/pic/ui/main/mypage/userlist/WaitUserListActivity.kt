@@ -2,12 +2,11 @@ package place.pic.ui.main.mypage.userlist
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.recyclerview.widget.DividerItemDecoration
 import kotlinx.android.synthetic.main.activity_wait_user_list.*
 import place.pic.R
 import place.pic.data.PlacepicAuthRepository
 import place.pic.data.remote.PlacePicService
-import place.pic.data.remote.response.ResponseWaitUserList
+import place.pic.data.remote.response.ResponseWaitUser
 import place.pic.ui.extands.customEnqueue
 
 class WaitUserListActivity : AppCompatActivity() {
@@ -23,13 +22,10 @@ class WaitUserListActivity : AppCompatActivity() {
     }
 
     private fun init(){
-        rv_wait_user_list.addItemDecoration(
-        DividerItemDecoration(this,DividerItemDecoration.VERTICAL)
-        )
         requestToWaitUserList()
     }
 
-    private fun setAdapter(list: List<ResponseWaitUserList>){
+    private fun setAdapter(list: List<ResponseWaitUser>){
         waitUserListAdapter = WaitUserListAdapter(list,this)
         rv_wait_user_list.adapter = waitUserListAdapter
     }

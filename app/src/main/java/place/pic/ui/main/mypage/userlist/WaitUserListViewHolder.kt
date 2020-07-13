@@ -5,24 +5,23 @@ import android.view.View
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import place.pic.R
-import place.pic.data.remote.response.ResponseWaitUserList
+import place.pic.data.remote.response.ResponseWaitUser
 
 class WaitUserViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     val userName = itemView.findViewById<TextView>(R.id.tv_wait_user_title)
     val userGroup = itemView.findViewById<TextView>(R.id.tv_wait_user_group)
 
-    fun bind(customData: ResponseWaitUserList) {
+    fun bind(customData: ResponseWaitUser) {
         userName.text = customData.userName
         userGroup.text = customData.part
-        itemViewClickEvent()
+        itemViewClickEvent(customData)
     }
 
-    //해당 함수 이벤트를 부른 곳에서 할당할 예정. Activity에서 돌리자.
-    private fun itemViewClickEvent(){
+    private fun itemViewClickEvent(customData: ResponseWaitUser) {
         itemView.setOnClickListener {
             val gotoUserInfoIntent = Intent(itemView.context,UserInfoActivity::class.java)
-
+            gotoUserInfoIntent.putExtra("WaitUser",customData)
             itemView.context
                 .startActivity(gotoUserInfoIntent)
         }
