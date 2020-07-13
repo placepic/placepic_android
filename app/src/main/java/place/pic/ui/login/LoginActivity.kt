@@ -93,7 +93,6 @@ class LoginActivity : AppCompatActivity(),View.OnClickListener {
                         PlacepicAuthRepository
                             .getInstance(this@LoginActivity)
                             .saveUserToken(response.body()!!.data.accessToken)
-                        showToast(response.body()!!.data.accessToken)
                         if(response.isSuccessful)
                         {
                             if(response.body()!!.success)
