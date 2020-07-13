@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.main.MyPageFragment">
 
     <!--회원가입 상단 바-->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cl_mypage"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/tv_sign_top_bar_title2"
@@ -26,8 +29,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-             />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/img_my_page_down_btn"
@@ -38,52 +40,176 @@
             app:layout_constraintStart_toEndOf="@+id/tv_sign_top_bar_title2"
             app:layout_constraintTop_toTopOf="@+id/tv_sign_top_bar_title2" />
 
-        <ImageView
-            android:id="@+id/img_my_page_people"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/group_ic"
-            android:layout_marginRight="18dp"
-            app:layout_constraintBottom_toBottomOf="@+id/tv_sign_top_bar_title2"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/tv_sign_top_bar_title2" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cl_mypage_profile"
-        android:layout_gravity="center_vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="140dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cl_mypage">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/img_profile"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
             android:src="@mipmap/ic_launcher"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.526"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/tv_profile_kind"
+            app:layout_constraintStart_toStartOf="@+id/tv_profile_name"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textView24"
+            android:id="@+id/tv_profile_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="TextView"
-            app:layout_constraintTop_toBottomOf="@+id/img_profile"
-            tools:layout_editor_absoluteX="152dp" />
+            android:layout_marginTop="8dp"
+            android:text="이정연"
+            android:textColor="@color/black36"
+            android:textSize="16dp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@+id/tv_profile_kind"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/img_profile" />
 
         <TextView
-            android:id="@+id/textView25"
+            android:id="@+id/tv_profile_kind"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:text="TextView"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/textView24"
-            app:layout_constraintTop_toTopOf="@+id/textView24"
-            app:layout_constraintVertical_bias="0.0" />
+            android:backgroundTint="@color/grayF1F4F5"
+            android:text="관리자"
+            android:textColor="@color/gray838788"
+            android:textSize="12dp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_profile_name"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/tv_profile_name"
+            app:layout_constraintTop_toTopOf="@+id/tv_profile_name" />
+
+        <TextView
+            android:id="@+id/tv_profile_intro"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="SOPT 28기 회장"
+            android:textColor="@color/grayADB6BD"
+            android:textSize="12dp"
+            app:layout_constraintEnd_toEndOf="@+id/tv_profile_kind"
+            app:layout_constraintStart_toStartOf="@+id/tv_profile_name"
+            app:layout_constraintTop_toBottomOf="@+id/tv_profile_name" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-</FrameLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout6"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/border_round_rectangle_gray_8dp"
+        android:padding="20dp"
+        app:layout_constraintEnd_toStartOf="@+id/constraintLayout7"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cl_mypage_profile">
+
+        <TextView
+            android:id="@+id/tv_im_write"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="내가 쓴 글"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_count_im_write" />
+
+        <TextView
+            android:id="@+id/tv_count_im_write"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="12"
+            android:textColor="@color/pinkF6"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/tv_im_write"
+            app:layout_constraintHorizontal_bias="0.513"
+            app:layout_constraintStart_toStartOf="@+id/tv_im_write"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout7"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
+        android:layout_marginEnd="10dp"
+        android:background="@drawable/border_round_rectangle_gray_8dp"
+        android:padding="20dp"
+        app:layout_constraintBottom_toBottomOf="@+id/constraintLayout6"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/constraintLayout6"
+        app:layout_constraintTop_toTopOf="@+id/constraintLayout6">
+
+        <TextView
+            android:id="@+id/tv_i_like"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="내가 좋아요한 글"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tb_count_i_like" />
+
+        <TextView
+            android:id="@+id/tb_count_i_like"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="12"
+            android:textColor="@color/pinkF6"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/tv_i_like"
+            app:layout_constraintStart_toStartOf="@+id/tv_i_like"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_user_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/border_round_rectangle_gray_8dp"
+        android:padding="20dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="@+id/constraintLayout7"
+        app:layout_constraintStart_toStartOf="@+id/constraintLayout6"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout6">
+
+        <TextView
+            android:id="@+id/tv_ok_user"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="승인 대기중인 유저 보기"
+            android:textColor="@color/gray4F"
+            android:textSize="15dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/next_arrow_ic"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

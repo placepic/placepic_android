@@ -16,6 +16,10 @@ import place.pic.ui.signup.SignupSecondActivity
 
 
 class WriteFragment : BottomSheetDialogFragment(){
+
+    override fun getTheme(): Int {
+        return R.style.Widget_AppTheme_BottomSheet
+    }
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
@@ -48,7 +52,14 @@ class WriteFragment : BottomSheetDialogFragment(){
             dismiss()
         }
         return v
+
     }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        dialog?.window?.attributes?.windowAnimations=R.style.DialogAnimation
+    }
+
     interface BottomSheetListener{
         fun onOptionClick(text: String)
     }
