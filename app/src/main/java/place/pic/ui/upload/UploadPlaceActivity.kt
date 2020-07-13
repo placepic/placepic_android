@@ -12,11 +12,13 @@ import androidx.lifecycle.Observer
 import place.pic.R
 import place.pic.data.entity.KeywordTag
 import place.pic.data.entity.Subway
+import place.pic.data.entity.UsefulTag
 import place.pic.databinding.ActivityUploadPlaceBinding
 import place.pic.ui.main.place.PlacesFragment.Companion.SUBWAYS_KEY
 import place.pic.ui.search.subway.SubwaySearchActivity
 import place.pic.ui.tag.ChipFactory
 import place.pic.ui.tag.KeywordTagActivity
+import place.pic.ui.tag.UsefulTagActivity
 import place.pic.ui.upload.adapter.ImagesToUploadAdapter
 import place.pic.ui.upload.adapter.SubwaysAdapter
 
@@ -25,6 +27,7 @@ class UploadPlaceActivity : AppCompatActivity() {
     private val uploadPlacesViewModel = UploadPlaceViewModel()
     private lateinit var binding: ActivityUploadPlaceBinding
     private lateinit var keywordChips: KeywordChips
+    private lateinit var featureChips: FeatureChips
     private lateinit var imagesAdapter: ImagesToUploadAdapter
     private lateinit var subwaysAdapter: SubwaysAdapter
 
@@ -33,12 +36,14 @@ class UploadPlaceActivity : AppCompatActivity() {
 
         binding = ActivityUploadPlaceBinding.inflate(layoutInflater)
         keywordChips = KeywordChips(binding.chipGroupKeywords)
+        featureChips = FeatureChips(binding.chipGroupFeatures)
         initView()
         setContentView(binding.root)
         subscribeToastMessages()
         subscribeImages()
         subscribeSubways()
         subscribeKeywords()
+        subscribeFeatures()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -53,6 +58,9 @@ class UploadPlaceActivity : AppCompatActivity() {
             }
             if (requestCode == KeywordTagActivity.REQUEST_CODE) {
                 uploadPlacesViewModel.handleKeywordsIntent(data)
+            }
+            if (requestCode == UsefulTagActivity.REQUEST_CODE) {
+                uploadPlacesViewModel.handleFeaturesIntent(data)
             }
         }
     }
@@ -92,6 +100,8 @@ class UploadPlaceActivity : AppCompatActivity() {
         binding.btnModifySubways.setOnClickListener { deploySelectSubwaysActivity() }
         binding.btnSelectKeywords.setOnClickListener { deploySelectKeywordsActivity() }
         binding.btnModifyKeywords.setOnClickListener { deploySelectKeywordsActivity() }
+        binding.btnSelectFeatures.setOnClickListener { deploySelectFeaturesActivity() }
+        binding.btnModifyFeatures.setOnClickListener { deploySelectFeaturesActivity() }
     }
 
     private fun subscribeToastMessages() {
@@ -115,6 +125,12 @@ class UploadPlaceActivity : AppCompatActivity() {
     private fun subscribeKeywords() {
         uploadPlacesViewModel.keywords.observe(this, Observer {
             keywordChips.submitKeywords(it)
+        })
+    }
+
+    private fun subscribeFeatures() {
+        uploadPlacesViewModel.features.observe(this, Observer {
+            featureChips.submitFeatures(it)
         })
     }
 
@@ -158,6 +174,13 @@ class UploadPlaceActivity : AppCompatActivity() {
         val alreadySelectedKeywords = uploadPlacesViewModel.keywords.value ?: emptyList()
         intent.putExtra("checkedChip", ArrayList<KeywordTag>(alreadySelectedKeywords))
         startActivityForResult(intent, KeywordTagActivity.REQUEST_CODE)
+    }
+
+    private fun deploySelectFeaturesActivity() {
+        val intent = Intent(this, UsefulTagActivity::class.java)
+        val alreadySelectedFeatures = uploadPlacesViewModel.features.value ?: emptyList()
+        intent.putExtra("checkedChipIntent", ArrayList<UsefulTag>(alreadySelectedFeatures))
+        startActivityForResult(intent, UsefulTagActivity.REQUEST_CODE)
     }
 
     companion object {

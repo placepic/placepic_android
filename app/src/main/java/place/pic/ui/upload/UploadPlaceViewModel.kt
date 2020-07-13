@@ -2,12 +2,14 @@ package place.pic.ui.upload
 
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import androidx.annotation.StringRes
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import place.pic.R
 import place.pic.data.entity.KeywordTag
 import place.pic.data.entity.Subway
+import place.pic.data.entity.UsefulTag
 import place.pic.ui.main.place.PlacesFragment
 
 /**
@@ -31,6 +33,10 @@ class UploadPlaceViewModel {
     val keywords: LiveData<List<KeywordTag>>
         get() = _keywords
 
+    private val _features = MutableLiveData<List<UsefulTag>>()
+    val features: LiveData<List<UsefulTag>>
+        get() = _features
+
     private val _toastEvent = MutableLiveData<@StringRes Int>()
     val toastEvent: LiveData<Int>
         get() = _toastEvent
@@ -39,6 +45,7 @@ class UploadPlaceViewModel {
         _imageUris.value = emptyList()
         _subways.value = emptyList()
         _keywords.value = emptyList()
+        _features.value = emptyList()
     }
 
     fun uploadPlace(context: Context) {
@@ -55,6 +62,12 @@ class UploadPlaceViewModel {
         if (intent == null) return
         val keywords = intent.getSerializableExtra("checkedChip") ?: return
         _keywords.value = keywords as List<KeywordTag>
+    }
+
+    fun handleFeaturesIntent(intent: Intent?) {
+        if (intent == null) return
+        val features = intent.getSerializableExtra("checkedChip") ?: return
+        _features.value = features as List<UsefulTag>
     }
 
     fun deleteImageUri(imageUri: ImageUri) {
