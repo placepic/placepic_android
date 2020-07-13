@@ -84,7 +84,6 @@ class PlaceSearchActivity : AppCompatActivity() {
         placeSearchAdapter = PlaceSearchAdapter()
         //placeSearchAdapter = PlaceSearchAdapter(view.context)
         //->context를 굳이 전달할 필요가 없으니까 view도 필요없어
-
         recyclerview_place_search.adapter = placeSearchAdapter
         //recyclerView의 어댑터를 instaAdapter로 지정
     }
@@ -127,7 +126,7 @@ class PlaceSearchActivity : AppCompatActivity() {
                             placeSearchResult.clear()
                             for (i in response.body()!!.data.result.indices) {
                                 var address: String = response.body()!!.data.result[i].placeRoadAddress
-                                Log.d("print print", address)
+
                                 if (address.isEmpty()) { //도로명 주소가 없으면 (""이면)
                                     address = response.body()!!.data.result[i].placeAddress
                                 }

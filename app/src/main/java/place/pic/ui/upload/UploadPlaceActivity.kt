@@ -23,7 +23,6 @@ import place.pic.ui.tag.UsefulTagActivity
 import place.pic.ui.upload.adapter.ImagesToUploadAdapter
 import place.pic.ui.upload.adapter.SubwaysAdapter
 
-
 class UploadPlaceActivity : AppCompatActivity() {
 
     private val uploadPlacesViewModel = UploadPlaceViewModel()

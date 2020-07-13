@@ -14,7 +14,6 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
 
-        <activity android:name=".ui.main.mypage.userlist.UserInfoActivity" />
         <activity android:name=".ui.main.mypage.userlist.WaitUserListActivity" />
         <activity android:name=".ui.search.place.PlaceSearchActivity" />
         <activity android:name=".ui.upload.UploadPlaceActivity" />
@@ -22,7 +21,9 @@
         <activity android:name=".ui.group.joingrouplist.JoinGroupActivity" />
         <activity android:name=".ui.group.waitgrouplist.WaitGroupActivity" />
         <activity android:name=".ui.login.LoginActivity" />
-        <activity android:name=".ui.login.LoginPageActivity">
+        <activity android:name=".ui.login.LoginPageActivity" />
+        <activity android:name=".ui.main.mypage.userlist.UserInfoActivity"/>
+        <activity android:name=".ui.main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -31,7 +32,6 @@
         <activity android:name=".ui.tag.UsefulTagActivity" />
         <activity android:name=".ui.search.subway.SubwaySearchActivity" />
         <activity android:name=".ui.tag.KeywordTagActivity" />
-        <activity android:name=".ui.main.MainActivity" />
         <activity android:name=".ui.group.GroupListActivity" />
         <activity android:name=".ui.signup.SignuplastActivity" />
         <activity android:name=".ui.signup.SignupSecondActivity" />

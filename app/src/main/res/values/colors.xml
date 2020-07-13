@@ -12,6 +12,7 @@
     <color name="grayE1E2E3">#E1E2E3</color>
     <color name="grayF1F4F5">#F1F4F5</color>
     <color name="grayF1">#F1F1F1</color>
+    <color name="grayF4F7F8">#F4F7F8</color>
     <color name="grayF8">#F8F8F8</color>
     <color name="grayCED5DA">#CED5DA</color>
     <color name="gray838788">#838788</color>
@@ -61,6 +62,6 @@
 
     <color name="pinkF6">#F65C6C</color>
     <color name="grayF3">#F3F3F3</color>
-    <color name="gray64">#646363</color>
+    <color name="gray63">#636363</color>
 
 </resources>

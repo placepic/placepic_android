@@ -8,7 +8,7 @@ import place.pic.R
 
 class PlaceSearchAdapter : RecyclerView.Adapter<PlaceSearchViewHolder>() {
 
-    var datas: MutableList<PlaceSearchData> = mutableListOf<PlaceSearchData>()
+    var datas: MutableList<PlaceSearchData> = mutableListOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PlaceSearchViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)

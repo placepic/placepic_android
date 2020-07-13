@@ -11,7 +11,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.fragment_my_page.*
+import kotlinx.android.synthetic.main.fragment_my_page.view.*
 import place.pic.R
+import place.pic.data.entity.Place
+import place.pic.ui.group.waitgrouplist.WaitGroupActivity
+import place.pic.ui.search.place.PlaceSearchActivity
 
 
 class MyPageFragment : Fragment() {
@@ -20,9 +24,11 @@ class MyPageFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-        return inflater.inflate(R.layout.fragment_my_page, container, false)
+        val v = inflater.inflate(R.layout.fragment_my_page, container, false)
+        v.cl_user_list.setOnClickListener {
+            val intent = Intent(context, WaitGroupActivity::class.java)
+            startActivity(intent)
+        }
+        return v
     }
-
-
 }
