@@ -13,6 +13,7 @@ import place.pic.data.PlacepicAuthRepository
 import place.pic.data.remote.PlacePicService
 import place.pic.data.remote.response.ResponseGroupList
 import place.pic.databinding.ActivityGroupListBinding
+
 import place.pic.ui.extands.customEnqueue
 import place.pic.ui.group.joingrouplist.JoinGroupActivity
 import place.pic.ui.group.waitgrouplist.WaitGroupActivity
@@ -24,7 +25,7 @@ class GroupListActivity : AppCompatActivity() {
     private var groupListData:List<ResponseGroupList>? = null
     private var groupWaitListData:List<ResponseGroupList>? = null
 
-    lateinit var binding:ActivityGroupListBinding
+    lateinit var binding: ActivityGroupListBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

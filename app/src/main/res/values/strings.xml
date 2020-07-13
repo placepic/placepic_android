@@ -30,5 +30,9 @@
     <string name="toggle_gitar">기타</string>
     <string name="subways_pick_count_three">지하철 역은 3개까지만 선택할 수 있습니다.</string>
     <string name="review_hint">친구들에게 상세한 후기를 전달해주세요.\n좋은 후기들이 모여 즐거운 플레이스픽을 만듭니다!</string>
+    <string name="review">다녀온 후기</string>
+    <string name="nearby_subway">가까운 지하철역</string>
+    <string name="place_keywords">이 장소를 잘 표현하는 키워드</string>
+    <string name="place_features">유용한 장소 정보</string>
     <string name="wait_group_count">승인 대기중인 그룹( %d )</string>
 </resources>

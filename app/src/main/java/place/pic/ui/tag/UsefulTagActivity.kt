@@ -153,4 +153,8 @@ class UsefulTagActivity : AppCompatActivity() {
         setResult(Activity.RESULT_OK, checkedChipIntent)
         finish()
     }
+
+    companion object {
+        const val REQUEST_CODE = 2004
+    }
 }

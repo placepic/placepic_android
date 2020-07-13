@@ -5,9 +5,10 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import place.pic.R
+import place.pic.data.remote.response.ResponseWaitUser
 
-class WaitUserListAdapter (
-    private val datas:MutableList<UserListData>,
+class WaitUserListAdapter(
+    private val datas: List<ResponseWaitUser>,
     private val context: Context
 ) : RecyclerView.Adapter<WaitUserViewHolder>() {
 

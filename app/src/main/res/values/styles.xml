@@ -19,6 +19,14 @@
         <item name="textEndPadding">16dp</item>
     </style>
 
+    <style name="AppTheme.SmallTagChip" parent="Widget.MaterialComponents.Chip.Choice">
+        <item name="android:textColor">@color/selector_tag_text_color</item>
+        <item name="fontFamily">@font/spoqa_han_sans_bold</item>
+        <item name="android:textSize">11dp</item>
+        <item name="textStartPadding">10dp</item>
+        <item name="textEndPadding">10dp</item>
+    </style>
+
     <style name="tabText" parent="@android:style/TextAppearance.Widget.TabWidget">
         <item name="android:textSize">16dp</item>
     </style>

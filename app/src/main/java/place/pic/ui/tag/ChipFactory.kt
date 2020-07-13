@@ -16,8 +16,12 @@ class ChipFactory {
     //factory.keyword.chip
     //newInstance()
     companion object {
-        fun newInstance(layoutInflater : LayoutInflater) : Chip {
+        fun newInstance(layoutInflater: LayoutInflater): Chip {
             return layoutInflater.inflate(R.layout.chip_tag, null, false) as Chip
+        }
+
+        fun createSmallChip(layoutInflater: LayoutInflater): Chip {
+            return layoutInflater.inflate(R.layout.chip_tag_small, null, false) as Chip
         }
     }
 

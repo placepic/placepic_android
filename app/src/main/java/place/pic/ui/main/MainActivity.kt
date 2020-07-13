@@ -36,7 +36,7 @@ class MainActivity : AppCompatActivity(),WriteFragment.BottomSheetListener {
                     transaction.replace(R.id.main_frame, fragmentA, "name")
                 }
                 R.id.action_people -> {
-                    val fragmentB = PeopleFragment()
+                    val fragmentB = UserListFragment()
                     transaction.replace(R.id.main_frame, fragmentB, "people")
                 }
                 R.id.action_scrap -> {

@@ -2,14 +2,12 @@ package place.pic.ui.group.joingrouplist
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.recyclerview.widget.DividerItemDecoration
 import kotlinx.android.synthetic.main.activity_join_group.*
 import place.pic.R
 import place.pic.data.PlacepicAuthRepository
 import place.pic.data.remote.PlacePicService
 import place.pic.data.remote.response.ResponseGroupList
 import place.pic.ui.extands.customEnqueue
-import place.pic.ui.group.ListGroupData
 
 class JoinGroupActivity : AppCompatActivity() {
 
@@ -22,9 +20,6 @@ class JoinGroupActivity : AppCompatActivity() {
     }
 
     private fun init() {
-        rv_join_group_list.addItemDecoration(
-            DividerItemDecoration(this, DividerItemDecoration.VERTICAL)
-        )
         requestToJoinGroupList()
         buttonMapping()
     }
