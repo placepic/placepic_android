@@ -42,6 +42,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
+                android:fontFamily="@font/spoqa_han_sans_bold"
                 android:text="최애장소 등록하기"
                 android:textColor="@color/black36"
                 android:textSize="18dp"
@@ -55,6 +56,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:enabled="false"
+                android:fontFamily="@font/spoqa_han_sans_bold"
                 android:paddingStart="16dp"
                 android:paddingTop="8dp"
                 android:paddingEnd="16dp"
@@ -89,7 +91,8 @@
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentTop="true"
                     android:layout_marginStart="16dp"
-                    android:layout_marginTop="24dp"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/spoqa_han_sans_bold"
                     android:gravity="top"
                     android:text="그녀의 한정식"
                     android:textColor="@color/black36"
@@ -131,9 +134,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
-                        android:layout_marginTop="4dp"
+                        android:layout_marginTop="2dp"
                         android:layout_marginEnd="8dp"
-                        android:layout_marginBottom="4dp"
+                        android:layout_marginBottom="2dp"
+                        android:fontFamily="@font/spoqa_han_sans_regular"
                         android:text="맛집"
                         android:textColor="@color/black36"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -155,11 +159,12 @@
                     app:layout_constraintTop_toBottomOf="@+id/rv_photos">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/constraintLayout4"
+                        android:id="@+id/btn_subways"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
                         android:layout_marginBottom="20dp"
+                        android:enabled="@{viewModel.subways.empty}"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -169,9 +174,10 @@
                             android:id="@+id/textView19"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="가까운 지하철역"
+                            android:fontFamily="@font/spoqa_han_sans_bold"
+                            android:text="@string/nearby_subway"
                             android:textColor="@color/black40"
-                            android:textSize="18dp"
+                            android:textSize="16dp"
                             android:textStyle="bold"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
@@ -198,17 +204,23 @@
                         android:id="@+id/btn_modify_subways"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/spoqa_han_sans_bold"
+                        android:paddingLeft="8dp"
+                        android:paddingBottom="4dp"
                         android:text="@string/modify"
                         android:textSize="15dp"
                         android:textStyle="bold"
                         android:visibility="@{viewModel.subways.empty ? View.GONE : View.VISIBLE}"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="@+id/constraintLayout4" />
+                        app:layout_constraintTop_toTopOf="@+id/btn_subways" />
 
                     <ImageView
                         android:id="@+id/btn_select_subways"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:paddingLeft="8dp"
+                        android:paddingTop="8dp"
+                        android:paddingBottom="8dp"
                         android:visibility="@{viewModel.subways.empty ? View.VISIBLE : View.GONE}"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -234,12 +246,13 @@
                     app:layout_constraintTop_toBottomOf="@+id/line">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/constraintLayout5"
+                        android:id="@+id/btn_keywords"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
                         android:layout_marginEnd="24dp"
                         android:layout_marginBottom="20dp"
+                        android:enabled="@{viewModel.keywords.empty}"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@+id/btn_select_keywords"
                         app:layout_constraintStart_toStartOf="parent"
@@ -249,9 +262,10 @@
                             android:id="@+id/textView21"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="이 장소를 잘 표현하는 키워드"
+                            android:fontFamily="@font/spoqa_han_sans_bold"
+                            android:text="@string/place_keywords"
                             android:textColor="@color/black40"
-                            android:textSize="18dp"
+                            android:textSize="16dp"
                             android:textStyle="bold"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
@@ -275,17 +289,23 @@
                         android:id="@+id/btn_modify_keywords"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/spoqa_han_sans_bold"
+                        android:paddingLeft="8dp"
+                        android:paddingBottom="4dp"
                         android:text="@string/modify"
                         android:textSize="15dp"
                         android:textStyle="bold"
                         android:visibility="@{viewModel.keywords.empty ? View.GONE : View.VISIBLE}"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="@+id/constraintLayout5" />
+                        app:layout_constraintTop_toTopOf="@+id/btn_keywords" />
 
                     <ImageView
                         android:id="@+id/btn_select_keywords"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:paddingLeft="8dp"
+                        android:paddingTop="8dp"
+                        android:paddingBottom="8dp"
                         android:visibility="@{viewModel.keywords.empty ? View.VISIBLE : View.GONE}"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -311,12 +331,13 @@
                     app:layout_constraintTop_toBottomOf="@+id/line2">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/constraintLayout51"
+                        android:id="@+id/btn_features"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
                         android:layout_marginEnd="24dp"
                         android:layout_marginBottom="20dp"
+                        android:enabled="@{viewModel.features.empty}"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@+id/btn_select_features"
                         app:layout_constraintStart_toStartOf="parent"
@@ -326,9 +347,10 @@
                             android:id="@+id/textView211"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="유용한 장소 정보"
+                            android:fontFamily="@font/spoqa_han_sans_bold"
+                            android:text="@string/place_features"
                             android:textColor="@color/black40"
-                            android:textSize="18dp"
+                            android:textSize="16dp"
                             android:textStyle="bold"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
@@ -344,32 +366,7 @@
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/textView211">
-
-                            <com.google.android.material.chip.Chip
-                                android:id="@+id/chip111"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="공부하기조은" />
-
-                            <com.google.android.material.chip.Chip
-                                android:id="@+id/chip101"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="데이트하기좋은" />
-
-                            <com.google.android.material.chip.Chip
-                                android:id="@+id/chip91"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="공간이 넓은" />
-
-                            <com.google.android.material.chip.Chip
-                                android:id="@+id/chip81"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="잇힝잇힝좋은" />
-                        </com.google.android.material.chip.ChipGroup>
+                            app:layout_constraintTop_toBottomOf="@+id/textView211" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -377,17 +374,23 @@
                         android:id="@+id/btn_modify_features"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/spoqa_han_sans_bold"
+                        android:paddingLeft="8dp"
+                        android:paddingBottom="4dp"
                         android:text="@string/modify"
                         android:textSize="15dp"
                         android:textStyle="bold"
                         android:visibility="@{viewModel.features.empty ? View.GONE : View.VISIBLE}"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="@+id/constraintLayout51" />
+                        app:layout_constraintTop_toTopOf="@+id/btn_features" />
 
                     <ImageView
                         android:id="@+id/btn_select_features"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:paddingLeft="8dp"
+                        android:paddingTop="8dp"
+                        android:paddingBottom="8dp"
                         android:visibility="@{viewModel.features.empty ? View.VISIBLE : View.GONE}"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -409,9 +412,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
-                    android:text="다녀온 후기"
+                    android:fontFamily="@font/spoqa_han_sans_bold"
+                    android:text="@string/review"
                     android:textColor="@color/black40"
-                    android:textSize="18dp"
+                    android:textSize="16dp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="@+id/zone_features"
                     app:layout_constraintTop_toBottomOf="@+id/line3" />
@@ -421,9 +425,10 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    android:layout_marginBottom="76dp"
+                    android:layout_marginBottom="16dp"
                     android:background="@drawable/selector_edittext_in_login_view"
                     android:ems="10"
+                    android:fontFamily="@font/spoqa_han_sans_regular"
                     android:gravity="start|top"
                     android:hint="@string/review_hint"
                     android:inputType="textMultiLine"
@@ -433,7 +438,7 @@
                     android:paddingEnd="16dp"
                     android:paddingBottom="12dp"
                     android:text="@={viewModel.placeReview}"
-                    android:textSize="16dp"
+                    android:textSize="14dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="@+id/zone_features"
                     app:layout_constraintStart_toStartOf="@+id/zone_features"

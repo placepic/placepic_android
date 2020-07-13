@@ -7,7 +7,9 @@ import androidx.annotation.StringRes
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import place.pic.R
+import place.pic.data.PlacepicAuthRepository
 import place.pic.data.entity.KeywordTag
+import place.pic.data.entity.Place
 import place.pic.data.entity.Subway
 import place.pic.data.entity.UsefulTag
 import place.pic.ui.main.place.PlacesFragment
@@ -17,9 +19,16 @@ import place.pic.ui.main.place.PlacesFragment
  * on 7월 07, 2020
  */
 
-class UploadPlaceViewModel {
-
+class UploadPlaceViewModel(
+    private val placePicAuthRepository: PlacepicAuthRepository
+) {
     val placeReview = MutableLiveData<String>()
+    private var katechXPosition: Int? = null
+    private var katechYPosition: Int? = null
+    private lateinit var placeTitle: String
+    private lateinit var placeOldAddress: String
+    private lateinit var placeRoadAddress: String
+    private lateinit var placeType: Place.Type
 
     private val _imageUris = MutableLiveData<List<ImageUri>>()
     val imageUris: LiveData<List<ImageUri>>
@@ -50,6 +59,17 @@ class UploadPlaceViewModel {
 
     fun uploadPlace(context: Context) {
 
+    }
+
+    // 생명주기로 GC한테 컬렉팅됬을때는 생각하지말자 시간없으니... ^^^^^^;;;;;;
+    fun handlePreviousActivityRequestParams(intent: Intent?) {
+        if (intent == null) throw IllegalArgumentException("previous request params must be sended")
+        katechXPosition = intent.getIntExtra("placeMapX", -1)
+        katechYPosition = intent.getIntExtra("placeMapY", -1)
+        placeTitle = intent.getStringExtra("placeName") ?: ""
+        placeOldAddress = intent.getStringExtra("placeAddress") ?: ""
+        placeRoadAddress = intent.getStringExtra("placeRoadAddress") ?: ""
+        placeType = Place.Type.findByPosition(intent.getIntExtra("categoryIdx", -1))
     }
 
     fun handleSubwaysIntent(intent: Intent?) {

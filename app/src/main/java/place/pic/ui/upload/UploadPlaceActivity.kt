@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.lifecycle.Observer
 import place.pic.R
+import place.pic.data.PlacepicAuthRepository
 import place.pic.data.entity.KeywordTag
 import place.pic.data.entity.Subway
 import place.pic.data.entity.UsefulTag
@@ -24,7 +25,8 @@ import place.pic.ui.upload.adapter.SubwaysAdapter
 
 class UploadPlaceActivity : AppCompatActivity() {
 
-    private val uploadPlacesViewModel = UploadPlaceViewModel()
+    private val uploadPlacesViewModel =
+    UploadPlaceViewModel(PlacepicAuthRepository.getInstance(this))
     private lateinit var binding: ActivityUploadPlaceBinding
     private lateinit var keywordChips: KeywordChips
     private lateinit var featureChips: FeatureChips
@@ -98,10 +100,13 @@ class UploadPlaceActivity : AppCompatActivity() {
         binding.btnBack.setOnClickListener { finish() }
         binding.btnSelectSubways.setOnClickListener { deploySelectSubwaysActivity() }
         binding.btnModifySubways.setOnClickListener { deploySelectSubwaysActivity() }
+        binding.btnSubways.setOnClickListener { deploySelectSubwaysActivity() }
         binding.btnSelectKeywords.setOnClickListener { deploySelectKeywordsActivity() }
         binding.btnModifyKeywords.setOnClickListener { deploySelectKeywordsActivity() }
+        binding.btnKeywords.setOnClickListener { deploySelectKeywordsActivity() }
         binding.btnSelectFeatures.setOnClickListener { deploySelectFeaturesActivity() }
         binding.btnModifyFeatures.setOnClickListener { deploySelectFeaturesActivity() }
+        binding.btnFeatures.setOnClickListener { deploySelectFeaturesActivity() }
     }
 
     private fun subscribeToastMessages() {
