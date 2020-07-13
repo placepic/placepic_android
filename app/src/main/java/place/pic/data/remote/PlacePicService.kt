@@ -118,6 +118,13 @@ interface PlacePicService {
     ): Call<BaseResponse<Unit>>
 
     //그룹 대기 유저 거절.
+    @DELETE("/auth/groups/admin/delete/{groupIdx}/{userIdx}")
+    fun requestRejectUser(
+        @Header("Content-Type") contentType: String = "application/json",
+        @Header("token") token: String,
+        @Path("groupIdx") groupIdx: Int,
+        @Path("userIdx") userIdx:Int
+    ): Call<BaseResponse<Unit>>
 
     companion object {
         const val BASE_URL = "http://3.34.209.95:3000"
