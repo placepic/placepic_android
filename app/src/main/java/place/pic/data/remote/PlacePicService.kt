@@ -51,7 +51,7 @@ interface PlacePicService {
     fun requestRegisterSecond(@Body body: RequestRegisterSecond): Call<BaseResponse<Unit>>
 
     @POST("/auth/signin")
-    fun requestLogin(@Body body: RequestLogin): Call<BaseResponse<RequestLogin>>
+    fun requestLogin(@Body body: RequestLogin): Call<BaseResponse<LoginResponse>>
 
     @GET("/category/all")
     fun getPlaceTypeDetails(
