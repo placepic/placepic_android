@@ -1,6 +1,7 @@
 package place.pic.ui.main.place
 
 import androidx.viewpager.widget.ViewPager
+import place.pic.data.entity.Place
 
 /**
  * Created By Malibin
@@ -20,7 +21,8 @@ class PlacesPageChangeListener(
     override fun onPageSelected(position: Int) {
         placesViewModel.clearFiltering()
         val currentPlaceType = Place.Type.findByPosition(position)
-        placesViewModel.setCurrentPlaceType(currentPlaceType)
+        placesViewModel.currentPlaceType.value = currentPlaceType
+        placesViewModel.currentPagerPosition = position
     }
 
 }

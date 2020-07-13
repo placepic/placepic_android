@@ -91,7 +91,7 @@
             app:layout_constraintStart_toStartOf="@+id/et_login_email"
             android:text="알맞은 이메일 형식이 아닙니다."
             android:textSize="11dp"
-            android:textColor="@color/colorPrimary"/>
+            android:textColor="@color/redDE4446"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -158,7 +158,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="로그인에 실패하였습니다. 이메일과 비밀번호를 다시 확인해주세요."
-        android:textColor="@color/colorPrimary"
+        android:textColor="@color/redDE4446"
         android:textSize="11dp"
         android:visibility="invisible"
         app:layout_constraintStart_toStartOf="@+id/btn_login"

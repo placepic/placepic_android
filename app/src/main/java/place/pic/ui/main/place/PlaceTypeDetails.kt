@@ -1,5 +1,9 @@
 package place.pic.ui.main.place
 
+import place.pic.data.entity.KeywordTag
+import place.pic.data.entity.Place
+import place.pic.data.entity.UsefulTag
+
 /**.
  *
  * Created By Malibin
@@ -9,6 +13,6 @@ package place.pic.ui.main.place
 data class PlaceTypeDetails(
     val id: Int,
     val placeType: Place.Type,
-    val placeKeywords: List<String>,
-    val placeFeatures: List<String>
+    val placeKeywords: List<KeywordTag>,
+    val placeFeatures: List<UsefulTag>
 )

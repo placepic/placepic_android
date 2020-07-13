@@ -5,19 +5,6 @@ import android.content.Context
 
 
 class PlacepicAuthRepository private constructor(context: Context) {
-    companion object {
-        private const val PLACEPIC_AUTH = "placepic_auth"
-
-        @Volatile
-        private var instance: PlacepicAuthRepository? = null
-
-        @JvmStatic
-        fun getInstance(context:Context) = instance ?: synchronized(this) {
-            instance ?: PlacepicAuthRepository(context).apply {
-                instance = this
-            }
-        }
-    }
 
     private val sharedPreferences = context.getSharedPreferences(context.packageName,Activity.MODE_PRIVATE)
 
@@ -43,6 +30,20 @@ class PlacepicAuthRepository private constructor(context: Context) {
 
     fun removeGroupId(){
         editor.remove(PLACEPIC_AUTH)
+    }
+
+    companion object {
+        private const val PLACEPIC_AUTH = "placepic_auth"
+
+        @Volatile
+        private var instance: PlacepicAuthRepository? = null
+
+        @JvmStatic
+        fun getInstance(context:Context) = instance ?: synchronized(this) {
+            instance ?: PlacepicAuthRepository(context).apply {
+                instance = this
+            }
+        }
     }
     
 }

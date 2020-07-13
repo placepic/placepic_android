@@ -23,7 +23,7 @@
         android:textColor="@color/black36"
         android:textSize="16dp"
         android:textStyle="bold"
-        android:layout_marginStart="6dp"
+        android:layout_marginStart="12dp"
         android:layout_marginTop="5dp"
         app:layout_constraintStart_toEndOf="@id/img_group_profile"
         app:layout_constraintTop_toTopOf="@+id/img_group_profile"

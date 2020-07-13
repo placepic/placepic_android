@@ -2,10 +2,12 @@ package place.pic.ui
 
 import android.text.TextUtils
 import android.view.View
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.ColorRes
 import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
+import com.bumptech.glide.Glide
 import place.pic.data.entity.Subway
 import java.text.SimpleDateFormat
 import java.util.*
@@ -41,4 +43,12 @@ fun bindingBackgroundTint(view: View, @ColorRes color: Int?) {
         ContextCompat.getColor(view.context, color),
         android.graphics.PorterDuff.Mode.SRC_IN
     )
+}
+
+@BindingAdapter("imageUrl")
+fun bindingImageUrl(imageView: ImageView, imageUrl: String?) {
+    if (imageUrl == null) return
+    Glide.with(imageView)
+        .load(imageUrl)
+        .into(imageView)
 }

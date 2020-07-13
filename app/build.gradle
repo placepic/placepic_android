@@ -63,13 +63,16 @@ dependencies {
     kapt "com.github.bumptech.glide:compiler:4.10.0"
     //동그란 이미지 커스텀 뷰 라이브러리 : https://github.com/hdodenhof/CircleImageView
     implementation 'de.hdodenhof:circleimageview:3.1.0'
+    implementation 'com.android.support:design:29.0.0'
 
     //retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.7.1'
     implementation 'com.squareup.retrofit2:converter-gson:2.7.1'
     implementation 'com.squareup.retrofit2:retrofit-mock:2.6.2'
     implementation 'com.squareup.okhttp3:logging-interceptor:4.2.1'
-
+    implementation 'com.google.android.material:material:1.0.0'
     // Gson
     implementation 'com.google.code.gson:gson:2.8.6'
+
+    implementation 'com.google.android.material:material:1.1.0-alpha04'
 }
