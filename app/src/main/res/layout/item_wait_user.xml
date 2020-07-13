@@ -3,15 +3,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="16dp"
+    android:paddingHorizontal="14dp"
+    android:paddingTop="12dp"
     xmlns:tools="http://schemas.android.com/tools">
+
+    <!--16 12 2-->
 
     <TextView
         android:id="@+id/tv_wait_user_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/black40"
-        android:textSize="14dp"
+        android:textSize="16dp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -21,11 +24,11 @@
         android:id="@+id/tv_wait_user_group"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
         android:textColor="@color/grayADB6BD"
-        android:textSize="10dp"
+        android:textSize="12dp"
         app:layout_constraintStart_toStartOf="@+id/tv_wait_user_title"
         app:layout_constraintTop_toBottomOf="@+id/tv_wait_user_title"
-        app:layout_constraintBottom_toBottomOf="parent"
         tools:text="group name" />
 
     <ImageView
@@ -36,5 +39,14 @@
         app:layout_constraintBottom_toBottomOf="@+id/tv_wait_user_group"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/tv_wait_user_title" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/grayEEEFF0"
+        android:layout_marginTop="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_wait_user_group"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

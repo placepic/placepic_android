@@ -23,10 +23,10 @@ import place.pic.ui.tag.UsefulTagActivity
 import place.pic.ui.upload.adapter.ImagesToUploadAdapter
 import place.pic.ui.upload.adapter.SubwaysAdapter
 
+
 class UploadPlaceActivity : AppCompatActivity() {
 
-    private val uploadPlacesViewModel =
-    UploadPlaceViewModel(PlacepicAuthRepository.getInstance(this))
+    private val uploadPlacesViewModel = UploadPlaceViewModel()
     private lateinit var binding: ActivityUploadPlaceBinding
     private lateinit var keywordChips: KeywordChips
     private lateinit var featureChips: FeatureChips

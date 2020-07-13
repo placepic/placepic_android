@@ -1,14 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.main.WriteFragment">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="안녕 나는 글작성 페이지야" />
+        android:layout_height="wrap_content"
+        android:background="@drawable/top_round_rectangle_white_12dp">
 
-</FrameLayout>
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="20dp"
+            android:text="어떤 장소인가요?"
+            android:textColor="@android:color/black"
+            android:textSize="15dp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="40dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_title">
+
+            <ImageView
+                android:id="@+id/iv_restaurant"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:src="@drawable/ic_drink"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/iv_drink"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="22dp"
+                android:src="@drawable/ic_restaurant"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_restaurant"
+                app:layout_constraintStart_toEndOf="@+id/iv_restaurant"
+                app:layout_constraintTop_toTopOf="@+id/iv_restaurant" />
+
+            <ImageView
+                android:id="@+id/iv_cafe"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="22dp"
+                android:src="@drawable/ic_cafe"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_drink"
+                app:layout_constraintStart_toEndOf="@+id/iv_drink"
+                app:layout_constraintTop_toTopOf="@+id/iv_drink" />
+
+            <ImageView
+                android:id="@+id/iv_study"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="22dp"
+                android:src="@drawable/ic_study"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_cafe"
+                app:layout_constraintStart_toEndOf="@+id/iv_cafe"
+                app:layout_constraintTop_toTopOf="@+id/iv_cafe" />
+
+            <ImageView
+                android:id="@+id/iv_etc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="22dp"
+                android:src="@drawable/ic_etc"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_study"
+                app:layout_constraintStart_toEndOf="@+id/iv_study"
+                app:layout_constraintTop_toTopOf="@+id/iv_study" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

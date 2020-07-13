@@ -1,9 +1,6 @@
 package place.pic.ui.login
 
-import android.app.Activity
 import android.content.Intent
-import android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP
-import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -11,16 +8,13 @@ import kotlinx.android.synthetic.main.activity_login.*
 import place.pic.R
 import place.pic.ui.extands.customTextChangedListener
 import android.util.Patterns
-import androidx.core.content.ContextCompat
-import kotlinx.android.synthetic.main.activity_signup.*
+import place.pic.data.PlacepicAuthRepository
 import place.pic.data.remote.PlacePicService
-import place.pic.data.remote.RequestLogin
-import place.pic.data.remote.RequestRegister
+import place.pic.data.remote.request.RequestLogin
 import place.pic.data.remote.response.BaseResponse
+import place.pic.data.remote.response.LoginResponse
+import place.pic.showToast
 import place.pic.ui.group.GroupListActivity
-import place.pic.ui.main.MainActivity
-import place.pic.ui.signup.SignupActivity
-import place.pic.ui.signup.SignupSecondActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -84,16 +78,22 @@ class LoginActivity : AppCompatActivity(),View.OnClickListener {
                 startActivity(gotoLoginPageIntent)
             }
             R.id.btn_login -> {
-                PlacePicService.getInstance().requestLogin(RequestLogin(
-                    et_login_email.text.toString(),
-                    et_login_password.text.toString())
-                ).enqueue(object: Callback<BaseResponse<RequestLogin>> {
-                    override fun onFailure(call: Call<BaseResponse<RequestLogin>>, t: Throwable) {
+                PlacePicService.getInstance().requestLogin(
+                    RequestLogin(
+                        et_login_email.text.toString(),
+                        et_login_password.text.toString()
+                    )
+                ).enqueue(object: Callback<BaseResponse<LoginResponse>> {
+                    override fun onFailure(call: Call<BaseResponse<LoginResponse>>, t: Throwable) {
                         //통신실패
                     }
                     override fun onResponse(
-                        call: Call<BaseResponse<RequestLogin>>,
-                        response: Response<BaseResponse<RequestLogin>>) {
+                        call: Call<BaseResponse<LoginResponse>>,
+                        response: Response<BaseResponse<LoginResponse>>) {
+                        PlacepicAuthRepository
+                            .getInstance(this@LoginActivity)
+                            .saveUserToken(response.body()!!.data.accessToken)
+                        showToast(response.body()!!.data.accessToken)
                         if(response.isSuccessful)
                         {
                             if(response.body()!!.success)

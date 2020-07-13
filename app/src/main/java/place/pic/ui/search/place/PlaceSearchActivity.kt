@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import androidx.appcompat.app.AppCompatActivity
+import kotlinx.android.synthetic.main.activity_keyword_tag.*
 import kotlinx.android.synthetic.main.activity_place_search.*
 import place.pic.R
 import place.pic.data.entity.PlaceSearch
@@ -31,7 +32,6 @@ class PlaceSearchActivity : AppCompatActivity() {
 
     private val token =
         "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZHgiOjMsIm5hbWUiOiLstZzsmIHtm4giLCJpYXQiOjE1OTM2OTkxODMsImV4cCI6MTU5NjI5MTE4MywiaXNzIjoicGxhY2VwaWMifQ.rmFbeBfviyEzbMlMM4b3bMMiRcNDDbiX8bQtwL_cuN0"
-    private val contentType: String = "application/json"
 
     private val placePicService = PlacePicService
 
@@ -46,10 +46,11 @@ class PlaceSearchActivity : AppCompatActivity() {
         //groupIdx 꺼내기
         val intent = intent
         val groupIdx = intent.getIntExtra("groupIdx", 1)
+        val categoryIdx = intent.getIntExtra("categoryIdx", 1)
 
         initRcv()
 
-        img_back.setOnClickListener{
+        img_back.setOnClickListener {
             onBackPressed()
         }
 
@@ -64,7 +65,7 @@ class PlaceSearchActivity : AppCompatActivity() {
 
                 val clickedPlaceIntent = Intent()
 
-                clickedPlaceIntent.putExtra("groupIdx", groupIdx)
+                clickedPlaceIntent.putExtra("categoryIdx", categoryIdx)
                 clickedPlaceIntent.putExtra("placeName", placeSearchResult[position].placeName)
                 clickedPlaceIntent.putExtra("placeAddress", placeSearchResult[position].placeAddress)
                 clickedPlaceIntent.putExtra("placeRoadAddress", placeSearchResult[position].placeRoadAddress)
@@ -102,42 +103,44 @@ class PlaceSearchActivity : AppCompatActivity() {
     private fun getPlaceSearchResult(groupIdx: Int) {
         placePicService.getInstance()
             .requestPlaceSearch(
-                contentType,
-                token,
-                groupIdx,
-                et_place_search_input.text.toString()
-            ).enqueue(object : Callback<BaseResponse<List<PlaceSearchResponse>>> {
+                token = token,
+                groupIdx = groupIdx,
+                query = et_place_search_input.text.toString()
+            ).enqueue(object : Callback<BaseResponse<PlaceSearchResponse>> {
                 override fun onFailure(
-                    call: Call<BaseResponse<List<PlaceSearchResponse>>>,
+                    call: Call<BaseResponse<PlaceSearchResponse>>,
                     t: Throwable
                 ) { //통신 실패
                     Log.d("fail", t.message)
                 }
 
                 override fun onResponse(
-                    call: Call<BaseResponse<List<PlaceSearchResponse>>>,
-                    response: Response<BaseResponse<List<PlaceSearchResponse>>>
+                    call: Call<BaseResponse<PlaceSearchResponse>>,
+                    response: Response<BaseResponse<PlaceSearchResponse>>
                 ) {
                     //통신 성공
                     if (response.isSuccessful) { //status
+                        Log.d("typeCheck","통신성공")
                         if (response.body()!!.success) {
+                            Log.d("typeCheck", "${response.body()!!.data.javaClass}")
                             placeDatas.clear()
                             placeSearchResult.clear()
-                            for (i in response.body()!!.data.indices) {
-
-                                var address: String = response.body()!!.data[i].placeRoadAddress
+                            for (i in response.body()!!.data.result.indices) {
+                                var address: String = response.body()!!.data.result[i].placeRoadAddress
+                                Log.d("print print", address)
                                 if (address.isEmpty()) { //도로명 주소가 없으면 (""이면)
-                                    address = response.body()!!.data[i].placeAddress
+                                    address = response.body()!!.data.result[i].placeAddress
                                 }
 
                                 placeDatas.apply {
                                     add(
                                         PlaceSearchData(
-                                            placeName = response.body()!!.data[i].placeName,
+                                            placeName = response.body()!!.data.result[i].placeName,
                                             placeLocation = address
                                         )
                                     )
                                 }
+                                Log.d("print check", placeDatas.toString())
 
                                 placeSearchAdapter.datas = placeDatas
                                 placeSearchAdapter.notifyDataSetChanged()
@@ -145,18 +148,17 @@ class PlaceSearchActivity : AppCompatActivity() {
                                 placeSearchResult.apply {
                                     add(
                                         PlaceSearch(
-                                            placeName = response.body()!!.data[i].placeName,
-                                            placeAddress = response.body()!!.data[i].placeAddress,
-                                            placeRoadAddress = response.body()!!.data[i].placeAddress,
-                                            placeMapX = response.body()!!.data[i].placeMapX,
-                                            placeMapY = response.body()!!.data[i].placeMapY,
-                                            link = response.body()!!.data[i].link,
-                                            mobileNaverMapLink = response.body()!!.data[i].mobileNaverMapLink,
-                                            alreadyIn = response.body()!!.data[i].alreadyIn
+                                            placeName = response.body()!!.data.result[i].placeName,
+                                            placeAddress = response.body()!!.data.result[i].placeAddress,
+                                            placeRoadAddress = response.body()!!.data.result[i].placeAddress,
+                                            placeMapX = response.body()!!.data.result[i].placeMapX,
+                                            placeMapY = response.body()!!.data.result[i].placeMapY,
+                                            link = response.body()!!.data.result[i].link,
+                                            mobileNaverMapLink = response.body()!!.data.result[i].mobileNaverMapLink,
+                                            alreadyIn = response.body()!!.data.result[i].alreadyIn
                                         )
                                     )
                                 }
-
                             }
                         }
                     }

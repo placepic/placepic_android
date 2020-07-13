@@ -20,7 +20,7 @@ import place.pic.ui.main.place.PlacesFragment
  */
 
 class UploadPlaceViewModel(
-    private val placePicAuthRepository: PlacepicAuthRepository
+    // private val placePicAuthRepository: PlacepicAuthRepository
 ) {
     val placeReview = MutableLiveData<String>()
     private var katechXPosition: Int? = null

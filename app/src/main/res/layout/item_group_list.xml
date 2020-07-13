@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding = "16dp"
+    android:paddingHorizontal="14dp"
+    android:paddingTop="12dp"
     xmlns:tools="http://schemas.android.com/tools">
 
     <de.hdodenhof.circleimageview.CircleImageView
@@ -11,7 +12,6 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:src="@mipmap/ic_launcher"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -23,7 +23,7 @@
         android:textColor="@color/black36"
         android:textSize="16dp"
         android:textStyle="bold"
-        android:layout_marginStart="6dp"
+        android:layout_marginStart="12dp"
         android:layout_marginTop="5dp"
         app:layout_constraintStart_toEndOf="@id/img_group_profile"
         app:layout_constraintTop_toTopOf="@+id/img_group_profile"
@@ -46,5 +46,13 @@
         app:layout_constraintBottom_toBottomOf="@+id/img_group_profile"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/img_group_profile" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/img_group_profile"
+        android:background="@color/grayEEEFF0"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

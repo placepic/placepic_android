@@ -25,7 +25,6 @@ class UsefulTagActivity : AppCompatActivity() {
 
     private val token =
         "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZHgiOjMsIm5hbWUiOiLstZzsmIHtm4giLCJpYXQiOjE1OTM2OTkxODMsImV4cCI6MTU5NjI5MTE4MywiaXNzIjoicGxhY2VwaWMifQ.rmFbeBfviyEzbMlMM4b3bMMiRcNDDbiX8bQtwL_cuN0"
-    private val contentType: String = "application/json"
 
     private val usefulTagList = mutableListOf<UsefulTag>()
     private val usefulTagChipList = mutableListOf<Chip>()
@@ -37,23 +36,32 @@ class UsefulTagActivity : AppCompatActivity() {
 
         val intent = intent
         val categoryIdx = intent.getIntExtra("categoryIdx", 1)
-        val tagListForUpdate: ArrayList<UsefulTag> =
-            intent.getSerializableExtra("checkedChipIntent") as ArrayList<UsefulTag>
+        getAlreadySelectedTags(intent) //수정 시 사용자가 이전에 선택한 태그 가져오기
 
         getTagListFromServer(categoryIdx)
-
-        //수정을 위해 click된 chip인지 확인
-        checkChipForUpdate(tagListForUpdate)
-
         useful_tag_save.setOnClickListener { onSaveClick() }
+    }
+
+    private fun getAlreadySelectedTags(intent: Intent) {
+        val tagListForUpdate: MutableList<UsefulTag> =
+            (intent.getSerializableExtra("chipIntent") ?: return) as MutableList<UsefulTag>
+        //elbis  ?: null이면 : 뒤에를 실행해라
+        checkChipForUpdate(tagListForUpdate) //수정을 위해 click된 chip인지 확인
+    }
+
+    private fun checkChipForUpdate(tagListForUpdate: MutableList<UsefulTag>) {
+        for (i in 0 until usefulTagChipList.size) {
+            if (usefulTagChipList[i].text == tagListForUpdate[i].tagName) {
+                usefulTagChipList[i].isChecked = true
+            }
+        }
     }
 
     private fun getTagListFromServer(categoryIdx: Int) {
         placePicService.getInstance()
             .requestUsefulTag(
-                contentType,
-                token,
-                categoryIdx
+                token = token,
+                categoryIdx = categoryIdx
             ).enqueue(object : Callback<BaseResponse<List<UsefulTagResponse>>> {
                 override fun onFailure(
                     call: Call<BaseResponse<List<UsefulTagResponse>>>,
@@ -88,7 +96,7 @@ class UsefulTagActivity : AppCompatActivity() {
                             }
 
                             for (i in 0 until usefulTagChipList.size) { //chipList.forEach로도 가능
-                                usefulTagChipList[i].setOnClickListener { view ->
+                                usefulTagChipList[i].setOnClickListener {
                                     if (checkChipIsChecked()) {//true
                                         changeButtonColor(
                                             "#FFFFFF",
@@ -113,14 +121,6 @@ class UsefulTagActivity : AppCompatActivity() {
             })
     }
 
-    private fun checkChipForUpdate(tagListForUpdate: ArrayList<UsefulTag>) {
-        for (i in 0 until usefulTagChipList.size) {
-            if (usefulTagChipList[i].text == tagListForUpdate[i].tagName) {
-                usefulTagChipList[i].isChecked = true
-            }
-        }
-    }
-
     private fun changeButtonColor(colorString: String, drawable: Int, clickable: Boolean) {
         tv_useful_tag_save.setTextColor(Color.parseColor(colorString))
         useful_tag_save.setBackgroundResource(drawable)
@@ -137,12 +137,14 @@ class UsefulTagActivity : AppCompatActivity() {
     }
 
     private fun onSaveClick() {
+        //선택된 chip 관련 정보 ArrayList<UsefulTag>에 넣어서 전달
         var checkedTagList = ArrayList<UsefulTag>()
 
         for (i in 0 until usefulTagChipList.size) {
             if (usefulTagChipList[i].isChecked) {
                 var usefulTag = UsefulTag(usefulTagList[i].tagIdx, usefulTagList[i].tagName)
                 checkedTagList.add(usefulTag)
+                Log.d("selected checking", usefulTag.toString())
             }
         }
 
