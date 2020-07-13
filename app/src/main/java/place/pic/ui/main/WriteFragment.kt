@@ -23,27 +23,27 @@ class WriteFragment : BottomSheetDialogFragment(){
         val intent = Intent(context, PlaceSearchActivity::class.java)
         //handle clicks
         v.iv_restaurant.setOnClickListener {
-            intent.putExtra("groupIdx", Place.Type.RESTAURANT)
+            intent.putExtra("categoryIdx", Place.Type.RESTAURANT)
             select(intent)
             dismiss()
         }
         v.iv_drink.setOnClickListener {
-            intent.putExtra("groupIdx",Place.Type.ALCOHOL)
+            intent.putExtra("categoryIdx",Place.Type.ALCOHOL)
             select(intent)
             dismiss()
         }
         v.iv_cafe.setOnClickListener {
-            intent.putExtra("groupIdx",Place.Type.CAFE)
+            intent.putExtra("categoryIdx",Place.Type.CAFE)
             select(intent)
             dismiss()
         }
         v.iv_study.setOnClickListener {
-            intent.putExtra("groupIdx",Place.Type.STUDY)
+            intent.putExtra("categoryIdx",Place.Type.STUDY)
             select(intent)
             dismiss()
         }
         v.iv_etc.setOnClickListener {
-            intent.putExtra("groupIdx",Place.Type.ETC)
+            intent.putExtra("categoryIdx",Place.Type.ETC)
             select(intent)
             dismiss()
         }

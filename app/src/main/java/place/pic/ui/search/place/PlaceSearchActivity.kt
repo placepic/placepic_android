@@ -14,7 +14,6 @@ import place.pic.data.entity.PlaceSearch
 import place.pic.data.remote.PlacePicService
 import place.pic.data.remote.response.BaseResponse
 import place.pic.data.remote.response.PlaceSearchResponse
-import place.pic.ui.main.place.Place
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -33,7 +32,6 @@ class PlaceSearchActivity : AppCompatActivity() {
 
     private val token =
         "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZHgiOjMsIm5hbWUiOiLstZzsmIHtm4giLCJpYXQiOjE1OTM2OTkxODMsImV4cCI6MTU5NjI5MTE4MywiaXNzIjoicGxhY2VwaWMifQ.rmFbeBfviyEzbMlMM4b3bMMiRcNDDbiX8bQtwL_cuN0"
-    private val contentType: String = "application/json"
 
     private val placePicService = PlacePicService
 
@@ -48,7 +46,7 @@ class PlaceSearchActivity : AppCompatActivity() {
         //groupIdx 꺼내기
         val intent = intent
         val groupIdx = intent.getIntExtra("groupIdx", 1)
-        val categoryIdx = intent.getIntExtra("categoryIdx", Place.Type.ALL.position)
+        val categoryIdx = intent.getIntExtra("categoryIdx", 1)
 
         initRcv()
 
