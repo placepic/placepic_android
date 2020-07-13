@@ -5,6 +5,8 @@ import place.pic.data.remote.request.RequestRegister
 import place.pic.data.remote.request.RequestRegisterSecond
 import place.pic.data.remote.response.*
 import retrofit2.Call
+import place.pic.data.remote.response.ResponseGroupList
+import place.pic.data.remote.response.BaseResponse
 import retrofit2.http.*
 
 /**
@@ -64,6 +66,42 @@ interface PlacePicService {
         @Path("groupIdx") groupIdx: Int,
         @QueryMap queries: Map<String, String?>
     ): Call<BaseResponse<List<PlaceResponse>>>
+
+    //그룹 관련 서버 연결
+    @GET("/auth/groups")
+    fun requestMyGroupList(
+        @Header("Content-Type") contentType: String = "application/json",
+        @Header("token") token: String
+    ):Call<BaseResponse<List<ResponseGroupList>>>
+
+    @GET("/auth/groups")
+    fun requestGroupList(
+        @Header("Content-Type") contentType: String = "application/json",
+        @Header("token") token: String,
+        @Query("filter") filter:String
+    ):Call<BaseResponse<List<ResponseGroupList>>>
+
+    @GET("/auth/groups/apply")
+    fun requestGroupApplyList(
+        @Header("Content-Type") contentType: String = "application/json",
+        @Header("token") token: String
+    ):Call<BaseResponse<List<ResponseGroupList>>>
+
+    @POST("/auth/groups/apply/{groupIdx}")
+    fun requestSigninGroup(
+        @Header("Content-Type") contentType: String = "application/json",
+        @Header("token") token: String,
+        @Path("groupIdx") groupIdx:Int,
+        @Body body: RequestSigninGroup
+    ):Call<BaseResponse<ResponseSingupGroup>>
+
+    //Admin 관련 서버 연결
+    @GET("/auth/groups/admin/{groupIdx}")
+    fun requestWaitGroupList(
+        @Header("Content-Type") contentType: String = "application/json",
+        @Header("token") token: String,
+        @Path("groupIdx") groupIdx:Int
+    ):Call<BaseResponse<List<ResponseWaitUserList>>>
 
     companion object {
         const val BASE_URL = "http://3.34.209.95:3000"

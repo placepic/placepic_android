@@ -1,13 +1,14 @@
-package place.pic.ui.group
+package place.pic.ui.group.waitgrouplist
 
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import place.pic.R
+import place.pic.data.remote.response.ResponseGroupList
 
-class WaitGroupAdapter (
-    private val datas:MutableList<WaitListGroupData>,
+class WaitGroupAdapter(
+    private val datas: List<ResponseGroupList>,
     private val context: Context
 ) : RecyclerView.Adapter<WaitGroupViewHolder>() {
 

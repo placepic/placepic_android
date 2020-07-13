@@ -1,4 +1,4 @@
-package place.pic.ui.group
+package place.pic.ui.group.waitgrouplist
 
 data class WaitListGroupData(
     val url:String,
