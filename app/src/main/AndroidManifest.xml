@@ -22,7 +22,7 @@
         <activity android:name=".ui.group.waitgrouplist.WaitGroupActivity" />
         <activity android:name=".ui.login.LoginActivity" />
         <activity android:name=".ui.login.LoginPageActivity" />
-        <activity android:name=".ui.main.mypage.userlist.UserInfoActivity"/>
+        <activity android:name=".ui.main.mypage.userlist.UserInfoActivity" />
         <activity android:name=".ui.main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -36,6 +36,7 @@
         <activity android:name=".ui.signup.SignuplastActivity" />
         <activity android:name=".ui.signup.SignupSecondActivity" />
         <activity android:name=".ui.signup.SignupActivity" />
+        <activity android:name=".ui.webview.InWebActivity" />
     </application>
 
 </manifest>
