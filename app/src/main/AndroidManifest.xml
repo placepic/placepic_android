@@ -27,6 +27,7 @@
         <activity android:name=".ui.group.waitgrouplist.WaitGroupActivity" />
         <activity android:name=".ui.login.LoginActivity" />
         <activity android:name=".ui.login.LoginPageActivity" />
+        <activity android:name=".ui.main.mypage.userlist.UserInfoActivity"/>
         <activity android:name=".ui.main.mypage.userlist.WaitUserListActivity" />
         <activity android:name=".ui.tag.UsefulTagActivity" />
         <activity android:name=".ui.search.subway.SubwaySearchActivity" />

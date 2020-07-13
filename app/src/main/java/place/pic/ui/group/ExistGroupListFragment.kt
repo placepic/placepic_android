@@ -26,9 +26,6 @@ class ExistGroupListFragment(
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        rv_exist_group_list.addItemDecoration(
-            DividerItemDecoration(this.context,DividerItemDecoration.VERTICAL)
-        )
         setAdpater()
     }
 

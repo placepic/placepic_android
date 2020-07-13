@@ -21,9 +21,6 @@ class WaitGroupActivity : AppCompatActivity() {
     }
 
     private fun init() {
-        rv_wait_group_list.addItemDecoration(
-            DividerItemDecoration(this, DividerItemDecoration.VERTICAL)
-        )
         requestToWaitGroupList()
         buttonEventMapping()
     }
