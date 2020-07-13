@@ -1,4 +1,4 @@
-package place.pic.data.entity
+package place.pic.ui.main.mypage.userlist
 
 import java.io.Serializable
 
@@ -7,8 +7,7 @@ import java.io.Serializable
  * on 07월 14일, 2020
  */
 
-data class UserList(
-    val img: String,
+data class UserListData(
     val userName: String,
     val part: String,
     val postCount: Int

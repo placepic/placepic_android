@@ -11,9 +11,7 @@ import place.pic.ui.extands.customEnqueue
 
 class WaitUserListActivity : AppCompatActivity() {
 
-    private val userListData = mutableListOf<UserListData>()
-
-    lateinit var waitUserListAdapter: WaitUserListAdapter
+    private lateinit var waitUserListAdapter: WaitUserListAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
