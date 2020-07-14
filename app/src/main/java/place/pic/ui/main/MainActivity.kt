@@ -1,27 +1,15 @@
 package place.pic.ui.main
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentTransaction
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_search_subway.*
 import place.pic.R
-import place.pic.data.PlacepicAuthRepository
-import place.pic.data.remote.PlacePicService
-import place.pic.data.remote.request.MyPageRequest
-import place.pic.data.remote.request.RequestLogin
-import place.pic.data.remote.response.BaseResponse
-import place.pic.data.remote.response.LoginResponse
-import place.pic.data.remote.response.MyPageResponse
-import place.pic.ui.group.GroupListActivity
+import place.pic.ui.main.mypage.userlist.UserListFragment
 import place.pic.ui.main.place.PlacesFragment
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 
 class MainActivity : AppCompatActivity(),WriteFragment.BottomSheetListener {
@@ -48,7 +36,8 @@ class MainActivity : AppCompatActivity(),WriteFragment.BottomSheetListener {
                     transaction.replace(R.id.main_frame, fragmentA, "name")
                 }
                 R.id.action_people -> {
-                    val fragmentB = UserListFragment()
+                    val fragmentB =
+                        UserListFragment()
                     transaction.replace(R.id.main_frame, fragmentB, "people")
                 }
                 R.id.action_scrap -> {

@@ -27,7 +27,9 @@ class PlaceSearchActivity : AppCompatActivity() {
 
     lateinit var placeSearchAdapter: PlaceSearchAdapter
     val placeDatas: MutableList<PlaceSearchData> = mutableListOf()
+    //view에 표시할 정보만 저장하는 리스트
     val placeSearchResult: MutableList<PlaceSearch> = mutableListOf()
+    //서버로부터 받아오는 모든 정보를 저장하는 리스트
 
     private val token =
         "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZHgiOjMsIm5hbWUiOiLstZzsmIHtm4giLCJpYXQiOjE1OTM2OTkxODMsImV4cCI6MTU5NjI5MTE4MywiaXNzIjoicGxhY2VwaWMifQ.rmFbeBfviyEzbMlMM4b3bMMiRcNDDbiX8bQtwL_cuN0"

@@ -1,4 +1,4 @@
-package place.pic.ui.main
+package place.pic.ui.main.mypage.userlist
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,9 +8,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_user_list.*
 import place.pic.R
-import place.pic.ui.main.mypage.userlist.UserListAdapter
-import place.pic.ui.main.mypage.userlist.UserData
-import place.pic.ui.main.mypage.userlist.stubUserList
 
 
 class UserListFragment : Fragment() {
