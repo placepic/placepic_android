@@ -66,35 +66,35 @@ interface PlacePicService {
         @Header("token") token: String,
         @Path("groupIdx") groupIdx: Int,
         @QueryMap queries: Map<String, String?>
-    ): Call<BaseResponse<List<PlaceResponse>>>
+    ): Call<BaseResponse<PlaceResponse>>
 
     //그룹 관련 서버 연결
     @GET("/auth/groups")
     fun requestMyGroupList(
         @Header("Content-Type") contentType: String = "application/json",
         @Header("token") token: String
-    ):Call<BaseResponse<List<ResponseGroupList>>>
+    ): Call<BaseResponse<List<ResponseGroupList>>>
 
     @GET("/auth/groups")
     fun requestGroupList(
         @Header("Content-Type") contentType: String = "application/json",
         @Header("token") token: String,
-        @Query("filter") filter:String
-    ):Call<BaseResponse<List<ResponseGroupList>>>
+        @Query("filter") filter: String
+    ): Call<BaseResponse<List<ResponseGroupList>>>
 
     @GET("/auth/groups/apply")
     fun requestGroupApplyList(
         @Header("Content-Type") contentType: String = "application/json",
         @Header("token") token: String
-    ):Call<BaseResponse<List<ResponseGroupList>>>
+    ): Call<BaseResponse<List<ResponseGroupList>>>
 
     @POST("/auth/groups/apply/{groupIdx}")
     fun requestSigninGroup(
         @Header("Content-Type") contentType: String = "application/json",
         @Header("token") token: String,
-        @Path("groupIdx") groupIdx:Int,
+        @Path("groupIdx") groupIdx: Int,
         @Body body: RequestSigninGroup
-    ):Call<BaseResponse<ResponseSingupGroup>>
+    ): Call<BaseResponse<ResponseSingupGroup>>
 
     /*
     * 관리자 페이지 서버 연결
@@ -105,16 +105,16 @@ interface PlacePicService {
     fun requestWaitGroupList(
         @Header("Content-Type") contentType: String = "application/json",
         @Header("token") token: String,
-        @Path("groupIdx") groupIdx:Int
-    ):Call<BaseResponse<List<ResponseWaitUser>>>
+        @Path("groupIdx") groupIdx: Int
+    ): Call<BaseResponse<List<ResponseWaitUser>>>
 
     // 그룹 대기 유저 승인.
     @PUT("/auth/groups/admin/edit/{groupIdx}")
     fun requestAcceptUser(
         @Header("Content-Type") contentType: String = "application/json",
         @Header("token") token: String,
-        @Path("groupIdx") groupIdx:Int,
-        @Body body:RequestAcceptUser
+        @Path("groupIdx") groupIdx: Int,
+        @Body body: RequestAcceptUser
     ): Call<BaseResponse<Unit>>
 
     //그룹 대기 유저 거절.
@@ -123,7 +123,7 @@ interface PlacePicService {
         @Header("Content-Type") contentType: String = "application/json",
         @Header("token") token: String,
         @Path("groupIdx") groupIdx: Int,
-        @Path("userIdx") userIdx:Int
+        @Path("userIdx") userIdx: Int
     ): Call<BaseResponse<Unit>>
 
     companion object {

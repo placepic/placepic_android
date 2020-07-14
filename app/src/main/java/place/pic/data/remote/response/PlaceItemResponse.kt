@@ -9,6 +9,13 @@ import java.util.*
  */
 
 data class PlaceResponse(
+    val result: List<PlaceItemResponse>,
+    val count: Int
+) {
+    fun toPlaces() = result.map { it.toPlace() }
+}
+
+data class PlaceItemResponse(
     val placeIdx: Long,
     val placeName: String,
     val placeCreatedAt: Long,
