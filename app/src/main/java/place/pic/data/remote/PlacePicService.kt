@@ -97,11 +97,11 @@ interface PlacePicService {
     * 마이 페이지 서버 연결
     */
 
-    @GET("/auth/myInfo/:groupIdx")
+    @GET("/auth/myInfo/{groupIdx}")
     fun requestMyPage(
         @Header("Content-Type") contentType: String ="application/json",
         @Header("token") token: String,
-        @Body body: MyPageRequest
+        @Path("groupIdx") groupIdx: Int
     ):Call<BaseResponse<MyPageResponse>>
 
     /*
