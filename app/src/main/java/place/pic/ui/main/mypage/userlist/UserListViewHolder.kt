@@ -13,11 +13,13 @@ import place.pic.R
  */
 
 class UserListViewHolder (itemView: View) : RecyclerView.ViewHolder(itemView) {
+    //private val img = itemView.findViewById<ImageView>(R.id.user_image)
     private val userName = itemView.findViewById<TextView>(R.id.user_name)
     private val part = itemView.findViewById<TextView>(R.id.user_part)
     private val postCount = itemView.findViewById<TextView>(R.id.user_post_count)
 
     fun bind(userListData : UserListData) {
+        //Glide.with(itemView).load(userListData.img).into(img)
         userName.text = userListData.userName
         part.text = userListData.part
         postCount.text = userListData.postCount.toString()
