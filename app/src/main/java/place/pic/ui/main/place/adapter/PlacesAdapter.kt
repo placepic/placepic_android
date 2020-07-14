@@ -2,6 +2,7 @@ package place.pic.ui.main.place.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.lifecycle.LiveData
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -9,13 +10,18 @@ import place.pic.R
 import place.pic.databinding.ItemPlaceBinding
 import place.pic.databinding.ItemPlaceFilterBinding
 import place.pic.data.entity.Place
+import place.pic.ui.main.place.items.PlaceItemsViewModel
 
 /**
  * Created By Malibin
  * on 7월 03, 2020
  */
 
-class PlacesAdapter : ListAdapter<Place, RecyclerView.ViewHolder>(DiffItemCallback()) {
+class PlacesAdapter(
+    private val viewModel: PlaceItemsViewModel
+) : ListAdapter<Place, RecyclerView.ViewHolder>(DiffItemCallback()) {
+
+    private lateinit var headerViewHolder: HeaderViewHolder
 
     override fun getItemViewType(position: Int) = when (position) {
         0 -> R.layout.item_place_filter
@@ -36,6 +42,9 @@ class PlacesAdapter : ListAdapter<Place, RecyclerView.ViewHolder>(DiffItemCallba
             val place = getItem(position)
             holder.bind(place)
         }
+        if (holder is HeaderViewHolder) {
+            holder.bind(viewModel.totalItemCount)
+        }
     }
 
     override fun submitList(list: List<Place>?) {
@@ -43,12 +52,16 @@ class PlacesAdapter : ListAdapter<Place, RecyclerView.ViewHolder>(DiffItemCallba
         super.submitList(newList)
     }
 
+    fun submitTotalItemCount(count: Int) {
+        headerViewHolder.updateCount(count)
+    }
+
     private fun createHeaderViewHolder(
         inflater: LayoutInflater,
         parent: ViewGroup
     ): HeaderViewHolder {
         val binding = ItemPlaceFilterBinding.inflate(inflater, parent, false)
-        return HeaderViewHolder(binding)
+        return HeaderViewHolder(binding).also { headerViewHolder = it }
     }
 
     private fun createItemViewHolder(
@@ -63,8 +76,13 @@ class PlacesAdapter : ListAdapter<Place, RecyclerView.ViewHolder>(DiffItemCallba
         private val binding: ItemPlaceFilterBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind() {
+        fun updateCount(count: Int) {
+            val string = binding.root.resources.getString(R.string.total_count)
+            binding.totalItemCount.text = String.format(string, count.toString())
+        }
 
+        fun bind(count: LiveData<Int>) {
+            binding.count = count
         }
     }
 
