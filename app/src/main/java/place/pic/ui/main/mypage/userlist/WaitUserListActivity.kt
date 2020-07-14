@@ -29,15 +29,15 @@ class WaitUserListActivity : AppCompatActivity() {
     }
 
     /*request to Server*/
-    //TODO : groupIdx 저장하는 부분이 생기면 해당 아이디 불러오기
     private fun requestToWaitUserList() {
         val token = PlacepicAuthRepository.getInstance(this).userToken ?: return
+        val groupIdx = PlacepicAuthRepository.getInstance(this).groupId?: return
 
         PlacePicService
             .getInstance()
             .requestWaitGroupList(
                 token = token,
-                groupIdx = 3
+                groupIdx = groupIdx
             ).customEnqueue(
                 onSuccess = { response ->
                     response.body()?.data?.let { list ->
