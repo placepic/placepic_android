@@ -1,6 +1,5 @@
 package place.pic.ui.search.place
 
-import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -103,14 +102,14 @@ class PlaceSearchActivity : AppCompatActivity() {
         var handled = false
         when (action) {
             EditorInfo.IME_ACTION_SEARCH -> {
-                getPlaceSearchResult(groupIdx)
+                getPlaceSearchResultFromServer(groupIdx)
                 handled = true
             }
         }
         return handled
     }
 
-    private fun getPlaceSearchResult(groupIdx: Int) {
+    private fun getPlaceSearchResultFromServer(groupIdx: Int) {
         placePicService.getInstance()
             .requestPlaceSearch(
                 token = token,

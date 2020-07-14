@@ -41,7 +41,7 @@ interface PlacePicService {
         @Header("Content-Type") contentType: String = "application/json",
         @Header("token") token: String,
         @Path("groupIdx") groupIdx: Int
-    )
+    ): Call<BaseResponse<UserListResponse>>
 
     @GET("/subway")
     fun getAllSubways(
