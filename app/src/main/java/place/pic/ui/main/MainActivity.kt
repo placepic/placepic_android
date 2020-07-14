@@ -1,19 +1,31 @@
 package place.pic.ui.main
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentTransaction
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_search_subway.*
 import place.pic.R
+import place.pic.data.PlacepicAuthRepository
+import place.pic.data.remote.PlacePicService
+import place.pic.data.remote.request.MyPageRequest
+import place.pic.data.remote.request.RequestLogin
+import place.pic.data.remote.response.BaseResponse
+import place.pic.data.remote.response.LoginResponse
+import place.pic.data.remote.response.MyPageResponse
+import place.pic.ui.group.GroupListActivity
 import place.pic.ui.main.place.PlacesFragment
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 class MainActivity : AppCompatActivity(),WriteFragment.BottomSheetListener {
-
-
+    private val token ="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZHgiOjMsIm5hbWUiOiLstZzsmIHtm4giLCJpYXQiOjE1OTM2OTkxODMsImV4cCI6MTU5NjI5MTE4MywiaXNzIjoicGxhY2VwaWMifQ.rmFbeBfviyEzbMlMM4b3bMMiRcNDDbiX8bQtwL_cuN0"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,6 +58,37 @@ class MainActivity : AppCompatActivity(),WriteFragment.BottomSheetListener {
                 R.id.action_mypage -> {
                     val fragmentE = MyPageFragment()
                     transaction.replace(R.id.main_frame, fragmentE, "page")
+                    /*
+                    PlacePicService.getInstance().requestMyPage(
+                        MyPageRequest(
+                            //그룹 인덱스
+                        )).enqueue(object: Callback<BaseResponse<MyPageResponse>> {
+                        override fun onFailure(call: Call<BaseResponse<MyPageResponse>>, t: Throwable) {
+                            //통신실패
+                        }
+                        override fun onResponse(
+                            call: Call<BaseResponse<MyPageResponse>>,
+                            response: Response<BaseResponse<MyPageResponse>>
+                        ) {
+                            PlacepicAuthRepository
+                                .getInstance(this@MainActivity)
+                                .saveUserToken(response.body()!!.data.accessToken)
+                            if(response.isSuccessful)
+                            {
+                                if(response.body()!!.success)
+                                {
+                                    val fragmentE = MyPageFragment()
+                                    transaction.replace(R.id.main_frame, fragmentE, "page")
+                                }
+                            }
+                            else {
+                                //tv_login_fail.visibility = View.VISIBLE
+                                //btn_login.isEnabled = false
+                            }
+                        }
+                    })
+                    */
+
                 }
             }
             transaction.addToBackStack(null)
