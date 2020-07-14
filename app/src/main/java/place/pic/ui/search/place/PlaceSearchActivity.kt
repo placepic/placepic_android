@@ -13,6 +13,7 @@ import place.pic.data.entity.PlaceSearch
 import place.pic.data.remote.PlacePicService
 import place.pic.data.remote.response.BaseResponse
 import place.pic.data.remote.response.PlaceSearchResponse
+import place.pic.ui.upload.UploadPlaceActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -64,7 +65,7 @@ class PlaceSearchActivity : AppCompatActivity() {
             override fun onClick(view: View, position: Int) {
                 Log.d("check check", "${placeSearchResult[position].placeName} 선택")
 
-                val clickedPlaceIntent = Intent()
+                val clickedPlaceIntent = Intent(this@PlaceSearchActivity, UploadPlaceActivity::class.java)
 
                 clickedPlaceIntent.putExtra("categoryIdx", categoryIdx)
                 clickedPlaceIntent.putExtra("placeName", placeSearchResult[position].placeName)
@@ -85,7 +86,7 @@ class PlaceSearchActivity : AppCompatActivity() {
                 )
                 clickedPlaceIntent.putExtra("alreadyIn", placeSearchResult[position].alreadyIn)
 
-                setResult(Activity.RESULT_OK, clickedPlaceIntent)
+                startActivity(clickedPlaceIntent)
             }
         })
     }
