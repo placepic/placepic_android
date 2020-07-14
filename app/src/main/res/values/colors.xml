@@ -23,7 +23,8 @@
     <color name="gray646363">#646363</color>
     <color name="gray4F">#4F4F4F</color>
     <color name="grayADB6BD">#ADB6BD</color>
-    <color name="grayF4">$F4F4F4</color>
+    <color name="grayF4">#F4F4F4</color>
+    <color name="grayA0A6AA">#A0A6AA</color>
 
 
     <color name="redDE4446">#DE4446</color>
