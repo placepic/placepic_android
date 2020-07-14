@@ -1,10 +1,8 @@
 package place.pic.ui.main.mypage.userlist
 
 import android.view.View
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import place.pic.R
 
 /**
@@ -18,10 +16,10 @@ class UserListViewHolder (itemView: View) : RecyclerView.ViewHolder(itemView) {
     private val part = itemView.findViewById<TextView>(R.id.user_part)
     private val postCount = itemView.findViewById<TextView>(R.id.user_post_count)
 
-    fun bind(userListData : UserListData) {
+    fun bind(userData : UserData) {
         //Glide.with(itemView).load(userListData.img).into(img)
-        userName.text = userListData.userName
-        part.text = userListData.part
-        postCount.text = userListData.postCount.toString()
+        userName.text = userData.userName
+        part.text = userData.part
+        postCount.text = userData.postCount.toString()
     }
 }
