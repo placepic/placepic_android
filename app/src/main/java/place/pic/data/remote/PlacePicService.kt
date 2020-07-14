@@ -1,9 +1,6 @@
 package place.pic.data.remote
 
-import place.pic.data.remote.request.RequestAcceptUser
-import place.pic.data.remote.request.RequestLogin
-import place.pic.data.remote.request.RequestRegister
-import place.pic.data.remote.request.RequestRegisterSecond
+import place.pic.data.remote.request.*
 import place.pic.data.remote.response.*
 import retrofit2.Call
 import place.pic.data.remote.response.ResponseGroupList
@@ -95,6 +92,17 @@ interface PlacePicService {
         @Path("groupIdx") groupIdx: Int,
         @Body body: RequestSigninGroup
     ): Call<BaseResponse<ResponseSingupGroup>>
+
+    /*
+    * 마이 페이지 서버 연결
+    */
+
+    @GET("/auth/myInfo/:groupIdx")
+    fun requestMyPage(
+        @Header("Content-Type") contentType: String ="application/json",
+        @Header("token") token: String,
+        @Body body: MyPageRequest
+    ):Call<BaseResponse<MyPageResponse>>
 
     /*
     * 관리자 페이지 서버 연결

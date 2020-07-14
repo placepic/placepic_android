@@ -25,10 +25,15 @@ class MyPageFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val v = inflater.inflate(R.layout.fragment_my_page, container, false)
+
+
+
         v.cl_user_list.setOnClickListener {
             val intent = Intent(context, WaitGroupActivity::class.java)
             startActivity(intent)
         }
         return v
+
+
     }
 }

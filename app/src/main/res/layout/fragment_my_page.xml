@@ -24,14 +24,14 @@
             android:layout_marginBottom="16dp"
             android:text="SOPT"
             android:textColor="@color/black36"
-            android:textSize="15dp"
+            android:textSize="18dp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
+            android:layout_marginStart="2dp"
             android:id="@+id/img_my_page_down_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -48,7 +48,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="140dp"
+        android:layout_marginTop="72dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -70,7 +70,7 @@
             android:layout_marginTop="8dp"
             android:text="이정연"
             android:textColor="@color/black36"
-            android:textSize="16dp"
+            android:textSize="18dp"
             android:textStyle="bold"
             app:layout_constraintEnd_toStartOf="@+id/tv_profile_kind"
             app:layout_constraintHorizontal_bias="0.5"
@@ -82,9 +82,14 @@
             android:id="@+id/tv_profile_kind"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:backgroundTint="@color/grayF1F4F5"
+            android:layout_marginStart="4dp"
+            android:paddingStart="6dp"
+            android:paddingEnd="6dp"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp"
+            android:background="@drawable/round_rectangle_gray_8dp"
             android:text="관리자"
+            android:textStyle="bold"
             android:textColor="@color/gray838788"
             android:textSize="12dp"
             app:layout_constraintBottom_toBottomOf="@+id/tv_profile_name"
@@ -100,7 +105,7 @@
             android:layout_marginTop="8dp"
             android:text="SOPT 28기 회장"
             android:textColor="@color/grayADB6BD"
-            android:textSize="12dp"
+            android:textSize="14dp"
             app:layout_constraintEnd_toEndOf="@+id/tv_profile_kind"
             app:layout_constraintStart_toStartOf="@+id/tv_profile_name"
             app:layout_constraintTop_toBottomOf="@+id/tv_profile_name" />
@@ -109,14 +114,15 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout6"
-        android:layout_width="180dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/border_round_rectangle_gray_8dp"
-        android:padding="20dp"
-        app:layout_constraintEnd_toStartOf="@+id/constraintLayout7"
-        app:layout_constraintHorizontal_bias="0.5"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/rectangle_gray_f1f4f5"
+        android:padding="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cl_mypage_profile">
@@ -125,71 +131,42 @@
             android:id="@+id/tv_im_write"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="내가 쓴 글"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:text="작성한 글"
+            android:textColor="@color/gray868F96"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_count_im_write" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/tv_count_im_write"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="12"
-            android:textColor="@color/pinkF6"
-            android:textSize="18dp"
+            android:textColor="@color/black4F"
+            android:textSize="14dp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="@+id/tv_im_write"
-            app:layout_constraintHorizontal_bias="0.513"
-            app:layout_constraintStart_toStartOf="@+id/tv_im_write"
-            app:layout_constraintTop_toTopOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout7"
-        android:layout_width="180dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="2dp"
-        android:layout_marginEnd="10dp"
-        android:background="@drawable/border_round_rectangle_gray_8dp"
-        android:padding="20dp"
-        app:layout_constraintBottom_toBottomOf="@+id/constraintLayout6"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/constraintLayout6"
-        app:layout_constraintTop_toTopOf="@+id/constraintLayout6">
+            app:layout_constraintBottom_toBottomOf="@+id/tv_count"
+            app:layout_constraintEnd_toStartOf="@+id/tv_count"
+            app:layout_constraintHorizontal_chainStyle="packed" />
 
         <TextView
-            android:id="@+id/tv_i_like"
+            android:id="@+id/tv_count"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="내가 좋아요한 글"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tb_count_i_like" />
-
-        <TextView
-            android:id="@+id/tb_count_i_like"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="12"
-            android:textColor="@color/pinkF6"
-            android:textSize="18dp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="@+id/tv_i_like"
-            app:layout_constraintStart_toStartOf="@+id/tv_i_like"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:text="개"
+            android:textColor="@color/black4F"
+            android:textSize="13dp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_im_write"
+            app:layout_constraintEnd_toEndOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cl_user_list"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/border_round_rectangle_gray_8dp"
-        android:padding="20dp"
-        android:layout_marginStart="25dp"
-        android:layout_marginEnd="25dp"
-        android:layout_marginTop="20dp"
-        app:layout_constraintEnd_toEndOf="@+id/constraintLayout7"
+        android:layout_height="54dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="@+id/constraintLayout6"
         app:layout_constraintStart_toStartOf="@+id/constraintLayout6"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout6">
 
@@ -200,6 +177,7 @@
             android:text="승인 대기중인 유저 보기"
             android:textColor="@color/gray4F"
             android:textSize="15dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -207,9 +185,19 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/next_arrow_ic"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ImageView
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:src="@drawable/line"
+        app:layout_constraintEnd_toEndOf="@+id/cl_user_list"
+        app:layout_constraintStart_toStartOf="@+id/cl_user_list"
+        app:layout_constraintTop_toBottomOf="@+id/cl_user_list"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
