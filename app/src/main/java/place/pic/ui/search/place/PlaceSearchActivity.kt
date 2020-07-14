@@ -59,7 +59,7 @@ class PlaceSearchActivity : AppCompatActivity() {
         }
 
         //클릭리스너 등록
-        placeSearchAdapter.setItemClickListener( object : PlaceSearchAdapter.ItemClickListener{
+        placeSearchAdapter.setItemClickListener(object : PlaceSearchAdapter.ItemClickListener {
             override fun onClick(view: View, position: Int) {
                 Log.d("check check", "${placeSearchResult[position].placeName} 선택")
 
@@ -67,12 +67,21 @@ class PlaceSearchActivity : AppCompatActivity() {
 
                 clickedPlaceIntent.putExtra("categoryIdx", categoryIdx)
                 clickedPlaceIntent.putExtra("placeName", placeSearchResult[position].placeName)
-                clickedPlaceIntent.putExtra("placeAddress", placeSearchResult[position].placeAddress)
-                clickedPlaceIntent.putExtra("placeRoadAddress", placeSearchResult[position].placeRoadAddress)
+                clickedPlaceIntent.putExtra(
+                    "placeAddress",
+                    placeSearchResult[position].placeAddress
+                )
+                clickedPlaceIntent.putExtra(
+                    "placeRoadAddress",
+                    placeSearchResult[position].placeRoadAddress
+                )
                 clickedPlaceIntent.putExtra("placeMapX", placeSearchResult[position].placeMapX)
                 clickedPlaceIntent.putExtra("placeMapY", placeSearchResult[position].placeMapY)
                 clickedPlaceIntent.putExtra("link", placeSearchResult[position].link)
-                clickedPlaceIntent.putExtra("mobileNaverMapLink", placeSearchResult[position].mobileNaverMapLink)
+                clickedPlaceIntent.putExtra(
+                    "mobileNaverMapLink",
+                    placeSearchResult[position].mobileNaverMapLink
+                )
                 clickedPlaceIntent.putExtra("alreadyIn", placeSearchResult[position].alreadyIn)
 
                 setResult(Activity.RESULT_OK, clickedPlaceIntent)
@@ -119,13 +128,14 @@ class PlaceSearchActivity : AppCompatActivity() {
                 ) {
                     //통신 성공
                     if (response.isSuccessful) { //status
-                        Log.d("typeCheck","통신성공")
+                        Log.d("typeCheck", "통신성공")
                         if (response.body()!!.success) {
                             Log.d("typeCheck", "${response.body()!!.data.javaClass}")
                             placeDatas.clear()
                             placeSearchResult.clear()
                             for (i in response.body()!!.data.result.indices) {
-                                var address: String = response.body()!!.data.result[i].placeRoadAddress
+                                var address: String =
+                                    response.body()!!.data.result[i].placeRoadAddress
 
                                 if (address.isEmpty()) { //도로명 주소가 없으면 (""이면)
                                     address = response.body()!!.data.result[i].placeAddress

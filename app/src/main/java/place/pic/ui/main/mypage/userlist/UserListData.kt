@@ -8,6 +8,7 @@ import java.io.Serializable
  */
 
 data class UserListData(
+    //val img: String,
     val userName: String,
     val part: String,
     val postCount: Int
