@@ -9,6 +9,7 @@ import android.util.Log
 import com.google.android.material.chip.Chip
 import kotlinx.android.synthetic.main.activity_useful_tag.*
 import place.pic.R
+import place.pic.data.PlacepicAuthRepository
 import place.pic.data.entity.UsefulTag
 import place.pic.data.remote.PlacePicService
 import place.pic.data.remote.response.*
@@ -22,9 +23,6 @@ import retrofit2.Response
  */
 
 class UsefulTagActivity : AppCompatActivity() {
-
-    private val token =
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZHgiOjMsIm5hbWUiOiLstZzsmIHtm4giLCJpYXQiOjE1OTM2OTkxODMsImV4cCI6MTU5NjI5MTE4MywiaXNzIjoicGxhY2VwaWMifQ.rmFbeBfviyEzbMlMM4b3bMMiRcNDDbiX8bQtwL_cuN0"
 
     private val usefulTagList = mutableListOf<UsefulTag>()
     private val usefulTagChipList = mutableListOf<Chip>()
@@ -40,6 +38,8 @@ class UsefulTagActivity : AppCompatActivity() {
 
         getTagListFromServer(categoryIdx)
         useful_tag_save.setOnClickListener { onSaveClick() }
+
+        img_back4444.setOnClickListener { onBackPressed() }
     }
 
     private fun getAlreadySelectedTags(intent: Intent) {
@@ -58,6 +58,9 @@ class UsefulTagActivity : AppCompatActivity() {
     }
 
     private fun getTagListFromServer(categoryIdx: Int) {
+
+        val token = PlacepicAuthRepository.getInstance(this).userToken?:return
+
         placePicService.getInstance()
             .requestUsefulTag(
                 token = token,

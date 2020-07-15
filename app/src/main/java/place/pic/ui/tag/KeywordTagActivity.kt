@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.chip.Chip
 import kotlinx.android.synthetic.main.activity_keyword_tag.*
 import place.pic.R
+import place.pic.data.PlacepicAuthRepository
 import place.pic.data.entity.KeywordTag
 import place.pic.data.remote.PlacePicService
 import place.pic.data.remote.response.BaseResponse
@@ -24,9 +25,6 @@ import retrofit2.Response
 
 class KeywordTagActivity : AppCompatActivity() {
 
-    private val token =
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZHgiOjMsIm5hbWUiOiLstZzsmIHtm4giLCJpYXQiOjE1OTM2OTkxODMsImV4cCI6MTU5NjI5MTE4MywiaXNzIjoicGxhY2VwaWMifQ.rmFbeBfviyEzbMlMM4b3bMMiRcNDDbiX8bQtwL_cuN0"
-
     private val keywordTagList = mutableListOf<KeywordTag>()
     private val keywordTagChipList = mutableListOf<Chip>()
     private val placePicService = PlacePicService
@@ -41,6 +39,8 @@ class KeywordTagActivity : AppCompatActivity() {
 
         getTagListFromServer(categoryIdx)
         keyword_tag_save.setOnClickListener { onSaveClick() }
+
+        img_back444.setOnClickListener { onBackPressed() }
     }
 
     private fun getAlreadySelectedTags(intent: Intent) {
@@ -59,6 +59,9 @@ class KeywordTagActivity : AppCompatActivity() {
     }
 
     private fun getTagListFromServer(categoryIdx: Int) { //getConnection(categoryIdx: Int)
+
+        val token = PlacepicAuthRepository.getInstance(this).userToken?:return
+
         placePicService.getInstance()
             .requestKeywordTag(
                 token = token,

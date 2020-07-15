@@ -8,6 +8,7 @@ import android.view.inputmethod.EditorInfo
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_place_search.*
 import place.pic.R
+import place.pic.data.PlacepicAuthRepository
 import place.pic.data.entity.PlaceSearch
 import place.pic.data.remote.PlacePicService
 import place.pic.data.remote.response.BaseResponse
@@ -31,9 +32,6 @@ class PlaceSearchActivity : AppCompatActivity() {
     val placeSearchResult: MutableList<PlaceSearch> = mutableListOf()
     //서버로부터 받아오는 모든 정보를 저장하는 리스트
 
-    private val token =
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZHgiOjMsIm5hbWUiOiLstZzsmIHtm4giLCJpYXQiOjE1OTM2OTkxODMsImV4cCI6MTU5NjI5MTE4MywiaXNzIjoicGxhY2VwaWMifQ.rmFbeBfviyEzbMlMM4b3bMMiRcNDDbiX8bQtwL_cuN0"
-
     private val placePicService = PlacePicService
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,7 +44,7 @@ class PlaceSearchActivity : AppCompatActivity() {
 
         //groupIdx 꺼내기
         val intent = intent
-        val groupIdx = intent.getIntExtra("groupIdx", 1)
+        val groupIdx = PlacepicAuthRepository.getInstance(this).groupId?:return
         val categoryIdx = intent.getIntExtra("categoryIdx", 1)
 
         initRcv()
@@ -110,6 +108,10 @@ class PlaceSearchActivity : AppCompatActivity() {
     }
 
     private fun getPlaceSearchResultFromServer(groupIdx: Int) {
+
+        val token = PlacepicAuthRepository.getInstance(this).userToken?:return
+        val groupIdx = PlacepicAuthRepository.getInstance(this).groupId?:return
+
         placePicService.getInstance()
             .requestPlaceSearch(
                 token = token,

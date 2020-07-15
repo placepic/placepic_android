@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_user_list.*
 import place.pic.R
+import place.pic.data.PlacepicAuthRepository
 import place.pic.data.remote.PlacePicService
 import place.pic.data.remote.response.BaseResponse
 import place.pic.data.remote.response.UserListResponse
@@ -20,15 +21,12 @@ class UserListFragment : Fragment() {
 
     lateinit var userListAdapter: UserListAdapter
     lateinit var layoutManager: LinearLayoutManager
-    private var data: MutableList<UserData> = mutableListOf()
+    //private var data: MutableList<UserData> = mutableListOf()
 
     var userCount: Int = 0
     val userInUserList: MutableList<UserData> =
         mutableListOf<UserData>()?.apply { add(0, UserData.empty()) }
     //서버 연결 테스트용
-
-    private val token =
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZHgiOjMsIm5hbWUiOiLstZzsmIHtm4giLCJpYXQiOjE1OTM2OTkxODMsImV4cCI6MTU5NjI5MTE4MywiaXNzIjoicGxhY2VwaWMifQ.rmFbeBfviyEzbMlMM4b3bMMiRcNDDbiX8bQtwL_cuN0"
 
     private val placePicService = PlacePicService
 
@@ -42,8 +40,13 @@ class UserListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val groupIdx = PlacepicAuthRepository.getInstance(requireContext()).groupId?:return
+
         initRcv(view)
-        getUserListFromServer(1)
+
+        getUserListFromServer(groupIdx)
+
         //loadDatas()
         //loadDatas() 호출을 통해 infinite scroll을 위한 준비 완료
     }
@@ -59,6 +62,10 @@ class UserListFragment : Fragment() {
     }*/
 
     private fun getUserListFromServer(groupIdx: Int) {
+
+        val token = PlacepicAuthRepository.getInstance(requireContext()).userToken?:return
+        val groupIdx = PlacepicAuthRepository.getInstance(requireContext()).groupId?:return
+
         placePicService.getInstance()
             .requestUserList(
                 token = token,
