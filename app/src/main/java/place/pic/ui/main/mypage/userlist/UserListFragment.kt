@@ -23,7 +23,8 @@ class UserListFragment : Fragment() {
     private var data: MutableList<UserData> = mutableListOf()
 
     var userCount: Int = 0
-    val userInUserList: MutableList<UserData> =  mutableListOf<UserData>()?.apply {add(0, UserData.empty())}
+    val userInUserList: MutableList<UserData> =
+        mutableListOf<UserData>()?.apply { add(0, UserData.empty()) }
     //서버 연결 테스트용
 
     private val token =
@@ -81,15 +82,16 @@ class UserListFragment : Fragment() {
                             for (i in response.body()!!.data.userList.indices) {
                                 userCount = response.body()!!.data.userCnt
                                 userInUserList.apply {
-                                    add (
+                                    add(
                                         UserData(
+                                            rank = response.body()!!.data.userList[i].rank,
                                             userIdx = response.body()!!.data.userList[i].userIdx,
                                             userName = response.body()!!.data.userList[i].userName,
                                             //profileImageUrl = response.body()!!.data.userList[i].profileImageUrl,
                                             state = response.body()!!.data.userList[i].state,
                                             part = response.body()!!.data.userList[i].part,
-                                            postCount = response.body()!!.data.userList[i].postCount,
-                                            rank = response.body()!!.data.userList[i].rank                                        )
+                                            postCount = response.body()!!.data.userList[i].postCount
+                                        )
                                     )
                                 }
                                 userListAdapter.userCount = userCount

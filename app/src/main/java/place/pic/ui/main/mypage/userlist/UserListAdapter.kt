@@ -63,7 +63,7 @@ class UserListAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         private val postCount = itemView.findViewById<TextView>(R.id.user_post_count)
 
         fun bind(userData : UserData) {
-            userCount.text = userData.rank.toString()
+            userCount.text = userData.rank
             //Glide.with(itemView).load(userListData.img).into(img)
             userName.text = userData.userName
             part.text = userData.part

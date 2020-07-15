@@ -1,6 +1,6 @@
 package place.pic.data.remote.response
 
-import place.pic.data.entity.UserList
+import place.pic.ui.main.mypage.userlist.UserData
 
 /**
  * Created By kimdahyee
@@ -9,5 +9,5 @@ import place.pic.data.entity.UserList
  
 data class UserListResponse (
     val userCnt: Int,
-    val userList: ArrayList<UserList>
+    val userList: ArrayList<UserData>
 )
