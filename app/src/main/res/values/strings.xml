@@ -35,4 +35,7 @@
     <string name="place_keywords">이 장소를 잘 표현하는 키워드</string>
     <string name="place_features">유용한 장소 정보</string>
     <string name="wait_group_count">승인 대기중인 그룹( %d )</string>
+    <string name="title_activity_fullscreen">FullscreenActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
 </resources>

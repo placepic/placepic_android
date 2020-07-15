@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
     tools:context=".ui.login.LoginActivity">
 
     <!--로그인 상단 바-->
@@ -33,7 +34,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:text="로그인"
-            android:textStyle="bold"
+            android:fontFamily="@font/noto_sans_bold"
             android:textColor="@color/black36"
             android:textSize="15dp"
             app:layout_constraintBottom_toBottomOf="@+id/img_login_top_bar_back_btn"
@@ -58,7 +59,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="이메일"
-            android:textStyle="bold"
+            android:fontFamily="@font/noto_sans_bold"
             android:textColor="@color/black36"
             android:textSize="15dp"
             app:layout_constraintStart_toStartOf="parent"
@@ -73,6 +74,7 @@
             android:hint="이메일을 입력해주세요"
             android:inputType="textEmailAddress"
             android:paddingVertical="12dp"
+            android:fontFamily="@font/noto_sans_regular"
             android:paddingStart="14dp"
             android:layout_marginBottom="4dp"
             android:textColorHint="@color/grayCED5DA"
@@ -87,6 +89,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
+            android:fontFamily="@font/noto_sans_regular"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@+id/et_login_email"
             android:text="알맞은 이메일 형식이 아닙니다."
@@ -110,7 +113,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="비밀번호"
-            android:textStyle="bold"
+            android:fontFamily="@font/noto_sans_bold"
             android:textColor="@color/black36"
             android:textSize="15dp"
             app:layout_constraintStart_toStartOf="parent"
@@ -125,6 +128,7 @@
             android:hint="비밀번호를 입력해주세요"
             android:inputType="textPassword"
             android:paddingVertical="12dp"
+            android:fontFamily="@font/noto_sans_regular"
             android:paddingStart="16dp"
             android:textColorHint="@color/grayCED5DA"
             android:textSize="14dp"
@@ -142,7 +146,7 @@
         android:layout_marginTop="26dp"
         android:text="로그인"
         android:enabled="false"
-        android:textStyle="bold"
+        android:fontFamily="@font/noto_sans_bold"
         android:textSize="15dp"
         android:background="@drawable/round_rectangle_gray_8dp"
         android:backgroundTint="@color/selector_endable_button_gray_to_black"
@@ -161,6 +165,7 @@
         android:textColor="@color/redDE4446"
         android:textSize="11dp"
         android:visibility="invisible"
+        android:fontFamily="@font/noto_sans_regular"
         app:layout_constraintStart_toStartOf="@+id/btn_login"
         app:layout_constraintTop_toBottomOf="@+id/btn_login" />
 

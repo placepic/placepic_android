@@ -34,7 +34,6 @@
     <color name="whiteFEFFFF">#FEFFFF</color>
 
 
-
     <color name="subway1">#263c96</color>
     <color name="subway2">#60b057</color>
     <color name="subway3">#f06e00</color>
@@ -63,5 +62,7 @@
     <color name="pinkF6">#F65C6C</color>
     <color name="grayF3">#F3F3F3</color>
     <color name="gray63">#636363</color>
+
+    <color name="black_overlay">#66000000</color>
 
 </resources>

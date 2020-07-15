@@ -2,6 +2,7 @@ package place.pic.ui.main.mypage.userlist
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.core.content.ContentProviderCompat.requireContext
 import kotlinx.android.synthetic.main.activity_wait_user_list.*
 import place.pic.R
 import place.pic.data.PlacepicAuthRepository
@@ -29,7 +30,6 @@ class WaitUserListActivity : AppCompatActivity() {
     }
 
     /*request to Server*/
-    //TODO : groupIdx 저장하는 부분이 생기면 해당 아이디 불러오기
     private fun requestToWaitUserList() {
         val token = PlacepicAuthRepository.getInstance(this).userToken ?: return
 
@@ -37,7 +37,7 @@ class WaitUserListActivity : AppCompatActivity() {
             .getInstance()
             .requestWaitGroupList(
                 token = token,
-                groupIdx = 3
+                groupIdx = PlacepicAuthRepository.getInstance(this).groupId!!
             ).customEnqueue(
                 onSuccess = { response ->
                     response.body()?.data?.let { list ->
