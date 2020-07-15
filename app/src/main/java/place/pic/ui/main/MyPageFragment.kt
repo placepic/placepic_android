@@ -13,6 +13,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
+import kotlinx.android.synthetic.main.fragment_admin_page.view.*
 import kotlinx.android.synthetic.main.fragment_my_page.*
 import kotlinx.android.synthetic.main.fragment_my_page.view.*
 import place.pic.R
@@ -82,7 +83,7 @@ class MyPageFragment : Fragment() {
                             }
                             1 ->
                             {
-                                tv_profile_kind.text = "일반유저"
+                                tv_profile_kind.text = "멤버"
                                 cl_user_list.visibility=View.INVISIBLE
                                 img_mypage_line.visibility=View.INVISIBLE
                             }
@@ -101,7 +102,6 @@ class MyPageFragment : Fragment() {
         }
         return v
     }
-
 }
 
 

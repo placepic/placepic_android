@@ -52,12 +52,10 @@ class WriteFragment : BottomSheetDialogFragment(){
             dismiss()
         }
         return v
-
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        dialog?.window?.attributes?.windowAnimations=R.style.DialogAnimation
     }
 
     interface BottomSheetListener{

@@ -35,7 +35,7 @@
             android:text="유저정보"
             android:textColor="@color/black36"
             android:textSize="18dp"
-            android:textStyle="bold"
+            android:fontFamily="@font/noto_sans_bold"
             app:layout_constraintBottom_toBottomOf="@+id/img_user_info_top_back_btn"
             app:layout_constraintStart_toEndOf="@+id/img_user_info_top_back_btn"
             app:layout_constraintTop_toTopOf="@+id/img_user_info_top_back_btn" />
@@ -49,7 +49,7 @@
         android:layout_marginTop="70dp"
         android:textColor="@color/black4F"
         android:textSize="18dp"
-        android:textStyle="bold"
+        android:fontFamily="@font/noto_sans_bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cl_user_info_top_bar"
         tools:text="userName" />
@@ -71,6 +71,7 @@
             android:text="소속"
             android:textColor="@color/grayCD"
             android:textSize="12dp"
+            android:fontFamily="@font/noto_sans_regular"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -80,6 +81,7 @@
             android:layout_height="wrap_content"
             android:textColor="@color/black4F"
             android:textSize="15dp"
+            android:fontFamily="@font/noto_sans_regular"
             app:layout_constraintStart_toStartOf="@+id/tv_user_group"
             app:layout_constraintTop_toBottomOf="@+id/tv_user_group"
             tools:text="user Group Name"
@@ -113,6 +115,7 @@
             android:text="생년월일"
             android:textColor="@color/grayCD"
             android:textSize="12dp"
+            android:fontFamily="@font/noto_sans_regular"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -125,7 +128,7 @@
             app:layout_constraintStart_toStartOf="@+id/tv_user_birth"
             app:layout_constraintTop_toBottomOf="@+id/tv_user_birth"
             tools:text="user Group Name"
-
+            android:fontFamily="@font/noto_sans_regular"
             />
 
         <View
@@ -155,6 +158,7 @@
             android:text="전화번호"
             android:textColor="@color/grayCD"
             android:textSize="12dp"
+            android:fontFamily="@font/noto_sans_regular"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -167,6 +171,7 @@
             app:layout_constraintStart_toStartOf="@+id/tv_user_phone"
             app:layout_constraintTop_toBottomOf="@+id/tv_user_phone"
             tools:text="user Group Name"
+            android:fontFamily="@font/noto_sans_regular"
 
             />
 
@@ -196,6 +201,7 @@
             android:text="성별"
             android:textColor="@color/grayCD"
             android:textSize="12dp"
+            android:fontFamily="@font/noto_sans_regular"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -205,6 +211,7 @@
             android:layout_height="wrap_content"
             android:textColor="@color/black4F"
             android:textSize="15dp"
+            android:fontFamily="@font/noto_sans_regular"
             app:layout_constraintStart_toStartOf="@+id/tv_user_gender"
             app:layout_constraintTop_toBottomOf="@+id/tv_user_gender"
             tools:text="user Group Name"
@@ -235,7 +242,7 @@
         android:text="거절"
         android:textColor="@color/black4F"
         android:textSize="15dp"
-        android:textStyle="bold"
+        android:fontFamily="@font/noto_sans_bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/btn_user_accept"
         app:layout_constraintHorizontal_bias="0.5"
@@ -250,6 +257,7 @@
         android:text="수락"
         android:textSize="15dp"
         android:textStyle="bold"
+        android:fontFamily="@font/noto_sans_bold"
         android:textColor="@android:color/white"
         android:background="@drawable/round_rectangle_gray_8dp"
         android:backgroundTint="@color/black36"

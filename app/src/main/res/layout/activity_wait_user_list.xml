@@ -34,7 +34,7 @@
             android:text="그룹 참여하기"
             android:textColor="@color/black36"
             android:textSize="18dp"
-            android:textStyle="bold"
+            android:fontFamily="@font/noto_sans_bold"
             app:layout_constraintBottom_toBottomOf="@+id/img_wait_user_list_top_back_btn"
             app:layout_constraintStart_toEndOf="@+id/img_wait_user_list_top_back_btn"
             app:layout_constraintTop_toTopOf="@+id/img_wait_user_list_top_back_btn" />

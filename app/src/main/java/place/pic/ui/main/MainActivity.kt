@@ -8,12 +8,13 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_search_subway.*
 import place.pic.R
+import place.pic.showToast
 import place.pic.ui.main.mypage.userlist.UserListFragment
 import place.pic.ui.main.place.PlacesFragment
 
 
 class MainActivity : AppCompatActivity(), WriteFragment.BottomSheetListener {
-
+    var mBackWait:Long = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -41,7 +42,7 @@ class MainActivity : AppCompatActivity(), WriteFragment.BottomSheetListener {
                     transaction.replace(R.id.main_frame, fragmentB, "people")
                 }
                 R.id.action_scrap -> {
-                    val fragmentD = ScrapFragment()
+                    val fragmentD = NonePageFragment()
                     transaction.replace(R.id.main_frame, fragmentD, "scrap")
                 }
                 R.id.action_mypage -> {
@@ -62,19 +63,22 @@ class MainActivity : AppCompatActivity(), WriteFragment.BottomSheetListener {
     }
 
     override fun onOptionClick(text: String) {
-        TODO("Not yet implemented")
-        //change text on each item click
-        textView.text = text
     }
 
     override fun onBackPressed() {
-        val mBottomNavigationView =
-            findViewById<BottomNavigationView>(R.id.bottom_nav)
-        if (mBottomNavigationView.selectedItemId == R.id.action_menu) {
-            super.onBackPressed()
-            finish()
+        val mBottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_nav)
+        if(System.currentTimeMillis() - mBackWait >=2000 ) {
+            mBackWait = System.currentTimeMillis()
+            if (mBottomNavigationView.selectedItemId == R.id.action_menu) {
+                super.onBackPressed()
+                finish()
+                return
+            } else {
+                mBottomNavigationView.selectedItemId = R.id.action_menu
+            }
+            showToast("뒤로가기 버튼을 한번 더 누르면 종료됩니다.")
         } else {
-            mBottomNavigationView.selectedItemId = R.id.action_menu
+            finish() //액티비티 종료
         }
     }
 }

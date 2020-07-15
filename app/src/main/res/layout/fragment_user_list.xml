@@ -26,7 +26,7 @@
                 android:layout_marginStart="18dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="11dp"
-                android:fontFamily="@font/spoqa_han_sans_bold"
+                android:fontFamily="@font/noto_sans_bold"
                 android:text="순위"
                 android:textColor="@color/black36"
                 android:textSize="18dp"

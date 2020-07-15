@@ -24,7 +24,7 @@
                 android:text="내 정보"
                 android:textColor="@color/black36"
                 android:textSize="20dp"
-                android:textStyle="bold"
+                android:fontFamily="@font/noto_sans_bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -47,7 +47,7 @@
                 android:text="승인 대기중인 유저 보기"
                 android:textColor="@color/black40"
                 android:textSize="15dp"
-                android:textStyle="bold"
+                android:fontFamily="@font/noto_sans_bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 

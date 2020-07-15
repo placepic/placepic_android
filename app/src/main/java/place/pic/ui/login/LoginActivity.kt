@@ -35,6 +35,7 @@ class LoginActivity : AppCompatActivity(),View.OnClickListener {
         val gotoLoginPageIntent = Intent(this,LoginPageActivity::class.java)
         gotoLoginPageIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
         startActivity(gotoLoginPageIntent)
+        finish()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -76,6 +77,7 @@ class LoginActivity : AppCompatActivity(),View.OnClickListener {
                 val gotoLoginPageIntent = Intent(this,LoginPageActivity::class.java)
                 gotoLoginPageIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                 startActivity(gotoLoginPageIntent)
+                finish()
             }
             R.id.btn_login -> {
                 PlacePicService.getInstance().requestLogin(
@@ -90,11 +92,11 @@ class LoginActivity : AppCompatActivity(),View.OnClickListener {
                     override fun onResponse(
                         call: Call<BaseResponse<LoginResponse>>,
                         response: Response<BaseResponse<LoginResponse>>) {
-                        PlacepicAuthRepository
-                            .getInstance(this@LoginActivity)
-                            .saveUserToken(response.body()!!.data.accessToken)
                         if(response.isSuccessful)
                         {
+                            PlacepicAuthRepository
+                                .getInstance(this@LoginActivity)
+                                .saveUserToken(response.body()!!.data.accessToken)
                             if(response.body()!!.success)
                             {
                                 val intent = Intent(this@LoginActivity, GroupListActivity::class.java)
@@ -107,6 +109,7 @@ class LoginActivity : AppCompatActivity(),View.OnClickListener {
                             btn_login.isEnabled = false
                         }
                     }
+
                 })
             }
         }
