@@ -23,6 +23,10 @@ class ChipFactory {
         fun createSmallChip(layoutInflater: LayoutInflater): Chip {
             return layoutInflater.inflate(R.layout.chip_tag_small, null, false) as Chip
         }
+
+        fun createDetailChip(layoutInflater: LayoutInflater): Chip {
+            return layoutInflater.inflate(R.layout.chip_detail_tag,null,false) as Chip
+        }
     }
 
 }

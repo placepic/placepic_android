@@ -37,9 +37,7 @@ class DetailViewPagerAdapter(
         val viewPager = container as ViewPager
         viewPager.addView(v , 0)
 
-
         return v
-
     }
 
 
