@@ -1,5 +1,6 @@
 package place.pic.ui.main.mypage.userlist
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -48,7 +49,7 @@ class UserListAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     }
 
     inner class MemberViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
-        private val userCount = itemView.findViewById<TextView>(R.id.user_count)
+        private val userCount = itemView.findViewById<TextView>(R.id.user_ranking)
 
         fun bind(userCount: Int) {
             this.userCount.text = userCount.toString()
@@ -56,18 +57,22 @@ class UserListAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     }
 
     inner class UserViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
-        private val userCount = itemView.findViewById<TextView>(R.id.user_count)
+        private val rank = itemView.findViewById<TextView>(R.id.user_ranking)
         //private val img = itemView.findViewById<ImageView>(R.id.user_image)
         private val userName = itemView.findViewById<TextView>(R.id.user_name)
         private val part = itemView.findViewById<TextView>(R.id.user_part)
         private val postCount = itemView.findViewById<TextView>(R.id.user_post_count)
 
         fun bind(userData : UserData) {
-            userCount.text = userData.rank
+            rank.text = userData.rank
             //Glide.with(itemView).load(userListData.img).into(img)
             userName.text = userData.userName
             part.text = userData.part
             postCount.text = userData.postCount.toString()
+
+            if (rank.text == "1" || rank.text == "2" || rank.text == "3") {
+                rank.setTextColor(Color.parseColor("#F65C6C"))
+            }
         }
     }
 
