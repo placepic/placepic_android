@@ -35,7 +35,6 @@ class DetailViewActivity : AppCompatActivity(), View.OnClickListener {
             R.id.img_btn_detail_top_back ->{
                 onBackPressed()
             }
-            R.id.
         }
     }
 
