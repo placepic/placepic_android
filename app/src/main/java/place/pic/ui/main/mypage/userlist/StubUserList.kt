@@ -14,7 +14,7 @@ fun stubUserList(): List<UserData> {
             state = 0,
             part = "",
             postCount = 5,
-            rank = 0
+            rank = ""
         ),
         UserData(
             userIdx = 2,
@@ -23,7 +23,7 @@ fun stubUserList(): List<UserData> {
             state = 0,
             part = "",
             postCount = 5,
-            rank = 0
+            rank = ""
         ),
         UserData(
             userIdx = 2,
@@ -32,7 +32,7 @@ fun stubUserList(): List<UserData> {
             state = 0,
             part = "",
             postCount = 5,
-            rank = 0
+            rank = ""
         ),
         UserData(
             userIdx = 2,
@@ -41,7 +41,7 @@ fun stubUserList(): List<UserData> {
             state = 0,
             part = "",
             postCount = 5,
-            rank = 0
+            rank = ""
         ),
         UserData(
             userIdx = 2,
@@ -50,7 +50,7 @@ fun stubUserList(): List<UserData> {
             state = 0,
             part = "",
             postCount = 5,
-            rank = 0
+            rank = ""
         ),
         UserData(
             userIdx = 2,
@@ -59,7 +59,7 @@ fun stubUserList(): List<UserData> {
             state = 0,
             part = "",
             postCount = 5,
-            rank = 0
+            rank = ""
         ),
         UserData(
             userIdx = 2,
@@ -68,7 +68,7 @@ fun stubUserList(): List<UserData> {
             state = 0,
             part = "",
             postCount = 5,
-            rank = 0
+            rank = ""
         ),
         UserData(
             userIdx = 2,
@@ -77,7 +77,7 @@ fun stubUserList(): List<UserData> {
             state = 0,
             part = "",
             postCount = 5,
-            rank = 0
+            rank = ""
         ),
         UserData(
             userIdx = 2,
@@ -86,7 +86,7 @@ fun stubUserList(): List<UserData> {
             state = 0,
             part = "",
             postCount = 5,
-            rank = 0
+            rank = ""
         )
     )
 }
