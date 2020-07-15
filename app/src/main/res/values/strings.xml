@@ -20,7 +20,7 @@
     values-round/strings.xml for round devices.
     -->
     <string name="hello_world">Hello Square World!</string>
-    <string name="n_amount_of_ten">%d / 10</string>
+    <string name="n_amount_of_ten">%d/10</string>
     <string name="galleryPermissionRejected">권한을 거부하시면 이미지를 업로드 하실 수 없습니다.</string>
     <string name="imageCountMaxIsTen">이미지는 10개 까지만 첨부 가능합니다.</string>
     <string name="group_count">%1$d명 · 전체글 %2$d개</string>
@@ -36,4 +36,6 @@
     <string name="place_features">유용한 장소 정보</string>
     <string name="wait_group_count">승인 대기중인 그룹( %d )</string>
     <string name="total_count">총 %s개 결과</string>
+    <string name="upload_failed">업로드에 실패했습니다. 인터넷 연결을 확인해주세요.</string>
+    <string name="upload_finished">장소가 업로드되었습니다!</string>
 </resources>

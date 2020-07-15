@@ -1,10 +1,13 @@
 package place.pic.data.remote
 
-import place.pic.data.remote.request.*
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import place.pic.data.remote.request.RequestAcceptUser
+import place.pic.data.remote.request.RequestLogin
+import place.pic.data.remote.request.RequestRegister
+import place.pic.data.remote.request.RequestRegisterSecond
 import place.pic.data.remote.response.*
 import retrofit2.Call
-import place.pic.data.remote.response.ResponseGroupList
-import place.pic.data.remote.response.BaseResponse
 import retrofit2.http.*
 
 /**
@@ -106,10 +109,10 @@ interface PlacePicService {
 
     @GET("/auth/myInfo/{groupIdx}")
     fun requestMyPage(
-        @Header("Content-Type") contentType: String ="application/json",
+        @Header("Content-Type") contentType: String = "application/json",
         @Header("token") token: String,
         @Path("groupIdx") groupIdx: Int
-    ):Call<BaseResponse<MyPageResponse>>
+    ): Call<BaseResponse<MyPageResponse>>
 
     /*
     * 관리자 페이지 서버 연결
@@ -146,8 +149,18 @@ interface PlacePicService {
     fun requestDetail(
         @Header("Content-Type") contentType: String = "application/json",
         @Header("token") token: String,
-        @Path("placeIdx") placeIdx:Int
-    ):Call<BaseResponse<DetailResponse>>
+        @Path("placeIdx") placeIdx: Int
+    ): Call<BaseResponse<DetailResponse>>
+
+    @Multipart
+    @POST("/places")
+    fun uploadPlace(
+        @Header("token") token: String,
+        @PartMap params: HashMap<String, RequestBody>,
+        @PartMap arrayParams: HashMap<String, List<Int>>,
+        @Part image: List<MultipartBody.Part>
+    ): Call<BaseResponse<Unit>>
+    // https://github.com/square/retrofit/issues/1805
 
     companion object {
         const val BASE_URL = "http://3.34.209.95:3000"
