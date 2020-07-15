@@ -1,5 +1,6 @@
 package place.pic.ui.main.detail
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -10,26 +11,25 @@ import place.pic.data.PlacepicAuthRepository
 import place.pic.data.entity.Place
 import place.pic.data.remote.PlacePicService
 import place.pic.data.remote.response.DetailResponse
+import place.pic.data.remote.response.Like
 import place.pic.data.remote.response.Uploader
 import place.pic.ui.extands.customEnqueue
 import place.pic.ui.extands.unixDateTimeParser
+import place.pic.ui.main.detail.liker.LikerUserListActivity
 import place.pic.ui.tag.ChipFactory
-import java.text.SimpleDateFormat
-import java.util.*
 
-  /*
- * 글 작성 유저와 글의 유저 Id를 비교하여 글 삭제 버튼의 유무를 지정하기 위해서
- * putExtra에 "userIdx" 키로 userIdx:Int를 넘겨주시면 됩니다.
- *
- * list item을 클릭하면 해당 아이템의 Detail이 불려야하므로
- * put Extra에 "placeIdx" 키로 placeIdx:Int 를 넘겨 주시면 됩니다.
- *
- * 각각의 키로는 Int로 캐스팅하여 사용합니다.
- */
+/*
+* 글 작성 유저와 글의 유저 Id를 비교하여 글 삭제 버튼의 유무를 지정하기 위해서
+* putExtra에 "userIdx" 키로 userIdx:Int를 넘겨주시면 됩니다.
+*
+* 각각의 키로는 Int로 캐스팅하여 사용합니다.
+*/
 
 class DetailViewActivity : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var detailviewPagerAdapter: DetailViewPagerAdapter
+
+    private lateinit var likerUserList:ArrayList<Like>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,6 +39,13 @@ class DetailViewActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun init(){
         requestToDetailView()
+        buttonEventMapping()
+    }
+
+    private fun buttonEventMapping(){
+        cl_btn_detail_shared_people.setOnClickListener(this)
+        cl_btn_detail_like.setOnClickListener(this)
+        cl_btn_detail_more_info.setOnClickListener(this)
     }
 
     override fun onClick(p0: View?) {
@@ -47,7 +54,10 @@ class DetailViewActivity : AppCompatActivity(), View.OnClickListener {
                 onBackPressed()
             }
             R.id.cl_btn_detail_shared_people -> {
-                
+                val gotoLikerUserList =
+                    Intent(this,LikerUserListActivity::class.java)
+                gotoLikerUserList.putExtra("List",likerUserList)
+                startActivity(gotoLikerUserList)
             }
         }
     }
@@ -84,6 +94,7 @@ class DetailViewActivity : AppCompatActivity(), View.OnClickListener {
         tv_detail_place_info.text = detailStringForm(detailResponse.placeInfo," · ")
         tv_detail_shared_people_count.text = detailResponse.likeCount.toString()
 
+        likerUserList = detailResponse.likeList as ArrayList<Like>
     }
 
     private fun insertUploadUserDataInView(uploader: Uploader) {

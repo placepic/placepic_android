@@ -9,7 +9,7 @@ import place.pic.data.remote.response.Like
 
 class LikerUserListAdapter(
     private val context: Context,
-    private val datas:List<Like>
+    private val datas: List<Like>
 ) : RecyclerView.Adapter<LikerUserListViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LikerUserListViewHolder {

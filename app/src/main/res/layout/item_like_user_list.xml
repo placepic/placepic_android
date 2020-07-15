@@ -21,7 +21,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
-        android:fontFamily="@font/spoqa_han_sans_bold"
+        android:fontFamily="@font/noto_sans_bold"
         android:text="최호준"
         android:textColor="@color/black36"
         android:textSize="15dp"
@@ -37,10 +37,22 @@
         android:layout_marginTop="6dp"
         android:text="SOPT 26기 안드로이드 파트장"
         android:textColor="@color/grayADB6BD"
+        android:fontFamily="@font/noto_sans_regular"
         android:textSize="11dp"
         app:layout_constraintBottom_toBottomOf="@+id/user_image"
         app:layout_constraintTop_toBottomOf="@+id/user_name"
         app:layout_constraintStart_toStartOf="@id/user_name"/>
+
+    <TextView
+        android:id="@+id/user_create_at"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/user_name"
+        android:textSize="12dp"
+        android:fontFamily="@font/noto_sans_regular"
+        android:textColor="@color/gray63"
+        tools:text="2020.20.20" />
 
     <View
         android:id="@+id/view6"
