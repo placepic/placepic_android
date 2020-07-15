@@ -31,9 +31,7 @@ import retrofit2.Response
 
 
 class MyPageFragment : Fragment() {
-    private val token =
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZHgiOjMsIm5hbWUiOiLstZzsmIHtm4giLCJpYXQiOjE1OTM2OTkxODMsImV4cCI6MTU5NjI5MTE4MywiaXNzIjoicGxhY2VwaWMifQ.rmFbeBfviyEzbMlMM4b3bMMiRcNDDbiX8bQtwL_cuN0"
-
+    
     var user_name: String? = null
     var user_state: Int? = null
     var user_part: String? = null
@@ -46,7 +44,7 @@ class MyPageFragment : Fragment() {
     ): View? {
         val v = inflater.inflate(R.layout.fragment_my_page, container, false)
         PlacePicService.getInstance().requestMyPage(
-            token = token,
+            token = PlacepicAuthRepository.getInstance(requireContext()).userToken!!,
             groupIdx = PlacepicAuthRepository.getInstance(requireContext()).groupId!!
         ).enqueue(object : Callback<BaseResponse<MyPageResponse>> {
             override fun onFailure(
@@ -92,8 +90,7 @@ class MyPageFragment : Fragment() {
                         }
                     }
                 } else {
-                    //tv_login_fail.visibility = View.VISIBLE
-                    //btn_login.isEnabled = false
+
                 }
             }
         })

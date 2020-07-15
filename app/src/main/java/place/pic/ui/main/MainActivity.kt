@@ -56,7 +56,7 @@ class MainActivity : AppCompatActivity(), WriteFragment.BottomSheetListener {
         }
 
         fab_write.setOnClickListener {
-            //WriteFragment().show(supportFragmentManager, "BottomSheetEx")
+            WriteFragment().show(supportFragmentManager, "BottomSheetEx")
         }
 
     }
