@@ -14,6 +14,7 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
 
+        <activity android:name=".ui.group.EndGroupJoinActivity"/>
         <activity android:name=".ui.main.mypage.userlist.WaitUserListActivity" />
         <activity android:name=".ui.search.place.PlaceSearchActivity" />
         <activity android:name=".ui.upload.UploadPlaceActivity" />
@@ -28,8 +29,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.main.mypage.userlist.UserInfoActivity"/>
-        <activity android:name=".ui.main.MainActivity">
-        </activity>
+        <activity android:name=".ui.main.MainActivity"/>
+        <activity android:name=".ui.main.detail.DetailViewActivity" />
         <activity android:name=".ui.tag.UsefulTagActivity" />
         <activity android:name=".ui.search.subway.SubwaySearchActivity" />
         <activity android:name=".ui.tag.KeywordTagActivity" />
