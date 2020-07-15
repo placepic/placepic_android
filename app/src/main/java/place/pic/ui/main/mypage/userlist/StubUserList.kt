@@ -8,64 +8,85 @@ package place.pic.ui.main.mypage.userlist
 fun stubUserList(): List<UserData> {
     return listOf(
         UserData(
-            //img = "",
+            groupIdx = 1,
+            userIdx = 2,
             userName = "김다혜",
-            part = "다혜왕자",
-            postCount = 8
-        ),
-        UserData(
-            //img = "",
-            userName = "이연정",
-            part = "아버지",
-            postCount = 6
-        ),
-        UserData(
-            //img = "",
-            userName = "조희연",
-            part = "딸",
+            //profileImageUrl = "",
+            state = 0,
+            part = "",
             postCount = 5
         ),
         UserData(
-            //img = "",
-            userName = "배민주",
-            part = "민주주의",
-            postCount = 3
-        ),
-        UserData(
-            //img = "",
-            userName = "이수정",
-            part = "공주님",
-            postCount = 1
-        ),
-        UserData(
-            //img = "",
+            groupIdx = 1,
+            userIdx = 2,
             userName = "김다혜",
-            part = "다혜왕자",
-            postCount = 8
-        ),
-        UserData(
-            //img = "",
-            userName = "이연정",
-            part = "아버지",
-            postCount = 6
-        ),
-        UserData(
-            //img = "",
-            userName = "조희연",
-            part = "딸",
+            //profileImageUrl = "",
+            state = 0,
+            part = "",
             postCount = 5
         ),
         UserData(
-            //img = "",
-            userName = "배민주",
-            part = "민주주의",
-            postCount = 3
+            groupIdx = 1,
+            userIdx = 2,
+            userName = "김다혜",
+            //profileImageUrl = "",
+            state = 0,
+            part = "",
+            postCount = 5
         ),
         UserData(
-            //img = "",
-            userName = "이수정",
-            part = "공주님",
-            postCount = 1
+            groupIdx = 1,
+            userIdx = 2,
+            userName = "김다혜",
+            //profileImageUrl = "",
+            state = 0,
+            part = "",
+            postCount = 5
+        ),
+        UserData(
+            groupIdx = 1,
+            userIdx = 2,
+            userName = "김다혜",
+            //profileImageUrl = "",
+            state = 0,
+            part = "",
+            postCount = 5
+        ),
+        UserData(
+            groupIdx = 1,
+            userIdx = 2,
+            userName = "김다혜",
+            //profileImageUrl = "",
+            state = 0,
+            part = "",
+            postCount = 5
+        ),
+        UserData(
+            groupIdx = 1,
+            userIdx = 2,
+            userName = "김다혜",
+            //profileImageUrl = "",
+            state = 0,
+            part = "",
+            postCount = 5
+        ),
+        UserData(
+            groupIdx = 1,
+            userIdx = 2,
+            userName = "김다혜",
+            //profileImageUrl = "",
+            state = 0,
+            part = "",
+            postCount = 5
+        ),
+        UserData(
+            groupIdx = 1,
+            userIdx = 2,
+            userName = "김다혜",
+            //profileImageUrl = "",
+            state = 0,
+            part = "",
+            postCount = 5
         )
     )
 }

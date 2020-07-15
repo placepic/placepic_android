@@ -1,6 +1,5 @@
 package place.pic.ui.main.mypage.userlist
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,7 +14,8 @@ import place.pic.R
 
 class UserListAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    var data : MutableList<UserData> = mutableListOf<UserData>()?.apply {add(0, UserData.empty())}
+    var userCount: Int = 0
+    var datas : MutableList<UserData> = mutableListOf<UserData>()?.apply {add(0, UserData.empty())}
 
     override fun getItemViewType(position: Int) = when (position) {
         0 -> R.layout.item_member
@@ -39,19 +39,19 @@ class UserListAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if (holder is MemberViewHolder) {
-            //holder.bind()
+            holder.bind(userCount)
         }
 
         if (holder is UserViewHolder) {
-            holder.bind(data[position])
+            holder.bind(datas[position])
         }
     }
 
     inner class MemberViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         private val userCount = itemView.findViewById<TextView>(R.id.user_count)
 
-        fun bind(memberData: MemberData) {
-            userCount.text = memberData.userCount.toString()
+        fun bind(userCount: Int) {
+            this.userCount.text = userCount.toString()
         }
     }
 
@@ -70,12 +70,17 @@ class UserListAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     }
 
     override fun getItemCount(): Int {
-        return data.size
+        return datas.size
     }
 
     fun addItems (items: List<UserData>) {
+        clear()
         val size = itemCount + 2
-        data.addAll(items)
+        datas.addAll(items)
         notifyItemRangeInserted(size, items.size)
+    }
+
+    private fun clear() {
+        datas.clear()
     }
 }
