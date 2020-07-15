@@ -12,6 +12,8 @@ import place.pic.data.entity.KeywordTag
 import place.pic.data.entity.Place
 import place.pic.data.entity.Subway
 import place.pic.data.entity.UsefulTag
+import place.pic.data.remote.request.UploadPlaceRequest
+import place.pic.data.tempToken
 import place.pic.ui.main.place.PlacesFragment
 
 /**
@@ -20,7 +22,7 @@ import place.pic.ui.main.place.PlacesFragment
  */
 
 class UploadPlaceViewModel(
-    // private val placePicAuthRepository: PlacepicAuthRepository
+//    private val placePicAuthRepository: PlacepicAuthRepository
 ) {
     val placeReview = MutableLiveData<String>()
     private var katechXPosition: Int? = null
@@ -58,7 +60,24 @@ class UploadPlaceViewModel(
     }
 
     fun uploadPlace(context: Context) {
-
+        UploadPlaceRequest(
+            "title",
+            "address",
+            "roadAddress",
+            100,
+            200,
+            "호롤롤ㄹ로롤 ㅣㄹ뷰이륩리률비룰리뷰",
+            2,
+            1,
+            keywords.value ?: emptyList(),
+            _features.value ?: emptyList(),
+            _subways.value ?: emptyList(),
+            _imageUris.value ?: emptyList()
+        ).apply {
+            addOnSuccessListener { Log.d("Malibin", it.toString()) }
+            addOnFailureListener { Log.d("Malibin", it.toString()) }
+            addOnErrorListener { Log.d("Malibin", it.toString()) }
+        }.send(context, tempToken)
     }
 
     // 생명주기로 GC한테 컬렉팅됬을때는 생각하지말자 시간없으니... ^^^^^^;;;;;;

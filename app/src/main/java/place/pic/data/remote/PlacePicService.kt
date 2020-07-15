@@ -1,10 +1,13 @@
 package place.pic.data.remote
 
-import place.pic.data.remote.request.*
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import place.pic.data.remote.request.RequestAcceptUser
+import place.pic.data.remote.request.RequestLogin
+import place.pic.data.remote.request.RequestRegister
+import place.pic.data.remote.request.RequestRegisterSecond
 import place.pic.data.remote.response.*
 import retrofit2.Call
-import place.pic.data.remote.response.ResponseGroupList
-import place.pic.data.remote.response.BaseResponse
 import retrofit2.http.*
 
 /**
@@ -140,6 +143,16 @@ interface PlacePicService {
         @Path("groupIdx") groupIdx: Int,
         @Path("userIdx") userIdx: Int
     ): Call<BaseResponse<Unit>>
+
+    @Multipart
+    @POST("/places")
+    fun uploadPlace(
+        @Header("token") token: String,
+        @PartMap params: HashMap<String, RequestBody>,
+        @PartMap arrayParams: HashMap<String, List<Int>>,
+        @Part image: List<MultipartBody.Part>
+    ): Call<BaseResponse<Unit>>
+    // https://github.com/square/retrofit/issues/1805
 
     companion object {
         const val BASE_URL = "http://3.34.209.95:3000"

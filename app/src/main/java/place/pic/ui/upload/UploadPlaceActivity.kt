@@ -45,6 +45,12 @@ class UploadPlaceActivity : AppCompatActivity() {
         subscribeSubways()
         subscribeKeywords()
         subscribeFeatures()
+
+        binding.btnSubmit.isEnabled = true
+        binding.btnSubmit.setOnClickListener {
+            Log.d("Malibin","clicked")
+            uploadPlacesViewModel.uploadPlace(this)
+        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

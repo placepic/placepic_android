@@ -27,7 +27,6 @@ class InWebActivity : AppCompatActivity() {
 
         binding = ActivityWebBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         initView()
     }
 
@@ -71,10 +70,10 @@ class InWebActivity : AppCompatActivity() {
         }
     }
 
-    private fun getWebUrl() = intent.getStringExtra("webUrl")
+    private fun getWebUrl() = intent.getStringExtra(WEB_URL_KEY)
         ?: throw IllegalArgumentException("webUrl must be sended")
 
-    private fun getWebTitle() = intent.getStringExtra("webTitle")
+    private fun getWebTitle() = intent.getStringExtra(WEB_TITLE_KEY)
         ?: throw IllegalArgumentException("webTitle must be sended")
 
 
@@ -91,5 +90,10 @@ class InWebActivity : AppCompatActivity() {
                 binding.progressbar.visibility = View.GONE
             }
         }
+    }
+
+    companion object {
+        const val WEB_URL_KEY = "webUrl"
+        const val WEB_TITLE_KEY = "webTitle"
     }
 }
