@@ -7,7 +7,6 @@
     android:layout_height="wrap_content"
     android:layout_marginStart="4dp"
     android:clickable="true"
-    android:fontFamily="@font/spoqa_han_sans_bold"
     android:paddingTop="4dp"
     android:paddingBottom="4dp"
     android:text="textView"
@@ -16,8 +15,8 @@
 
     app:chipBackgroundColor="#FFFFFF"
     app:chipCornerRadius="6dp"
-    app:chipMinHeight="41dp"
+    app:chipMinHeight="37dp"
     app:chipStrokeColor="@color/selector_tag_stroke_color"
     app:chipStrokeWidth="2dp"
-    app:textEndPadding="16dp"
-    app:textStartPadding="16dp" />
+    app:textEndPadding="10dp"
+    app:textStartPadding="12dp" />

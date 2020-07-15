@@ -13,8 +13,8 @@
 
     <style name="AppTheme.TagChip" parent="Widget.MaterialComponents.Chip.Choice">
         <item name="android:textColor">@color/selector_tag_text_color</item>
-        <item name="fontFamily">@font/spoqa_han_sans_bold</item>
-        <item name="android:textSize">15dp</item>
+        <item name="fontFamily">@font/noto_sans_bold</item>
+        <item name="android:textSize">13dp</item>
         <item name="textStartPadding">16dp</item>
         <item name="textEndPadding">16dp</item>
     </style>
@@ -26,6 +26,7 @@
 
     <style name="AppTheme.detailTagChip" parent="Widget.MaterialComponents.Chip.Choice">
         <item name="android:textColor">@color/selector_tag_text_color</item>
+        <item name="fontFamily">@font/noto_sans_bold</item>
         <item name="android:textSize">11dp</item>
         <item name="textStartPadding">10dp</item>
         <item name="textEndPadding">10dp</item>
