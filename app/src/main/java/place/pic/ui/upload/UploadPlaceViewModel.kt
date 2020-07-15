@@ -2,7 +2,6 @@ package place.pic.ui.upload
 
 import android.content.Context
 import android.content.Intent
-import android.util.Log
 import androidx.annotation.StringRes
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -57,11 +56,16 @@ class UploadPlaceViewModel(
     val toastEvent: LiveData<Int>
         get() = _toastEvent
 
+    private val _successEvent = MutableLiveData<Boolean>()
+    val successEvent: LiveData<Boolean>
+        get() = _successEvent
+
     init {
         _imageUris.value = emptyList()
         _subways.value = emptyList()
         _keywords.value = emptyList()
         _features.value = emptyList()
+        placeReview.value = ""
     }
 
     fun uploadPlace(context: Context) {
@@ -79,9 +83,8 @@ class UploadPlaceViewModel(
             subways = _subways.value ?: emptyList(),
             images = _imageUris.value ?: emptyList()
         ).apply {
-            addOnSuccessListener { Log.d("Malibin", it.toString()) }
-            addOnFailureListener { Log.d("Malibin", it.toString()) }
-            addOnErrorListener { Log.d("Malibin", it.toString()) }
+            addOnSuccessListener { _successEvent.value = true }
+            addOnFailureListener { _toastEvent.value = R.string.upload_failed }
         }.send(context, getUserToken())
     }
 
@@ -94,20 +97,6 @@ class UploadPlaceViewModel(
         katechYPosition = intent.getIntExtra("placeMapY", -1)
         placeOldAddress = intent.getStringExtra("placeAddress") ?: ""
         placeRoadAddress = intent.getStringExtra("placeRoadAddress") ?: ""
-
-        Log.d(
-            "Malibin",
-            """
-        _placeTitle = ${_placeTitle.value}
-        _placeType = ${_placeType.value}
-        katechXPosition = $katechXPosition
-        katechYPosition = $katechYPosition
-        placeOldAddress : $placeOldAddress
-        placeRoadAddress : $placeRoadAddress
-        groupIdx : ${getGroupId()}
-        userToken : ${getUserToken()}
-        """
-        )
     }
 
     fun handleSubwaysIntent(intent: Intent?) {

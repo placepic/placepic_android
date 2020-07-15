@@ -15,6 +15,7 @@ import place.pic.data.entity.KeywordTag
 import place.pic.data.entity.Subway
 import place.pic.data.entity.UsefulTag
 import place.pic.databinding.ActivityUploadPlaceBinding
+import place.pic.ui.main.MainActivity
 import place.pic.ui.main.place.PlacesFragment.Companion.SUBWAYS_KEY
 import place.pic.ui.search.subway.SubwaySearchActivity
 import place.pic.ui.tag.ChipFactory
@@ -47,12 +48,7 @@ class UploadPlaceActivity : AppCompatActivity() {
         subscribeSubways()
         subscribeKeywords()
         subscribeFeatures()
-
-        binding.btnSubmit.isEnabled = true
-        binding.btnSubmit.setOnClickListener {
-            Log.d("Malibin", "clicked")
-            uploadPlacesViewModel.uploadPlace(this)
-        }
+        subscribeUploadSuccessEvent()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -114,6 +110,7 @@ class UploadPlaceActivity : AppCompatActivity() {
         binding.btnSelectFeatures.setOnClickListener { deploySelectFeaturesActivity() }
         binding.btnModifyFeatures.setOnClickListener { deploySelectFeaturesActivity() }
         binding.btnFeatures.setOnClickListener { deploySelectFeaturesActivity() }
+        binding.btnSubmit.setOnClickListener { uploadPlace() }
     }
 
     private fun subscribeToastMessages() {
@@ -143,6 +140,12 @@ class UploadPlaceActivity : AppCompatActivity() {
     private fun subscribeFeatures() {
         uploadPlacesViewModel.features.observe(this, Observer {
             featureChips.submitFeatures(it)
+        })
+    }
+
+    private fun subscribeUploadSuccessEvent() {
+        uploadPlacesViewModel.successEvent.observe(this, Observer { isSuccess ->
+            if (isSuccess) backToMainActivity()
         })
     }
 
@@ -193,6 +196,17 @@ class UploadPlaceActivity : AppCompatActivity() {
         val alreadySelectedFeatures = uploadPlacesViewModel.features.value ?: emptyList()
         intent.putExtra("checkedChipIntent", ArrayList<UsefulTag>(alreadySelectedFeatures))
         startActivityForResult(intent, UsefulTagActivity.REQUEST_CODE)
+    }
+
+    private fun uploadPlace() {
+        uploadPlacesViewModel.uploadPlace(this)
+    }
+
+    private fun backToMainActivity() {
+        val intent = Intent(this, MainActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+        startActivity(intent)
+        Toast.makeText(this, R.string.upload_finished, Toast.LENGTH_SHORT).show()
     }
 
     companion object {

@@ -27,6 +27,7 @@
             android:text="@{subway.name}"
             android:textColor="@color/black40"
             android:textSize="13dp"
+            android:fontFamily="@font/noto_sans_bold"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

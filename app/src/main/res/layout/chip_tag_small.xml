@@ -8,7 +8,7 @@
     android:layout_height="wrap_content"
     android:checked="true"
     android:enabled="false"
-    android:fontFamily="@font/spoqa_han_sans_bold"
+    android:fontFamily="@font/noto_sans_bold"
     android:paddingTop="4dp"
     android:paddingBottom="4dp"
     android:textAppearance="@style/AppTheme.SmallTagChip"
