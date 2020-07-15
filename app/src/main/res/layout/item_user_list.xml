@@ -6,7 +6,7 @@
     android:layout_height="wrap_content">
 
     <TextView
-        android:id="@+id/user_number"
+        android:id="@+id/user_ranking"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="14dp"
@@ -19,17 +19,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/user_image"
         android:layout_width="50dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="14dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="12dp"
         android:layout_marginTop="11dp"
         android:layout_marginBottom="11dp"
+        android:src="@drawable/ic_user"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/user_number"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_user" />
+        app:layout_constraintStart_toEndOf="@+id/user_ranking"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/user_name"
@@ -49,7 +49,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="6dp"
         android:layout_marginBottom="18dp"
         android:text="SOPT 26기 안드로이드 파트장"
         android:textColor="@color/grayADB6BD"
@@ -63,7 +63,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="18dp"
-        android:layout_marginEnd="24dp"
+        android:layout_marginEnd="14dp"
         android:fontFamily="@font/spoqa_han_sans_bold"
         android:text="1,134"
         android:textColor="@color/gray646363"
@@ -75,8 +75,8 @@
         android:id="@+id/textView29"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="1dp"
-        android:layout_marginEnd="24dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginEnd="14dp"
         android:layout_marginBottom="18dp"
         android:text="작성한 글"
         android:textSize="9dp"

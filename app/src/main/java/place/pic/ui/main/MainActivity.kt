@@ -8,14 +8,15 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_search_subway.*
 import place.pic.R
+import place.pic.ui.main.mypage.userlist.UserListFragment
 import place.pic.ui.main.place.PlacesFragment
 
 
-class MainActivity : AppCompatActivity(),WriteFragment.BottomSheetListener {
-
+class MainActivity : AppCompatActivity(), WriteFragment.BottomSheetListener {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         val tb: BottomNavigationView = findViewById(R.id.bottom_nav)
@@ -23,14 +24,14 @@ class MainActivity : AppCompatActivity(),WriteFragment.BottomSheetListener {
 
         //처음 시작 화면 고정
         supportFragmentManager.beginTransaction()
-        .replace(R.id.main_frame, PlacesFragment())
-        .commit()
+            .replace(R.id.main_frame, PlacesFragment())
+            .commit()
 
         //바텀 네비게이션 구현
-        bottom_nav.setOnNavigationItemSelectedListener{
+        bottom_nav.setOnNavigationItemSelectedListener {
             val transaction: FragmentTransaction = supportFragmentManager.beginTransaction()
 
-            when(it.itemId){
+            when (it.itemId) {
                 R.id.action_menu -> {
                     val fragmentA = PlacesFragment()
                     transaction.replace(R.id.main_frame, fragmentA, "name")
@@ -54,11 +55,12 @@ class MainActivity : AppCompatActivity(),WriteFragment.BottomSheetListener {
             true
         }
 
-        fab_write.setOnClickListener{
+        fab_write.setOnClickListener {
             WriteFragment().show(supportFragmentManager, "BottomSheetEx")
         }
 
     }
+
     override fun onOptionClick(text: String) {
         TODO("Not yet implemented")
         //change text on each item click

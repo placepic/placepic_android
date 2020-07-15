@@ -16,6 +16,16 @@ import place.pic.ui.tag.ChipFactory
 import java.text.SimpleDateFormat
 import java.util.*
 
+/*
+ * 글 작성 유저와 글의 유저 Id를 비교하여 글 삭제 버튼의 유무를 지정하기 위해서
+ * putExtra에 "userIdx" 키로 userIdx:Int를 넘겨주시면 됩니다.
+ *
+ * list item을 클릭하면 해당 아이템의 Detail이 불려야하므로
+ * put Extra에 "placeIdx" 키로 placeIdx:Int 를 넘겨 주시면 됩니다.
+ *
+ * 각각의 키로는 Int로 캐스팅하여 사용합니다.
+ */
+
 class DetailViewActivity : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var detailviewPagerAdapter: DetailViewPagerAdapter
@@ -35,7 +45,6 @@ class DetailViewActivity : AppCompatActivity(), View.OnClickListener {
             R.id.img_btn_detail_top_back ->{
                 onBackPressed()
             }
-            R.id.
         }
     }
 

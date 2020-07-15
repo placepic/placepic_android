@@ -1,8 +1,7 @@
-
 <resources>
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
-
+        <item name="android:windowDisablePreview">true</item>
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
@@ -10,6 +9,7 @@
         <item name="android:statusBarColor">@android:color/white</item>
         <item name="android:windowLightStatusBar">true</item>
     </style>
+
 
     <style name="AppTheme.TagChip" parent="Widget.MaterialComponents.Chip.Choice">
         <item name="android:textColor">@color/selector_tag_text_color</item>
@@ -57,5 +57,17 @@
     <style name="DialogAnimation">
         <item name="android:windowEnterAnimation">@anim/slide_up</item>
         <item name="android:windowExitAnimation">@anim/slide_down</item>
+    </style>
+
+    <style name="FullscreenTheme" parent="AppTheme">
+        <item name="android:actionBarStyle">@style/FullscreenActionBarStyle</item>
+        <item name="android:windowActionBarOverlay">true</item>
+        <item name="android:windowBackground">@null</item>
+        <item name="metaButtonBarStyle">?android:attr/buttonBarStyle</item>
+        <item name="metaButtonBarButtonStyle">?android:attr/buttonBarButtonStyle</item>
+    </style>
+
+    <style name="FullscreenActionBarStyle" parent="Widget.AppCompat.ActionBar">
+        <item name="android:background">@color/black_overlay</item>
     </style>
 </resources>

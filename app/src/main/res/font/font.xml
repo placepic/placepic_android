@@ -15,4 +15,20 @@
     <font
         android:font="@font/spoqa_han_sans_bold"
         android:fontStyle="normal" />
+
+    <font
+        android:font="@font/noto_sans_thin"
+        android:fontStyle="normal" />
+
+    <font
+        android:font="@font/noto_sans_regular"
+        android:fontStyle="normal" />
+
+    <font
+        android:font="@font/noto_sans_regular"
+        android:fontStyle="normal" />
+
+    <font
+        android:font="@font/noto_sans_bold"
+        android:fontStyle="normal" />
 </font-family>
