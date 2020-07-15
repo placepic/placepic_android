@@ -1,5 +1,6 @@
 package place.pic.data.entity
 
+import place.pic.ui.main.mypage.userlist.UserData
 import java.io.Serializable
 
 /**
@@ -11,8 +12,20 @@ data class UserList (
     val groupIdx: Int,
     val userIdx: Int,
     val userName: String,
-    val profileImageUrl: String,
+    //val profileImageUrl: String,
     val state: Int,
     val part: String,
     val postCount: Int
-) : Serializable
+) {
+    companion object {
+        fun empty() = UserData(
+            groupIdx = 0,
+            userIdx = 0,
+            userName = "",
+            //profileImageUrl = "",
+            state = 0,
+            part = "",
+            postCount = 0
+        )
+    }
+}
