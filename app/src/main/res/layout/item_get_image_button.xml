@@ -9,7 +9,7 @@
         android:layout_height="92dp"
         android:layout_marginRight="8dp"
         android:background="@drawable/round_rectagle_white_6dp"
-        android:backgroundTint="@color/grayE6"
+        android:backgroundTint="@color/grayF1F4F5"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -19,26 +19,27 @@
             android:id="@+id/imageView7"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="22dp"
+            app:layout_constraintBottom_toTopOf="@id/tv_image_count"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed"
             app:srcCompat="@drawable/camera_ic" />
 
         <TextView
             android:id="@+id/tv_image_count"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="20dp"
+            android:layout_marginTop="4dp"
             android:fontFamily="@font/noto_sans_regular"
             android:text="@{String.format(@string/n_amount_of_ten, 0)}"
             android:textColor="@android:color/black"
-            android:textSize="14dp"
+            android:textSize="13dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toLeftOf="@id/textView25"
+            app:layout_constraintRight_toLeftOf="@+id/textView25"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView7" />
 
         <TextView
@@ -48,10 +49,9 @@
             android:fontFamily="@font/noto_sans_regular"
             android:text="*"
             android:textColor="@color/colorPrimary"
-            android:textSize="14dp"
+            android:textSize="13dp"
             app:layout_constraintBottom_toBottomOf="@+id/tv_image_count"
             app:layout_constraintLeft_toRightOf="@id/tv_image_count"
-            app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="@+id/tv_image_count" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
