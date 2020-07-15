@@ -83,14 +83,13 @@ class UserListFragment : Fragment() {
                                 userInUserList.apply {
                                     add (
                                         UserData(
-                                            groupIdx = response.body()!!.data.userList[i].groupIdx,
                                             userIdx = response.body()!!.data.userList[i].userIdx,
                                             userName = response.body()!!.data.userList[i].userName,
                                             //profileImageUrl = response.body()!!.data.userList[i].profileImageUrl,
                                             state = response.body()!!.data.userList[i].state,
                                             part = response.body()!!.data.userList[i].part,
-                                            postCount = response.body()!!.data.userList[i].postCount
-                                        )
+                                            postCount = response.body()!!.data.userList[i].postCount,
+                                            rank = response.body()!!.data.userList[i].rank                                        )
                                     )
                                 }
                                 userListAdapter.userCount = userCount

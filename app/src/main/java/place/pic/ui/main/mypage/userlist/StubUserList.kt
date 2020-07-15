@@ -8,85 +8,85 @@ package place.pic.ui.main.mypage.userlist
 fun stubUserList(): List<UserData> {
     return listOf(
         UserData(
-            groupIdx = 1,
             userIdx = 2,
             userName = "김다혜",
             //profileImageUrl = "",
             state = 0,
             part = "",
-            postCount = 5
+            postCount = 5,
+            rank = 0
         ),
         UserData(
-            groupIdx = 1,
             userIdx = 2,
             userName = "김다혜",
             //profileImageUrl = "",
             state = 0,
             part = "",
-            postCount = 5
+            postCount = 5,
+            rank = 0
         ),
         UserData(
-            groupIdx = 1,
             userIdx = 2,
             userName = "김다혜",
             //profileImageUrl = "",
             state = 0,
             part = "",
-            postCount = 5
+            postCount = 5,
+            rank = 0
         ),
         UserData(
-            groupIdx = 1,
             userIdx = 2,
             userName = "김다혜",
             //profileImageUrl = "",
             state = 0,
             part = "",
-            postCount = 5
+            postCount = 5,
+            rank = 0
         ),
         UserData(
-            groupIdx = 1,
             userIdx = 2,
             userName = "김다혜",
             //profileImageUrl = "",
             state = 0,
             part = "",
-            postCount = 5
+            postCount = 5,
+            rank = 0
         ),
         UserData(
-            groupIdx = 1,
             userIdx = 2,
             userName = "김다혜",
             //profileImageUrl = "",
             state = 0,
             part = "",
-            postCount = 5
+            postCount = 5,
+            rank = 0
         ),
         UserData(
-            groupIdx = 1,
             userIdx = 2,
             userName = "김다혜",
             //profileImageUrl = "",
             state = 0,
             part = "",
-            postCount = 5
+            postCount = 5,
+            rank = 0
         ),
         UserData(
-            groupIdx = 1,
             userIdx = 2,
             userName = "김다혜",
             //profileImageUrl = "",
             state = 0,
             part = "",
-            postCount = 5
+            postCount = 5,
+            rank = 0
         ),
         UserData(
-            groupIdx = 1,
             userIdx = 2,
             userName = "김다혜",
             //profileImageUrl = "",
             state = 0,
             part = "",
-            postCount = 5
+            postCount = 5,
+            rank = 0
         )
     )
 }
