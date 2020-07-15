@@ -56,6 +56,7 @@ class LoginPageActivity : AppCompatActivity(), View.OnClickListener{
                 val gotoLoginIntent = Intent(this,LoginActivity::class.java)
                 gotoLoginIntent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
                 startActivity(gotoLoginIntent)
+                finish()
             }
             R.id.btn_goto_signup->
             {

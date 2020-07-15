@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".ui.main.MyPageFragment">
 
-    <!--회원가입 상단 바-->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cl_mypage"
         android:layout_width="match_parent"
@@ -19,26 +18,16 @@
             android:id="@+id/tv_sign_top_bar_title2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp"
+            android:layout_marginStart="14dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="12dp"
+            android:fontFamily="@font/noto_sans_bold"
             android:text="SOPT"
             android:textColor="@color/black36"
             android:textSize="18dp"
-            android:fontFamily="@font/noto_sans_bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:layout_marginStart="2dp"
-            android:id="@+id/img_my_page_down_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/down_arrow_ic"
-            app:layout_constraintBottom_toBottomOf="@+id/tv_sign_top_bar_title2"
-            app:layout_constraintStart_toEndOf="@+id/tv_sign_top_bar_title2"
-            app:layout_constraintTop_toTopOf="@+id/tv_sign_top_bar_title2" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -158,8 +147,8 @@
             android:layout_height="wrap_content"
             android:text="개"
             android:textColor="@color/black4F"
-            android:textSize="13dp"
-            android:fontFamily="@font/noto_sans_bold"
+            android:textSize="14dp"
+            android:fontFamily="@font/noto_sans_regular"
             app:layout_constraintBottom_toBottomOf="@+id/tv_im_write"
             app:layout_constraintEnd_toEndOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
