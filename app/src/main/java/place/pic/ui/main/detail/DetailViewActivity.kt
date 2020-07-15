@@ -12,11 +12,12 @@ import place.pic.data.remote.PlacePicService
 import place.pic.data.remote.response.DetailResponse
 import place.pic.data.remote.response.Uploader
 import place.pic.ui.extands.customEnqueue
+import place.pic.ui.extands.unixDateTimeParser
 import place.pic.ui.tag.ChipFactory
 import java.text.SimpleDateFormat
 import java.util.*
 
-/*
+  /*
  * 글 작성 유저와 글의 유저 Id를 비교하여 글 삭제 버튼의 유무를 지정하기 위해서
  * putExtra에 "userIdx" 키로 userIdx:Int를 넘겨주시면 됩니다.
  *
@@ -44,6 +45,9 @@ class DetailViewActivity : AppCompatActivity(), View.OnClickListener {
         when (p0!!.id) {
             R.id.img_btn_detail_top_back ->{
                 onBackPressed()
+            }
+            R.id.cl_btn_detail_shared_people -> {
+                
             }
         }
     }
@@ -104,14 +108,6 @@ class DetailViewActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun insertDateTime(placeCreatedAt: Long) {
         tv_detail_user_create_at.text = unixDateTimeParser(placeCreatedAt)
-
-    }
-
-    private fun unixDateTimeParser(placeCreatedAt: Long): String {
-        val date = Date(placeCreatedAt * 1000L)
-        val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd",Locale.KOREA)
-        val formattingDate = simpleDateFormat.format(date)
-        return formattingDate
     }
 
     private fun insertCategory(categoryIdx: Int) {
@@ -120,7 +116,6 @@ class DetailViewActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun detailStringForm(stringList:List<String>,dividerString:String): String {
-
         val detailStringBuilder = StringBuilder("")
 
         stringList.forEach {str->
@@ -131,7 +126,6 @@ class DetailViewActivity : AppCompatActivity(), View.OnClickListener {
                 detailStringBuilder.append(str)
             }
         }
-
         return detailStringBuilder.toString()
     }
 }
