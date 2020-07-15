@@ -8,6 +8,7 @@ import android.view.inputmethod.EditorInfo
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_place_search.*
 import place.pic.R
+import place.pic.data.entity.Place
 import place.pic.data.entity.PlaceSearch
 import place.pic.data.remote.PlacePicService
 import place.pic.data.remote.response.BaseResponse
@@ -27,6 +28,7 @@ class PlaceSearchActivity : AppCompatActivity() {
 
     lateinit var placeSearchAdapter: PlaceSearchAdapter
     val placeDatas: MutableList<PlaceSearchData> = mutableListOf()
+
     //view에 표시할 정보만 저장하는 리스트
     val placeSearchResult: MutableList<PlaceSearch> = mutableListOf()
     //서버로부터 받아오는 모든 정보를 저장하는 리스트
@@ -47,7 +49,7 @@ class PlaceSearchActivity : AppCompatActivity() {
         //groupIdx 꺼내기
         val intent = intent
         val groupIdx = intent.getIntExtra("groupIdx", 1)
-        val categoryIdx = intent.getIntExtra("categoryIdx", 1)
+        val categoryIdx = intent.getSerializableExtra("categoryIdx") as Place.Type
 
         initRcv()
 
@@ -64,7 +66,8 @@ class PlaceSearchActivity : AppCompatActivity() {
             override fun onClick(view: View, position: Int) {
                 Log.d("check check", "${placeSearchResult[position].placeName} 선택")
 
-                val clickedPlaceIntent = Intent(this@PlaceSearchActivity, UploadPlaceActivity::class.java)
+                val clickedPlaceIntent =
+                    Intent(this@PlaceSearchActivity, UploadPlaceActivity::class.java)
 
                 clickedPlaceIntent.putExtra("categoryIdx", categoryIdx)
                 clickedPlaceIntent.putExtra("placeName", placeSearchResult[position].placeName)

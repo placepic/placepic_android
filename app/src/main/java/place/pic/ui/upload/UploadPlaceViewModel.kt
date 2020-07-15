@@ -13,7 +13,6 @@ import place.pic.data.entity.Place
 import place.pic.data.entity.Subway
 import place.pic.data.entity.UsefulTag
 import place.pic.data.remote.request.UploadPlaceRequest
-import place.pic.data.tempToken
 import place.pic.ui.main.place.PlacesFragment
 
 /**
@@ -22,15 +21,21 @@ import place.pic.ui.main.place.PlacesFragment
  */
 
 class UploadPlaceViewModel(
-//    private val placePicAuthRepository: PlacepicAuthRepository
+    private val placePicAuthRepository: PlacepicAuthRepository
 ) {
     val placeReview = MutableLiveData<String>()
-    private var katechXPosition: Int? = null
-    private var katechYPosition: Int? = null
-    private lateinit var placeTitle: String
+    private var katechXPosition = -1
+    private var katechYPosition = -1
     private lateinit var placeOldAddress: String
     private lateinit var placeRoadAddress: String
-    private lateinit var placeType: Place.Type
+
+    private val _placeTitle = MutableLiveData<String>()
+    val placeTitle: LiveData<String>
+        get() = _placeTitle
+
+    private val _placeType = MutableLiveData<Place.Type>()
+    val placeType: LiveData<Place.Type>
+        get() = _placeType
 
     private val _imageUris = MutableLiveData<List<ImageUri>>()
     val imageUris: LiveData<List<ImageUri>>
@@ -61,34 +66,48 @@ class UploadPlaceViewModel(
 
     fun uploadPlace(context: Context) {
         UploadPlaceRequest(
-            "title",
-            "address",
-            "roadAddress",
-            100,
-            200,
-            "호롤롤ㄹ로롤 ㅣㄹ뷰이륩리률비룰리뷰",
-            2,
-            1,
-            keywords.value ?: emptyList(),
-            _features.value ?: emptyList(),
-            _subways.value ?: emptyList(),
-            _imageUris.value ?: emptyList()
+            title = getCurrentPlaceTitle(),
+            oldAddress = placeOldAddress,
+            roadAddress = placeRoadAddress,
+            katecXPosition = katechXPosition,
+            katecYPosition = katechYPosition,
+            placeReview = getCurrentReview(),
+            categoryIdx = getCurrentPlaceType().position,
+            groupIdx = getGroupId(),
+            keywords = keywords.value ?: emptyList(),
+            features = _features.value ?: emptyList(),
+            subways = _subways.value ?: emptyList(),
+            images = _imageUris.value ?: emptyList()
         ).apply {
             addOnSuccessListener { Log.d("Malibin", it.toString()) }
             addOnFailureListener { Log.d("Malibin", it.toString()) }
             addOnErrorListener { Log.d("Malibin", it.toString()) }
-        }.send(context, tempToken)
+        }.send(context, getUserToken())
     }
 
     // 생명주기로 GC한테 컬렉팅됬을때는 생각하지말자 시간없으니... ^^^^^^;;;;;;
     fun handlePreviousActivityRequestParams(intent: Intent?) {
         if (intent == null) throw IllegalArgumentException("previous request params must be sended")
+        _placeTitle.value = intent.getStringExtra("placeName") ?: ""
+        _placeType.value = intent.getSerializableExtra("categoryIdx") as Place.Type
         katechXPosition = intent.getIntExtra("placeMapX", -1)
         katechYPosition = intent.getIntExtra("placeMapY", -1)
-        placeTitle = intent.getStringExtra("placeName") ?: ""
         placeOldAddress = intent.getStringExtra("placeAddress") ?: ""
         placeRoadAddress = intent.getStringExtra("placeRoadAddress") ?: ""
-        placeType = Place.Type.findByPosition(intent.getIntExtra("categoryIdx", -1))
+
+        Log.d(
+            "Malibin",
+            """
+        _placeTitle = ${_placeTitle.value}
+        _placeType = ${_placeType.value}
+        katechXPosition = $katechXPosition
+        katechYPosition = $katechYPosition
+        placeOldAddress : $placeOldAddress
+        placeRoadAddress : $placeRoadAddress
+        groupIdx : ${getGroupId()}
+        userToken : ${getUserToken()}
+        """
+        )
     }
 
     fun handleSubwaysIntent(intent: Intent?) {
@@ -131,6 +150,21 @@ class UploadPlaceViewModel(
     private fun getCurrentImagesCount() = _imageUris.value?.size ?: 0
 
     private fun getCurrentRemainImagesCount() = MAX_IMAGE_COUNT - getCurrentImagesCount()
+
+    private fun getCurrentPlaceTitle() = _placeTitle.value
+        ?: throw IllegalStateException("_placeTitle cannot be null")
+
+    private fun getCurrentPlaceType() = _placeType.value
+        ?: throw IllegalStateException("_placeType cannot be null")
+
+    private fun getUserToken() = placePicAuthRepository.userToken
+        ?: throw IllegalStateException("userToken cannot be null")
+
+    private fun getGroupId() = placePicAuthRepository.groupId
+        ?: throw IllegalStateException("groupId cannot be null")
+
+    private fun getCurrentReview() = placeReview.value
+        ?: throw IllegalStateException("placeReview cannot be null")
 
     companion object {
         private const val MAX_IMAGE_COUNT = 10
