@@ -10,23 +10,23 @@ import java.util.*
  */
 
 data class UserData(
-    val groupIdx: Int,
     val userIdx: Int,
     val userName: String,
     //val profileImageUrl: String,
     val state: Int,
     val part: String,
-    val postCount: Int
+    val postCount: Int,
+    val rank: Int
 ) {
     companion object {
         fun empty() = UserData(
-            groupIdx = 0,
             userIdx = 0,
             userName = "",
             //profileImageUrl = "",
             state = 0,
             part = "",
-            postCount = 0
+            postCount = 0,
+            rank = 0
         )
     }
 }
