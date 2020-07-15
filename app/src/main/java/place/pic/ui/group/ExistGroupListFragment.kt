@@ -49,5 +49,6 @@ class ExistGroupListFragment(
         Log.d("ExistDetailClick","Detail Click")
         val gotoMain = Intent(requireActivity(),MainActivity::class.java)
         startActivity(gotoMain)
+        requireActivity().finish()
     }
 }
