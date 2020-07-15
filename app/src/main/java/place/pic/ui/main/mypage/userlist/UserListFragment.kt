@@ -87,7 +87,7 @@ class UserListFragment : Fragment() {
                                             rank = response.body()!!.data.userList[i].rank,
                                             userIdx = response.body()!!.data.userList[i].userIdx,
                                             userName = response.body()!!.data.userList[i].userName,
-                                            //profileImageUrl = response.body()!!.data.userList[i].profileImageUrl,
+                                            profileImageUrl = response.body()!!.data.userList[i].profileImageUrl,
                                             state = response.body()!!.data.userList[i].state,
                                             part = response.body()!!.data.userList[i].part,
                                             postCount = response.body()!!.data.userList[i].postCount
