@@ -2,6 +2,7 @@ package place.pic.ui.main.mypage.userlist
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.core.content.ContentProviderCompat.requireContext
 import kotlinx.android.synthetic.main.activity_wait_user_list.*
 import place.pic.R
 import place.pic.data.PlacepicAuthRepository
@@ -37,7 +38,7 @@ class WaitUserListActivity : AppCompatActivity() {
             .getInstance()
             .requestWaitGroupList(
                 token = token,
-                groupIdx = groupIdx
+                groupIdx = PlacepicAuthRepository.getInstance(this).groupId!!
             ).customEnqueue(
                 onSuccess = { response ->
                     response.body()?.data?.let { list ->

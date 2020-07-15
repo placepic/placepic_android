@@ -16,12 +16,14 @@ import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.fragment_my_page.*
 import kotlinx.android.synthetic.main.fragment_my_page.view.*
 import place.pic.R
+import place.pic.data.PlacepicAuthRepository
 import place.pic.data.entity.Place
 import place.pic.data.remote.PlacePicService
 import place.pic.data.remote.response.BaseResponse
 import place.pic.data.remote.response.MyPageResponse
 import place.pic.showToast
 import place.pic.ui.group.waitgrouplist.WaitGroupActivity
+import place.pic.ui.main.mypage.userlist.WaitUserListActivity
 import place.pic.ui.search.place.PlaceSearchActivity
 import retrofit2.Call
 import retrofit2.Callback
@@ -45,9 +47,7 @@ class MyPageFragment : Fragment() {
         val v = inflater.inflate(R.layout.fragment_my_page, container, false)
         PlacePicService.getInstance().requestMyPage(
             token = token,
-            groupIdx = 1
-            //그룹 Idx 받아오는거 변경해야함 PlacepicAuthRepository
-            //                            .getInstance(context = this@MainActivity).groupId!!
+            groupIdx = PlacepicAuthRepository.getInstance(requireContext()).groupId!!
         ).enqueue(object : Callback<BaseResponse<MyPageResponse>> {
             override fun onFailure(
                 call: Call<BaseResponse<MyPageResponse>>,
@@ -99,7 +99,7 @@ class MyPageFragment : Fragment() {
         })
 
         v.cl_user_list.setOnClickListener {
-            val intent = Intent(context, WaitGroupActivity::class.java)
+            val intent = Intent(context, WaitUserListActivity::class.java)
             startActivity(intent)
         }
         return v

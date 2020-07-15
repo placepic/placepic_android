@@ -34,7 +34,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:text="회원가입"
-            android:textStyle="bold"
+            android:fontFamily="@font/noto_sans_bold"
             android:textColor="@color/black36"
             android:textSize="15dp"
             app:layout_constraintBottom_toBottomOf="@+id/img_sign_top_bar_back_btn"
@@ -59,7 +59,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="이메일"
-            android:textStyle="bold"
+            android:fontFamily="@font/noto_sans_bold"
             android:textColor="@color/black36"
             android:textSize="15dp"
             app:layout_constraintStart_toStartOf="parent"
@@ -75,6 +75,7 @@
             android:hint="이메일을 입력해주세요"
             android:inputType="textEmailAddress"
             android:paddingVertical="8dp"
+            android:fontFamily="@font/noto_sans_regular"
             android:textColorHint="@color/grayCED5DA"
             android:textSize="14dp"
             android:background="@drawable/selector_edittext_in_login_view"
@@ -92,6 +93,7 @@
             app:layout_constraintStart_toStartOf="@+id/et_sign_email"
             android:text="알맞은 이메일 형식이 아닙니다."
             android:textSize="11dp"
+            android:fontFamily="@font/noto_sans_regular"
             android:textColor="@color/redDE4446"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -112,7 +114,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="비밀번호"
-            android:textStyle="bold"
+            android:fontFamily="@font/noto_sans_bold"
             android:textColor="@color/black36"
             android:textSize="15dp"
             app:layout_constraintStart_toStartOf="parent"
@@ -127,6 +129,7 @@
             android:hint="비밀번호를 입력해주세요"
             android:inputType="textPassword"
             android:padding="12dp"
+            android:fontFamily="@font/noto_sans_regular"
             android:paddingVertical="8dp"
             android:textColorHint="@color/grayCED5DA"
             android:textSize="15dp"
@@ -151,7 +154,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="비밀번호 확인"
-            android:textStyle="bold"
+            android:fontFamily="@font/noto_sans_bold"
             android:textColor="@color/black36"
             android:textSize="15dp"
             app:layout_constraintStart_toStartOf="parent"
@@ -165,6 +168,7 @@
             android:layout_marginBottom="24dp"
             android:background="@drawable/selector_edittext_in_login_view"
             android:hint="비밀번호를 입력해주세요"
+            android:fontFamily="@font/noto_sans_regular"
             android:inputType="textPassword"
             android:padding="12dp"
             android:paddingVertical="8dp"
@@ -185,6 +189,7 @@
             app:layout_constraintStart_toStartOf="@+id/et_sign_ok_password"
             android:text="비밀번호가 일치하지 않습니다. 다시 확인해보세요."
             android:textSize="11dp"
+            android:fontFamily="@font/noto_sans_regular"
             android:textColor="@color/redDE4446"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -198,7 +203,7 @@
         android:background="@drawable/round_rectangle_gray_8dp"
         android:backgroundTint="@color/selector_endable_button_gray_to_black"
         android:textColor="@color/selector_endable_text_gray_to_white"
-        android:textStyle="bold"
+        android:fontFamily="@font/noto_sans_bold"
         android:enabled="false"
         android:text="다음(1/2)"
         android:textSize="15dp"
@@ -216,6 +221,7 @@
         android:textColor="@color/colorPrimary"
         android:textSize="11dp"
         android:visibility="invisible"
+        android:fontFamily="@font/noto_sans_regular"
         app:layout_constraintStart_toStartOf="@+id/btn_signnup"
         app:layout_constraintTop_toBottomOf="@+id/btn_signnup" />
 </androidx.constraintlayout.widget.ConstraintLayout>

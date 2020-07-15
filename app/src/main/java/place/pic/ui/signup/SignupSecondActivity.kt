@@ -15,6 +15,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.util.*
+import java.lang.Object
 
 //회원가입 두번째 페이지
 
@@ -152,7 +153,7 @@ class SignupSecondActivity : AppCompatActivity() {
                             intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY) //다음 액티비티부터 스택 지움
                             startActivity(intent)
                             finish()
-                            overridePendingTransition(0, 0)
+                            overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out)
                         }
                     } else {
                         showToast("회원가입 불가합니다") //동시에 같은 이메일로 가입 시
@@ -161,6 +162,8 @@ class SignupSecondActivity : AppCompatActivity() {
             })
         }
     }
+
+
 
 
     //SEX BUTTON 눌림 체크

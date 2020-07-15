@@ -21,7 +21,9 @@ class SignuplastActivity : AppCompatActivity() {
             val intent = Intent(this, LoginActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
             startActivity(intent)
+
             finish()
+
         }
     }
 

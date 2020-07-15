@@ -11,6 +11,7 @@ import place.pic.R
 import place.pic.ui.main.mypage.userlist.UserListFragment
 import place.pic.ui.main.place.PlacesFragment
 
+
 class MainActivity : AppCompatActivity(), WriteFragment.BottomSheetListener {
 
 
@@ -55,7 +56,7 @@ class MainActivity : AppCompatActivity(), WriteFragment.BottomSheetListener {
         }
 
         fab_write.setOnClickListener {
-            WriteFragment().show(supportFragmentManager, "BottomSheetEx")
+            //WriteFragment().show(supportFragmentManager, "BottomSheetEx")
         }
 
     }
