@@ -141,6 +141,14 @@ interface PlacePicService {
         @Path("userIdx") userIdx: Int
     ): Call<BaseResponse<Unit>>
 
+    /*디테일 페이지*/
+    @GET("/places/{placeIdx}")
+    fun requestDetail(
+        @Header("Content-Type") contentType: String = "application/json",
+        @Header("token") token: String,
+        @Path("placeIdx") placeIdx:Int
+    ):Call<BaseResponse<DetailResponse>>
+
     companion object {
         const val BASE_URL = "http://3.34.209.95:3000"
 
