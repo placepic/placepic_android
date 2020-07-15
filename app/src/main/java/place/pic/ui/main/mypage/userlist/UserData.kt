@@ -8,7 +8,7 @@ package place.pic.ui.main.mypage.userlist
 data class UserData(
     val userIdx: Int,
     val userName: String,
-    //val profileImageUrl: String,
+    val profileImageUrl: String,
     val state: Int,
     val part: String,
     val postCount: Int,
@@ -18,7 +18,7 @@ data class UserData(
         fun empty() = UserData(
             userIdx = 0,
             userName = "",
-            //profileImageUrl = "",
+            profileImageUrl = "",
             state = 0,
             part = "",
             postCount = 0,

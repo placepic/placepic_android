@@ -4,8 +4,10 @@ import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import place.pic.R
 
 /**
@@ -58,14 +60,14 @@ class UserListAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     inner class UserViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         private val rank = itemView.findViewById<TextView>(R.id.user_ranking)
-        //private val img = itemView.findViewById<ImageView>(R.id.user_image)
+        private val profileImageUrl = itemView.findViewById<ImageView>(R.id.user_image)
         private val userName = itemView.findViewById<TextView>(R.id.user_name)
         private val part = itemView.findViewById<TextView>(R.id.user_part)
         private val postCount = itemView.findViewById<TextView>(R.id.user_post_count)
 
         fun bind(userData : UserData) {
             rank.text = userData.rank
-            //Glide.with(itemView).load(userListData.img).into(img)
+            Glide.with(itemView).load(userData.profileImageUrl).into(profileImageUrl)
             userName.text = userData.userName
             part.text = userData.part
             postCount.text = userData.postCount.toString()
