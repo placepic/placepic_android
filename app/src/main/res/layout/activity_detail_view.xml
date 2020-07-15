@@ -163,7 +163,6 @@
                         android:textSize="11dp"
                         app:layout_constraintBottom_toBottomOf="@+id/img_detail_user_profile"
                         app:layout_constraintEnd_toEndOf="@+id/tv_detail_user_post_count"
-                        app:layout_constraintStart_toStartOf="@+id/tv_detail_user_post_count"
                         app:layout_constraintTop_toBottomOf="@+id/tv_detail_user_post_count"
                         tools:text="create_at" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
@@ -209,7 +208,7 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        tools:text="같이 가고 싶은사람" />
+                        android:text="같이 가고 싶은사람" />
 
                     <TextView
                         android:id="@+id/tv_detail_shared_people_count"
@@ -226,9 +225,9 @@
 
                     <ImageView
                         android:id="@+id/img_detail_shared_btn_asset"
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:src="@mipmap/ic_launcher"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/down_arrow_ic"
                         app:layout_constraintBottom_toBottomOf="@+id/tv_detail_shared_people"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="@+id/tv_detail_shared_people" />
@@ -241,7 +240,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="2dp"
                     android:layout_marginEnd="14dp"
-                    android:background="@drawable/round_rectagle_white_4dp"
+                    android:background="@drawable/selector_like_background"
                     android:backgroundTint="@color/grayF8"
                     android:padding="12dp"
                     app:layout_constraintBottom_toBottomOf="@+id/cl_btn_detail_shared_people"
@@ -254,7 +253,7 @@
                         android:id="@+id/img_btn_detail_like"
                         android:layout_width="24dp"
                         android:layout_height="24dp"
-                        android:src="@mipmap/ic_launcher"
+                        android:src="@drawable/selector_like_icon"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -266,6 +265,7 @@
                     android:id="@+id/detail_divider1"
                     android:layout_width="match_parent"
                     android:layout_height="12dp"
+                    android:layout_marginTop="20dp"
                     android:background="@color/grayF8"
                     app:layout_constraintTop_toBottomOf="@id/cl_btn_detail_shared_people" />
 
@@ -294,7 +294,7 @@
                         android:id="@+id/img_btn_detail_bookmark"
                         android:layout_width="28dp"
                         android:layout_height="28dp"
-                        android:src="@mipmap/ic_launcher"
+                        android:src="@drawable/selector_bookmark_icon"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="@+id/tv_detail_title" />
 
@@ -328,9 +328,10 @@
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/cl_detail_category"
-                        android:layout_width="match_parent"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="32dp"
+                        app:layout_constraintEnd_toStartOf="@+id/guideline"
                         app:layout_constraintStart_toStartOf="@id/chip_group_useful_info"
                         app:layout_constraintTop_toBottomOf="@id/chip_group_useful_info">
 
@@ -359,9 +360,10 @@
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/cl_detail_subway"
-                        android:layout_width="match_parent"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
+                        app:layout_constraintEnd_toStartOf="@+id/guideline"
                         app:layout_constraintStart_toStartOf="@id/cl_detail_category"
                         app:layout_constraintTop_toBottomOf="@id/cl_detail_category">
 
@@ -390,9 +392,10 @@
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/cl_detail_address"
-                        android:layout_width="match_parent"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
+                        app:layout_constraintEnd_toStartOf="@+id/guideline"
                         app:layout_constraintStart_toStartOf="@id/cl_detail_subway"
                         app:layout_constraintTop_toBottomOf="@id/cl_detail_subway">
 
@@ -421,9 +424,10 @@
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/cl_detail_place"
-                        android:layout_width="match_parent"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
+                        app:layout_constraintEnd_toStartOf="@+id/guideline"
                         app:layout_constraintStart_toStartOf="@id/cl_detail_address"
                         app:layout_constraintTop_toBottomOf="@id/cl_detail_address">
 
@@ -465,7 +469,7 @@
                             android:id="@+id/imageView11"
                             android:layout_width="16dp"
                             android:layout_height="16dp"
-                            android:src="@mipmap/ic_launcher"
+                            android:src="@drawable/ic_map_pin"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toStartOf="@+id/tv_detail_more_info"
                             app:layout_constraintHorizontal_bias="0.5"
@@ -498,11 +502,11 @@
                     app:layout_constraintStart_toStartOf="@id/cl_detail_info"
                     app:layout_constraintTop_toBottomOf="@id/cl_detail_info">
 
-                    <TextView
+                    <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="32dp"
-                        android:text="placepic"
+                        android:src="@drawable/ic_placepic"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent" />
