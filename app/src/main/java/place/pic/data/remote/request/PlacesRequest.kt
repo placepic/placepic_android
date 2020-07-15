@@ -1,9 +1,9 @@
 package place.pic.data.remote.request
 
 import android.text.TextUtils
-import place.pic.data.entity.UsefulTag
 import place.pic.data.entity.KeywordTag
 import place.pic.data.entity.Subway
+import place.pic.data.entity.UsefulTag
 import place.pic.data.remote.PlacePicService
 import place.pic.data.remote.response.PlaceResponse
 
@@ -18,7 +18,7 @@ class PlacesRequest(
     private val keywordTags: List<KeywordTag>? = null,
     private val usefulTags: List<UsefulTag>? = null,
     private val subways: List<Subway>? = null
-) : BaseRequest<List<PlaceResponse>>() {
+) : BaseRequest<PlaceResponse>() {
 
     fun send(token: String) {
         PlacePicService.getInstance()

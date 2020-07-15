@@ -4,12 +4,9 @@ import android.content.Intent
 import android.graphics.Typeface.BOLD
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.Html
 import android.text.Spannable
-import android.text.SpannableString
 import android.text.SpannableStringBuilder
 import android.text.style.StyleSpan
-import androidx.databinding.DataBindingUtil
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_end_group_join.*
 import place.pic.R

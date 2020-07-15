@@ -13,7 +13,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-
         <activity android:name=".ui.group.EndGroupJoinActivity"/>
         <activity android:name=".ui.main.mypage.userlist.WaitUserListActivity" />
         <activity android:name=".ui.search.place.PlaceSearchActivity" />
@@ -38,6 +37,7 @@
         <activity android:name=".ui.signup.SignuplastActivity" />
         <activity android:name=".ui.signup.SignupSecondActivity" />
         <activity android:name=".ui.signup.SignupActivity" />
+        <activity android:name=".ui.webview.InWebActivity" />
     </application>
 
 </manifest>

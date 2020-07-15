@@ -24,8 +24,8 @@ import place.pic.ui.main.place.adapter.PlacesAdapter
 
 class PlaceItemsFragment(placeType: Place.Type) : Fragment() {
 
-    private var placeItemsAdapter = PlacesAdapter()
     private val placeItemsViewModel = PlaceItemsViewModel(placeType)
+    private var placeItemsAdapter = PlacesAdapter(placeItemsViewModel)
 
     private var isUpdatedFromFilter = false
 
@@ -44,6 +44,10 @@ class PlaceItemsFragment(placeType: Place.Type) : Fragment() {
 
         placeItemsViewModel.placeItems.observe(this, Observer {
             placeItemsAdapter.submitList(it)
+        })
+
+        placeItemsViewModel.totalItemCount.observe(this, Observer {
+//            placeItemsAdapter.submitTotalItemCount(it)
         })
     }
 

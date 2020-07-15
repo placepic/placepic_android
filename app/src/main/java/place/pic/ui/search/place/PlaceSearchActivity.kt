@@ -1,19 +1,18 @@
 package place.pic.ui.search.place
 
-import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import androidx.appcompat.app.AppCompatActivity
-import kotlinx.android.synthetic.main.activity_keyword_tag.*
 import kotlinx.android.synthetic.main.activity_place_search.*
 import place.pic.R
 import place.pic.data.entity.PlaceSearch
 import place.pic.data.remote.PlacePicService
 import place.pic.data.remote.response.BaseResponse
 import place.pic.data.remote.response.PlaceSearchResponse
+import place.pic.ui.upload.UploadPlaceActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -28,7 +27,9 @@ class PlaceSearchActivity : AppCompatActivity() {
 
     lateinit var placeSearchAdapter: PlaceSearchAdapter
     val placeDatas: MutableList<PlaceSearchData> = mutableListOf()
+    //view에 표시할 정보만 저장하는 리스트
     val placeSearchResult: MutableList<PlaceSearch> = mutableListOf()
+    //서버로부터 받아오는 모든 정보를 저장하는 리스트
 
     private val token =
         "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZHgiOjMsIm5hbWUiOiLstZzsmIHtm4giLCJpYXQiOjE1OTM2OTkxODMsImV4cCI6MTU5NjI5MTE4MywiaXNzIjoicGxhY2VwaWMifQ.rmFbeBfviyEzbMlMM4b3bMMiRcNDDbiX8bQtwL_cuN0"
@@ -59,23 +60,32 @@ class PlaceSearchActivity : AppCompatActivity() {
         }
 
         //클릭리스너 등록
-        placeSearchAdapter.setItemClickListener( object : PlaceSearchAdapter.ItemClickListener{
+        placeSearchAdapter.setItemClickListener(object : PlaceSearchAdapter.ItemClickListener {
             override fun onClick(view: View, position: Int) {
                 Log.d("check check", "${placeSearchResult[position].placeName} 선택")
 
-                val clickedPlaceIntent = Intent()
+                val clickedPlaceIntent = Intent(this@PlaceSearchActivity, UploadPlaceActivity::class.java)
 
                 clickedPlaceIntent.putExtra("categoryIdx", categoryIdx)
                 clickedPlaceIntent.putExtra("placeName", placeSearchResult[position].placeName)
-                clickedPlaceIntent.putExtra("placeAddress", placeSearchResult[position].placeAddress)
-                clickedPlaceIntent.putExtra("placeRoadAddress", placeSearchResult[position].placeRoadAddress)
+                clickedPlaceIntent.putExtra(
+                    "placeAddress",
+                    placeSearchResult[position].placeAddress
+                )
+                clickedPlaceIntent.putExtra(
+                    "placeRoadAddress",
+                    placeSearchResult[position].placeRoadAddress
+                )
                 clickedPlaceIntent.putExtra("placeMapX", placeSearchResult[position].placeMapX)
                 clickedPlaceIntent.putExtra("placeMapY", placeSearchResult[position].placeMapY)
                 clickedPlaceIntent.putExtra("link", placeSearchResult[position].link)
-                clickedPlaceIntent.putExtra("mobileNaverMapLink", placeSearchResult[position].mobileNaverMapLink)
+                clickedPlaceIntent.putExtra(
+                    "mobileNaverMapLink",
+                    placeSearchResult[position].mobileNaverMapLink
+                )
                 clickedPlaceIntent.putExtra("alreadyIn", placeSearchResult[position].alreadyIn)
 
-                setResult(Activity.RESULT_OK, clickedPlaceIntent)
+                startActivity(clickedPlaceIntent)
             }
         })
     }
@@ -92,14 +102,14 @@ class PlaceSearchActivity : AppCompatActivity() {
         var handled = false
         when (action) {
             EditorInfo.IME_ACTION_SEARCH -> {
-                getPlaceSearchResult(groupIdx)
+                getPlaceSearchResultFromServer(groupIdx)
                 handled = true
             }
         }
         return handled
     }
 
-    private fun getPlaceSearchResult(groupIdx: Int) {
+    private fun getPlaceSearchResultFromServer(groupIdx: Int) {
         placePicService.getInstance()
             .requestPlaceSearch(
                 token = token,
@@ -119,13 +129,14 @@ class PlaceSearchActivity : AppCompatActivity() {
                 ) {
                     //통신 성공
                     if (response.isSuccessful) { //status
-                        Log.d("typeCheck","통신성공")
+                        Log.d("typeCheck", "통신성공")
                         if (response.body()!!.success) {
                             Log.d("typeCheck", "${response.body()!!.data.javaClass}")
                             placeDatas.clear()
                             placeSearchResult.clear()
                             for (i in response.body()!!.data.result.indices) {
-                                var address: String = response.body()!!.data.result[i].placeRoadAddress
+                                var address: String =
+                                    response.body()!!.data.result[i].placeRoadAddress
 
                                 if (address.isEmpty()) { //도로명 주소가 없으면 (""이면)
                                     address = response.body()!!.data.result[i].placeAddress

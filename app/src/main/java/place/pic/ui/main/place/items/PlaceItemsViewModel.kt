@@ -30,6 +30,10 @@ class PlaceItemsViewModel(
     val placeItems: LiveData<List<Place>>
         get() = _placeItems
 
+    private val _totalItemCount = MutableLiveData<Int>()
+    val totalItemCount: LiveData<Int>
+        get() = _totalItemCount
+
     fun loadPlaceItems(
         keywordTags: List<KeywordTag>? = null,
         usefulTags: List<UsefulTag>? = null,
@@ -62,8 +66,9 @@ class PlaceItemsViewModel(
         }.send(tempToken)
     }
 
-    private fun loadRemotePlacesItems(response: List<PlaceResponse>) {
-        _placeItems.value = response.map { it.toPlace() }
+    private fun loadRemotePlacesItems(response: PlaceResponse) {
+        _totalItemCount.value = response.count
+        _placeItems.value = response.toPlaces()
         _isLoading.value = false
     }
 
