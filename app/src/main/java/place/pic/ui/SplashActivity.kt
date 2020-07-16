@@ -2,17 +2,12 @@ package place.pic.ui
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
-import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_splash.*
 import place.pic.R
-import place.pic.ui.group.waitgrouplist.WaitGroupActivity
 import place.pic.ui.login.LoginPageActivity
-import place.pic.ui.main.MainActivity
-
 
 class SplashActivity : AppCompatActivity() {
     var anim: Animation? = null
