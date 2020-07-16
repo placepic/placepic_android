@@ -38,4 +38,5 @@
     <string name="total_count">총 %s개 결과</string>
     <string name="upload_failed">업로드에 실패했습니다. 인터넷 연결을 확인해주세요.</string>
     <string name="upload_finished">장소가 업로드되었습니다!</string>
+    <string name="to_be_continued">준비중인 기능입니다.</string>
 </resources>
