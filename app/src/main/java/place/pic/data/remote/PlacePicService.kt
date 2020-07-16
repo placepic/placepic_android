@@ -142,12 +142,58 @@ interface PlacePicService {
     ): Call<BaseResponse<Unit>>
 
     /*디테일 페이지*/
+    //디테일 페이지 불러오기
     @GET("/places/{placeIdx}")
     fun requestDetail(
         @Header("Content-Type") contentType: String = "application/json",
         @Header("token") token: String,
         @Path("placeIdx") placeIdx:Int
     ):Call<BaseResponse<DetailResponse>>
+
+    //좋아요
+    @POST("/places/like")
+    fun requestToLike(
+        @Header("Content-Type") contentType: String = "application/json",
+        @Header("token") token: String,
+        @Body body:RequestToPlacceIdx
+    ):Call<BaseResponse<Unit>>
+
+    //좋아요 취소
+    @DELETE("/places/like/{placeIdx}")
+    fun requestToDelLike(
+        @Header("Content-Type") contentType: String = "application/json",
+        @Header("token") token: String,
+        @Path("placeIdx") placeIdx: Int
+    ):Call<BaseResponse<Unit>>
+
+    @GET("/places/like/{placeIdx}")
+    fun requestToLikeList(
+        @Header("Content-Type") contentType: String = "application/json",
+        @Header("token") token: String,
+        @Path("placeIdx") placeIdx: Int
+    ):Call<BaseResponse<List<Like>>>
+
+    @POST("/places/bookmark")
+    fun requestToBookmark(
+        @Header("Content-Type") contentType: String = "application/json",
+        @Header("token") token: String,
+        @Body body: RequestToPlacceIdx
+    ): Call<BaseResponse<Unit>>
+
+    @DELETE("/places/bookmark/{placeIdx}")
+    fun requestToDelBookmark(
+        @Header("Content-Type") contentType: String = "application/json",
+        @Header("token") token: String,
+        @Path("placeIdx") placeIdx: Int
+    ):Call<BaseResponse<Unit>>
+
+    //장소 삭제
+    @DELETE("/places/{placeIdx}")
+    fun requestToDeletePlace(
+        @Header("Content-Type") contentType: String = "application/json",
+        @Header("token") token: String,
+        @Path("placeIdx") placeIdx: Int
+    ):Call<BaseResponse<Unit>>
 
     companion object {
         const val BASE_URL = "http://3.34.209.95:3000"

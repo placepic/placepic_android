@@ -21,6 +21,6 @@ class LikerUserListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView
         Glide.with(itemView).load(customData.profileImageUrl).into(userProfile)
         userName.text = customData.userName
         userPart.text = customData.part
-        userCreatedAt.text = unixDateTimeParser(customData.likeCreatedAt*1000L)
+        userCreatedAt.text = unixDateTimeParser(customData.likeCreatedAt.toLong())
     }
 }
