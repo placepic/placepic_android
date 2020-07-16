@@ -12,7 +12,7 @@ data class UserData(
     val state: Int,
     val part: String,
     val postCount: Int,
-    val rank: String
+    val rank: Int
 ) {
     companion object {
         fun empty() = UserData(
@@ -22,7 +22,7 @@ data class UserData(
             state = 0,
             part = "",
             postCount = 0,
-            rank = ""
+            rank = 0
         )
     }
 }
