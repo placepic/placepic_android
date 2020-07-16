@@ -46,7 +46,6 @@ class DetailViewActivity : AppCompatActivity(), View.OnClickListener {
         setContentView(R.layout.activity_detail_view)
         token = PlacepicAuthRepository.getInstance(this).userToken ?: return
         placeIdx = intent.getIntExtra("placeIdx",0)
-        placeIdx = 63
         init()
     }
 
