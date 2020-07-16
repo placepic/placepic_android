@@ -5,8 +5,8 @@ data class DetailResponse(
     val categoryIdx: Int,
     val placeRoadAddress:String,
     val imageUrl: List<String>,
-    val isBookmarked: String,
-    val isLiked: String,
+    val isBookmarked: Boolean,
+    val isLiked: Boolean,
     val keyword: List<String>,
     val likeCount: Int,
     val likeList: List<Like>,
@@ -15,5 +15,6 @@ data class DetailResponse(
     val placeName: String,
     val placeReview: String,
     val subway: List<String>,
-    val uploader: Uploader
+    val uploader: Uploader,
+    val mobileNaverMapLink:String
 )

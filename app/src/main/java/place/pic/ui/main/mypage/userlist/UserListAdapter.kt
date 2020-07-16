@@ -66,13 +66,17 @@ class UserListAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         private val postCount = itemView.findViewById<TextView>(R.id.user_post_count)
 
         fun bind(userData : UserData) {
-            rank.text = userData.rank
+            rank.text = userData.rank.toString()
             Glide.with(itemView).load(userData.profileImageUrl).into(profileImageUrl)
             userName.text = userData.userName
             part.text = userData.part
             postCount.text = userData.postCount.toString()
 
-            rank.setTextColor(Color.parseColor(  "#636363"))
+            rank.setTextColor(Color.parseColor("#636363"))
+
+            if (rank.text == "-1") {
+                rank.text = "-"
+            }
 
             if (rank.text == "1" || rank.text == "2" || rank.text == "3") {
                 rank.setTextColor(Color.parseColor("#F65C6C"))
