@@ -31,6 +31,7 @@
             android:layout_marginBottom="8dp"
             android:text="@{subway.name}"
             android:textColor="@color/black40"
+            android:fontFamily="@font/noto_sans_bold"
             android:textSize="15dp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
