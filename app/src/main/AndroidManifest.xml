@@ -27,14 +27,14 @@
         <activity android:name=".ui.login.LoginActivity" />
         <activity android:name=".ui.main.mypage.userlist.UserInfoActivity" />
         <activity android:name=".ui.main.MainActivity" />
-        <activity android:name=".ui.login.LoginPageActivity">
+        <activity android:name=".ui.login.LoginPageActivity"/>
+        <activity android:name=".ui.main.detail.DetailViewActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.main.detail.DetailViewActivity"/>
         <activity android:name=".ui.tag.UsefulTagActivity" />
         <activity android:name=".ui.search.subway.SubwaySearchActivity" />
         <activity android:name=".ui.tag.KeywordTagActivity" />

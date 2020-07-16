@@ -34,7 +34,7 @@
         android:id="@+id/user_part"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="6dp"
+        android:layout_marginTop="2dp"
         android:text="SOPT 26기 안드로이드 파트장"
         android:textColor="@color/grayADB6BD"
         android:fontFamily="@font/noto_sans_regular"

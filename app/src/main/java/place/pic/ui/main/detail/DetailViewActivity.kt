@@ -34,7 +34,7 @@ class DetailViewActivity : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var token:String
 
-    private var placeIdx:Int = 0
+    private var placeIdx:Long = 0
 
     private var webUrl:String = ""
     private var webTitle:String = ""
@@ -45,7 +45,7 @@ class DetailViewActivity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail_view)
         token = PlacepicAuthRepository.getInstance(this).userToken ?: return
-        placeIdx = intent.getIntExtra("placeIdx",0)
+        placeIdx = intent.getLongExtra("placeIdx",63)
         init()
     }
 
@@ -116,7 +116,7 @@ class DetailViewActivity : AppCompatActivity(), View.OnClickListener {
                 token = token,
                 body = RequestToPlacceIdx(placeIdx)
             ).customEnqueue(
-                onSuccess = {response ->
+                onSuccess = {_ ->
                     setMyLikeButtonStatus(true)
                 }
             )
@@ -129,7 +129,7 @@ class DetailViewActivity : AppCompatActivity(), View.OnClickListener {
                 token = token,
                 placeIdx = placeIdx
             ).customEnqueue(
-                onSuccess = {response ->
+                onSuccess = {_ ->
                     setMyLikeButtonStatus(false)
                 }
             )

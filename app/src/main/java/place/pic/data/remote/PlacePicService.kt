@@ -148,7 +148,7 @@ interface PlacePicService {
     fun requestDetail(
         @Header("Content-Type") contentType: String = "application/json",
         @Header("token") token: String,
-        @Path("placeIdx") placeIdx: Int
+        @Path("placeIdx") placeIdx: Long
     ): Call<BaseResponse<DetailResponse>>
 
     @Multipart
@@ -174,14 +174,14 @@ interface PlacePicService {
     fun requestToDelLike(
         @Header("Content-Type") contentType: String = "application/json",
         @Header("token") token: String,
-        @Path("placeIdx") placeIdx: Int
+        @Path("placeIdx") placeIdx: Long
     ):Call<BaseResponse<Unit>>
 
     @GET("/places/like/{placeIdx}")
     fun requestToLikeList(
         @Header("Content-Type") contentType: String = "application/json",
         @Header("token") token: String,
-        @Path("placeIdx") placeIdx: Int
+        @Path("placeIdx") placeIdx: Long
     ):Call<BaseResponse<List<Like>>>
 
     @POST("/places/bookmark")
@@ -195,7 +195,7 @@ interface PlacePicService {
     fun requestToDelBookmark(
         @Header("Content-Type") contentType: String = "application/json",
         @Header("token") token: String,
-        @Path("placeIdx") placeIdx: Int
+        @Path("placeIdx") placeIdx: Long
     ):Call<BaseResponse<Unit>>
 
     //장소 삭제
@@ -203,7 +203,7 @@ interface PlacePicService {
     fun requestToDeletePlace(
         @Header("Content-Type") contentType: String = "application/json",
         @Header("token") token: String,
-        @Path("placeIdx") placeIdx: Int
+        @Path("placeIdx") placeIdx: Long
     ):Call<BaseResponse<Unit>>
 
     companion object {

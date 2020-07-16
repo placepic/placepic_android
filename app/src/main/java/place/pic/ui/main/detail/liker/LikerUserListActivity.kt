@@ -13,14 +13,14 @@ import place.pic.ui.extands.customEnqueue
 
 class LikerUserListActivity : AppCompatActivity() {
 
-    private var placeIdx = 0
+    private var placeIdx:Long = 0L
 
     private lateinit var likerUserListAdapter:LikerUserListAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_liker_user_list)
-        placeIdx = intent.getIntExtra("placeIdx",0)
+        placeIdx = intent.getLongExtra("placeIdx",0)
         init()
     }
 
