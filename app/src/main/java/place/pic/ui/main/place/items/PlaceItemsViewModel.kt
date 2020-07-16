@@ -3,6 +3,7 @@ package place.pic.ui.main.place.items
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import place.pic.data.PlacepicAuthRepository
 import place.pic.data.entity.KeywordTag
 import place.pic.data.entity.Place
 import place.pic.data.entity.Subway
@@ -18,7 +19,8 @@ import place.pic.data.tempToken
  */
 
 class PlaceItemsViewModel(
-    private val placeType: Place.Type
+    private val placeType: Place.Type,
+    private val placepicAuthRepository: PlacepicAuthRepository
 ) {
     private var isFilterPreviousApplied = false
 
@@ -55,7 +57,7 @@ class PlaceItemsViewModel(
     ) {
         _isLoading.value = true
         PlacesRequest(
-            groupIdx = tempGroupId,
+            groupIdx = getGroupId(),
             placeCategory = placeType.position.run { if (this == 0) null else this },
             keywordTags = keywordTags,
             usefulTags = usefulTags,
@@ -63,7 +65,7 @@ class PlaceItemsViewModel(
         ).apply {
             addOnSuccessListener { loadRemotePlacesItems(it.data) }
             addOnFailureListener { Log.d("Malibin", it.toString()) }
-        }.send(tempToken)
+        }.send(getUserToken())
     }
 
     private fun loadRemotePlacesItems(response: PlaceResponse) {
@@ -81,4 +83,11 @@ class PlaceItemsViewModel(
                 !usefulTags.isNullOrEmpty() or
                 !subways.isNullOrEmpty()
     }
+
+    private fun getGroupId() = placepicAuthRepository.groupId
+        ?: throw IllegalStateException("groupId cannot be null")
+
+    private fun getUserToken() = placepicAuthRepository.userToken
+        ?: throw IllegalStateException("userToken cannot be null")
+
 }

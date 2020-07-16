@@ -1,5 +1,7 @@
 package place.pic.ui.main.place.items
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -9,12 +11,14 @@ import androidx.asynclayoutinflater.view.AsyncLayoutInflater
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import place.pic.R
+import place.pic.data.PlacepicAuthRepository
 import place.pic.data.entity.KeywordTag
 import place.pic.data.entity.Place
 import place.pic.data.entity.Subway
 import place.pic.data.entity.UsefulTag
 import place.pic.databinding.FragmentLoadingBinding
 import place.pic.databinding.FragmentPlaceItemsBinding
+import place.pic.ui.main.detail.DetailViewActivity
 import place.pic.ui.main.place.adapter.PlacesAdapter
 
 /**
@@ -22,12 +26,21 @@ import place.pic.ui.main.place.adapter.PlacesAdapter
  * on 7월 04, 2020
  */
 
-class PlaceItemsFragment(placeType: Place.Type) : Fragment() {
+class PlaceItemsFragment(private val placeType: Place.Type) : Fragment() {
 
-    private val placeItemsViewModel = PlaceItemsViewModel(placeType)
-    private var placeItemsAdapter = PlacesAdapter(placeItemsViewModel)
+    private lateinit var placeItemsViewModel: PlaceItemsViewModel
+    private lateinit var placeItemsAdapter: PlacesAdapter
 
     private var isUpdatedFromFilter = false
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+
+        placeItemsViewModel =
+            PlaceItemsViewModel(placeType, PlacepicAuthRepository.getInstance(context))
+        placeItemsAdapter = PlacesAdapter(placeItemsViewModel)
+        placeItemsAdapter.setPlaceClickListener { onPlaceClick(it) }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -44,10 +57,6 @@ class PlaceItemsFragment(placeType: Place.Type) : Fragment() {
 
         placeItemsViewModel.placeItems.observe(this, Observer {
             placeItemsAdapter.submitList(it)
-        })
-
-        placeItemsViewModel.totalItemCount.observe(this, Observer {
-//            placeItemsAdapter.submitTotalItemCount(it)
         })
     }
 
@@ -73,6 +82,12 @@ class PlaceItemsFragment(placeType: Place.Type) : Fragment() {
             binding.lifecycleOwner = this
             binding.rvPlaces.adapter = placeItemsAdapter
         }
+    }
+
+    private fun onPlaceClick(place: Place) {
+        val intent = Intent(requireActivity(), DetailViewActivity::class.java)
+        intent.putExtra("placeIdx", place.id)
+        startActivity(intent)
     }
 
     fun updatePlaceItems(

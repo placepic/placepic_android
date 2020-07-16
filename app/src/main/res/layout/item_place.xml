@@ -6,6 +6,10 @@
     <data>
 
         <variable
+            name="clickListener"
+            type="android.view.View.OnClickListener" />
+
+        <variable
             name="placeItem"
             type="place.pic.data.entity.Place" />
     </data>
@@ -13,9 +17,10 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@android:color/white">
+        android:background="@android:color/white"
+        android:onClick="@{clickListener}">
 
-        <ImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/imageView5"
             android:layout_width="24dp"
             android:layout_height="24dp"

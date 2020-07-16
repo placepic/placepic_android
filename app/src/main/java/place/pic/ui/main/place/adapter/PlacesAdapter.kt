@@ -1,6 +1,7 @@
 package place.pic.ui.main.place.adapter
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.LiveData
 import androidx.recyclerview.widget.DiffUtil
@@ -21,6 +22,7 @@ class PlacesAdapter(
     private val viewModel: PlaceItemsViewModel
 ) : ListAdapter<Place, RecyclerView.ViewHolder>(DiffItemCallback()) {
 
+    private var placeClickListener: ((place: Place) -> Unit)? = null
     private lateinit var headerViewHolder: HeaderViewHolder
 
     override fun getItemViewType(position: Int) = when (position) {
@@ -52,10 +54,6 @@ class PlacesAdapter(
         super.submitList(newList)
     }
 
-    fun submitTotalItemCount(count: Int) {
-        headerViewHolder.updateCount(count)
-    }
-
     private fun createHeaderViewHolder(
         inflater: LayoutInflater,
         parent: ViewGroup
@@ -72,14 +70,17 @@ class PlacesAdapter(
         return ItemViewHolder(binding)
     }
 
+    fun setPlaceClickListener(placeClickListener: ((place: Place) -> Unit)?) {
+        this.placeClickListener = placeClickListener
+    }
+
+    private fun createPlaceClickListener(place: Place) = View.OnClickListener {
+        placeClickListener?.invoke(place)
+    }
+
     inner class HeaderViewHolder(
         private val binding: ItemPlaceFilterBinding
     ) : RecyclerView.ViewHolder(binding.root) {
-
-        fun updateCount(count: Int) {
-            val string = binding.root.resources.getString(R.string.total_count)
-            binding.totalItemCount.text = String.format(string, count.toString())
-        }
 
         fun bind(count: LiveData<Int>) {
             binding.count = count
@@ -95,6 +96,7 @@ class PlacesAdapter(
             binding.rvKeywords.adapter = adapter
             adapter.submitList(place.keywordTags.map { it.tagName })
             binding.placeItem = place
+            binding.clickListener = createPlaceClickListener(place)
         }
     }
 
