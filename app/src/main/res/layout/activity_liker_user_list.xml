@@ -42,6 +42,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.recyclerview.widget.RecyclerView
+        android:visibility="gone"
         android:id="@+id/rv_liker_user_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -50,7 +51,41 @@
         app:layout_constraintEnd_toEndOf="@id/cl_liker_user_list_top_bar"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         android:orientation="vertical"
-        tools:listitem="@layout/item_like_user_list"
         />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_empty_shared_user"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/cl_liker_user_list_top_bar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        >
+
+        <ImageView
+            android:id="@+id/img_no_user_ic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/no_user_ic"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:text="아직 같이 가고싶어하는 사람이 없습니다!"
+            android:textSize="13dp"
+            android:textColor="@color/grayCED5DA"
+            android:fontFamily="@font/noto_sans_bold"
+            app:layout_constraintTop_toBottomOf="@id/img_no_user_ic"
+            app:layout_constraintStart_toStartOf="@id/img_no_user_ic"
+            app:layout_constraintEnd_toEndOf="@id/img_no_user_ic"
+            />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
