@@ -10,6 +10,7 @@ import place.pic.R
 import place.pic.data.PlacepicAuthRepository
 import place.pic.data.entity.Place
 import place.pic.data.remote.PlacePicService
+import place.pic.data.remote.response.DetailLikerResponse
 import place.pic.data.remote.response.DetailResponse
 import place.pic.data.remote.response.Like
 import place.pic.data.remote.response.Uploader
@@ -19,8 +20,8 @@ import place.pic.ui.main.detail.liker.LikerUserListActivity
 import place.pic.ui.tag.ChipFactory
 
 /*
-* 글 작성 유저와 글의 유저 Id를 비교하여 글 삭제 버튼의 유무를 지정하기 위해서
-* putExtra에 "userIdx" 키로 userIdx:Int를 넘겨주시면 됩니다.
+* 글 작성 유저와 글의 장소 ㄹId를 비교하여 글 삭제 버튼의 유무를 지정하기 위해서
+* putExtra에 "placeIdx" 키로 placeIdx:Int를 넘겨주시면 됩니다.
 *
 * 각각의 키로는 Int로 캐스팅하여 사용합니다.
 */
@@ -29,7 +30,7 @@ class DetailViewActivity : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var detailviewPagerAdapter: DetailViewPagerAdapter
 
-    private lateinit var likerUserList:ArrayList<Like>
+    private lateinit var likerUserList : ArrayList<Like>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,6 +47,7 @@ class DetailViewActivity : AppCompatActivity(), View.OnClickListener {
         cl_btn_detail_shared_people.setOnClickListener(this)
         cl_btn_detail_like.setOnClickListener(this)
         cl_btn_detail_more_info.setOnClickListener(this)
+        cl_btn_detail_like.setOnClickListener(this)
     }
 
     override fun onClick(p0: View?) {
@@ -56,11 +58,19 @@ class DetailViewActivity : AppCompatActivity(), View.OnClickListener {
             R.id.cl_btn_detail_shared_people -> {
                 val gotoLikerUserList =
                     Intent(this,LikerUserListActivity::class.java)
-                gotoLikerUserList.putExtra("List",likerUserList)
+                gotoLikerUserList.putExtra("List",DetailLikerResponse(likerUserList))
                 startActivity(gotoLikerUserList)
+            }
+            R.id.cl_btn_detail_like ->{
+
+            }
+            R.id.img_btn_detail_bookmark -> {
+
             }
         }
     }
+
+
 
     /* 서버 연결 */
     private fun requestToDetailView(){
@@ -79,6 +89,8 @@ class DetailViewActivity : AppCompatActivity(), View.OnClickListener {
             )
     }
 
+
+    /*서버 연결시 뷰에 뿌려주는 함수 작업.*/
     private fun bindingDetail(detailResponse: DetailResponse) {
         insertUploadUserDataInView(detailResponse.uploader)
         insertImageInViewPager(detailResponse.imageUrl)
@@ -93,7 +105,7 @@ class DetailViewActivity : AppCompatActivity(), View.OnClickListener {
         tv_detail_address_info.text = detailResponse.placeRoadAddress
         tv_detail_place_info.text = detailStringForm(detailResponse.placeInfo," · ")
         tv_detail_shared_people_count.text = detailResponse.likeCount.toString()
-
+        tv_detail_bookmark_count.text = detailResponse.bookmarkCount.toString()
         likerUserList = detailResponse.likeList as ArrayList<Like>
     }
 
