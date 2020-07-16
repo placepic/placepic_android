@@ -9,7 +9,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cl_liker_user_list_top_bar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="56dp"
         android:paddingHorizontal="14dp"
         android:paddingVertical="12dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -30,14 +30,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
-            android:textColor="@color/black36"
             android:text="같이 가고싶은 사람"
+            android:textColor="@color/black36"
             android:textSize="15dp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@id/img_btn_liker_user_list_top_back"
             app:layout_constraintStart_toEndOf="@id/img_btn_liker_user_list_top_back"
-            app:layout_constraintTop_toTopOf="@id/img_btn_liker_user_list_top_back"
-             />
+            app:layout_constraintTop_toTopOf="@id/img_btn_liker_user_list_top_back" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

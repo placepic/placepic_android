@@ -9,7 +9,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cl_wait_user_list_top_bar"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="56dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -31,10 +31,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
+            android:fontFamily="@font/noto_sans_bold"
             android:text="그룹 참여하기"
             android:textColor="@color/black36"
             android:textSize="18dp"
-            android:fontFamily="@font/noto_sans_bold"
             app:layout_constraintBottom_toBottomOf="@+id/img_wait_user_list_top_back_btn"
             app:layout_constraintStart_toEndOf="@+id/img_wait_user_list_top_back_btn"
             app:layout_constraintTop_toTopOf="@+id/img_wait_user_list_top_back_btn" />
