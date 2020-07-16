@@ -2,6 +2,7 @@ package place.pic.data.remote
 
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
+import place.pic.data.entity.Place
 import place.pic.data.remote.request.RequestAcceptUser
 import place.pic.data.remote.request.RequestLogin
 import place.pic.data.remote.request.RequestRegister

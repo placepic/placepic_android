@@ -188,6 +188,7 @@ class UploadPlaceActivity : AppCompatActivity() {
         val intent = Intent(this, KeywordTagActivity::class.java)
         val alreadySelectedKeywords = uploadPlacesViewModel.keywords.value ?: emptyList()
         intent.putExtra("checkedChip", ArrayList<KeywordTag>(alreadySelectedKeywords))
+        intent.putExtra("categoryIdx", uploadPlacesViewModel.placeType.value!!)
         startActivityForResult(intent, KeywordTagActivity.REQUEST_CODE)
     }
 
@@ -195,6 +196,7 @@ class UploadPlaceActivity : AppCompatActivity() {
         val intent = Intent(this, UsefulTagActivity::class.java)
         val alreadySelectedFeatures = uploadPlacesViewModel.features.value ?: emptyList()
         intent.putExtra("checkedChipIntent", ArrayList<UsefulTag>(alreadySelectedFeatures))
+        intent.putExtra("categoryIdx", uploadPlacesViewModel.placeType.value!!)
         startActivityForResult(intent, UsefulTagActivity.REQUEST_CODE)
     }
 

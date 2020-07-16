@@ -72,6 +72,8 @@ class UserListAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             part.text = userData.part
             postCount.text = userData.postCount.toString()
 
+            rank.setTextColor(Color.parseColor(  "#636363"))
+
             if (rank.text == "1" || rank.text == "2" || rank.text == "3") {
                 rank.setTextColor(Color.parseColor("#F65C6C"))
             }
