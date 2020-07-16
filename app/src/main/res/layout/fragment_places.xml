@@ -71,6 +71,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@android:color/white"
+            android:overScrollMode="never"
             android:paddingStart="16dp"
             android:paddingEnd="16dp"
             android:textSize="16dp"
