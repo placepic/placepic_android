@@ -27,6 +27,8 @@ class UsefulTagActivity : AppCompatActivity() {
 
     private val usefulTagList = mutableListOf<UsefulTag>()
     private val usefulTagChipList = mutableListOf<Chip>()
+    private var tagListForUpdate = mutableListOf<UsefulTag>()
+
     private val placePicService = PlacePicService
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,32 +37,41 @@ class UsefulTagActivity : AppCompatActivity() {
 
         val intent = intent
         val categoryIdx: Place.Type = intent.getSerializableExtra("categoryIdx") as Place.Type
-        getAlreadySelectedTags(intent) //수정 시 사용자가 이전에 선택한 태그 가져오기
 
         getTagListFromServer(categoryIdx)
+
         useful_tag_save.setOnClickListener { onSaveClick() }
 
         img_back4444.setOnClickListener { onBackPressed() }
     }
 
-    private fun getAlreadySelectedTags(intent: Intent) {
-        val tagListForUpdate: MutableList<UsefulTag> =
-            (intent.getSerializableExtra("checkedChipIntent") ?: return) as MutableList<UsefulTag>
+    private fun getAlreadySelectedTags() {
+        val selectedChipIntent: Intent = intent
+
+        tagListForUpdate = (selectedChipIntent.getSerializableExtra("checkedChipIntent")
+            ?: return) as MutableList<UsefulTag>
         //elbis  ?: null이면 : 뒤에를 실행해라
-        checkChipForUpdate(tagListForUpdate) //수정을 위해 click된 chip인지 확인
+
+        if (tagListForUpdate.isEmpty()) {
+            return
+        } else {
+            checkChipForUpdate(tagListForUpdate)
+        }
     }
 
     private fun checkChipForUpdate(tagListForUpdate: MutableList<UsefulTag>) {
         for (i in 0 until usefulTagChipList.size) {
-            if (usefulTagChipList[i].text == tagListForUpdate[i].tagName) {
-                usefulTagChipList[i].isChecked = true
+            for (j in 0 until tagListForUpdate.size) {
+                if (usefulTagChipList[i].text == tagListForUpdate[j].tagName) {
+                    usefulTagChipList[i].isChecked = true
+                }
             }
         }
     }
 
     private fun getTagListFromServer(categoryIdx: Place.Type) {
 
-        val token = PlacepicAuthRepository.getInstance(this).userToken?:return
+        val token = PlacepicAuthRepository.getInstance(this).userToken ?: return
 
         placePicService.getInstance()
             .requestUsefulTag(
@@ -118,6 +129,7 @@ class UsefulTagActivity : AppCompatActivity() {
                                     }
                                 }
                             }
+                            getAlreadySelectedTags()
                         }
                     }
                 }
