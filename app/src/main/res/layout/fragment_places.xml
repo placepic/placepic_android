@@ -32,6 +32,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
+                android:fontFamily="@font/noto_sans_bold"
                 android:text="플레이스"
                 android:textColor="@color/black36"
                 android:textSize="20dp"
@@ -139,6 +140,7 @@
                     android:layout_marginStart="12dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
+                    android:fontFamily="@font/noto_sans_bold"
                     android:text="주변역"
                     android:textColor="@color/selector_selected_white_black_color"
                     android:textSize="13dp"
@@ -152,6 +154,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="4dp"
+                    android:fontFamily="@font/noto_sans_bold"
                     android:text="@{String.format(@string/d_counts, viewModel.selectedSubways.size())}"
                     android:textColor="@color/selector_selected_white_black_color"
                     android:textSize="13dp"
@@ -195,6 +198,7 @@
                     android:layout_marginStart="12dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
+                    android:fontFamily="@font/noto_sans_bold"
                     android:text="키워드"
                     android:textColor="@color/selector_selected_white_black_color"
                     android:textSize="13dp"
@@ -208,6 +212,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="4dp"
+                    android:fontFamily="@font/noto_sans_bold"
                     android:text="@{String.format(@string/d_counts, viewModel.selectedKeywords.size())}"
                     android:textColor="@color/selector_selected_white_black_color"
                     android:textSize="13dp"
@@ -227,7 +232,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/textView8"
                     app:layout_constraintTop_toTopOf="@id/textView8"
-                    app:srcCompat="@drawable/down_arrow_ic" />
+                    app:srcCompat="@drawable/selector_down_icon" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -250,6 +255,7 @@
                     android:layout_marginStart="12dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
+                    android:fontFamily="@font/noto_sans_bold"
                     android:text="장소 정보"
                     android:textColor="@color/selector_selected_white_black_color"
                     android:textSize="13dp"
@@ -267,13 +273,14 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/textView9"
                     app:layout_constraintTop_toTopOf="@id/textView9"
-                    app:srcCompat="@drawable/down_arrow_ic" />
+                    app:srcCompat="@drawable/selector_down_icon" />
 
                 <TextView
                     android:id="@+id/textView9"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="4dp"
+                    android:fontFamily="@font/noto_sans_bold"
                     android:text="@{String.format(@string/d_counts, viewModel.selectedFeatures.size())}"
                     android:textColor="@color/selector_selected_white_black_color"
                     android:textSize="13dp"

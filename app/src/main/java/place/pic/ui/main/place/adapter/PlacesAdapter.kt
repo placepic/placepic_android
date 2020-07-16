@@ -3,6 +3,7 @@ package place.pic.ui.main.place.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -84,6 +85,11 @@ class PlacesAdapter(
 
         fun bind(count: LiveData<Int>) {
             binding.count = count
+            binding.btnFilter.setOnClickListener {
+                Toast
+                    .makeText(binding.root.context, R.string.to_be_continued, Toast.LENGTH_SHORT)
+                    .show()
+            }
         }
     }
 
