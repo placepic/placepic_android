@@ -11,6 +11,7 @@ import kotlinx.android.synthetic.main.activity_keyword_tag.*
 import place.pic.R
 import place.pic.data.PlacepicAuthRepository
 import place.pic.data.entity.KeywordTag
+import place.pic.data.entity.Place
 import place.pic.data.remote.PlacePicService
 import place.pic.data.remote.response.BaseResponse
 import place.pic.data.remote.response.KeywordTagResponse
@@ -27,14 +28,17 @@ class KeywordTagActivity : AppCompatActivity() {
 
     private val keywordTagList = mutableListOf<KeywordTag>()
     private val keywordTagChipList = mutableListOf<Chip>()
+    private var tagListForUpdate = mutableListOf<KeywordTag>()
+
     private val placePicService = PlacePicService
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_keyword_tag)
 
-        val selectedChipIntent: Intent = intent
-        val categoryIdx = selectedChipIntent.getIntExtra("categoryIdx", 1)
+        val intent: Intent = intent
+        val categoryIdx: Place.Type = intent.getSerializableExtra("categoryIdx") as Place.Type
+        Log.d("dahye catgory", categoryIdx.toString())
 
         getTagListFromServer(categoryIdx)
         keyword_tag_save.setOnClickListener { onSaveClick() }
@@ -45,40 +49,34 @@ class KeywordTagActivity : AppCompatActivity() {
     }
 
     private fun getAlreadySelectedTags() {
-
         val selectedChipIntent: Intent = intent
 
-        val tagListForUpdate: ArrayList<KeywordTag> =
-            (selectedChipIntent.getSerializableExtra("checkedChip")
-                ?: return) as ArrayList<KeywordTag>
+        tagListForUpdate = (selectedChipIntent.getSerializableExtra("checkedChip")
+            ?: return) as MutableList<KeywordTag>
         //elbis  ?: null이면 : 뒤에를 실행해라
 
-        Log.d("dahye bug check", tagListForUpdate.toString()) //여기까지는 잘 받아와져
-
-        checkChipForUpdate(tagListForUpdate) //수정을 위해 click된 chip인지 확인
-
+        Log.d("dahye 선택한 태그", tagListForUpdate.toString()) //여기까지는 잘 받아와져
     }
 
-    private fun checkChipForUpdate(tagListForUpdate: ArrayList<KeywordTag>) {
+    private fun checkChipForUpdate(tagListForUpdate: MutableList<KeywordTag>) {
 
-        Log.d("dahye for list", keywordTagChipList.toString())
+        Log.d("dahye 칩 리스트", keywordTagChipList.toString())
 
         for (i in 0 until keywordTagChipList.size) {
             if (keywordTagChipList[i].text == tagListForUpdate[i].tagName) {
                 keywordTagChipList[i].isChecked = true
-                Log.d("dahye chip", keywordTagChipList[i].text as String)
             }
         }
     }
 
-    private fun getTagListFromServer(categoryIdx: Int) { //getConnection(categoryIdx: Int)
+    private fun getTagListFromServer(categoryIdx: Place.Type) { //getConnection(categoryIdx: Int)
 
         val token = PlacepicAuthRepository.getInstance(this).userToken ?: return
 
         placePicService.getInstance()
             .requestKeywordTag(
                 token = token,
-                categoryIdx = categoryIdx
+                categoryIdx = categoryIdx.position
             ).enqueue(object : Callback<BaseResponse<List<KeywordTagResponse>>> {
                 override fun onFailure(
                     call: Call<BaseResponse<List<KeywordTagResponse>>>,
@@ -111,6 +109,8 @@ class KeywordTagActivity : AppCompatActivity() {
                                 chip.text = tags.tagName
                                 chipGroup.addView(chip)
                             }
+
+                            //checkChipForUpdate(tagListForUpdate)
 
                             for (i in 0 until keywordTagChipList.size) { //chipList.forEach로도 가능
                                 keywordTagChipList[i].setOnClickListener {

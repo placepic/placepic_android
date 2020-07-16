@@ -10,6 +10,7 @@ import com.google.android.material.chip.Chip
 import kotlinx.android.synthetic.main.activity_useful_tag.*
 import place.pic.R
 import place.pic.data.PlacepicAuthRepository
+import place.pic.data.entity.Place
 import place.pic.data.entity.UsefulTag
 import place.pic.data.remote.PlacePicService
 import place.pic.data.remote.response.*
@@ -33,7 +34,7 @@ class UsefulTagActivity : AppCompatActivity() {
         setContentView(R.layout.activity_useful_tag)
 
         val intent = intent
-        val categoryIdx = intent.getIntExtra("categoryIdx", 1)
+        val categoryIdx: Place.Type = intent.getSerializableExtra("categoryIdx") as Place.Type
         getAlreadySelectedTags(intent) //수정 시 사용자가 이전에 선택한 태그 가져오기
 
         getTagListFromServer(categoryIdx)
@@ -57,14 +58,14 @@ class UsefulTagActivity : AppCompatActivity() {
         }
     }
 
-    private fun getTagListFromServer(categoryIdx: Int) {
+    private fun getTagListFromServer(categoryIdx: Place.Type) {
 
         val token = PlacepicAuthRepository.getInstance(this).userToken?:return
 
         placePicService.getInstance()
             .requestUsefulTag(
                 token = token,
-                categoryIdx = categoryIdx
+                categoryIdx = categoryIdx.position
             ).enqueue(object : Callback<BaseResponse<List<UsefulTagResponse>>> {
                 override fun onFailure(
                     call: Call<BaseResponse<List<UsefulTagResponse>>>,
