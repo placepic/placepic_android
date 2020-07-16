@@ -67,6 +67,8 @@ class KeywordTagActivity : AppCompatActivity() {
 
     private fun checkChipForUpdate(tagListForUpdate: MutableList<KeywordTag>) {
 
+        changeButtonColor("#FFFFFF", R.drawable.rectangle_main_color,true)
+
         for (i in 0 until keywordTagChipList.size) {
 
             Log.d("dahye 칩 리스트", keywordTagChipList[i].text as String)
