@@ -75,10 +75,10 @@ class SignUpGroupActivity : AppCompatActivity() {
             PlacePicService.getInstance()
                 .requestSigninGroup(
                     token = it,
-                    groupIdx = groupIdx,
                     body = RequestSigninGroup(
                         part = et_sign_up_group.text.toString(),
-                        phoneNumber = et_sign_up_phone_num.text.toString()
+                        phoneNumber = et_sign_up_phone_num.text.toString(),
+                        groupIdx = groupIdx
                     )
                 )
                 .customEnqueue(
@@ -90,7 +90,7 @@ class SignUpGroupActivity : AppCompatActivity() {
                             gotoEndGroupJoinIntent.putExtra("groupImage", data.groupImage)
                         }
                         startActivity(gotoEndGroupJoinIntent)
-                        finish()
+                        finishAffinity()
                     }
                 )
         }

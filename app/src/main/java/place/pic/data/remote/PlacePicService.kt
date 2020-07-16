@@ -97,7 +97,6 @@ interface PlacePicService {
     fun requestSigninGroup(
         @Header("Content-Type") contentType: String = "application/json",
         @Header("token") token: String,
-        @Path("groupIdx") groupIdx: Int,
         @Body body: RequestSigninGroup
     ): Call<BaseResponse<ResponseSingupGroup>>
 
