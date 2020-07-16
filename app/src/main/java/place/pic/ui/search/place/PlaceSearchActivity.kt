@@ -8,14 +8,8 @@ import android.view.inputmethod.EditorInfo
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_place_search.*
 import place.pic.R
-
-<<<<<<< HEAD
 import place.pic.data.PlacepicAuthRepository
-
-=======
 import place.pic.data.entity.Place
-
->>>>>>> feature/41_upload_place_remote
 import place.pic.data.entity.PlaceSearch
 import place.pic.data.remote.PlacePicService
 import place.pic.data.remote.response.BaseResponse

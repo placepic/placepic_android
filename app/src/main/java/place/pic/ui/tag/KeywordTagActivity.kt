@@ -33,34 +33,47 @@ class KeywordTagActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_keyword_tag)
 
-        val intent = intent
-        val categoryIdx = intent.getIntExtra("categoryIdx", 1)
-        getAlreadySelectedTags(intent) //수정 시 사용자가 이전에 선택한 태그 가져오기
+        val selectedChipIntent: Intent = intent
+        val categoryIdx = selectedChipIntent.getIntExtra("categoryIdx", 1)
 
         getTagListFromServer(categoryIdx)
         keyword_tag_save.setOnClickListener { onSaveClick() }
 
         img_back444.setOnClickListener { onBackPressed() }
+
+        getAlreadySelectedTags()
     }
 
-    private fun getAlreadySelectedTags(intent: Intent) {
-        val tagListForUpdate: MutableList<KeywordTag> =
-            (intent.getSerializableExtra("chipIntent") ?: return) as MutableList<KeywordTag>
+    private fun getAlreadySelectedTags() {
+
+        val selectedChipIntent: Intent = intent
+
+        val tagListForUpdate: ArrayList<KeywordTag> =
+            (selectedChipIntent.getSerializableExtra("checkedChip")
+                ?: return) as ArrayList<KeywordTag>
         //elbis  ?: null이면 : 뒤에를 실행해라
+
+        Log.d("dahye bug check", tagListForUpdate.toString()) //여기까지는 잘 받아와져
+
         checkChipForUpdate(tagListForUpdate) //수정을 위해 click된 chip인지 확인
+
     }
 
-    private fun checkChipForUpdate(tagListForUpdate: MutableList<KeywordTag>) {
+    private fun checkChipForUpdate(tagListForUpdate: ArrayList<KeywordTag>) {
+
+        Log.d("dahye for list", keywordTagChipList.toString())
+
         for (i in 0 until keywordTagChipList.size) {
             if (keywordTagChipList[i].text == tagListForUpdate[i].tagName) {
                 keywordTagChipList[i].isChecked = true
+                Log.d("dahye chip", keywordTagChipList[i].text as String)
             }
         }
     }
 
     private fun getTagListFromServer(categoryIdx: Int) { //getConnection(categoryIdx: Int)
 
-        val token = PlacepicAuthRepository.getInstance(this).userToken?:return
+        val token = PlacepicAuthRepository.getInstance(this).userToken ?: return
 
         placePicService.getInstance()
             .requestKeywordTag(

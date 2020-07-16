@@ -44,7 +44,7 @@ class UsefulTagActivity : AppCompatActivity() {
 
     private fun getAlreadySelectedTags(intent: Intent) {
         val tagListForUpdate: MutableList<UsefulTag> =
-            (intent.getSerializableExtra("chipIntent") ?: return) as MutableList<UsefulTag>
+            (intent.getSerializableExtra("checkedChipIntent") ?: return) as MutableList<UsefulTag>
         //elbis  ?: null이면 : 뒤에를 실행해라
         checkChipForUpdate(tagListForUpdate) //수정을 위해 click된 chip인지 확인
     }
