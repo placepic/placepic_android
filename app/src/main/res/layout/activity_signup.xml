@@ -11,7 +11,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cl_sign_top_bar"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="56dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -20,7 +20,7 @@
             android:id="@+id/img_sign_top_bar_back_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingStart="14dp"
+            android:paddingStart="16dp"
             android:paddingTop="12dp"
             android:paddingEnd="12dp"
             android:paddingBottom="12dp"
@@ -36,7 +36,7 @@
             android:fontFamily="@font/noto_sans_bold"
             android:text="회원가입"
             android:textColor="@color/black36"
-            android:textSize="15dp"
+            android:textSize="18dp"
             app:layout_constraintBottom_toBottomOf="@+id/img_sign_top_bar_back_btn"
             app:layout_constraintStart_toEndOf="@+id/img_sign_top_bar_back_btn"
             app:layout_constraintTop_toTopOf="@+id/img_sign_top_bar_back_btn" />

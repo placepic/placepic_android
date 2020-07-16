@@ -9,7 +9,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cl_mypage"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="56dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -18,13 +18,11 @@
             android:id="@+id/tv_sign_top_bar_title2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="14dp"
-            android:layout_marginTop="11dp"
-            android:layout_marginBottom="11dp"
+            android:layout_marginStart="16dp"
             android:fontFamily="@font/noto_sans_bold"
             android:text="SOPT"
             android:textColor="@color/black36"
-            android:textSize="18dp"
+            android:textSize="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -33,9 +31,10 @@
             android:id="@+id/bt_logout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="14dp"
-            android:text="로그아웃"
+            android:layout_marginEnd="16dp"
             android:fontFamily="@font/noto_sans_bold"
+            android:text="로그아웃"
+            android:textColor="@color/grayADB6BD"
             app:layout_constraintBottom_toBottomOf="@+id/tv_sign_top_bar_title2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/tv_sign_top_bar_title2" />
