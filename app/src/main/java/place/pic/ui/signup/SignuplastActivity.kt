@@ -23,10 +23,6 @@ class SignuplastActivity : AppCompatActivity() {
             startActivity(intent)
 
             finish()
-
         }
     }
-
-
-
 }

@@ -83,8 +83,6 @@ class MyPageFragment : Fragment() {
                             else -> tv_profile_kind.text = "승인대기중"
                         }
                     }
-                } else {
-
                 }
             }
         })
@@ -102,7 +100,7 @@ class MyPageFragment : Fragment() {
             editor.clear()
             editor.apply()
             startActivity(intent2)
-            //activity?.finish()
+            activity?.finish()
         }
         return v
     }

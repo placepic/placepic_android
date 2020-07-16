@@ -47,15 +47,12 @@ class LoginActivity : AppCompatActivity(),View.OnClickListener {
         val s: String? = sp.getString("id", "")
         val s2: String? = sp.getString("pwd", "")
         val b: Boolean = sp.getBoolean("cb", false)
-        val bb : Boolean = sp.getBoolean("bb",true)
 
         et_login_email.setText(s)
         et_login_email.background = getDrawable(R.drawable.selector_edittext_in_login_view)
         tv_login_non_email.visibility = View.INVISIBLE
-        et_login_password.setText(s2)
         cb_login.isChecked = b
-        btn_login.isEnabled=bb
-
+        writeEmail = true
         init()
     }
 
@@ -119,20 +116,16 @@ class LoginActivity : AppCompatActivity(),View.OnClickListener {
                                 startActivity(intent)
                                 finish()
                             }
-                            else
-                            {
 
-                            }
                         }
                         else {
                             tv_login_fail.visibility = View.VISIBLE
-                            btn_login.isEnabled = false
-                            editTextChangedMapping()
                         }
                     }
                 })
             }
         }
+        editTextChangedMapping()
     }
 
     private fun isValidEmail(email: String): Boolean{
@@ -163,9 +156,8 @@ class LoginActivity : AppCompatActivity(),View.OnClickListener {
 
         if(cb_login.isChecked) {
             editor.putString("id", et_login_email.text.toString())
-            editor.putString("pwd", et_login_password.text.toString())
             editor.putBoolean("cb", cb_login.isChecked)
-            editor.putBoolean("bb",btn_login.isEnabled)
+            editor.putBoolean("bb", btn_login.isEnabled)
         }
         editor.apply()
     }
