@@ -46,11 +46,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:overScrollMode="never"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintEnd_toEndOf="@+id/cl_join_group_top_bar"
         app:layout_constraintStart_toStartOf="@id/cl_join_group_top_bar"
-        app:layout_constraintTop_toBottomOf="@id/cl_join_group_top_bar"
-         />
+        app:layout_constraintTop_toBottomOf="@id/cl_join_group_top_bar" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/btn_cl_create_new_group"
