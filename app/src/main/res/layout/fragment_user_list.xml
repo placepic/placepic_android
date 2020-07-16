@@ -14,7 +14,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout6"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="56dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -26,10 +26,10 @@
                 android:layout_marginStart="14dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="11dp"
-                android:text="순위"
-                android:textSize="18dp"
                 android:fontFamily="@font/noto_sans_bold"
+                android:text="순위"
                 android:textColor="@color/black36"
+                android:textSize="18dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />

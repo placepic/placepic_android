@@ -55,6 +55,7 @@ class DetailViewActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun buttonEventMapping() {
+        img_btn_detail_top_back.setOnClickListener(this)
         cl_btn_detail_shared_people.setOnClickListener(this)
         cl_btn_detail_like.setOnClickListener(this)
         cl_btn_detail_more_info.setOnClickListener(this)

@@ -9,7 +9,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cl_wait_group_top_bar"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="56dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -31,8 +31,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:text="승인 대기중인 그룹"
             android:fontFamily="@font/noto_sans_bold"
+            android:text="승인 대기중인 그룹"
             android:textColor="@color/black36"
             android:textSize="18dp"
             app:layout_constraintBottom_toBottomOf="@+id/img_wait_group_top_back_btn"

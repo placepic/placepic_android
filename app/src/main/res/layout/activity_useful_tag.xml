@@ -9,7 +9,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="56dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -33,10 +33,10 @@
             android:layout_marginStart="12dp"
             android:layout_marginTop="13dp"
             android:layout_marginBottom="13dp"
+            android:fontFamily="@font/noto_sans_bold"
             android:text="@string/string_useful_tag"
             android:textColor="@color/black36"
             android:textSize="15dp"
-            android:fontFamily="@font/noto_sans_bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/img_back4444"
             app:layout_constraintTop_toTopOf="parent" />

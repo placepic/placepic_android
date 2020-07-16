@@ -9,7 +9,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cl_join_group_top_bar"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="56dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -50,7 +50,7 @@
         app:layout_constraintEnd_toEndOf="@+id/cl_join_group_top_bar"
         app:layout_constraintStart_toStartOf="@id/cl_join_group_top_bar"
         app:layout_constraintTop_toBottomOf="@id/cl_join_group_top_bar"
-        tools:listitem="@layout/item_group_list" />
+         />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/btn_cl_create_new_group"
@@ -68,10 +68,10 @@
             android:id="@+id/tv_creat_new_group"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/noto_sans_bold"
             android:text="찾는 그룹이 없다면 새 그룹을 만들어보세요!"
             android:textColor="@color/black4F"
             android:textSize="15dp"
-            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
