@@ -40,12 +40,13 @@ class KeywordTagActivity : AppCompatActivity() {
         val categoryIdx: Place.Type = intent.getSerializableExtra("categoryIdx") as Place.Type
         Log.d("dahye catgory", categoryIdx.toString())
 
+        getAlreadySelectedTags()
+
         getTagListFromServer(categoryIdx)
+
         keyword_tag_save.setOnClickListener { onSaveClick() }
 
         img_back444.setOnClickListener { onBackPressed() }
-
-        getAlreadySelectedTags()
     }
 
     private fun getAlreadySelectedTags() {
@@ -60,10 +61,10 @@ class KeywordTagActivity : AppCompatActivity() {
 
     private fun checkChipForUpdate(tagListForUpdate: MutableList<KeywordTag>) {
 
-        Log.d("dahye 칩 리스트", keywordTagChipList.toString())
-
         for (i in 0 until keywordTagChipList.size) {
-            if (keywordTagChipList[i].text == tagListForUpdate[i].tagName) {
+            Log.d("dahye 칩 리스트", keywordTagChipList[i].text as String)
+            Log.d("dahye 칩 수정", tagListForUpdate[i].tagName)
+            if (keywordTagChipList[i].text.toString() == tagListForUpdate[i].tagName) {
                 keywordTagChipList[i].isChecked = true
             }
         }
@@ -132,6 +133,7 @@ class KeywordTagActivity : AppCompatActivity() {
                                 }
                             }
                         }
+                        //checkChipForUpdate(tagListForUpdate)
                     }
                 }
             })
