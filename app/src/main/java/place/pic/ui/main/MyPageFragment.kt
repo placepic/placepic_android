@@ -1,38 +1,31 @@
 package place.pic.ui.main
 
-import android.R.attr
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
-import android.net.Uri
+import android.content.SharedPreferences
 import android.os.Bundle
-import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
-import kotlinx.android.synthetic.main.fragment_admin_page.view.*
 import kotlinx.android.synthetic.main.fragment_my_page.*
 import kotlinx.android.synthetic.main.fragment_my_page.view.*
 import place.pic.R
 import place.pic.data.PlacepicAuthRepository
-import place.pic.data.entity.Place
 import place.pic.data.remote.PlacePicService
 import place.pic.data.remote.response.BaseResponse
 import place.pic.data.remote.response.MyPageResponse
-import place.pic.showToast
-import place.pic.ui.group.waitgrouplist.WaitGroupActivity
+import place.pic.ui.login.LoginPageActivity
 import place.pic.ui.main.mypage.userlist.WaitUserListActivity
-import place.pic.ui.search.place.PlaceSearchActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 
 class MyPageFragment : Fragment() {
-    
+
     var user_name: String? = null
     var user_state: Int? = null
     var user_part: String? = null
@@ -100,8 +93,20 @@ class MyPageFragment : Fragment() {
             val intent = Intent(context, WaitUserListActivity::class.java)
             startActivity(intent)
         }
+
+        v.bt_logout.setOnClickListener {
+            val preferences = this.activity?.getSharedPreferences("temp", Context.MODE_PRIVATE)
+            val editor :SharedPreferences.Editor= preferences!!.edit()
+
+            val intent2 = Intent(context, LoginPageActivity::class.java)
+            editor.clear()
+            editor.apply()
+            startActivity(intent2)
+            //activity?.finish()
+        }
         return v
     }
+
 }
 
 

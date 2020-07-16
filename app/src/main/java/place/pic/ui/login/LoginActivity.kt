@@ -1,23 +1,24 @@
 package place.pic.ui.login
 
+import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Patterns
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_login.*
 import place.pic.R
-import place.pic.ui.extands.customTextChangedListener
-import android.util.Patterns
 import place.pic.data.PlacepicAuthRepository
 import place.pic.data.remote.PlacePicService
 import place.pic.data.remote.request.RequestLogin
 import place.pic.data.remote.response.BaseResponse
 import place.pic.data.remote.response.LoginResponse
-import place.pic.showToast
+import place.pic.ui.extands.customTextChangedListener
 import place.pic.ui.group.GroupListActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+
 
 /*
 * Button 관련
@@ -26,9 +27,9 @@ import retrofit2.Response
 * Text color = white*/
 class LoginActivity : AppCompatActivity(),View.OnClickListener {
 
-
     private var writeEmail = false
     private var writePassword = false
+
 
     override fun onBackPressed() {
         super.onBackPressed()
@@ -41,6 +42,20 @@ class LoginActivity : AppCompatActivity(),View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+
+        val sp = getSharedPreferences("temp", Context.MODE_PRIVATE)
+        val s: String? = sp.getString("id", "")
+        val s2: String? = sp.getString("pwd", "")
+        val b: Boolean = sp.getBoolean("cb", false)
+        val bb : Boolean = sp.getBoolean("bb",true)
+
+        et_login_email.setText(s)
+        et_login_email.background = getDrawable(R.drawable.selector_edittext_in_login_view)
+        tv_login_non_email.visibility = View.INVISIBLE
+        et_login_password.setText(s2)
+        cb_login.isChecked = b
+        btn_login.isEnabled=bb
+
         init()
     }
 
@@ -94,22 +109,27 @@ class LoginActivity : AppCompatActivity(),View.OnClickListener {
                         response: Response<BaseResponse<LoginResponse>>) {
                         if(response.isSuccessful)
                         {
-                            PlacepicAuthRepository
-                                .getInstance(this@LoginActivity)
-                                .saveUserToken(response.body()!!.data.accessToken)
                             if(response.body()!!.success)
                             {
+                                PlacepicAuthRepository
+                                    .getInstance(this@LoginActivity)
+                                    .saveUserToken(response.body()!!.data.accessToken)
+
                                 val intent = Intent(this@LoginActivity, GroupListActivity::class.java)
                                 startActivity(intent)
                                 finish()
+                            }
+                            else
+                            {
+
                             }
                         }
                         else {
                             tv_login_fail.visibility = View.VISIBLE
                             btn_login.isEnabled = false
+                            editTextChangedMapping()
                         }
                     }
-
                 })
             }
         }
@@ -136,4 +156,18 @@ class LoginActivity : AppCompatActivity(),View.OnClickListener {
         btn_login.isEnabled = writeEmail && writePassword
     }
 
+    override fun onStop() {
+        super.onStop()
+        val prefer = getSharedPreferences("temp", Context.MODE_PRIVATE)
+        val editor = prefer.edit()
+
+        if(cb_login.isChecked) {
+            editor.putString("id", et_login_email.text.toString())
+            editor.putString("pwd", et_login_password.text.toString())
+            editor.putBoolean("cb", cb_login.isChecked)
+            editor.putBoolean("bb",btn_login.isEnabled)
+        }
+        editor.apply()
+    }
 }
+
