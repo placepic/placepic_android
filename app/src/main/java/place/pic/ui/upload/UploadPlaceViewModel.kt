@@ -60,6 +60,10 @@ class UploadPlaceViewModel(
     val successEvent: LiveData<Boolean>
         get() = _successEvent
 
+    private val _isLoading = MutableLiveData<Boolean>()
+    val isLoading: LiveData<Boolean>
+        get() = _isLoading
+
     init {
         _imageUris.value = emptyList()
         _subways.value = emptyList()
@@ -69,6 +73,7 @@ class UploadPlaceViewModel(
     }
 
     fun uploadPlace(context: Context) {
+        _isLoading.value = true
         UploadPlaceRequest(
             title = getCurrentPlaceTitle(),
             oldAddress = placeOldAddress,
@@ -83,9 +88,19 @@ class UploadPlaceViewModel(
             subways = _subways.value ?: emptyList(),
             images = _imageUris.value ?: emptyList()
         ).apply {
-            addOnSuccessListener { _successEvent.value = true }
-            addOnFailureListener { _toastEvent.value = R.string.upload_failed }
+            addOnSuccessListener { onUploadSuccess() }
+            addOnFailureListener { onUploadFailed() }
         }.send(context, getUserToken())
+    }
+
+    private fun onUploadSuccess() {
+        _successEvent.value = true
+        _isLoading.value = false
+    }
+
+    private fun onUploadFailed() {
+        _toastEvent.value = R.string.upload_failed
+        _isLoading.value = false
     }
 
     // 생명주기로 GC한테 컬렉팅됬을때는 생각하지말자 시간없으니... ^^^^^^;;;;;;
