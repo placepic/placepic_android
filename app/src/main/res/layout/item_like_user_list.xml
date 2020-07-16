@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingHorizontal="14dp"
+    android:paddingTop="11dp">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/user_image"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/ic_user"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/user_ranking"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/user_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:fontFamily="@font/noto_sans_bold"
+        android:text="최호준"
+        android:textColor="@color/black36"
+        android:textSize="15dp"
+        app:layout_constraintBottom_toTopOf="@+id/user_part"
+        app:layout_constraintStart_toEndOf="@+id/user_image"
+        app:layout_constraintTop_toTopOf="@+id/user_image"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <TextView
+        android:id="@+id/user_part"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:text="SOPT 26기 안드로이드 파트장"
+        android:textColor="@color/grayADB6BD"
+        android:fontFamily="@font/noto_sans_regular"
+        android:textSize="11dp"
+        app:layout_constraintBottom_toBottomOf="@+id/user_image"
+        app:layout_constraintTop_toBottomOf="@+id/user_name"
+        app:layout_constraintStart_toStartOf="@id/user_name"/>
+
+    <TextView
+        android:id="@+id/user_create_at"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/user_name"
+        android:textSize="12dp"
+        android:fontFamily="@font/noto_sans_regular"
+        android:textColor="@color/gray63"
+        tools:text="2020.20.20" />
+
+    <View
+        android:id="@+id/view6"
+        android:layout_width="0dp"
+        android:layout_height="0.5dp"
+        android:layout_marginTop="11dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/user_image"
+        app:layout_constraintTop_toBottomOf="@id/user_image" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
