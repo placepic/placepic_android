@@ -37,7 +37,6 @@ class EndGroupJoinActivity : AppCompatActivity() {
         }
     }
 
-    //TODO : 그룹 이름이 Bold로 뜨지 않음.
     private fun bindEndGroupJoin(){
         Glide.with(this).load(groupImage).into(img_end_group_profile)
         val endGroupJoinText = SpannableStringBuilder("$groupName 가입 신청이\n 완료되었습니다.")
