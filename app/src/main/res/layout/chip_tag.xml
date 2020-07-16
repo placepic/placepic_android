@@ -12,10 +12,11 @@
     android:text="textView"
     android:textAppearance="@style/AppTheme.TagChip"
     android:textColor="@color/selector_tag_text_color"
+    app:chipMinTouchTargetSize="2dp"
 
     app:chipBackgroundColor="#FFFFFF"
     app:chipCornerRadius="6dp"
-    app:chipMinHeight="37dp"
+    app:chipMinHeight="41dp"
     app:chipStrokeColor="@color/selector_tag_stroke_color"
     app:chipStrokeWidth="2dp"
     app:textEndPadding="10dp"

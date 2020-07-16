@@ -37,35 +37,45 @@ class KeywordTagActivity : AppCompatActivity() {
         setContentView(R.layout.activity_keyword_tag)
 
         val intent: Intent = intent
-        val categoryIdx: Place.Type = intent.getSerializableExtra("categoryIdx") as Place.Type
+        val categoryIdx: Place.Type =
+            intent.getSerializableExtra("categoryIdx") as Place.Type // 1 번
         Log.d("dahye catgory", categoryIdx.toString())
 
-        getAlreadySelectedTags()
-
-        getTagListFromServer(categoryIdx)
+        getTagListFromServer(categoryIdx) // 1 / 2 / 3 번
 
         keyword_tag_save.setOnClickListener { onSaveClick() }
 
         img_back444.setOnClickListener { onBackPressed() }
     }
 
-    private fun getAlreadySelectedTags() {
+    private fun getAlreadySelectedTags() { //사용자가 선택한 chip 정보 꺼내
         val selectedChipIntent: Intent = intent
 
         tagListForUpdate = (selectedChipIntent.getSerializableExtra("checkedChip")
             ?: return) as MutableList<KeywordTag>
+        // 4 번
         //elbis  ?: null이면 : 뒤에를 실행해라
 
         Log.d("dahye 선택한 태그", tagListForUpdate.toString()) //여기까지는 잘 받아와져
+
+        if (tagListForUpdate.isEmpty()) {
+            return
+        } else {
+            checkChipForUpdate(tagListForUpdate)
+        }
     }
 
     private fun checkChipForUpdate(tagListForUpdate: MutableList<KeywordTag>) {
 
         for (i in 0 until keywordTagChipList.size) {
+
             Log.d("dahye 칩 리스트", keywordTagChipList[i].text as String)
-            Log.d("dahye 칩 수정", tagListForUpdate[i].tagName)
-            if (keywordTagChipList[i].text.toString() == tagListForUpdate[i].tagName) {
-                keywordTagChipList[i].isChecked = true
+
+            for (j in 0 until tagListForUpdate.size) {
+                if (keywordTagChipList[i].text.toString() == tagListForUpdate[j].tagName) {
+                    keywordTagChipList[i].isChecked = true
+                }
+                Log.d("dahye 칩 수정", tagListForUpdate[j].tagName)
             }
         }
     }
@@ -99,7 +109,7 @@ class KeywordTagActivity : AppCompatActivity() {
                                     tagName = response.body()!!.data[i].tagName
                                 )
                                 keywordTagList.add(keywordTag)
-                            }
+                            } // 2 번
 
                             val chipGroup = chipgroup_keyword_tag
                             for (tags in keywordTagList) {
@@ -109,9 +119,7 @@ class KeywordTagActivity : AppCompatActivity() {
                                 chip.isClickable = true
                                 chip.text = tags.tagName
                                 chipGroup.addView(chip)
-                            }
-
-                            //checkChipForUpdate(tagListForUpdate)
+                            }  // 3 번
 
                             for (i in 0 until keywordTagChipList.size) { //chipList.forEach로도 가능
                                 keywordTagChipList[i].setOnClickListener {
@@ -132,8 +140,8 @@ class KeywordTagActivity : AppCompatActivity() {
                                     }
                                 }
                             }
+                            getAlreadySelectedTags()
                         }
-                        //checkChipForUpdate(tagListForUpdate)
                     }
                 }
             })
