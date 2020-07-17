@@ -75,19 +75,20 @@
                     app:layout_constraintTop_toBottomOf="@+id/cl_detail_top_bar"
                     tools:background="@color/grayEEEFF0" />
 
-                <com.google.android.material.tabs.TabLayout
-                    android:id="@+id/tl_indicator"
-                    android:layout_width="match_parent"
+                <com.pm10.library.CircleIndicator
+                    android:id="@+id/circle_indicator"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:layout_centerInParent="true"
-                    app:tabGravity="center"
-                    app:tabIndicatorHeight="0dp"
-                    app:tabBackground="@drawable/selector_indicator"
+                    android:layout_marginBottom="12dp"
                     app:layout_constraintBottom_toBottomOf="@+id/vp_detail_image_slide"
                     app:layout_constraintEnd_toEndOf="@+id/vp_detail_image_slide"
-                    app:layout_constraintStart_toStartOf="@+id/vp_detail_image_slide"
-                    />
+                    app:layout_constraintStart_toStartOf="@id/vp_detail_image_slide"
+                    app:p_defaultColor="#66FFFFFF"
+                    app:p_gap="8dp"
+                    app:p_radius="4dp"
+                    app:p_selectedColor="@color/white"
+                    app:p_strokeColor="#66FFFFFF"
+                    app:p_strokeWidth="1dp" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/cl_detail_user_info"
