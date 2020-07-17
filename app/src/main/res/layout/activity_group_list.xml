@@ -18,7 +18,7 @@
             android:id="@+id/cl_group_list_top_bar"
             android:layout_width="0dp"
             android:layout_height="56dp"
-            android:padding="16dp"
+            android:paddingHorizontal="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -29,8 +29,9 @@
                 android:layout_height="wrap_content"
                 android:text="내 그룹"
                 android:textColor="@color/black36"
-                android:textSize="18dp"
+                android:textSize="20dp"
                 android:fontFamily="@font/noto_sans_bold"
+                android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />

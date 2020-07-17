@@ -31,10 +31,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:text="그룹 가입 신청하기"
             android:fontFamily="@font/noto_sans_bold"
+            android:text="그룹 가입 신청하기"
             android:textColor="@color/black36"
             android:textSize="18dp"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/img_sign_up_group_top_back_btn"
             app:layout_constraintStart_toEndOf="@+id/img_sign_up_group_top_back_btn"
             app:layout_constraintTop_toTopOf="@+id/img_sign_up_group_top_back_btn" />
