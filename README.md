@@ -77,7 +77,7 @@
     - 지하철검색  
     - 최애장소 업로드 View  
     - 이미지 업로드 구현  
-    - 네이버 지도 API
+    - 인앱브라우저 구현
     - 저장 페이지
     - custom 확장 함수 사용
     - kotlin collection 확장 함수 사용 
@@ -88,10 +88,13 @@
 
 ```
     - 로그인, 로그인 페이지 View Layout 
-    - 그룹 신청 페이지 
+    - 내 그룹, 승인대기 페이지
+    - 그룹 신청 페이지, 그룹 신청 완료
     - 관리자 페이지  
     - 디테일 페이지  
     - kotlin collection 확장 함수 사용 : Let, forEach
+    - 싱글턴 SharedPreference 구현
+    - custom enqueue 작성
 ```
 
 
@@ -505,7 +508,7 @@ import android.app.Activity
 import android.content.Context
 
 /**
- * Created By Jinsoo
+ * Created By Jinsu
  */
 
 class PlacepicAuthRepository private constructor(context: Context) {
@@ -558,9 +561,10 @@ class PlacepicAuthRepository private constructor(context: Context) {
 
 ## VIEW VIDIEO
 
+<p align="center">
 <img src="https://github.com/LeeSuJung-dodung/SoptAndroidExampleAll/blob/master/KakaoTalk_20200717_232940915_01.gif?raw=true" />
-
 <img src= "https://github.com/LeeSuJung-dodung/SoptAndroidExampleAll/blob/master/KakaoTalk_20200717_232940915_02.gif?raw=true" />
+</p>
 
 ---
 
