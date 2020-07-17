@@ -5,6 +5,11 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
+import com.naver.maps.geometry.LatLng
+import com.naver.maps.geometry.Tm128
+import com.naver.maps.map.*
+import com.naver.maps.map.overlay.Marker
+import com.naver.maps.map.overlay.OverlayImage
 import kotlinx.android.synthetic.main.activity_detail_view.*
 import place.pic.R
 import place.pic.data.PlacepicAuthRepository
@@ -14,11 +19,12 @@ import place.pic.data.remote.request.RequestToPlacceIdx
 import place.pic.data.remote.response.DetailResponse
 import place.pic.data.remote.response.Uploader
 import place.pic.ui.dialog.SimpleDialog
-import place.pic.ui.util.customEnqueue
-import place.pic.ui.util.unixDateTimeParser
 import place.pic.ui.main.detail.liker.LikerUserListActivity
 import place.pic.ui.tag.ChipFactory
+import place.pic.ui.util.customEnqueue
+import place.pic.ui.util.unixDateTimeParser
 import place.pic.ui.webview.InWebActivity
+
 
 /*
 * 글 작성 유저와 글의 장소 ㄹId를 비교하여 글 삭제 버튼의 유무를 지정하기 위해서
@@ -27,7 +33,7 @@ import place.pic.ui.webview.InWebActivity
 * 각각의 키로는 Int로 캐스팅하여 사용합니다.
 */
 
-class DetailViewActivity : AppCompatActivity(), View.OnClickListener {
+class DetailViewActivity : AppCompatActivity(), View.OnClickListener,OnMapReadyCallback {
 
     private lateinit var detailviewPagerAdapter: DetailViewPagerAdapter
 
@@ -40,12 +46,28 @@ class DetailViewActivity : AppCompatActivity(), View.OnClickListener {
 
     private var likeCount: Int = 0
 
+    private lateinit var location:LatLng
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail_view)
         token = PlacepicAuthRepository.getInstance(this).userToken ?: return
         placeIdx = intent.getLongExtra("placeIdx", 0)
+        NaverMapSdk.getInstance(this).client =
+            NaverMapSdk.NaverCloudPlatformClient("n1d1q8lp28")
         init()
+        mapSetting()
+    }
+
+    private fun mapSetting(){
+        var mapFragment =
+            supportFragmentManager.findFragmentById(R.id.map) as MapFragment?
+        if (mapFragment == null) {
+            mapFragment = MapFragment.newInstance()
+            supportFragmentManager.beginTransaction().add(R.id.map, mapFragment)
+                .commit()
+        }
+        mapFragment!!.getMapAsync(this)
     }
 
     private fun init() {
@@ -208,6 +230,8 @@ class DetailViewActivity : AppCompatActivity(), View.OnClickListener {
         setMyLikeButtonStatus(detailResponse.isLiked)
         setMyBookmarkButtonStatus(detailResponse.isBookmarked)
 
+        location = setLatLng(detailResponse.placeMapX,detailResponse.placeMapY)
+
         webTitle = title
         webUrl = detailResponse.mobileNaverMapLink
     }
@@ -332,5 +356,20 @@ class DetailViewActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun getMyBookmarkButtonStatus(): Boolean {
         return img_btn_detail_bookmark.isSelected
+    }
+
+    override fun onMapReady(naverMap: NaverMap) {
+        naverMap.minZoom = 10.0;   //최소
+        naverMap.maxZoom = 19.0;
+        naverMap.cameraPosition = CameraPosition(location,21.0)
+        val marker = Marker()
+        marker.position = location
+        marker.icon = OverlayImage.fromResource(R.drawable.ic_pink_pin)
+        marker.map = naverMap
+    }
+
+    private fun setLatLng(placeMapX: Double, placeMapY: Double): LatLng {
+        val tm128 = Tm128(placeMapX,placeMapY)
+        return tm128.toLatLng()
     }
 }

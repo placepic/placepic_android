@@ -25,6 +25,7 @@ class GroupListActivity : AppCompatActivity() {
     private var groupListData: List<ResponseGroupList>? = null
     private var groupWaitListData: Int = 0
 
+
     lateinit var binding: ActivityGroupListBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -79,7 +80,7 @@ class GroupListActivity : AppCompatActivity() {
             gotoJoinActivity()
         }
         loadGroupFragment(
-            ExistGroupListFragment(groupListData!!)
+            ExistGroupListFragment(groupListData!!,cl_wait_group)
         )
     }
 
