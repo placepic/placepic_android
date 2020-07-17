@@ -18,7 +18,7 @@
         <activity
             android:name=".ui.SplashActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar"/>
-        <activity android:name=".ui.main.mypage.userlist.WaitUserListActivity" />
+        <activity android:name=".ui.main.mypage.admin.WaitUserListActivity" />
         <activity android:name=".ui.search.place.PlaceSearchActivity" />
         <activity android:name=".ui.upload.UploadPlaceActivity" />
         <activity android:name=".ui.group.SignUpGroupActivity" />

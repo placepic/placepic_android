@@ -1,6 +1,5 @@
 package place.pic.ui.main
 
-import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
@@ -18,7 +17,7 @@ import place.pic.data.remote.PlacePicService
 import place.pic.data.remote.response.BaseResponse
 import place.pic.data.remote.response.MyPageResponse
 import place.pic.ui.login.LoginPageActivity
-import place.pic.ui.main.mypage.userlist.WaitUserListActivity
+import place.pic.ui.main.mypage.admin.WaitUserListActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
