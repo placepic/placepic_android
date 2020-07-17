@@ -32,7 +32,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:fontFamily="@font/noto_sans_bold"
-            android:text="그룹 참여하기"
+            android:text="승인대기"
             android:textColor="@color/black36"
             android:textSize="18dp"
             app:layout_constraintBottom_toBottomOf="@+id/img_wait_user_list_top_back_btn"
