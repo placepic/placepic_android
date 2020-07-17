@@ -8,7 +8,7 @@ import place.pic.R
 import place.pic.data.PlacepicAuthRepository
 import place.pic.data.remote.PlacePicService
 import place.pic.data.remote.response.ResponseGroupList
-import place.pic.ui.extands.customEnqueue
+import place.pic.ui.util.customEnqueue
 
 class JoinGroupActivity : AppCompatActivity() {
 

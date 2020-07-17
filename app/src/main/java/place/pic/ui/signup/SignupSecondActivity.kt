@@ -9,13 +9,12 @@ import place.pic.R
 import place.pic.data.remote.PlacePicService
 import place.pic.data.remote.request.RequestRegisterSecond
 import place.pic.data.remote.response.BaseResponse
-import place.pic.showToast
-import place.pic.ui.extands.customTextChangedListener
+import place.pic.ui.util.showToast
+import place.pic.ui.util.customTextChangedListener
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.util.*
-import java.lang.Object
 
 //회원가입 두번째 페이지
 

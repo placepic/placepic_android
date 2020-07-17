@@ -13,7 +13,7 @@ import place.pic.data.remote.PlacePicService
 import place.pic.data.remote.request.RequestLogin
 import place.pic.data.remote.response.BaseResponse
 import place.pic.data.remote.response.LoginResponse
-import place.pic.ui.extands.customTextChangedListener
+import place.pic.ui.util.customTextChangedListener
 import place.pic.ui.group.GroupListActivity
 import retrofit2.Call
 import retrofit2.Callback

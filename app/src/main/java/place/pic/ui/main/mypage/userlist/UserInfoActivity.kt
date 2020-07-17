@@ -10,7 +10,7 @@ import place.pic.data.PlacepicAuthRepository
 import place.pic.data.remote.PlacePicService
 import place.pic.data.remote.request.RequestAcceptUser
 import place.pic.data.remote.response.ResponseWaitUser
-import place.pic.ui.extands.customEnqueue
+import place.pic.ui.util.customEnqueue
 
 class UserInfoActivity : AppCompatActivity(), View.OnClickListener {
 

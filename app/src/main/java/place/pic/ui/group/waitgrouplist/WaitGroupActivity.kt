@@ -2,13 +2,12 @@ package place.pic.ui.group.waitgrouplist
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.recyclerview.widget.DividerItemDecoration
 import kotlinx.android.synthetic.main.activity_wait_group.*
 import place.pic.R
 import place.pic.data.PlacepicAuthRepository
 import place.pic.data.remote.PlacePicService
 import place.pic.data.remote.response.ResponseGroupList
-import place.pic.ui.extands.customEnqueue
+import place.pic.ui.util.customEnqueue
 
 class WaitGroupActivity : AppCompatActivity() {
 

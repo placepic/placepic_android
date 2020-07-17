@@ -6,9 +6,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentTransaction
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.activity_search_subway.*
 import place.pic.R
-import place.pic.showToast
+import place.pic.ui.util.showToast
 import place.pic.ui.main.mypage.userlist.UserListFragment
 import place.pic.ui.main.place.PlacesFragment
 

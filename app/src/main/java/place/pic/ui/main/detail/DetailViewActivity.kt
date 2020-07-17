@@ -1,6 +1,5 @@
 package place.pic.ui.main.detail
 
-import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -15,8 +14,8 @@ import place.pic.data.remote.request.RequestToPlacceIdx
 import place.pic.data.remote.response.DetailResponse
 import place.pic.data.remote.response.Uploader
 import place.pic.ui.dialog.SimpleDialog
-import place.pic.ui.extands.customEnqueue
-import place.pic.ui.extands.unixDateTimeParser
+import place.pic.ui.util.customEnqueue
+import place.pic.ui.util.unixDateTimeParser
 import place.pic.ui.main.detail.liker.LikerUserListActivity
 import place.pic.ui.tag.ChipFactory
 import place.pic.ui.webview.InWebActivity
