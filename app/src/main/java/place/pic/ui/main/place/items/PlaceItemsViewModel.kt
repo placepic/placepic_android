@@ -34,6 +34,12 @@ class PlaceItemsViewModel(
     val totalItemCount: LiveData<Int>
         get() = _totalItemCount
 
+    fun removePlace(placeId: Long) {
+        val currentItems = getCurrentPlaceItems().toMutableList()
+        val filteredItems = currentItems.filter { it.id != placeId }
+        _placeItems.value = filteredItems
+    }
+
     fun loadPlaceItems(
         keywordTags: List<KeywordTag>? = null,
         usefulTags: List<UsefulTag>? = null,
@@ -87,5 +93,7 @@ class PlaceItemsViewModel(
 
     private fun getUserToken() = placepicAuthRepository.userToken
         ?: throw IllegalStateException("userToken cannot be null")
+
+    private fun getCurrentPlaceItems() = _placeItems.value ?: emptyList()
 
 }

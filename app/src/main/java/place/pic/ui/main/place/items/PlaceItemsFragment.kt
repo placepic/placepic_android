@@ -18,6 +18,7 @@ import place.pic.data.entity.Subway
 import place.pic.data.entity.UsefulTag
 import place.pic.databinding.FragmentLoadingBinding
 import place.pic.databinding.FragmentPlaceItemsBinding
+import place.pic.ui.main.bookmark.BookmarksFragment.Companion.PLACE_DELETED
 import place.pic.ui.main.detail.DetailViewActivity
 import place.pic.ui.main.place.adapter.PlacesAdapter
 
@@ -70,6 +71,17 @@ class PlaceItemsFragment(private val placeType: Place.Type) : Fragment() {
         placeItemsViewModel.loadPlaceItems()
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == 6000) {
+            if (resultCode == PLACE_DELETED) {
+                val deletedPlaceId = data?.getLongExtra("placeIdx", -1) ?: return
+                placeItemsViewModel.removePlace(deletedPlaceId)
+            }
+        }
+    }
+
     private fun inflateAsyncLayout(target: FragmentLoadingBinding, container: ViewGroup?) {
         AsyncLayoutInflater(context!!).inflate(
             R.layout.fragment_place_items,
@@ -87,7 +99,7 @@ class PlaceItemsFragment(private val placeType: Place.Type) : Fragment() {
     private fun onPlaceClick(place: Place) {
         val intent = Intent(requireActivity(), DetailViewActivity::class.java)
         intent.putExtra("placeIdx", place.id)
-        startActivity(intent)
+        startActivityForResult(intent, 6000)
     }
 
     fun updatePlaceItems(
