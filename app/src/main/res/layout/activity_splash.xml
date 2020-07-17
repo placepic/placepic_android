@@ -7,18 +7,17 @@
     tools:context=".ui.main.SplashActivity"
     android:background="@color/colorPrimary">
 
-    <TextView
-        android:id="@+id/splash_text"
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottie"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/noto_sans_bold"
-        android:text="우리들끼리 공유하는 최애장소"
-        android:textColor="@color/whiteFEFFFF"
-        android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.386" />
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/pp_splash_final" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

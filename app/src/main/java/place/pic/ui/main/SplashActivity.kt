@@ -1,35 +1,33 @@
 package place.pic.ui.main
 
+import android.animation.Animator
+import android.animation.AnimatorListenerAdapter
 import android.content.Intent
 import android.os.Bundle
-import android.view.animation.Animation
-import android.view.animation.AnimationUtils
 import androidx.appcompat.app.AppCompatActivity
+import com.airbnb.lottie.LottieAnimationView
 import kotlinx.android.synthetic.main.activity_splash.*
 import place.pic.R
 import place.pic.ui.login.LoginPageActivity
 
-class SplashActivity : AppCompatActivity() {
-    var anim: Animation? = null
 
+class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
-        anim = AnimationUtils.loadAnimation(
-            applicationContext,
-            R.anim.anim_splash_word
-        ) // Create the animation.
 
-        anim!!.setAnimationListener(object : Animation.AnimationListener {
-            override fun onAnimationStart(animation: Animation) {}
-            override fun onAnimationEnd(animation: Animation) {
-                val intent  = Intent(this@SplashActivity,LoginPageActivity::class.java)
+
+        lottie.addAnimatorListener(object : AnimatorListenerAdapter(){
+            override fun onAnimationEnd(animation: Animator?) {
+                val intent = Intent(this@SplashActivity, LoginPageActivity::class.java)
                 startActivity(intent)
                 finish()
                 overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out)
             }
-            override fun onAnimationRepeat(animation: Animation) {}
         })
-        splash_text.startAnimation(anim)
+        lottie.playAnimation()
+
     }
+
+
 }
