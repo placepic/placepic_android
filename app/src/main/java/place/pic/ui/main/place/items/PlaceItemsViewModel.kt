@@ -10,8 +10,6 @@ import place.pic.data.entity.Subway
 import place.pic.data.entity.UsefulTag
 import place.pic.data.remote.request.PlacesRequest
 import place.pic.data.remote.response.PlaceResponse
-import place.pic.data.tempGroupId
-import place.pic.data.tempToken
 
 /**
  * Created By Malibin

@@ -66,7 +66,6 @@ class PlacesViewModel {
     }
 
     private fun loadPlaceTypeDetailsList(response: List<PlaceTypeDetailsResponse>) {
-        Log.d("Malibin Debug", response.toString())
         placeTypeDetails.addAll(response.map { it.toPlaceTypeDetail() })
     }
 
