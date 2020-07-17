@@ -100,8 +100,8 @@ class DetailViewActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onBackPressed() {
         if (!getMyBookmarkButtonStatus()) {
-            val intent = Intent().apply { putExtra("isBookmarkedPlace",2) }
-            setResult(Activity.RESULT_OK, intent)
+            val intent = Intent().apply { putExtra("placeIdx",placeIdx) }
+            setResult(2, intent)
         }
         super.onBackPressed()
     }
@@ -180,8 +180,8 @@ class DetailViewActivity : AppCompatActivity(), View.OnClickListener {
                 placeIdx = placeIdx
             ).customEnqueue(
                 onSuccess = {
-                    val intent = Intent().apply { putExtra("isDeletePlace",1) }
-                    setResult(Activity.RESULT_OK, intent)
+                    val intent = Intent().apply { putExtra("placeIdx",placeIdx) }
+                    setResult(1, intent)
                     finish()
                 }
             )
