@@ -210,8 +210,8 @@ class DetailViewActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun insertImageInViewPager(imageList: List<String>) {
         detailviewPagerAdapter = DetailViewPagerAdapter(this, imageList)
-        tl_indicator.setupWithViewPager(vp_detail_image_slide,true)
         vp_detail_image_slide.adapter = detailviewPagerAdapter
+        circle_indicator.setupWithViewPager(vp_detail_image_slide)
     }
 
     private fun insertKeywordInDetailChip(keyword: List<String>) {
