@@ -20,27 +20,8 @@ class LoginPageActivity : AppCompatActivity(), View.OnClickListener{
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login_page)
         init()
-        setStatusBar()
     }
 
-    fun setStatusBar(colors: Int = R.color.colorPrimary) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-
-            if (colors != android.R.color.transparent) {
-                window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION)
-            } else {
-                window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
-            }
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                if (colors == R.color.colorPrimary)
-                    window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
-                window.statusBarColor = resources.getColor(colors, null)
-            } else
-                window.statusBarColor = ContextCompat.getColor(this, colors)
-        }
-    }
     private fun init(){
         buttonMapping()
     }

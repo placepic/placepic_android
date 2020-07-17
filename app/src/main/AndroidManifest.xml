@@ -17,9 +17,7 @@
         <activity android:name=".ui.group.EndGroupJoinActivity" />
 
         <activity android:name=".ui.main.mypage.admin.WaitUserListActivity" />
-        <activity
-            android:name=".ui.main.SplashActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar">
+        <activity android:name=".ui.main.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
