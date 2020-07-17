@@ -16,6 +16,7 @@ import place.pic.data.remote.response.DetailLikerResponse
 import place.pic.data.remote.response.DetailResponse
 import place.pic.data.remote.response.Like
 import place.pic.data.remote.response.Uploader
+import place.pic.ui.dialog.SimpleDialog
 import place.pic.ui.extands.customEnqueue
 import place.pic.ui.extands.unixDateTimeParser
 import place.pic.ui.main.detail.liker.LikerUserListActivity
@@ -77,9 +78,12 @@ class DetailViewActivity : AppCompatActivity(), View.OnClickListener {
                 startActivity(gotoLikerUserList)
             }
             R.id.tv_btn_detail_top_del -> {
-                Log.d("DelJinsu","삭제버튼")
                 //TODO 글 삭제시 PlaceList 수정이 필요함.
-                requestToDeletePlace()
+                SimpleDialog(this).apply {
+                    setContent(R.string.are_you_sure)
+                    setCancelClickListener(R.string.close) { dismiss() }
+                    setOkClickListener(R.string.delete) { dismiss(); requestToDeletePlace() }
+                }.show()
             }
             R.id.cl_btn_detail_like -> {
                 setLikeButtonClickEvent()
