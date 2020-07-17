@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.view.inputmethod.EditorInfo
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_place_search.*
 import place.pic.R
@@ -151,7 +152,8 @@ class PlaceSearchActivity : AppCompatActivity() {
                                     add(
                                         PlaceSearchData(
                                             placeName = response.body()!!.data.result[i].placeName,
-                                            placeLocation = address
+                                            placeLocation = address,
+                                            alreadyIn = response.body()!!.data.result[i].alreadyIn
                                         )
                                     )
                                 }

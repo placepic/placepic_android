@@ -2,7 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/ConstraintLayout"
+    android:id="@+id/ConstraintLayout_already"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -47,5 +47,32 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_place_location" />
+
+    <View
+        android:id="@+id/view_already"
+        android:layout_width="87dp"
+        android:layout_height="17dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/rectangle_gray_f1f4f5"
+        app:layout_constraintStart_toEndOf="@+id/tv_place_name"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_already"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="4dp"
+        android:text="이미 등록된 최애장소"
+        android:textSize="9dp"
+        android:textColor="@color/grayA0A6AA"
+        android:fontFamily="@font/noto_sans_bold"
+        app:layout_constraintBottom_toBottomOf="@+id/view_already"
+        app:layout_constraintEnd_toEndOf="@+id/view_already"
+        app:layout_constraintStart_toStartOf="@+id/view_already"
+        app:layout_constraintTop_toTopOf="@+id/view_already" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
