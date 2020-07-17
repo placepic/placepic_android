@@ -10,8 +10,6 @@
         android:id="@+id/cl_liker_user_list_top_bar"
         android:layout_width="match_parent"
         android:layout_height="56dp"
-        android:paddingHorizontal="14dp"
-        android:paddingVertical="12dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -21,6 +19,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/back_arrow_ic"
+            android:paddingTop="12dp"
+            android:paddingBottom="12dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="12dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -29,7 +31,6 @@
             android:id="@+id/tv_liker_user_list_top_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
             android:text="같이 가고싶은 사람"
             android:textColor="@color/black36"
             android:textSize="18dp"
