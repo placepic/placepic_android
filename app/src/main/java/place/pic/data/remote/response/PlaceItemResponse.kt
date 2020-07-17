@@ -1,5 +1,6 @@
 package place.pic.data.remote.response
 
+import place.pic.data.entity.Bookmark
 import place.pic.data.entity.Place
 import java.util.*
 
@@ -22,7 +23,8 @@ data class PlaceItemResponse(
     val tag: List<TagResponse>,
     val subway: List<SubwayResponse>,
     val user: PlaceUserResponse,
-    val imageUrl: List<String>
+    val imageUrl: List<String>,
+    val likeCount: Int
 ) {
     fun toPlace() = Place(
         id = placeIdx,
@@ -33,6 +35,16 @@ data class PlaceItemResponse(
         uploadDate = Date(placeCreatedAt * 1000),
         uploaderName = user.userName,
         uploaderProfileUrl = user.profileURL
+    )
+
+    fun toBookmark() = Bookmark(
+        imageUrl = imageUrl.getOrElse(0) { "" },
+        placeIdx = placeIdx,
+        placeName = placeName,
+        uploaderName = user.userName,
+        likeCount = likeCount,
+        firstTag = tag.getOrNull(0)?.tagName,
+        secondTag = tag.getOrNull(1)?.tagName
     )
 }
 
