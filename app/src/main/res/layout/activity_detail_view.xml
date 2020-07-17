@@ -476,6 +476,17 @@
                             app:layout_constraintTop_toTopOf="@id/tv_detail_place"
                             tools:text="place_info" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
+                    
+                    <fragment
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginTop="24dp"
+                        android:layout_marginBottom="8dp"
+                        app:layout_constraintDimensionRatio="h, 16:9"
+                        android:id="@+id/map"
+                        android:name="com.naver.maps.map.MapFragment"
+                        app:layout_constraintTop_toBottomOf="@id/cl_detail_place"
+                        app:layout_constraintBottom_toTopOf="@id/cl_btn_detail_more_info"/>
 
 
                     <androidx.constraintlayout.widget.ConstraintLayout

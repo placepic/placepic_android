@@ -16,5 +16,7 @@ data class DetailResponse(
     val placeReview: String,
     val subway: List<String>,
     val uploader: Uploader,
-    val mobileNaverMapLink:String
+    val mobileNaverMapLink:String,
+    val placeMapX:Double,
+    val placeMapY:Double
 )
