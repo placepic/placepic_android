@@ -3,6 +3,7 @@ package place.pic.ui.search.place
 import android.graphics.Color
 import android.view.View
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.graphics.createBitmap
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
@@ -15,6 +16,7 @@ import place.pic.R
 
 
 class PlaceSearchViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    private val layout = itemView.findViewById<ConstraintLayout>(R.id.ConstraintLayout_already)
     private val placeName = itemView.findViewById<TextView>(R.id.tv_place_name)
     private val placeLocation = itemView.findViewById<TextView>(R.id.tv_place_location)
     private val alreadyInView = itemView.findViewById<View>(R.id.view_already)
@@ -31,9 +33,7 @@ class PlaceSearchViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) 
             placeName.setTextColor(Color.parseColor("#E6E6E6"))
             placeLocation.setTextColor(Color.parseColor("#E6E6E6"))
 
-            placeName.isEnabled = true
-            placeLocation.isEnabled = true
-            alreadyInView.isEnabled = true //안먹힘 수정하기
+            layout.isEnabled = false
         }
 
         if (!placeSearchData.alreadyIn) {
@@ -42,6 +42,8 @@ class PlaceSearchViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) 
 
             placeName.setTextColor(Color.parseColor("#363636"))
             placeLocation.setTextColor(Color.parseColor("#CDCDCD"))
+
+            layout.isEnabled = true
         }
     }
 }
