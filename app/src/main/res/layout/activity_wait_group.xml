@@ -30,7 +30,7 @@
             android:id="@+id/tv_wait_group_top_bar_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="12dp"
             android:fontFamily="@font/noto_sans_bold"
             android:text="승인 대기중인 그룹"
             android:textColor="@color/black36"

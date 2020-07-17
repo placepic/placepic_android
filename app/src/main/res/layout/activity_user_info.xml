@@ -31,7 +31,7 @@
             android:id="@+id/tv_user_info_top_bar_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="12dp"
             android:fontFamily="@font/noto_sans_bold"
             android:text="유저정보"
             android:textColor="@color/black36"

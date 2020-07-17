@@ -32,7 +32,7 @@
             android:layout_marginStart="12dp"
             android:text="같이 가고싶은 사람"
             android:textColor="@color/black36"
-            android:textSize="15dp"
+            android:textSize="18dp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@id/img_btn_liker_user_list_top_back"
             app:layout_constraintStart_toEndOf="@id/img_btn_liker_user_list_top_back"
