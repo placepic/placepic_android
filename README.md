@@ -122,6 +122,8 @@
 
 ## 📈 Work Flow
 
+<img src="https://github.com/LeeSuJung-dodung/SoptAndroidExampleAll/blob/master/AEWGWEG.png?raw=true"  width="800px" height = "1100px" />
+
 ---
 
 <br/>
@@ -383,7 +385,7 @@ fun from(intent: Intent?): List<ImageUri> {
 
 ##  🏰 Project Structure
 
-<img src="https://github.com/LeeSuJung-dodung/SoptAndroidExampleAll/blob/master/22.png?raw=true" />
+<img src="https://github.com/LeeSuJung-dodung/SoptAndroidExampleAll/blob/master/3333.png?raw=true" />
 
 ---
 
@@ -549,6 +551,16 @@ class PlacepicAuthRepository private constructor(context: Context) {
     }
 }
 ```
+
+---
+
+<br/>
+
+## VIEW VIDIEO
+
+<img src="https://github.com/LeeSuJung-dodung/SoptAndroidExampleAll/blob/master/KakaoTalk_20200717_232940915_01.gif?raw=true" />
+
+<img src= "https://github.com/LeeSuJung-dodung/SoptAndroidExampleAll/blob/master/KakaoTalk_20200717_232940915_02.gif?raw=true" />
 
 ---
 
