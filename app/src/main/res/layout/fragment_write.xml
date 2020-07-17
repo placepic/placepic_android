@@ -2,6 +2,7 @@
 
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/top_round_rectangle_white_12dp">
@@ -20,64 +21,59 @@
         app:layout_constraintTop_toTopOf="parent" />
 
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ImageView
+        android:id="@+id/iv_restaurant"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
         android:layout_marginBottom="40dp"
+        android:src="@drawable/ic_restaurant"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_title">
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/iv_drink"
+        app:layout_constraintTop_toBottomOf="@+id/tv_title" />
 
-        <ImageView
-            android:id="@+id/iv_drink"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:src="@drawable/ic_drink"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+    <ImageView
+        android:id="@+id/iv_drink"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_drink"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_restaurant"
+        app:layout_constraintLeft_toRightOf="@id/iv_restaurant"
+        app:layout_constraintRight_toLeftOf="@id/iv_cafe"
+        app:layout_constraintTop_toTopOf="@+id/iv_restaurant" />
 
-        <ImageView
-            android:id="@+id/iv_restaurant"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="22dp"
-            android:src="@drawable/ic_restaurant"
-            app:layout_constraintBottom_toBottomOf="@+id/iv_drink"
-            app:layout_constraintStart_toEndOf="@+id/iv_drink"
-            app:layout_constraintTop_toTopOf="@+id/iv_drink" />
+    <ImageView
+        android:id="@+id/iv_cafe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_cafe"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_drink"
+        app:layout_constraintLeft_toRightOf="@id/iv_drink"
+        app:layout_constraintRight_toLeftOf="@id/iv_study"
+        app:layout_constraintTop_toTopOf="@+id/iv_drink" />
 
-        <ImageView
-            android:id="@+id/iv_cafe"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="22dp"
-            android:src="@drawable/ic_cafe"
-            app:layout_constraintBottom_toBottomOf="@+id/iv_restaurant"
-            app:layout_constraintStart_toEndOf="@+id/iv_restaurant"
-            app:layout_constraintTop_toTopOf="@+id/iv_restaurant" />
+    <ImageView
+        android:id="@+id/iv_study"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_study"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_cafe"
+        app:layout_constraintLeft_toRightOf="@id/iv_cafe"
+        app:layout_constraintRight_toLeftOf="@id/iv_etc"
+        app:layout_constraintTop_toTopOf="@+id/iv_cafe" />
 
-        <ImageView
-            android:id="@+id/iv_study"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="22dp"
-            android:src="@drawable/ic_study"
-            app:layout_constraintBottom_toBottomOf="@+id/iv_cafe"
-            app:layout_constraintStart_toEndOf="@+id/iv_cafe"
-            app:layout_constraintTop_toTopOf="@+id/iv_cafe" />
+    <ImageView
+        android:id="@+id/iv_etc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:src="@drawable/ic_etc"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_study"
+        app:layout_constraintLeft_toRightOf="@id/iv_study"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/iv_study" />
 
-        <ImageView
-            android:id="@+id/iv_etc"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="22dp"
-            android:src="@drawable/ic_etc"
-            app:layout_constraintBottom_toBottomOf="@+id/iv_study"
-            app:layout_constraintStart_toEndOf="@+id/iv_study"
-            app:layout_constraintTop_toTopOf="@+id/iv_study" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
