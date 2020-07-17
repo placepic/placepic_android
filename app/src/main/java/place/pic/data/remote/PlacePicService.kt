@@ -93,7 +93,7 @@ interface PlacePicService {
         @Header("token") token: String
     ): Call<BaseResponse<List<ResponseGroupList>>>
 
-    @POST("/auth/groups/apply/{groupIdx}")
+    @POST("/auth/groups/apply")
     fun requestSigninGroup(
         @Header("Content-Type") contentType: String = "application/json",
         @Header("token") token: String,
