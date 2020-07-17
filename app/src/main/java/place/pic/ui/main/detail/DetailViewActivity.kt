@@ -3,6 +3,7 @@ package place.pic.ui.main.detail
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_detail_view.*
@@ -76,6 +77,7 @@ class DetailViewActivity : AppCompatActivity(), View.OnClickListener {
                 startActivity(gotoLikerUserList)
             }
             R.id.tv_btn_detail_top_del -> {
+                Log.d("DelJinsu","삭제버튼")
                 //TODO 글 삭제시 PlaceList 수정이 필요함.
                 requestToDeletePlace()
             }
@@ -208,6 +210,7 @@ class DetailViewActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun insertImageInViewPager(imageList: List<String>) {
         detailviewPagerAdapter = DetailViewPagerAdapter(this, imageList)
+        tl_indicator.setupWithViewPager(vp_detail_image_slide,true)
         vp_detail_image_slide.adapter = detailviewPagerAdapter
     }
 

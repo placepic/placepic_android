@@ -75,17 +75,19 @@
                     app:layout_constraintTop_toBottomOf="@+id/cl_detail_top_bar"
                     tools:background="@color/grayEEEFF0" />
 
-                <me.relex.circleindicator.CircleIndicator
-                    android:id="@+id/detail_indicator"
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/tl_indicator"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:ci_drawable="@drawable/white_radius"
-                    app:ci_height="6dp"
-                    app:ci_margin="8dp"
-                    app:ci_width="6dp"
-                    app:layout_constraintBottom_toBottomOf="@id/vp_detail_image_slide"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerInParent="true"
+                    app:tabGravity="center"
+                    app:tabIndicatorHeight="0dp"
+                    app:tabBackground="@drawable/selector_indicator"
+                    app:layout_constraintBottom_toBottomOf="@+id/vp_detail_image_slide"
                     app:layout_constraintEnd_toEndOf="@+id/vp_detail_image_slide"
-                    app:layout_constraintStart_toStartOf="@+id/vp_detail_image_slide" />
+                    app:layout_constraintStart_toStartOf="@+id/vp_detail_image_slide"
+                    />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/cl_detail_user_info"
@@ -433,6 +435,7 @@
                             app:layout_constraintStart_toEndOf="@id/tv_detail_address"
                             app:layout_constraintTop_toTopOf="@id/tv_detail_address"
                             tools:text="detail address" />
+
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <androidx.constraintlayout.widget.ConstraintLayout
