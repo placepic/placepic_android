@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.view.marginTop
 import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.fragment_exist_group_list.*
 import place.pic.R
@@ -32,6 +33,7 @@ class ExistGroupListFragment(
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         if (buttonLayout.visibility == View.VISIBLE) {
+            buttonLayout.bringToFront()
             rv_exist_group_list.setPadding(0,buttonLayout.height,0,0)
         }
         setAdpater()

@@ -47,6 +47,7 @@ class DetailViewActivity : AppCompatActivity(), View.OnClickListener,OnMapReadyC
     private var likeCount: Int = 0
 
     private lateinit var location:LatLng
+    private var placeMapFragment:MapFragment? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,7 +60,11 @@ class DetailViewActivity : AppCompatActivity(), View.OnClickListener,OnMapReadyC
         mapSetting()
     }
 
-    private fun mapSetting(){
+    private fun setPlaceMapFragment(mapFragment:MapFragment?){
+        this.placeMapFragment = mapFragment
+    }
+
+    private fun mapSetting() {
         var mapFragment =
             supportFragmentManager.findFragmentById(R.id.map) as MapFragment?
         if (mapFragment == null) {
@@ -67,7 +72,8 @@ class DetailViewActivity : AppCompatActivity(), View.OnClickListener,OnMapReadyC
             supportFragmentManager.beginTransaction().add(R.id.map, mapFragment)
                 .commit()
         }
-        mapFragment!!.getMapAsync(this)
+        setPlaceMapFragment(mapFragment)
+        //mapFragment!!.getMapAsync(this)
     }
 
     private fun init() {
@@ -139,6 +145,7 @@ class DetailViewActivity : AppCompatActivity(), View.OnClickListener,OnMapReadyC
                 onSuccess = { response ->
                     val serverData = response.body()?.data ?: return@customEnqueue
                     bindingDetail(serverData)
+                    placeMapFragment!!.getMapAsync(this)
                 }
             )
     }
