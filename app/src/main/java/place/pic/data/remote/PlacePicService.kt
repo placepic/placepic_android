@@ -2,7 +2,6 @@ package place.pic.data.remote
 
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
-import place.pic.data.entity.Place
 import place.pic.data.remote.request.*
 import place.pic.data.remote.response.*
 import retrofit2.Call
@@ -166,7 +165,7 @@ interface PlacePicService {
         @Header("Content-Type") contentType: String = "application/json",
         @Header("token") token: String,
         @Body body: RequestToPlacceIdx
-    ):Call<BaseResponse<Unit>>
+    ): Call<BaseResponse<Unit>>
 
     //좋아요 취소
     @DELETE("/places/like/{placeIdx}")
@@ -174,14 +173,14 @@ interface PlacePicService {
         @Header("Content-Type") contentType: String = "application/json",
         @Header("token") token: String,
         @Path("placeIdx") placeIdx: Long
-    ):Call<BaseResponse<Unit>>
+    ): Call<BaseResponse<Unit>>
 
     @GET("/places/like/{placeIdx}")
     fun requestToLikeList(
         @Header("Content-Type") contentType: String = "application/json",
         @Header("token") token: String,
         @Path("placeIdx") placeIdx: Long
-    ):Call<BaseResponse<List<Like>>>
+    ): Call<BaseResponse<List<Like>>>
 
     @POST("/places/bookmark")
     fun requestToBookmark(
@@ -195,7 +194,7 @@ interface PlacePicService {
         @Header("Content-Type") contentType: String = "application/json",
         @Header("token") token: String,
         @Path("placeIdx") placeIdx: Long
-    ):Call<BaseResponse<Unit>>
+    ): Call<BaseResponse<Unit>>
 
     //장소 삭제
     @DELETE("/places/{placeIdx}")
@@ -203,7 +202,14 @@ interface PlacePicService {
         @Header("Content-Type") contentType: String = "application/json",
         @Header("token") token: String,
         @Path("placeIdx") placeIdx: Long
-    ):Call<BaseResponse<Unit>>
+    ): Call<BaseResponse<Unit>>
+
+    @GET("places/bookmark/group/{groupIdx}")
+    fun requestBookmarks(
+        @Header("Content-Type") contentType: String = "application/json",
+        @Header("token") token: String,
+        @Path("groupIdx") groupIdx: Int
+    ): Call<BaseResponse<BookmarksResponse>>
 
     companion object {
         const val BASE_URL = "http://3.34.209.95:3000"

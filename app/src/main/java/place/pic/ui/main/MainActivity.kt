@@ -9,12 +9,13 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_search_subway.*
 import place.pic.R
 import place.pic.showToast
+import place.pic.ui.main.bookmark.BookmarksFragment
 import place.pic.ui.main.mypage.userlist.UserListFragment
 import place.pic.ui.main.place.PlacesFragment
 
 
 class MainActivity : AppCompatActivity(), WriteFragment.BottomSheetListener {
-    var mBackWait:Long = 0
+    var mBackWait: Long = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -42,7 +43,7 @@ class MainActivity : AppCompatActivity(), WriteFragment.BottomSheetListener {
                     transaction.replace(R.id.main_frame, fragmentB, "people")
                 }
                 R.id.action_scrap -> {
-                    val fragmentD = NonePageFragment()
+                    val fragmentD = BookmarksFragment()
                     transaction.replace(R.id.main_frame, fragmentD, "scrap")
                 }
                 R.id.action_mypage -> {
@@ -67,7 +68,7 @@ class MainActivity : AppCompatActivity(), WriteFragment.BottomSheetListener {
 
     override fun onBackPressed() {
         val mBottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_nav)
-        if(System.currentTimeMillis() - mBackWait >=2000 ) {
+        if (System.currentTimeMillis() - mBackWait >= 2000) {
             mBackWait = System.currentTimeMillis()
             if (mBottomNavigationView.selectedItemId == R.id.action_menu) {
                 super.onBackPressed()

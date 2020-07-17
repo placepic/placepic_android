@@ -56,5 +56,4 @@ class BookmarksAdapter : ListAdapter<Bookmark, BookmarksAdapter.ViewHolder>(Diff
             return oldItem == newItem
         }
     }
-
 }
