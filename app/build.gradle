@@ -81,7 +81,7 @@ dependencies {
 
     // 둥근 인디케이터 추가하기 위한 라이브러리
     implementation 'com.pm10:indicator:1.0.2'
-    
+
     //로티
     implementation 'com.airbnb.android:lottie:3.4.0'
     //네이버 지도.
