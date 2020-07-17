@@ -32,20 +32,20 @@ class DetailViewActivity : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var detailviewPagerAdapter: DetailViewPagerAdapter
 
-    private lateinit var token:String
+    private lateinit var token: String
 
-    private var placeIdx:Long = 0
+    private var placeIdx: Long = 0
 
-    private var webUrl:String = ""
-    private var webTitle:String = ""
+    private var webUrl: String = ""
+    private var webTitle: String = ""
 
-    private var likeCount:Int = 0
+    private var likeCount: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail_view)
         token = PlacepicAuthRepository.getInstance(this).userToken ?: return
-        placeIdx = intent.getLongExtra("placeIdx",63)
+        placeIdx = intent.getLongExtra("placeIdx", 0)
         init()
     }
 
@@ -61,6 +61,7 @@ class DetailViewActivity : AppCompatActivity(), View.OnClickListener {
         cl_btn_detail_more_info.setOnClickListener(this)
         cl_btn_detail_like.setOnClickListener(this)
         img_btn_detail_bookmark.setOnClickListener(this)
+        tv_btn_detail_top_del.setOnClickListener(this)
     }
 
     override fun onClick(p0: View?) {
@@ -71,11 +72,12 @@ class DetailViewActivity : AppCompatActivity(), View.OnClickListener {
             R.id.cl_btn_detail_shared_people -> {
                 val gotoLikerUserList =
                     Intent(this, LikerUserListActivity::class.java)
-                gotoLikerUserList.putExtra("placeIdx",placeIdx)
+                gotoLikerUserList.putExtra("placeIdx", placeIdx)
                 startActivity(gotoLikerUserList)
             }
             R.id.tv_btn_detail_top_del -> {
-
+                //TODO 글 삭제시 PlaceList 수정이 필요함.
+                requestToDeletePlace()
             }
             R.id.cl_btn_detail_like -> {
                 setLikeButtonClickEvent()
@@ -94,10 +96,9 @@ class DetailViewActivity : AppCompatActivity(), View.OnClickListener {
 
 
     /* 서버 연결 */
-    // Get
+    //리스트 불러오기
     private fun requestToDetailView() {
-        PlacePicService
-            .getInstance()
+        PlacePicService.getInstance()
             .requestDetail(
                 token = token,
                 placeIdx = placeIdx
@@ -110,35 +111,33 @@ class DetailViewActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     //좋아요 관련 서버 연결
-    private fun  requestToLike(){
-        PlacePicService
-            .getInstance()
+    private fun requestToLike() {
+        PlacePicService.getInstance()
             .requestToLike(
                 token = token,
                 body = RequestToPlacceIdx(placeIdx)
             ).customEnqueue(
-                onSuccess = {_ ->
+                onSuccess = { _ ->
                     setMyLikeButtonStatus(true)
                 }
             )
     }
 
-    private fun requestToDeleteLike(){
-        PlacePicService
-            .getInstance()
+    private fun requestToDeleteLike() {
+        PlacePicService.getInstance()
             .requestToDelLike(
                 token = token,
                 placeIdx = placeIdx
             ).customEnqueue(
-                onSuccess = {_ ->
+                onSuccess = { _ ->
                     setMyLikeButtonStatus(false)
                 }
             )
     }
+
     //북마크 서버연결
-    private fun requestToBookmark(){
-        PlacePicService
-            .getInstance()
+    private fun requestToBookmark() {
+        PlacePicService.getInstance()
             .requestToBookmark(
                 token = token,
                 body = RequestToPlacceIdx(placeIdx)
@@ -148,9 +147,9 @@ class DetailViewActivity : AppCompatActivity(), View.OnClickListener {
                 }
             )
     }
-    private fun requestToDeleteBookmark(){
-        PlacePicService
-            .getInstance()
+
+    private fun requestToDeleteBookmark() {
+        PlacePicService.getInstance()
             .requestToDelBookmark(
                 token = token,
                 placeIdx = placeIdx
@@ -161,8 +160,22 @@ class DetailViewActivity : AppCompatActivity(), View.OnClickListener {
             )
     }
 
+    //글 삭제 서버 연결
+    private fun requestToDeletePlace() {
+        PlacePicService.getInstance()
+            .requestToDeletePlace(
+                token = token,
+                placeIdx = placeIdx
+            ).customEnqueue(
+                onSuccess = {
+                    onBackPressed()
+                }
+            )
+    }
+
     /*서버 연결시 뷰에 뿌려주는 함수 작업.*/
     private fun bindingDetail(detailResponse: DetailResponse) {
+        //본격 개막장 함수
         insertUploadUserDataInView(detailResponse.uploader)
         insertImageInViewPager(detailResponse.imageUrl)
         insertKeywordInDetailChip(detailResponse.keyword)
@@ -199,7 +212,7 @@ class DetailViewActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun insertKeywordInDetailChip(keyword: List<String>) {
-        keyword.forEach{ text ->
+        keyword.forEach { text ->
             val chip = ChipFactory.createDetailChip(layoutInflater)
             chip.text = text
             chip_group_useful_info.addView(chip)
@@ -242,12 +255,12 @@ class DetailViewActivity : AppCompatActivity(), View.OnClickListener {
         img_btn_detail_like.isSelected = true
     }
 
-    private fun notLikedPage(){
+    private fun notLikedPage() {
         cl_btn_detail_like.isSelected = false
         img_btn_detail_like.isSelected = false
     }
 
-    private fun setLikeButtonClickEvent(){
+    private fun setLikeButtonClickEvent() {
         if (getMyLikeButtonStatus()) {
             //이미 좋아요
             likeCount -= 1
@@ -273,25 +286,25 @@ class DetailViewActivity : AppCompatActivity(), View.OnClickListener {
         return img_btn_detail_like.isSelected && cl_btn_detail_like.isSelected
     }
 
-    private fun bookmarkedPage(){
+    private fun bookmarkedPage() {
         img_btn_detail_bookmark.isSelected = true
     }
 
-    private fun notBookmarkedPage(){
+    private fun notBookmarkedPage() {
         img_btn_detail_bookmark.isSelected = false
     }
 
-    private fun setBookmarkButtonClickEvent(){
+    private fun setBookmarkButtonClickEvent() {
         if (getMyBookmarkButtonStatus()) {
             //북마크가 이미 되어있는 상황
             val bookmarkCount = tv_detail_bookmark_count.text.toString().toInt()
-            tv_detail_bookmark_count.text = (bookmarkCount-1).toString()
+            tv_detail_bookmark_count.text = (bookmarkCount - 1).toString()
             requestToDeleteBookmark()
             return
         }
         //북마크가 안되어있을때 이벤트
         val bookmarkCount = tv_detail_bookmark_count.text.toString().toInt()
-        tv_detail_bookmark_count.text = (bookmarkCount+1).toString()
+        tv_detail_bookmark_count.text = (bookmarkCount + 1).toString()
         requestToBookmark()
     }
 
@@ -303,7 +316,7 @@ class DetailViewActivity : AppCompatActivity(), View.OnClickListener {
         notBookmarkedPage()
     }
 
-    private fun getMyBookmarkButtonStatus():Boolean{
+    private fun getMyBookmarkButtonStatus(): Boolean {
         return img_btn_detail_bookmark.isSelected
     }
 }

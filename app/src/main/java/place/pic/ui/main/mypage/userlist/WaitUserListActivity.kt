@@ -17,6 +17,14 @@ class WaitUserListActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_wait_user_list)
+    }
+
+    /* TODO 리사이클러뷰 수정하기.
+     지금 작성해둔 방법이 좋은 방법은 아니라고 생각됨.
+     지금은 생명주기에서 해당 뷰가 보이기 전마다 통신을 하는데.
+     서버 통신 횟수가 많아서 비효율이라고 생각함.*/
+    override fun onResume() {
+        super.onResume()
         init()
     }
 
@@ -38,7 +46,7 @@ class WaitUserListActivity : AppCompatActivity() {
             .getInstance()
             .requestWaitGroupList(
                 token = token,
-                groupIdx = PlacepicAuthRepository.getInstance(this).groupId!!
+                groupIdx = groupIdx
             ).customEnqueue(
                 onSuccess = { response ->
                     response.body()?.data?.let { list ->
