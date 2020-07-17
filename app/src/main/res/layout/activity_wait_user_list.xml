@@ -32,7 +32,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:fontFamily="@font/noto_sans_bold"
-            android:text="그룹 참여하기"
+            android:text="승인대기"
             android:textColor="@color/black36"
             android:textSize="18dp"
             app:layout_constraintBottom_toBottomOf="@+id/img_wait_user_list_top_back_btn"
@@ -54,6 +54,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
+            android:overScrollMode="never"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:listitem="@layout/item_wait_user" />
     </androidx.constraintlayout.widget.ConstraintLayout>

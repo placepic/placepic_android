@@ -35,11 +35,6 @@ class JoinGroupListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView
 
     private fun itemViewClickEvent(customData: ResponseGroupList) {
         itemView.setOnClickListener {
-            Toast.makeText(
-                itemView.context,
-                "DetailClick",
-                Toast.LENGTH_SHORT
-            ).show()
             val gotoSignUpIntent = Intent(itemView.context,
                 SignUpGroupActivity::class.java)
             gotoSignUpIntent.putExtra("groupIdx",customData.groupIdx)

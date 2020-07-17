@@ -22,14 +22,14 @@ class GroupListActivity : AppCompatActivity() {
 
     private val transaction = supportFragmentManager.beginTransaction()
 
-    private var groupListData:List<ResponseGroupList>? = null
-    private var groupWaitListData:List<ResponseGroupList>? = null
+    private var groupListData: List<ResponseGroupList>? = null
+    private var groupWaitListData: Int = 0
 
     lateinit var binding: ActivityGroupListBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this,R.layout.activity_group_list)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_group_list)
         binding.waitGroupCount = "0"
         init()
     }
@@ -39,8 +39,8 @@ class GroupListActivity : AppCompatActivity() {
         buttonEventMapping()
     }
 
-    private fun groupListSelecter(){
-        groupListData?.let {list->
+    private fun groupListSelecter() {
+        groupListData?.let { list ->
             if (list.isNotEmpty()) {
                 loadExistGroup()
                 return
@@ -49,10 +49,11 @@ class GroupListActivity : AppCompatActivity() {
         loadEmptyGroup()
     }
 
-    private fun requestToServer(){
+    private fun requestToServer() {
         requestToMyGroupList()
         requestToWaitGroupList()
     }
+
 
     private fun buttonEventMapping() {
         cl_btn_wait_group_list.setOnClickListener {
@@ -92,17 +93,15 @@ class GroupListActivity : AppCompatActivity() {
         transaction.commit()
     }
 
-    private fun haveWaitGroupList(){
-        groupWaitListData?.let {
-            if (it.isNotEmpty()) {
-                Log.d("WaitDataList", "데이터 있음")
-                enableWaitGroupListButton()
-                waitListTextMapping()
-                return
-            }
-            Log.d("WaitDataList", "데이터 없음")
-            disableWaitGroupListButton()
+    private fun haveWaitGroupList() {
+        if (groupWaitListData != 0) {
+            Log.d("WaitDataList", "데이터 있음")
+            enableWaitGroupListButton()
+            waitListTextMapping()
+            return
         }
+        Log.d("WaitDataList", "데이터 없음")
+        disableWaitGroupListButton()
     }
 
     private fun enableWaitGroupListButton() {
@@ -116,27 +115,26 @@ class GroupListActivity : AppCompatActivity() {
     }
 
     private fun waitListTextMapping() {
-        groupWaitListData?.let {
-            binding.waitGroupCount = "승인 대기중인 그룹("+it.size.toString()+")"
-        }
+        binding.waitGroupCount = "승인 대기중인 그룹(${groupWaitListData})"
     }
 
     /*서버 통신*/
-    private fun requestToMyGroupList(){
+    private fun requestToMyGroupList() {
         PlacepicAuthRepository.getInstance(this).userToken?.let { it ->
             PlacePicService.getInstance()
                 .requestMyGroupList(
                     token = it
                 )
                 .customEnqueue(
-                    onSuccess = {response ->
+                    onSuccess = { response ->
                         groupListData = response.body()?.data
                         groupListSelecter()
                     }
                 )
         }
     }
-    private fun requestToWaitGroupList(){
+
+    private fun requestToWaitGroupList() {
         PlacepicAuthRepository.getInstance(this).userToken?.let {
             PlacePicService.getInstance()
                 .requestGroupList(
@@ -144,8 +142,8 @@ class GroupListActivity : AppCompatActivity() {
                     filter = "wait"
                 )
                 .customEnqueue(
-                    onSuccess = {response ->
-                        groupWaitListData = response.body()?.data
+                    onSuccess = { response ->
+                        groupWaitListData = response.body()?.data?.size!!
                         haveWaitGroupList()
                     }
                 )

@@ -68,6 +68,7 @@
                     android:id="@+id/vp_detail_image_slide"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
+                    android:overScrollMode="never"
                     app:layout_constraintDimensionRatio="w, 1:1"
                     app:layout_constraintEnd_toEndOf="@+id/cl_detail_top_bar"
                     app:layout_constraintStart_toStartOf="@+id/cl_detail_top_bar"
@@ -194,7 +195,7 @@
                     android:layout_marginEnd="2dp"
                     android:background="@drawable/round_rectagle_white_4dp"
                     android:backgroundTint="@color/grayF8"
-                    android:paddingVertical="16dp"
+                    android:paddingVertical="12dp"
                     android:paddingStart="14dp"
                     android:paddingEnd="12dp"
                     app:layout_constraintEnd_toStartOf="@+id/cl_btn_detail_like"
@@ -354,12 +355,13 @@
 
                         <TextView
                             android:id="@+id/tv_detail_category_info"
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="12dp"
+                            android:fontFamily="@font/noto_sans_regular"
                             android:textColor="@color/grayA0A6AA"
                             android:textSize="12dp"
-                            android:fontFamily="@font/noto_sans_regular"
+                            app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toEndOf="@id/tv_detail_category"
                             app:layout_constraintTop_toTopOf="@id/tv_detail_category"
                             tools:text="category" />
@@ -387,12 +389,13 @@
 
                         <TextView
                             android:id="@+id/tv_detail_subway_info"
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="12dp"
+                            android:fontFamily="@font/noto_sans_regular"
                             android:textColor="@color/grayA0A6AA"
                             android:textSize="12dp"
-                            android:fontFamily="@font/noto_sans_regular"
+                            app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toEndOf="@id/tv_detail_subway"
                             app:layout_constraintTop_toTopOf="@id/tv_detail_subway"
                             tools:text="subway" />
@@ -420,12 +423,13 @@
 
                         <TextView
                             android:id="@+id/tv_detail_address_info"
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="12dp"
+                            android:fontFamily="@font/noto_sans_regular"
                             android:textColor="@color/grayA0A6AA"
                             android:textSize="12dp"
-                            android:fontFamily="@font/noto_sans_regular"
+                            app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toEndOf="@id/tv_detail_address"
                             app:layout_constraintTop_toTopOf="@id/tv_detail_address"
                             tools:text="detail address" />
@@ -453,12 +457,13 @@
 
                         <TextView
                             android:id="@+id/tv_detail_place_info"
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="12dp"
+                            android:fontFamily="@font/noto_sans_regular"
                             android:textColor="@color/grayA0A6AA"
                             android:textSize="12dp"
-                            android:fontFamily="@font/noto_sans_regular"
+                            app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toEndOf="@id/tv_detail_place"
                             app:layout_constraintTop_toTopOf="@id/tv_detail_place"
                             tools:text="place_info" />

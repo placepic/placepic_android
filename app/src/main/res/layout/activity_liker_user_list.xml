@@ -41,6 +41,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.recyclerview.widget.RecyclerView
+        android:overScrollMode="never"
         android:visibility="gone"
         android:id="@+id/rv_liker_user_list"
         android:layout_width="match_parent"
