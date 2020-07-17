@@ -1,4 +1,4 @@
-package place.pic.ui.main.mypage.userlist
+package place.pic.ui.main.mypage.admin
 
 import android.content.Context
 import android.view.LayoutInflater

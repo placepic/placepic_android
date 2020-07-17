@@ -1,4 +1,4 @@
-package place.pic.ui.main.mypage.userlist
+package place.pic.ui.main.mypage.admin
 
 import android.content.Intent
 import android.view.View
@@ -6,6 +6,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import place.pic.R
 import place.pic.data.remote.response.ResponseWaitUser
+import place.pic.ui.main.mypage.userlist.UserInfoActivity
 
 class WaitUserViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
@@ -20,7 +21,8 @@ class WaitUserViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     private fun itemViewClickEvent(customData: ResponseWaitUser) {
         itemView.setOnClickListener {
-            val gotoUserInfoIntent = Intent(itemView.context,UserInfoActivity::class.java)
+            val gotoUserInfoIntent = Intent(itemView.context,
+                UserInfoActivity::class.java)
             gotoUserInfoIntent.putExtra("WaitUser",customData)
             itemView.context
                 .startActivity(gotoUserInfoIntent)

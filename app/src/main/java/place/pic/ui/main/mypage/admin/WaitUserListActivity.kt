@@ -1,8 +1,8 @@
-package place.pic.ui.main.mypage.userlist
+package place.pic.ui.main.mypage.admin
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.core.content.ContentProviderCompat.requireContext
+import android.view.View
 import kotlinx.android.synthetic.main.activity_wait_user_list.*
 import place.pic.R
 import place.pic.data.PlacepicAuthRepository
@@ -17,6 +17,7 @@ class WaitUserListActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_wait_user_list)
+        buttonEventMapping()
     }
 
     /* TODO 리사이클러뷰 수정하기.
@@ -32,8 +33,15 @@ class WaitUserListActivity : AppCompatActivity() {
         requestToWaitUserList()
     }
 
+    private fun buttonEventMapping(){
+        img_wait_user_list_top_back_btn.setOnClickListener {
+            onBackPressed()
+        }
+    }
+
     private fun setAdapter(list: List<ResponseWaitUser>) {
-        waitUserListAdapter = WaitUserListAdapter(list, this)
+        waitUserListAdapter =
+            WaitUserListAdapter(list, this)
         rv_wait_user_list.adapter = waitUserListAdapter
     }
 
@@ -50,9 +58,34 @@ class WaitUserListActivity : AppCompatActivity() {
             ).customEnqueue(
                 onSuccess = { response ->
                     response.body()?.data?.let { list ->
-                        setAdapter(list)
+                        selectUserListView(list)
                     }
                 }
             )
+    }
+
+    private fun selectUserListView(list: List<ResponseWaitUser>){
+        if (list.isNullOrEmpty()) {
+            goneWaitUserList()
+            visibleEmptyWaitUserList()
+            return
+        }
+        visibleWaitUserList()
+        setAdapter(list)
+        goneEmptyWaitUserList()
+    }
+
+    private fun goneWaitUserList() {
+        rv_wait_user_list.visibility = View.GONE
+    }
+    private fun visibleWaitUserList() {
+        rv_wait_user_list.visibility = View.VISIBLE
+    }
+
+    private fun goneEmptyWaitUserList(){
+        cl_empty_wait_group.visibility = View.GONE
+    }
+    private fun visibleEmptyWaitUserList(){
+        cl_empty_wait_group.visibility = View.VISIBLE
     }
 }

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.main.mypage.userlist.WaitUserListActivity">
+    tools:context=".ui.main.mypage.admin.WaitUserListActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cl_wait_user_list_top_bar"
@@ -56,7 +56,7 @@
             android:orientation="vertical"
             android:overScrollMode="never"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/item_wait_user" />
+             />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
