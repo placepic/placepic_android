@@ -39,4 +39,11 @@
     <string name="upload_failed">업로드에 실패했습니다. 인터넷 연결을 확인해주세요.</string>
     <string name="upload_finished">장소가 업로드되었습니다!</string>
     <string name="to_be_continued">준비중인 기능입니다.</string>
+    <string name="ok">확인</string>
+    <string name="cancel">취소</string>
+    <string name="write_cancel">작성취소</string>
+    <string name="close">닫기</string>
+    <string name="writing_data_will_be_deleted">작성중인 글을 취소하시겠습니까?\n취소할 시, 작성된 글은 저장되지 않습니다.</string>
+    <string name="delete">삭제</string>
+    <string name="are_you_sure">정말로 이 글을 삭제할까요?</string>
 </resources>

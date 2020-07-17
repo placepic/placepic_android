@@ -15,6 +15,7 @@ import place.pic.data.entity.KeywordTag
 import place.pic.data.entity.Subway
 import place.pic.data.entity.UsefulTag
 import place.pic.databinding.ActivityUploadPlaceBinding
+import place.pic.ui.dialog.SimpleDialog
 import place.pic.ui.main.MainActivity
 import place.pic.ui.main.place.PlacesFragment.Companion.SUBWAYS_KEY
 import place.pic.ui.search.subway.SubwaySearchActivity
@@ -87,6 +88,14 @@ class UploadPlaceActivity : AppCompatActivity() {
         }
     }
 
+    override fun onBackPressed() {
+        SimpleDialog(this).apply {
+            setContent(R.string.writing_data_will_be_deleted)
+            setCancelClickListener(R.string.close) { dismiss() }
+            setOkClickListener(R.string.write_cancel) { dismiss(); super.onBackPressed() }
+        }.show()
+    }
+
     private fun showPermissionRejected() {
         Toast.makeText(this, R.string.galleryPermissionRejected, Toast.LENGTH_SHORT).show()
     }
@@ -100,7 +109,7 @@ class UploadPlaceActivity : AppCompatActivity() {
         binding.rvPhotos.adapter = imagesAdapter
         subwaysAdapter = SubwaysAdapter()
         binding.rvSubways.adapter = subwaysAdapter
-        binding.btnBack.setOnClickListener { finish() }
+        binding.btnBack.setOnClickListener { onBackPressed() }
         binding.btnSelectSubways.setOnClickListener { deploySelectSubwaysActivity() }
         binding.btnModifySubways.setOnClickListener { deploySelectSubwaysActivity() }
         binding.btnSubways.setOnClickListener { deploySelectSubwaysActivity() }
