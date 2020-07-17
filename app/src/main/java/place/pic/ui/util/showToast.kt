@@ -1,4 +1,4 @@
-package place.pic
+package place.pic.ui.util
 
 import android.content.Context
 import android.widget.Toast

@@ -14,7 +14,7 @@ import place.pic.data.remote.PlacePicService
 import place.pic.data.remote.response.ResponseGroupList
 import place.pic.databinding.ActivityGroupListBinding
 
-import place.pic.ui.extands.customEnqueue
+import place.pic.ui.util.customEnqueue
 import place.pic.ui.group.joingrouplist.JoinGroupActivity
 import place.pic.ui.group.waitgrouplist.WaitGroupActivity
 

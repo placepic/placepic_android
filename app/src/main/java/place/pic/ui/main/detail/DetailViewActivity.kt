@@ -11,12 +11,10 @@ import place.pic.data.PlacepicAuthRepository
 import place.pic.data.entity.Place
 import place.pic.data.remote.PlacePicService
 import place.pic.data.remote.request.RequestToPlacceIdx
-import place.pic.data.remote.response.DetailLikerResponse
 import place.pic.data.remote.response.DetailResponse
-import place.pic.data.remote.response.Like
 import place.pic.data.remote.response.Uploader
-import place.pic.ui.extands.customEnqueue
-import place.pic.ui.extands.unixDateTimeParser
+import place.pic.ui.util.customEnqueue
+import place.pic.ui.util.unixDateTimeParser
 import place.pic.ui.main.detail.liker.LikerUserListActivity
 import place.pic.ui.tag.ChipFactory
 import place.pic.ui.webview.InWebActivity

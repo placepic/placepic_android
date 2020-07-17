@@ -1,4 +1,4 @@
-package place.pic.ui
+package place.pic.ui.main
 
 import android.content.Intent
 import android.os.Bundle

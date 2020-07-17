@@ -9,8 +9,8 @@ import place.pic.R
 import place.pic.data.PlacepicAuthRepository
 import place.pic.data.remote.PlacePicService
 import place.pic.data.remote.RequestSigninGroup
-import place.pic.ui.extands.customEnqueue
-import place.pic.ui.extands.customTextChangedListener
+import place.pic.ui.util.customEnqueue
+import place.pic.ui.util.customTextChangedListener
 
 class SignUpGroupActivity : AppCompatActivity() {
 

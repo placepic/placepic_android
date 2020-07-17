@@ -5,10 +5,9 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import kotlinx.coroutines.processNextEventInCurrentThread
 import place.pic.R
 import place.pic.data.remote.response.Like
-import place.pic.ui.extands.unixDateTimeParser
+import place.pic.ui.util.unixDateTimeParser
 
 class LikerUserListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 

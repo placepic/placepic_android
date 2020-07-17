@@ -1,64 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.group.EmptyGroupListFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <ImageView
+            android:id="@+id/img_empty_group"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:src="@drawable/group_ic"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageView
-                android:id="@+id/img_empty_group"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/group_ic"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/tv_empty_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/noto_sans_bold"
+            android:text="아직 가입된 그룹이 없습니다."
+            android:textColor="@color/grayCED5DA"
+            android:textSize="16dp"
+            app:layout_constraintEnd_toEndOf="@+id/img_empty_group"
+            app:layout_constraintStart_toStartOf="@id/img_empty_group"
+            app:layout_constraintTop_toBottomOf="@id/img_empty_group" />
 
-            <TextView
-                android:id="@+id/tv_empty_group"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="아직 가입된 그룹이 없습니다."
-                android:textColor="@color/grayCED5DA"
-                android:textSize="16dp"
-                android:fontFamily="@font/noto_sans_bold"
-                app:layout_constraintEnd_toEndOf="@+id/img_empty_group"
-                app:layout_constraintStart_toStartOf="@id/img_empty_group"
-                app:layout_constraintTop_toBottomOf="@id/img_empty_group" />
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btn_join_group"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:background="@drawable/round_rectagle_white_4dp"
-                android:backgroundTint="@color/colorPrimary"
-                android:padding="16dp"
-                android:text="그룹 참여하기"
-                android:fontFamily="@font/noto_sans_bold"
-                android:textColor="@android:color/white"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@+id/tv_empty_group"
-                app:layout_constraintStart_toStartOf="@+id/tv_empty_group"
-                app:layout_constraintTop_toBottomOf="@id/tv_empty_group" />
-
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_join_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/round_rectagle_white_4dp"
+            android:backgroundTint="@color/colorPrimary"
+            android:fontFamily="@font/noto_sans_bold"
+            android:padding="16dp"
+            android:text="그룹 참여하기"
+            android:textColor="@android:color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/tv_empty_group"
+            app:layout_constraintStart_toStartOf="@+id/tv_empty_group"
+            app:layout_constraintTop_toBottomOf="@id/tv_empty_group" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-</FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
+

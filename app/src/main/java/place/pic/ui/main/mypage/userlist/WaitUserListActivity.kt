@@ -2,13 +2,12 @@ package place.pic.ui.main.mypage.userlist
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.core.content.ContentProviderCompat.requireContext
 import kotlinx.android.synthetic.main.activity_wait_user_list.*
 import place.pic.R
 import place.pic.data.PlacepicAuthRepository
 import place.pic.data.remote.PlacePicService
 import place.pic.data.remote.response.ResponseWaitUser
-import place.pic.ui.extands.customEnqueue
+import place.pic.ui.util.customEnqueue
 
 class WaitUserListActivity : AppCompatActivity() {
 

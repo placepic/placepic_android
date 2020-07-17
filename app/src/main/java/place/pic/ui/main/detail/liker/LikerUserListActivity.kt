@@ -7,9 +7,8 @@ import kotlinx.android.synthetic.main.activity_liker_user_list.*
 import place.pic.R
 import place.pic.data.PlacepicAuthRepository
 import place.pic.data.remote.PlacePicService
-import place.pic.data.remote.response.DetailLikerResponse
 import place.pic.data.remote.response.Like
-import place.pic.ui.extands.customEnqueue
+import place.pic.ui.util.customEnqueue
 
 class LikerUserListActivity : AppCompatActivity() {
 

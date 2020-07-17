@@ -1,4 +1,4 @@
-package place.pic.ui
+package place.pic.ui.util
 
 import android.text.TextUtils
 import android.view.View
