@@ -496,8 +496,8 @@
                         android:layout_marginTop="24dp"
                         android:background="@drawable/border_round_rectangle_gray_8dp_adb6bd"
                         android:paddingVertical="12dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/cl_detail_place">
+                        app:layout_constraintTop_toBottomOf="@id/map"
+                        >
 
                         <ImageView
                             android:id="@+id/imageView11"
@@ -531,6 +531,7 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="156dp"
+                    android:layout_marginTop="16dp"
                     android:background="@color/grayF8"
                     app:layout_constraintEnd_toEndOf="@id/cl_detail_info"
                     app:layout_constraintStart_toStartOf="@id/cl_detail_info"
