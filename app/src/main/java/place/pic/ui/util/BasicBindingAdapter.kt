@@ -8,6 +8,7 @@ import androidx.annotation.ColorRes
 import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
+import place.pic.R
 import place.pic.data.entity.Subway
 import java.text.SimpleDateFormat
 import java.util.*
@@ -50,5 +51,6 @@ fun bindingImageUrl(imageView: ImageView, imageUrl: String?) {
     if (imageUrl == null) return
     Glide.with(imageView)
         .load(imageUrl)
+        .placeholder(R.drawable.loadingimg_ic)
         .into(imageView)
 }

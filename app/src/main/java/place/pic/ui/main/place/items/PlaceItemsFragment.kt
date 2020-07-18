@@ -33,6 +33,10 @@ class PlaceItemsFragment(private val placeType: Place.Type) : Fragment() {
     private lateinit var placeItemsAdapter: PlacesAdapter
 
     private var isUpdatedFromFilter = false
+    private var tlqkfFlag = false
+    // 일단 빠르게 막기위한 플래그인거시다
+    // 디테일보고 뒤로 넘어오는걸 두번 하면 필터링 없어지는 현상 제거
+    // 하 ^^ 설계의 중요성 시발
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -64,8 +68,9 @@ class PlaceItemsFragment(private val placeType: Place.Type) : Fragment() {
     override fun onResume() {
         super.onResume()
 
-        if (isUpdatedFromFilter) {
-            isUpdatedFromFilter = false
+        if (tlqkfFlag) {
+            isUpdatedFromFilter = false // 왜갑자기 이게 안먹히누 if에서 삭제
+            tlqkfFlag = false
             return
         } //쉬바
         placeItemsViewModel.loadPlaceItems()
@@ -79,6 +84,7 @@ class PlaceItemsFragment(private val placeType: Place.Type) : Fragment() {
                 val deletedPlaceId = data?.getLongExtra("placeIdx", -1) ?: return
                 placeItemsViewModel.removePlace(deletedPlaceId)
             }
+            tlqkfFlag = true
         }
     }
 

@@ -49,7 +49,6 @@
 
         <TextView
             android:id="@+id/textView11"
-            app:layout_constraintVertical_chainStyle="packed"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -58,10 +57,11 @@
             android:text="@{placeItem.name}"
             android:textColor="@color/black36"
             android:textSize="17dp"
-            app:layout_constraintBottom_toTopOf="@id/constraintLayout"
             android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@id/constraintLayout"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed"
             tools:text="무대륙" />
 
         <androidx.recyclerview.widget.RecyclerView
@@ -100,7 +100,7 @@
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
                 app:imageUrl="@{placeItem.imageUrl}"
-                tools:src="@drawable/ic_launcher_background" />
+                tools:src="@drawable/ic_launcher_background"/>
         </androidx.cardview.widget.CardView>
 
         <View
@@ -118,9 +118,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="3dp"
             android:layout_marginEnd="12dp"
+            app:layout_constraintBottom_toTopOf="@id/rv_keywords"
             app:layout_constraintEnd_toStartOf="@+id/cardView"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintBottom_toTopOf="@id/rv_keywords"
             app:layout_constraintStart_toStartOf="@+id/textView11"
             app:layout_constraintTop_toBottomOf="@+id/textView11">
 
