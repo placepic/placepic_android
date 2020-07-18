@@ -70,14 +70,15 @@ class MainActivity : AppCompatActivity(), WriteFragment.BottomSheetListener {
         if (System.currentTimeMillis() - mBackWait >= 2000) {
             mBackWait = System.currentTimeMillis()
             if (mBottomNavigationView.selectedItemId == R.id.action_menu) {
+                mBottomNavigationView.selectedItemId=R.id.action_menu
                 super.onBackPressed()
-                finish()
-                return
             } else {
                 mBottomNavigationView.selectedItemId = R.id.action_menu
             }
             showToast("뒤로가기 버튼을 한번 더 누르면 종료됩니다.")
+
         } else {
+
             finish() //액티비티 종료
         }
     }
