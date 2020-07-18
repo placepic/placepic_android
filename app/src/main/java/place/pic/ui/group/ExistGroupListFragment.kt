@@ -35,7 +35,10 @@ class ExistGroupListFragment(
         if (buttonLayout.visibility == View.VISIBLE) {
             buttonLayout.bringToFront()
             rv_exist_group_list.setPadding(0,buttonLayout.height,0,0)
+            setAdpater()
+            return
         }
+        rv_exist_group_list.setPadding(0,0,0,0)
         setAdpater()
     }
 
