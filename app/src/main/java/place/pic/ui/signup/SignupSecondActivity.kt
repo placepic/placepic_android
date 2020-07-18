@@ -1,9 +1,12 @@
 package place.pic.ui.signup
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.ToggleButton
 import androidx.appcompat.app.AppCompatActivity
+import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_signup_second.*
 import place.pic.R
 import place.pic.data.remote.PlacePicService

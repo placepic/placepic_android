@@ -45,7 +45,6 @@ class LoginActivity : AppCompatActivity(),View.OnClickListener {
 
         val sp = getSharedPreferences("temp", Context.MODE_PRIVATE)
         val s: String? = sp.getString("id", "")
-        val s2: String? = sp.getString("pwd", "")
         val b: Boolean = sp.getBoolean("cb", false)
 
         et_login_email.setText(s)
