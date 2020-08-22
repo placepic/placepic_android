@@ -212,7 +212,7 @@ interface PlacePicService {
     ): Call<BaseResponse<BookmarksResponse>>
 
     companion object {
-        const val BASE_URL = "http://3.34.209.95:3000"
+        const val BASE_URL = "http://3.34.222.185:3000"
 
         @Volatile
         private var instance: PlacePicService? = null

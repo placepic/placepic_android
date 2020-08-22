@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import place.pic.data.PlacepicAuthRepository
 import place.pic.data.entity.KeywordTag
 import place.pic.data.entity.Subway
 import place.pic.data.entity.UsefulTag
@@ -29,12 +30,13 @@ import java.util.*
 
 class PlacesFragment : Fragment() {
 
-    private val placesViewModel = PlacesViewModel()
+    private lateinit var placesViewModel: PlacesViewModel
     private lateinit var pagerAdapter: PlacesPagerAdapter
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
 
+        placesViewModel = PlacesViewModel(PlacepicAuthRepository.getInstance(context))
         pagerAdapter = PlacesPagerAdapter(childFragmentManager)
     }
 

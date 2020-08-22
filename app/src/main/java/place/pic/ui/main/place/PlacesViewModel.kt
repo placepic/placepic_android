@@ -3,23 +3,24 @@ package place.pic.ui.main.place
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import place.pic.data.PlacepicAuthRepository
 import place.pic.data.entity.KeywordTag
 import place.pic.data.entity.Place
 import place.pic.data.entity.Subway
 import place.pic.data.entity.UsefulTag
 import place.pic.data.remote.request.PlaceTypeDetailsRequest
 import place.pic.data.remote.response.PlaceTypeDetailsResponse
-import place.pic.data.tempToken
 
 /**
  * Created By Malibin
  * on 7월 04, 2020
  */
 
-class PlacesViewModel {
-
+class PlacesViewModel(
+    private val placepicAuthRepository: PlacepicAuthRepository
+) {
     var currentPagerPosition = 0
-    var currentPlaceType = MutableLiveData<Place.Type>().apply { value = Place.Type.ALL }
+    val currentPlaceType = MutableLiveData<Place.Type>().apply { value = Place.Type.ALL }
 
     private val placeTypeDetails = mutableListOf<PlaceTypeDetails>()
 
@@ -62,12 +63,15 @@ class PlacesViewModel {
         PlaceTypeDetailsRequest().apply {
             addOnSuccessListener { loadPlaceTypeDetailsList(it.data) }
             addOnFailureListener { Log.d("Malibin Debug", it.toString()) }
-        }.send(tempToken)
+        }.send(getUserToken())
     }
 
     private fun loadPlaceTypeDetailsList(response: List<PlaceTypeDetailsResponse>) {
         placeTypeDetails.addAll(response.map { it.toPlaceTypeDetail() })
     }
+
+    private fun getUserToken() = placepicAuthRepository.userToken
+        ?: throw IllegalStateException("token cannot be null")
 
     fun getCurrentPlaceTypeDetails(): PlaceTypeDetails {
         return placeTypeDetails.find { it.placeType == currentPlaceType.value }
