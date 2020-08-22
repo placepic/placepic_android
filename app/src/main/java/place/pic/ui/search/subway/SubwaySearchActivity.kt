@@ -7,6 +7,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import place.pic.R
+import place.pic.data.PlacepicAuthRepository
 import place.pic.data.entity.Subway
 import place.pic.databinding.ActivitySearchSubwayBinding
 import place.pic.ui.main.place.PlacesFragment.Companion.SUBWAYS_KEY
@@ -27,7 +28,7 @@ class SubwaySearchActivity : AppCompatActivity() {
 
     private val selectedSubwaysAdapter by lazy { SelectedSubwaysAdapter() }
     private val searchedSubwaysAdapter by lazy { SubwaysAdapter() }
-    private val subwaySearchViewModel by lazy { SubwaySearchViewModel() }
+    private val subwaySearchViewModel by lazy { SubwaySearchViewModel(PlacepicAuthRepository.getInstance(this)) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

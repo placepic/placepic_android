@@ -3,6 +3,7 @@ package place.pic.ui.search.subway
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import place.pic.data.PlacepicAuthRepository
 import place.pic.data.entity.Subway
 import place.pic.data.remote.request.SubwaysRequest
 import place.pic.data.remote.response.SubwayResponse
@@ -13,7 +14,9 @@ import place.pic.data.tempToken
  * on 7월 02, 2020
  */
 
-class SubwaySearchViewModel {
+class SubwaySearchViewModel(
+    private val placepicAuthRepository: PlacepicAuthRepository
+) {
 
     private val subwaysRequest = SubwaysRequest()
 
@@ -39,7 +42,7 @@ class SubwaySearchViewModel {
         subwaysRequest.apply {
             addOnSuccessListener { allSubways.addAll(getRemoteSubways(it.data)) }
             addOnFailureListener { Log.d("Malibin Debug", it.toString()) }
-        }.send(tempToken)
+        }.send(getUserToken())
     }
 
     private fun getRemoteSubways(response: List<SubwayResponse>): List<Subway> {
@@ -76,4 +79,6 @@ class SubwaySearchViewModel {
 
     fun getCurrentSelectedSubways() = _selectedSubways.value ?: emptyList()
 
+    private fun getUserToken() = placepicAuthRepository.userToken
+        ?: throw IllegalStateException("token cannot be null")
 }
