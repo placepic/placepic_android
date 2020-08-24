@@ -70,13 +70,13 @@ class MyPageFragment : Fragment() {
                             0 ->
                             {
                                 tv_profile_kind.text = "관리자"
-                                cl_user_list.visibility=View.VISIBLE
+                                //cl_user_list.visibility=View.VISIBLE
                                 img_mypage_line.visibility=View.VISIBLE
                             }
                             1 ->
                             {
                                 tv_profile_kind.text = "멤버"
-                                cl_user_list.visibility=View.INVISIBLE
+                                //cl_user_list.visibility=View.INVISIBLE
                                 img_mypage_line.visibility=View.INVISIBLE
                             }
                             else -> tv_profile_kind.text = "승인대기중"
@@ -86,11 +86,13 @@ class MyPageFragment : Fragment() {
             }
         })
 
-        v.cl_user_list.setOnClickListener {
+        /*v.cl_user_list.setOnClickListener {
             val intent = Intent(context, WaitUserListActivity::class.java)
             startActivity(intent)
-        }
+        }*/
 
+
+        /*
         v.bt_logout.setOnClickListener {
             val preferences = this.activity?.getSharedPreferences("temp", Context.MODE_PRIVATE)
             val editor :SharedPreferences.Editor= preferences!!.edit()
@@ -101,9 +103,9 @@ class MyPageFragment : Fragment() {
             startActivity(intent2)
             activity?.finish()
         }
+         */
         return v
     }
-
 }
 
 
