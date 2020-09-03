@@ -34,6 +34,5 @@ class ImageUriExtractor {
                 .map { clipData.getItemAt(it).uri }
                 .map { ImageUri(it) }
         }
-
     }
 }

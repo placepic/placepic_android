@@ -4,7 +4,6 @@ import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
@@ -19,7 +18,6 @@ import place.pic.ui.dialog.SimpleDialog
 import place.pic.ui.main.MainActivity
 import place.pic.ui.main.place.PlacesFragment.Companion.SUBWAYS_KEY
 import place.pic.ui.search.subway.SubwaySearchActivity
-import place.pic.ui.tag.ChipFactory
 import place.pic.ui.tag.KeywordTagActivity
 import place.pic.ui.tag.UsefulTagActivity
 import place.pic.ui.upload.adapter.ImagesToUploadAdapter
@@ -56,17 +54,11 @@ class UploadPlaceActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
 
         if (resultCode == Activity.RESULT_OK) {
-            if (requestCode == REQUEST_CODE_PICK_IMAGES) {
-                uploadPlacesViewModel.handleImageUris(data)
-            }
-            if (requestCode == SubwaySearchActivity.REQUEST_CODE) {
-                uploadPlacesViewModel.handleSubwaysIntent(data)
-            }
-            if (requestCode == KeywordTagActivity.REQUEST_CODE) {
-                uploadPlacesViewModel.handleKeywordsIntent(data)
-            }
-            if (requestCode == UsefulTagActivity.REQUEST_CODE) {
-                uploadPlacesViewModel.handleFeaturesIntent(data)
+            when (requestCode) {
+                REQUEST_CODE_PICK_IMAGES -> uploadPlacesViewModel.handleImageUris(data)
+                SubwaySearchActivity.REQUEST_CODE -> uploadPlacesViewModel.handleSubwaysIntent(data)
+                KeywordTagActivity.REQUEST_CODE -> uploadPlacesViewModel.handleKeywordsIntent(data)
+                UsefulTagActivity.REQUEST_CODE -> uploadPlacesViewModel.handleFeaturesIntent(data)
             }
         }
     }
@@ -154,7 +146,7 @@ class UploadPlaceActivity : AppCompatActivity() {
 
     private fun subscribeUploadSuccessEvent() {
         uploadPlacesViewModel.successEvent.observe(this, Observer { isSuccess ->
-            if (isSuccess) backToMainActivity()
+            if (isSuccess) successUpload()
         })
     }
 
@@ -174,8 +166,7 @@ class UploadPlaceActivity : AppCompatActivity() {
     }
 
     private fun deployGallery() {
-        val photoPickerIntent = Intent()
-        photoPickerIntent.apply {
+        val photoPickerIntent = Intent().apply {
             type = "image/*"
             action = Intent.ACTION_GET_CONTENT
             putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true)
@@ -213,7 +204,7 @@ class UploadPlaceActivity : AppCompatActivity() {
         uploadPlacesViewModel.uploadPlace(this)
     }
 
-    private fun backToMainActivity() {
+    private fun successUpload() {
         val intent = Intent(this, MainActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
         startActivity(intent)
