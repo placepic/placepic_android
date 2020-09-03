@@ -119,7 +119,7 @@ class UploadPlaceActivity : AppCompatActivity() {
         binding.btnSelectFeatures.setOnClickListener { deploySelectFeaturesActivity() }
         binding.btnModifyFeatures.setOnClickListener { deploySelectFeaturesActivity() }
         binding.btnFeatures.setOnClickListener { deploySelectFeaturesActivity() }
-        binding.btnSubmit.setOnClickListener { uploadPlace() }
+        binding.btnSubmit.setOnClickListener { askUploadPlace() }
     }
 
     private fun subscribeToastMessages() {
@@ -218,6 +218,14 @@ class UploadPlaceActivity : AppCompatActivity() {
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
         startActivity(intent)
         Toast.makeText(this, R.string.upload_finished, Toast.LENGTH_SHORT).show()
+    }
+
+    private fun askUploadPlace() {
+        SimpleDialog(this).apply {
+            setContent(R.string.ask_upload_place)
+            setCancelClickListener(R.string.cancel) { dismiss() }
+            setOkClickListener(R.string.regist) { uploadPlace(); dismiss() }
+        }.show()
     }
 
     companion object {
