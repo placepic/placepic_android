@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity(), WriteFragment.BottomSheetListener {
 
         //처음 시작 화면 고정
         supportFragmentManager.beginTransaction()
-            .replace(R.id.main_frame, PlacesFragment())
+            .replace(R.id.main_frame, HomeFragment())
             .commit()
 
         //바텀 네비게이션 구현
@@ -33,6 +33,10 @@ class MainActivity : AppCompatActivity(), WriteFragment.BottomSheetListener {
             val transaction: FragmentTransaction = supportFragmentManager.beginTransaction()
 
             when (it.itemId) {
+                R.id.action_home -> {
+                    val fragmentD = HomeFragment()
+                    transaction.replace(R.id.main_frame, fragmentD, "home")
+                }
                 R.id.action_menu -> {
                     val fragmentA = PlacesFragment()
                     transaction.replace(R.id.main_frame, fragmentA, "name")
@@ -41,10 +45,10 @@ class MainActivity : AppCompatActivity(), WriteFragment.BottomSheetListener {
                     val fragmentB = UserListFragment()
                     transaction.replace(R.id.main_frame, fragmentB, "people")
                 }
-                R.id.action_scrap -> {
+                /*R.id.action_scrap -> {
                     val fragmentD = BookmarksFragment()
                     transaction.replace(R.id.main_frame, fragmentD, "scrap")
-                }
+                }*/
                 R.id.action_mypage -> {
                     val fragmentE = MyPageFragment()
                     transaction.replace(R.id.main_frame, fragmentE, "page")
