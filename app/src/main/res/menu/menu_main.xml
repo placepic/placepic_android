@@ -2,17 +2,19 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
+        android:id="@+id/action_home"
+        app:showAsAction="ifRoom"
+        android:enabled="true"
+        android:icon="@drawable/home_selected_ic"
+        android:title="홈" />
+
+    <item
         android:id="@+id/action_menu"
         app:showAsAction="ifRoom"
         android:enabled="true"
         android:icon="@drawable/ic_place_selected"
         android:title="장소" />
-    <item
-        android:id="@+id/action_people"
-        app:showAsAction="ifRoom"
-        android:enabled="true"
-        android:icon="@drawable/ranking_selected_ic"
-        android:title="순위" />
+
     <item
         android:id="@+id/action_write"
         app:showAsAction="ifRoom"
@@ -21,12 +23,21 @@
         android:focusable="false"
         android:icon="@android:drawable/ic_dialog_info"
         android:title="글쓰기" />
-    <item
+
+    <!--<item
         android:id="@+id/action_scrap"
         app:showAsAction="ifRoom"
         android:enabled="true"
         android:icon="@drawable/ic_save_selected"
-        android:title="저장" />
+        android:title="저장" />-->
+
+    <item
+        android:id="@+id/action_people"
+        app:showAsAction="ifRoom"
+        android:enabled="true"
+        android:icon="@drawable/ranking_selected_ic"
+        android:title="순위" />
+
     <item
         android:id="@+id/action_mypage"
         app:showAsAction="ifRoom"
