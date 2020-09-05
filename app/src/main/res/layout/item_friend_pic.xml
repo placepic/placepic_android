@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="clickListener"
+            type="android.view.View.OnClickListener" />
+
+        <variable
+            name="placeItem"
+            type="place.pic.data.entity.Place" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/fp_img_profile"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="12dp"
+            android:src="@drawable/testphoto"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/fp_user_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="17dp"
+            android:fontFamily="@font/noto_sans_bold"
+            android:text="김다혜"
+            android:textColor="@color/black40"
+            android:textSize="13dp"
+            app:layout_constraintStart_toEndOf="@+id/fp_img_profile"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/fp_user_part"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:fontFamily="@font/noto_sans_regular"
+            android:text="27기 안드로이드파트"
+            android:textColor="@color/grayA3ABB0"
+            android:textSize="11dp"
+            app:layout_constraintStart_toEndOf="@+id/fp_img_profile"
+            app:layout_constraintTop_toBottomOf="@+id/fp_user_name" />
+
+        <TextView
+            android:id="@+id/fp_upload_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="23dp"
+            android:layout_marginEnd="16dp"
+            android:fontFamily="@font/noto_sans_regular"
+            android:text="1시간 전"
+            android:textColor="@color/grayA3ABB0"
+            android:textSize="11dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/fp_img"
+            android:layout_width="0dp"
+            android:layout_height="144dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="13dp"
+            android:layout_marginEnd="16dp"
+            android:scaleType="fitXY"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fp_user_part"
+            app:srcCompat="@drawable/testphoto" />
+
+        <TextView
+            android:id="@+id/fp_place_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="12dp"
+            android:fontFamily="@font/noto_sans_bold"
+            android:text="미친부부떡볶이"
+            android:textColor="@color/black40"
+            android:textSize="18dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fp_img" />
+
+        <TextView
+            android:id="@+id/fp_subways"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="2dp"
+            android:fontFamily="@font/noto_sans_regular"
+            android:textColor="@color/grayA0A6AA"
+            android:textSize="11dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fp_place_name"
+            app:subways="@{placeItem.subways}"
+            tools:text="합정역/홍대입구역" />
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/fp_keywords_chipGroup"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="12dp"
+            app:chipSpacing="4dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fp_subways">
+
+        </com.google.android.material.chip.ChipGroup>
+
+
+        <!--<androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/fp_keywords"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="12dp"
+            android:orientation="horizontal"
+            android:overScrollMode="never"
+            android:scrollbars="none"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fp_subways"
+            tools:itemCount="3"
+            tools:listitem="@layout/item_keyword_tag" />-->
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
