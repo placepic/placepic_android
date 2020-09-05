@@ -8,7 +8,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_main.*
 import place.pic.R
 import place.pic.ui.util.showToast
-import place.pic.ui.main.bookmark.BookmarksFragment
+import place.pic.ui.main.home.HomeFragment
 import place.pic.ui.main.mypage.userlist.UserListFragment
 import place.pic.ui.main.place.PlacesFragment
 
