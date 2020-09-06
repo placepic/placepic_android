@@ -14,22 +14,25 @@ import place.pic.R
  */
  
 class FriendPicViewHolder (itemView: View) : RecyclerView.ViewHolder(itemView) {
-    val profileImageUrl: ImageView = itemView.findViewById<ImageView>(R.id.fp_img_profile)
-    val userName: TextView = itemView.findViewById<TextView>(R.id.fp_user_name)
-    val part: TextView = itemView.findViewById<TextView>(R.id.fp_user_part)
-    val imageUrl: ImageView = itemView.findViewById<ImageView>(R.id.fp_img)
-    val name: TextView = itemView.findViewById<TextView>(R.id.fp_place_name) //식당 이름
-    val subways: TextView = itemView.findViewById<TextView>(R.id.fp_subways) //여러 지하철역이 하나의 배열로 들어가
+    val profileImageUrl: ImageView = itemView.findViewById(R.id.fp_img_profile)
+    val userName: TextView = itemView.findViewById(R.id.fp_user_name)
+    val part: TextView = itemView.findViewById(R.id.fp_user_part)
+    val imageUrl: ImageView = itemView.findViewById(R.id.fp_img)
+    val liker: TextView = itemView.findViewById(R.id.fp_liker)
+    val name: TextView = itemView.findViewById(R.id.fp_place_name) //식당 이름
+    val subways: TextView = itemView.findViewById(R.id.fp_subways) //여러 지하철역이 하나의 배열로 들어가
     //val tags = itemView.findViewById<ChipGroup>(R.id.fp_chipGroup) //ChipGroup으로 들어가
-    val tags: TextView = itemView.findViewById<TextView>(R.id.fp_tags)
-    val uploadDate: TextView = itemView.findViewById<TextView>(R.id.fp_upload_date)
-    val content: TextView = itemView.findViewById<TextView>(R.id.fp_content)
+    val tags: TextView = itemView.findViewById(R.id.fp_tags)
+    val uploadDate: TextView = itemView.findViewById(R.id.fp_upload_date)
+    val content: TextView = itemView.findViewById(R.id.fp_content)
 
     fun bind(friendPicData: FriendPicData) {
         Glide.with(itemView).load(friendPicData.profileImageUrl).into(profileImageUrl)
         userName.text = friendPicData.userName
         part.text = friendPicData.part
         Glide.with(itemView).load(friendPicData.imageUrl).into(imageUrl)
+        imageUrl.maxHeight = imageUrl.width / 2
+        liker.text = friendPicData.liker.toString()
         name.text = friendPicData.name
         subways.text = friendPicData.subways.toString()
         tags.text = friendPicData.tags.toString()

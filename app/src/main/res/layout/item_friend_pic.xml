@@ -81,10 +81,50 @@
             <ImageView
                 android:id="@+id/fp_img"
                 android:layout_width="match_parent"
-                android:layout_height="144dp"
+                android:layout_height="match_parent"
                 android:scaleType="fitXY"
                 app:srcCompat="@drawable/testphoto" />
+
         </androidx.cardview.widget.CardView>
+
+        <View
+            android:id="@+id/view7"
+            android:layout_width="40dp"
+            android:layout_height="18dp"
+            android:layout_marginTop="11dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/border_round_rectangle_maincolor_4dp"
+            app:layout_constraintEnd_toEndOf="@+id/cardView3"
+            app:layout_constraintTop_toTopOf="@+id/cardView3" />
+
+        <ImageView
+            android:id="@+id/imageView18"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginBottom="3dp"
+            app:layout_constraintBottom_toBottomOf="@+id/view7"
+            app:layout_constraintStart_toStartOf="@+id/view7"
+            app:layout_constraintTop_toTopOf="@+id/view7"
+            app:srcCompat="@drawable/ic_scrap_heart" />
+
+        <TextView
+            android:id="@+id/fp_liker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="4dp"
+            android:layout_marginBottom="4dp"
+            android:text="101"
+            android:textSize="10dp"
+            android:textColor="@color/white"
+            android:fontFamily="@font/noto_sans_bold"
+            app:layout_constraintBottom_toBottomOf="@+id/view7"
+            app:layout_constraintEnd_toEndOf="@+id/view7"
+            app:layout_constraintStart_toEndOf="@+id/imageView18"
+            app:layout_constraintTop_toTopOf="@+id/view7" />
 
         <TextView
             android:id="@+id/fp_place_name"
@@ -164,7 +204,10 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/fp_tags"
-            tools:text="영훈이의 픽.. 죽기전에 꼭 한번쯤은.. 먹어보고 싶다.. 인천대 명물 최영훈이 추천하는 그곳.. 인천대 명물 미부떡.. 나같은 떡볶이 광인은 먹어보고싶은그곳..나정말배고프다지금.. 아임헝그리... 눈물나.. 떡볶이 먹고싶어.. 리뷰는 몇줄까지 써.." />
+            tools:text="영훈이의 픽.. 죽기전에 꼭 한번쯤은.. 먹어보고 싶다.. 인천대 명물 최영훈이 추천하는 그곳.. 인천대 명물 미부떡.. 나같은 떡볶이 광인은 먹어보고싶은그곳..나정말배고프다지금.. 아임헝그리... 눈물나.. 떡볶이 먹고싶어.. 리뷰는 몇줄까지 써"
+            android:ellipsize="end"
+            android:maxLines="4" />
+
 
         <View
             android:id="@+id/view4"
