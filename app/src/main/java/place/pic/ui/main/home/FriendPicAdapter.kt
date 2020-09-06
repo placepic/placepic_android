@@ -13,7 +13,7 @@ import place.pic.ui.main.mypage.userlist.UserData
 
 class FriendPicAdapter: RecyclerView.Adapter<FriendPicViewHolder>() {
 
-    var datas : MutableList<FriendPicData> = mutableListOf<FriendPicData>()?.apply {add(FriendPicData.empty())}
+    var datas : MutableList<FriendPicData> = mutableListOf<FriendPicData>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FriendPicViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_friend_pic, parent, false)
