@@ -11,13 +11,15 @@ import place.pic.ui.main.mypage.userlist.UserData
  * on 09월 05일, 2020
  */
 
-class FriendPicAdapter: RecyclerView.Adapter<FriendPicViewHolder>() {
+class FriendPicAdapter : RecyclerView.Adapter<FriendPicViewHolder>() {
 
-    var datas : MutableList<FriendPicData> = mutableListOf<FriendPicData>()
+    var datas: MutableList<FriendPicData> = mutableListOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FriendPicViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_friend_pic, parent, false)
-        return FriendPicViewHolder(view)
+        val view =
+            LayoutInflater.from(parent.context).inflate(R.layout.item_friend_pic, parent, false)
+        val inflater = LayoutInflater.from(parent.context)
+        return FriendPicViewHolder(view, inflater)
     }
 
     override fun onBindViewHolder(holder: FriendPicViewHolder, position: Int) {
@@ -28,12 +30,13 @@ class FriendPicAdapter: RecyclerView.Adapter<FriendPicViewHolder>() {
         return datas.size
     }
 
+    /* infinite scroll 준비
     fun addItems (items: List<FriendPicData>) {
         clear()
         val size = itemCount + 2
         datas.addAll(items)
         notifyItemRangeInserted(size, items.size)
-    }
+    }*/
 
     private fun clear() {
         datas.clear()
