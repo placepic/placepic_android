@@ -62,7 +62,7 @@ class LoginActivity : AppCompatActivity(),View.OnClickListener {
 
     private fun buttonMapping(){
         img_login_top_bar_back_btn.setOnClickListener(this)
-        btn_login.setOnClickListener(this)
+        btn_login_agree_and_find_group.setOnClickListener(this)
     }
 
     private fun editTextChangedMapping(){
@@ -90,7 +90,7 @@ class LoginActivity : AppCompatActivity(),View.OnClickListener {
                 startActivity(gotoLoginPageIntent)
                 finish()
             }
-            R.id.btn_login -> {
+            R.id.btn_login_agree_and_find_group -> {
                 PlacePicService.getInstance().requestLogin(
                     RequestLogin(
                         et_login_email.text.toString(),
@@ -145,7 +145,7 @@ class LoginActivity : AppCompatActivity(),View.OnClickListener {
 
     //로그인 버튼 활성화
     private fun loginButtonActivation(){
-        btn_login.isEnabled = writeEmail && writePassword
+        btn_login_agree_and_find_group.isEnabled = writeEmail && writePassword
     }
 
     override fun onStop() {
@@ -156,7 +156,7 @@ class LoginActivity : AppCompatActivity(),View.OnClickListener {
         if(cb_login.isChecked) {
             editor.putString("id", et_login_email.text.toString())
             editor.putBoolean("cb", cb_login.isChecked)
-            editor.putBoolean("bb", btn_login.isEnabled)
+            editor.putBoolean("bb", btn_login_agree_and_find_group.isEnabled)
         }
         editor.apply()
     }

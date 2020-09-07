@@ -34,7 +34,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/noto_sans_bold"
-            android:text="로그인"
+            android:text="회원가입/로그인"
             android:textColor="@color/black36"
             android:textSize="18dp"
             app:layout_constraintBottom_toBottomOf="@+id/img_login_top_bar_back_btn"
@@ -45,77 +45,94 @@
 
     <!--이메일 입력 뷰-->
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/cl_login_email_view_group"
+        android:id="@+id/cl_login_phone_num_view_group"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/cl_login_top_bar"
-        app:layout_constraintStart_toStartOf="@id/cl_login_top_bar"
+        android:paddingHorizontal="16dp"
         app:layout_constraintEnd_toEndOf="@id/cl_login_top_bar"
-        android:paddingHorizontal="16dp">
+        app:layout_constraintStart_toStartOf="@id/cl_login_top_bar"
+        app:layout_constraintTop_toBottomOf="@+id/cl_login_top_bar">
 
         <TextView
-            android:id="@+id/tv_login_email"
+            android:id="@+id/tv_login_phone_num"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="이메일"
             android:fontFamily="@font/noto_sans_bold"
+            android:text="핸드폰 번호"
             android:textColor="@color/black36"
-            android:textSize="15dp"
+            android:textSize="13dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:id="@+id/et_login_email"
+            android:id="@+id/et_login_phone_num"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:background="@drawable/selector_edittext_in_login_view"
-            android:hint="이메일을 입력해주세요"
+            android:fontFamily="@font/noto_sans_regular"
+            android:hint="핸드폰 번호를 입력해주세요"
             android:inputType="textEmailAddress"
             android:paddingVertical="12dp"
-            android:fontFamily="@font/noto_sans_regular"
             android:paddingStart="14dp"
-            android:layout_marginBottom="4dp"
             android:textColorHint="@color/grayCED5DA"
             android:textSize="14dp"
-            app:layout_constraintBottom_toTopOf="@+id/tv_login_non_email"
-            app:layout_constraintTop_toBottomOf="@+id/tv_login_email"
-            />
+            app:layout_constraintStart_toStartOf="@+id/tv_login_phone_num"
+            app:layout_constraintTop_toBottomOf="@+id/tv_login_phone_num" />
 
         <TextView
-            android:id="@+id/tv_login_non_email"
-            android:visibility="invisible"
+            android:id="@+id/tv_login_phone_num_info"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             android:fontFamily="@font/noto_sans_regular"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/et_login_email"
-            android:text="알맞은 이메일 형식이 아닙니다."
-            android:textSize="11dp"
-            android:textColor="@color/redDE4446"/>
+            android:text="핸드폰 번호만으로 가입이 완료됩니다. 번호는 안전하게 보관되며 공개되지 않습니다."
+            android:textColor="@color/gray838788"
+            android:textSize="9dp"
+            app:layout_constraintBottom_toBottomOf="@id/cl_login_phone_num_view_group"
+            app:layout_constraintStart_toStartOf="@+id/et_login_phone_num"
+            app:layout_constraintTop_toBottomOf="@+id/et_login_phone_num" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_login_phone_num_send_message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="14dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/border_round_rectangle_white_8dp"
+        android:backgroundTint="@color/selector_endable_button_gray_to_black"
+        android:enabled="false"
+        android:fontFamily="@font/noto_sans_regular"
+        android:paddingVertical="13dp"
+        android:text="인증문자 받기"
+        android:textColor="@color/selector_endable_text_gray_to_white"
+        android:textSize="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/cl_login_phone_num_view_group"
+        app:layout_constraintTop_toBottomOf="@+id/cl_login_phone_num_view_group" />
+
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/cl_login_password_view_group"
+        android:id="@+id/cl_login_phone_auth_num_view_group"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingHorizontal="15dp"
-        app:layout_constraintTop_toBottomOf="@id/cl_login_email_view_group"
-        app:layout_constraintStart_toStartOf="@id/cl_login_email_view_group"
-        app:layout_constraintEnd_toEndOf="@id/cl_login_email_view_group"
+        android:layout_marginTop="48dp"
+        app:layout_constraintTop_toBottomOf="@id/btn_login_phone_num_send_message"
+        app:layout_constraintStart_toStartOf="@id/cl_login_phone_num_view_group"
+        app:layout_constraintEnd_toEndOf="@id/cl_login_phone_num_view_group"
         >
 
         <TextView
-            android:id="@+id/tv_login_password"
+            android:id="@+id/tv_login_auth_num"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="비밀번호"
+            android:text="인증번호"
             android:fontFamily="@font/noto_sans_bold"
             android:textColor="@color/black36"
-            android:textSize="15dp"
+            android:textSize="13dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -124,62 +141,64 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:layout_marginBottom="24dp"
-            android:hint="비밀번호를 입력해주세요"
+            android:background="@drawable/selector_edittext_in_login_view"
+            android:fontFamily="@font/noto_sans_regular"
+            android:hint="인증번호를 입력해주세요"
             android:inputType="textPassword"
             android:paddingVertical="12dp"
-            android:fontFamily="@font/noto_sans_regular"
             android:paddingStart="16dp"
             android:textColorHint="@color/grayCED5DA"
             android:textSize="14dp"
-            android:background="@drawable/selector_edittext_in_login_view"
+            app:layout_constraintTop_toBottomOf="@+id/tv_login_auth_num"
+            tools:layout_editor_absoluteX="15dp" />
+
+        <TextView
+            android:id="@+id/tv_login_auth_num_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/noto_sans_regular"
+            android:layout_marginBottom="8dp"
+            android:text="5분 내에 인증번호 입력을 완료해주세요."
+            android:textColor="@color/gray838788"
+            android:textSize="9dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_login_password"
-            tools:layout_editor_absoluteX="16dp"/>
+            app:layout_constraintStart_toStartOf="@+id/et_login_password"
+            app:layout_constraintTop_toBottomOf="@+id/et_login_password" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_login"
+        android:id="@+id/btn_login_agree_and_find_group"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="26dp"
-        android:text="로그인"
+        android:layout_marginTop="8dp"
+        android:text="동의하고 그룹 찾으러 떠나기"
         android:enabled="false"
+        android:paddingVertical="13dp"
         android:fontFamily="@font/noto_sans_bold"
         android:textSize="15dp"
         android:background="@drawable/round_rectangle_gray_8dp"
         android:backgroundTint="@color/selector_endable_button_gray_to_black"
         android:textColor="@color/selector_endable_text_gray_to_white"
-        app:layout_constraintTop_toBottomOf="@id/cl_login_password_view_group"
-        app:layout_constraintStart_toStartOf="@id/cl_login_password_view_group"
-        app:layout_constraintEnd_toEndOf="@id/cl_login_password_view_group"
+        app:layout_constraintTop_toBottomOf="@id/cl_login_phone_auth_num_view_group"
+        app:layout_constraintStart_toStartOf="@id/cl_login_phone_auth_num_view_group"
+        app:layout_constraintEnd_toEndOf="@id/cl_login_phone_auth_num_view_group"
         style="?android:attr/borderlessButtonStyle"
         />
 
     <TextView
-        android:id="@+id/tv_login_fail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="로그인에 실패하였습니다. 이메일과 비밀번호를 다시 확인해주세요."
-        android:textColor="@color/redDE4446"
-        android:textSize="11dp"
-        android:visibility="invisible"
-        android:fontFamily="@font/noto_sans_regular"
-        app:layout_constraintStart_toStartOf="@+id/btn_login"
-        app:layout_constraintTop_toBottomOf="@+id/btn_login" />
-
-    <CheckBox
-        android:id="@+id/cb_login"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="13dp"
-        android:fontFamily="@font/noto_sans_bold"
-        android:text="이메일 저장"
-        android:checked="false"
-        android:textColor="@color/gray4F"
-        app:layout_constraintStart_toStartOf="@+id/tv_login_fail"
-        app:layout_constraintTop_toBottomOf="@+id/tv_login_fail" />
+        android:id="@+id/tv_login_term_and_privary"
+        android:layout_width="125dp"
+        android:layout_height="15dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:gravity="center_horizontal|top"
+        android:text="@string/some_id"
+        android:textAppearance="@style/some_id"
+        app:layout_constraintEnd_toEndOf="@+id/btn_login_agree_and_find_group"
+        app:layout_constraintStart_toStartOf="@+id/btn_login_agree_and_find_group"
+        app:layout_constraintTop_toBottomOf="@+id/btn_login_agree_and_find_group" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
