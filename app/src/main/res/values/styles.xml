@@ -26,7 +26,7 @@
 
     <style name="AppTheme.detailTagChip" parent="Widget.MaterialComponents.Chip.Choice">
         <item name="android:textColor">@color/selector_tag_text_color</item>
-        <item name="fontFamily">@font/noto_sans_bold</item>
+        <item name="fontFamily">@font/noto_sans_regular</item>
         <item name="android:textSize">11dp</item>
         <item name="textStartPadding">10dp</item>
         <item name="textEndPadding">10dp</item>
