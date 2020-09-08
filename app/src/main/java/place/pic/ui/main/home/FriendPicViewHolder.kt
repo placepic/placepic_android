@@ -29,8 +29,8 @@ class FriendPicViewHolder(itemView: View, inflater: LayoutInflater) : RecyclerVi
     val uploadDate: TextView = itemView.findViewById(R.id.fp_upload_date)
     val content: TextView = itemView.findViewById(R.id.fp_content)
 
-    private val tagChipList = mutableListOf<Chip>()
-    private val inflater:LayoutInflater = inflater
+    private val inflater:LayoutInflater = inflater 
+    //Chip 생성을 위한 inflater 준비
 
     fun bind(friendPicData: FriendPicData) {
         Glide.with(itemView).load(friendPicData.profileImageUrl).into(profileImageUrl)
@@ -48,50 +48,8 @@ class FriendPicViewHolder(itemView: View, inflater: LayoutInflater) : RecyclerVi
         tags.forEach { text ->
             val chip = ChipFactory.createDetailChip(inflater)
             //하나씩 chip 생성
-            tagChipList.add(chip)
             chip.text = text
             tagsChipGroup.addView(chip)
         }
     }
 }
-
-/*
-class FriendPicViewHolder(itemView: View, inflater: LayoutInflater) : RecyclerView.ViewHolder(itemView) {
-    //Adapter한테 전달받은 데이터를 view에 뿌려주는 역할
-
-    val profileImageUrl: ImageView = itemView.findViewById(R.id.fp_img_profile)
-    val userName: TextView = itemView.findViewById(R.id.fp_user_name)
-    val part: TextView = itemView.findViewById(R.id.fp_user_part)
-    val imageUrl: ImageView = itemView.findViewById(R.id.fp_img)
-    val liker: TextView = itemView.findViewById(R.id.fp_liker)
-    val name: TextView = itemView.findViewById(R.id.fp_place_name)
-    val subways: TextView = itemView.findViewById(R.id.fp_subways)
-    val tagChipGroup: ImageView = itemView.findViewById(R.id.fp_chipGroup)
-    val uploadDate: TextView = itemView.findViewById(R.id.fp_upload_date)
-    val content: TextView = itemView.findViewById(R.id.fp_content)
-
-    private val tagChipList = mutableListOf<Chip>()
-    private val inflater: LayoutInflater = inflater
-
-    fun bind(friendPicData: FriendPicData) {
-        Glide.with(itemView).load(friendPicData.profileImageUrl).into(profileImageUrl)
-        userName.text = friendPicData.userName
-        part.text = friendPicData.part
-        Glide.with(itemView).load(friendPicData.imageUrl).into(imageUrl)
-        imageUrl.maxHeight = imageUrl.width / 2
-        liker.text = friendPicData.liker.toString()
-        name.text = friendPicData.name
-        subways.text = friendPicData.subways.toString()
-        val tags = friendPicData.tags
-        uploadDate.text = friendPicData.uploadDate.toString()
-        content.text = friendPicData.content
-
-        tags.forEach { text ->
-            val chip = ChipFactory.createSmallChip(inflater)
-            //하나씩 chip 생성
-            tagChipList.add(chip)
-            chip.text = text
-            tagChipGroup.addView(chip)
-        }
-    }
-}*/

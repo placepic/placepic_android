@@ -16,7 +16,7 @@
     app:chipCornerRadius="4dp"
     app:chipMinHeight="16dp"
     app:chipMinTouchTargetSize="2dp"
-    android:textColor="@color/black40"
+    android:textColor="@color/black4F"
     app:textEndPadding="6dp"
     app:textStartPadding="6dp"
     tools:text="공간이넓은"/>
