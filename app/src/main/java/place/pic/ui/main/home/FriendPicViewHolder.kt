@@ -32,6 +32,20 @@ class FriendPicViewHolder(itemView: View, inflater: LayoutInflater) : RecyclerVi
     private val inflater:LayoutInflater = inflater 
     //Chip 생성을 위한 inflater 준비
 
+    private fun detailStringForm(stringList: List<String>, dividerString: String): String {
+        val detailStringBuilder = StringBuilder("")
+
+        stringList.forEach { str ->
+            if (str != stringList[0]) {
+                detailStringBuilder.append(dividerString)
+                detailStringBuilder.append(str)
+            } else {
+                detailStringBuilder.append(str)
+            }
+        }
+        return detailStringBuilder.toString()
+    }
+
     fun bind(friendPicData: FriendPicData) {
         Glide.with(itemView).load(friendPicData.profileImageUrl).into(profileImageUrl)
         userName.text = friendPicData.userName
@@ -40,7 +54,7 @@ class FriendPicViewHolder(itemView: View, inflater: LayoutInflater) : RecyclerVi
         imageUrl.maxHeight = imageUrl.width / 2
         liker.text = friendPicData.liker.toString()
         name.text = friendPicData.name
-        subways.text = friendPicData.subways.toString()
+        subways.text = detailStringForm(friendPicData.subways, "/")
         uploadDate.text = friendPicData.uploadDate.toString()
         content.text = friendPicData.content
 
