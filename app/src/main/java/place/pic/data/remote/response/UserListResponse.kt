@@ -1,6 +1,6 @@
 package place.pic.data.remote.response
 
-import place.pic.ui.main.mypage.userlist.UserData
+import place.pic.ui.main.userlist.UserData
 
 /**
  * Created By kimdahyee

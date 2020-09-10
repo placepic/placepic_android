@@ -1,4 +1,4 @@
-package place.pic.ui.main.mypage.userlist
+package place.pic.ui.main.userlist
 
 import android.graphics.Color
 import android.view.LayoutInflater

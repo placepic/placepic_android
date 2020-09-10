@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.main.MyPageFragment">
+    tools:context=".ui.main.mypage.MyPageFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cl_mypage"
@@ -27,17 +27,16 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/bt_logout"
+        <ImageView
+            android:id="@+id/bt_setting"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/noto_sans_bold"
-            android:text="로그아웃"
+            android:src="@drawable/setting_ic_24"
             android:paddingEnd="16dp"
             android:paddingTop="12dp"
             android:paddingBottom="12dp"
             android:paddingStart="16dp"
-            android:textColor="@color/grayADB6BD"
             app:layout_constraintBottom_toBottomOf="@+id/tv_sign_top_bar_title2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/tv_sign_top_bar_title2" />
@@ -50,7 +49,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="72dp"
+        android:layout_marginTop="24dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -119,13 +118,12 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout6"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="60dp"
-        android:background="@drawable/round_rectangle_gray_4dp"
+        android:layout_marginTop="24dp"
         android:padding="15dp"
-        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintEnd_toStartOf="@+id/constraintLayout7"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cl_mypage_profile">
 
@@ -133,89 +131,75 @@
             android:id="@+id/tv_im_write"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+
             android:fontFamily="@font/noto_sans_regular"
             android:text="작성한 글"
             android:textColor="@color/gray868F96"
-            app:layout_constraintEnd_toStartOf="@+id/tv_count_im_write"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.466" />
 
         <TextView
             android:id="@+id/tv_count_im_write"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
             android:fontFamily="@font/noto_sans_bold"
             android:text=""
             android:textColor="@color/black4F"
             android:textSize="14dp"
-            app:layout_constraintBottom_toBottomOf="@+id/tv_count"
-            app:layout_constraintEnd_toStartOf="@+id/tv_count"
-            app:layout_constraintHorizontal_chainStyle="packed" />
-
-        <TextView
-            android:id="@+id/tv_count"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:fontFamily="@font/noto_sans_regular"
-            android:text="개"
-            android:textColor="@color/black4F"
-            android:textSize="14dp"
-            app:layout_constraintBottom_toBottomOf="@+id/tv_im_write"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toEndOf="@+id/tv_im_write"
             app:layout_constraintTop_toTopOf="@+id/tv_im_write" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout7"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
-        android:layout_marginEnd="16dp"
-        android:background="@drawable/round_rectangle_gray_4dp"
         android:padding="15dp"
+        app:layout_constraintBottom_toBottomOf="@+id/constraintLayout6"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintTop_toBottomOf="@+id/cl_mypage_profile">
+        app:layout_constraintStart_toEndOf="@+id/constraintLayout6"
+        app:layout_constraintTop_toTopOf="@+id/constraintLayout6">
 
         <TextView
             android:id="@+id/tv_im_scrap"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
             android:fontFamily="@font/noto_sans_regular"
             android:text="저장한 장소"
             android:textColor="@color/gray868F96"
-            app:layout_constraintEnd_toStartOf="@+id/tv_count_im_scrap"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.533" />
 
         <TextView
             android:id="@+id/tv_count_im_scrap"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
             android:fontFamily="@font/noto_sans_bold"
             android:text=""
             android:textColor="@color/black4F"
             android:textSize="14dp"
-            app:layout_constraintBottom_toBottomOf="@+id/tv_count_scrap"
-            app:layout_constraintEnd_toStartOf="@+id/tv_count_scrap"
-            app:layout_constraintHorizontal_chainStyle="packed" />
-
-        <TextView
-            android:id="@+id/tv_count_scrap"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:fontFamily="@font/noto_sans_regular"
-            android:text="개"
-            android:textColor="@color/black4F"
-            android:textSize="14dp"
             app:layout_constraintBottom_toBottomOf="@+id/tv_im_scrap"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toEndOf="@+id/tv_im_scrap"
-            app:layout_constraintTop_toTopOf="@+id/tv_im_scrap" />
+            app:layout_constraintTop_toTopOf="@+id/tv_im_scrap"
+            app:layout_constraintVertical_bias="0.0" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
+
     <ImageView
         android:id="@+id/img_mypage_line"
         android:layout_width="match_parent"
@@ -224,5 +208,13 @@
         android:visibility="invisible"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout6"
         tools:layout_editor_absoluteX="16dp" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/mypage_bookmark"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/img_mypage_line">
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

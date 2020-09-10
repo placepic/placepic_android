@@ -44,6 +44,9 @@
     <string name="write_cancel">작성취소</string>
     <string name="close">닫기</string>
     <string name="writing_data_will_be_deleted">작성중인 글을 취소하시겠습니까?\n취소할 시, 작성된 글은 저장되지 않습니다.</string>
+    <string name="logout_message">정말 로그아웃 하시겠습니까?</string>
+    <string name="logout">로그아웃</string>
     <string name="delete">삭제</string>
     <string name="are_you_sure">정말로 이 글을 삭제할까요?</string>
+    <string name="title_activity_base">BaseActivity</string>
 </resources>

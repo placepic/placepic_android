@@ -84,78 +84,17 @@
                 app:srcCompat="@drawable/ic_scrap_heart" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/zone_tag_first"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
-            android:background="@drawable/round_rectagle_white_4dp"
-            android:backgroundTint="@color/grayF1F4F5"
-            android:visibility="@{bookmark.firstTag == null ? View.GONE : View.VISIBLE}"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cardView2">
-
-            <TextView
-                android:id="@+id/tv_tag_first"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:layout_marginTop="2dp"
-                android:layout_marginEnd="4dp"
-                android:layout_marginBottom="2dp"
-                android:fontFamily="@font/noto_sans_regular"
-                android:text="@{bookmark.firstTag}"
-                android:textColor="#8F8F8F"
-                android:textSize="10dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="한라토닉가나존맛" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/zone_tag_second"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:background="@drawable/round_rectagle_white_4dp"
-            android:backgroundTint="@color/grayF1F4F5"
-            android:visibility="@{bookmark.secondTag == null ? View.GONE : View.VISIBLE}"
-            app:layout_constraintBottom_toBottomOf="@+id/zone_tag_first"
-            app:layout_constraintStart_toEndOf="@+id/zone_tag_first"
-            app:layout_constraintTop_toTopOf="@+id/zone_tag_first">
-
-            <TextView
-                android:id="@+id/tv_tag_second"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:layout_marginTop="2dp"
-                android:layout_marginEnd="4dp"
-                android:layout_marginBottom="2dp"
-                android:fontFamily="@font/noto_sans_regular"
-                android:text="@{bookmark.secondTag}"
-                android:textColor="#8F8F8F"
-                android:textSize="10dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="파스타 술집" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TextView
             android:id="@+id/textView32"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
             android:fontFamily="@font/noto_sans_bold"
             android:text="@{bookmark.placeName}"
             android:textColor="@color/black36"
             android:textSize="17dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/zone_tag_first"
+            app:layout_constraintTop_toBottomOf="@+id/cardView2"
             tools:text="봉천예술관" />
 
         <TextView
