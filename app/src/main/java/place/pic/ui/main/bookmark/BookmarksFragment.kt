@@ -1,6 +1,5 @@
 package place.pic.ui.main.bookmark
 
-import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -12,6 +11,7 @@ import place.pic.data.PlacepicAuthRepository
 import place.pic.data.entity.Bookmark
 import place.pic.databinding.FragmentBookmarksBinding
 import place.pic.ui.main.detail.DetailViewActivity
+
 
 class BookmarksFragment : Fragment() {
 
@@ -68,5 +68,8 @@ class BookmarksFragment : Fragment() {
     companion object {
         const val PLACE_DELETED = 1
         const val BOOKMARK_CANCELED = 2
+        fun newInstance(): BookmarksFragment {
+            return BookmarksFragment()
+        }
     }
 }

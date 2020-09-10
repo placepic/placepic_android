@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import place.pic.R
-import place.pic.ui.main.mypage.userlist.UserData
+import place.pic.ui.main.userlist.UserData
 
 /**
  * Created By kimdahyee

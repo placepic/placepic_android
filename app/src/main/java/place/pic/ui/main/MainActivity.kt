@@ -3,18 +3,28 @@ package place.pic.ui.main
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_main.*
 import place.pic.R
+
 import place.pic.ui.util.showToast
 import place.pic.ui.main.home.HomeFragment
-import place.pic.ui.main.mypage.userlist.UserListFragment
+import place.pic.ui.main.bookmark.BookmarksFragment
+import place.pic.ui.main.mypage.MyPageFragment
 import place.pic.ui.main.place.PlacesFragment
+import place.pic.ui.main.userlist.UserListFragment
+import place.pic.ui.util.showToast
 
 
 class MainActivity : AppCompatActivity(), WriteFragment.BottomSheetListener {
     var mBackWait: Long = 0
+
+    interface OnBackPressed {
+        fun onBackPressed()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -74,17 +84,24 @@ class MainActivity : AppCompatActivity(), WriteFragment.BottomSheetListener {
         if (System.currentTimeMillis() - mBackWait >= 2000) {
             mBackWait = System.currentTimeMillis()
             if (mBottomNavigationView.selectedItemId == R.id.action_menu) {
-                mBottomNavigationView.selectedItemId=R.id.action_menu
+                mBottomNavigationView.selectedItemId = R.id.action_menu
                 super.onBackPressed()
             } else {
                 mBottomNavigationView.selectedItemId = R.id.action_menu
             }
             showToast("뒤로가기 버튼을 한번 더 누르면 종료됩니다.")
-
         } else {
-
             finish() //액티비티 종료
         }
     }
+
+    fun replaceFragment(fragment: Fragment, tag: String) {
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.mypage_bookmark, fragment, tag)
+            .addToBackStack(null)
+            .commit()
+    }
+
+
 }
 

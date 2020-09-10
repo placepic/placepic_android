@@ -1,8 +1,6 @@
-package place.pic.ui.main
+package place.pic.ui.main.mypage
 
-import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -16,14 +14,19 @@ import place.pic.data.PlacepicAuthRepository
 import place.pic.data.remote.PlacePicService
 import place.pic.data.remote.response.BaseResponse
 import place.pic.data.remote.response.MyPageResponse
-import place.pic.ui.login.LoginPageActivity
-import place.pic.ui.main.mypage.admin.WaitUserListActivity
+import place.pic.ui.main.MainActivity
+import place.pic.ui.main.bookmark.BookmarksFragment
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 
 class MyPageFragment : Fragment() {
+    companion object {
+        fun newInstance(): MyPageFragment {
+            return MyPageFragment()
+        }
+    }
 
     var user_name: String? = null
     var user_state: Int? = null
@@ -62,22 +65,20 @@ class MyPageFragment : Fragment() {
 
                         tv_profile_name.text = user_name
                         tv_profile_intro.text = user_part
-                        tv_count_im_write.text=user_write_count.toString()
+                        tv_count_im_write.text = user_write_count.toString()
 
                         Glide.with(img_profile).load(user_image).into(img_profile)
 
                         when (user_state) {
-                            0 ->
-                            {
+                            0 -> {
                                 tv_profile_kind.text = "관리자"
                                 //cl_user_list.visibility=View.VISIBLE
-                                img_mypage_line.visibility=View.VISIBLE
+                                img_mypage_line.visibility = View.VISIBLE
                             }
-                            1 ->
-                            {
+                            1 -> {
                                 tv_profile_kind.text = "멤버"
                                 //cl_user_list.visibility=View.INVISIBLE
-                                img_mypage_line.visibility=View.INVISIBLE
+                                img_mypage_line.visibility = View.INVISIBLE
                             }
                             else -> tv_profile_kind.text = "승인대기중"
                         }
@@ -90,20 +91,13 @@ class MyPageFragment : Fragment() {
             val intent = Intent(context, WaitUserListActivity::class.java)
             startActivity(intent)
         }*/
+        (activity as MainActivity).replaceFragment(BookmarksFragment.newInstance(),"BookmarksFragment")
 
-
-        /*
-        v.bt_logout.setOnClickListener {
-            val preferences = this.activity?.getSharedPreferences("temp", Context.MODE_PRIVATE)
-            val editor :SharedPreferences.Editor= preferences!!.edit()
-
-            val intent2 = Intent(context, LoginPageActivity::class.java)
-            editor.clear()
-            editor.apply()
+        v.bt_setting.setOnClickListener {
+            val intent2 = Intent(context, MyPageSettingActivity::class.java)
             startActivity(intent2)
-            activity?.finish()
+            //activity?.finish()
         }
-         */
         return v
     }
 }

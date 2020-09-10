@@ -2,6 +2,7 @@ package place.pic.data
 
 import android.app.Activity
 import android.content.Context
+import place.pic.ui.main.mypage.GroupChangeFragment
 
 
 class PlacepicAuthRepository private constructor(context: Context) {
@@ -39,7 +40,7 @@ class PlacepicAuthRepository private constructor(context: Context) {
         private var instance: PlacepicAuthRepository? = null
 
         @JvmStatic
-        fun getInstance(context:Context) = instance ?: synchronized(this) {
+        fun getInstance(context: Context) = instance ?: synchronized(this) {
             instance ?: PlacepicAuthRepository(context).apply {
                 instance = this
             }
