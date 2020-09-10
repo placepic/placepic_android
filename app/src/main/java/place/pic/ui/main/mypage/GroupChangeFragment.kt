@@ -22,6 +22,7 @@ import place.pic.ui.util.customEnqueue
 
 
 class GroupChangeFragment : Fragment() {
+    /*
     companion object {
         fun newInstance(): GroupChangeFragment {
             return GroupChangeFragment()
@@ -73,4 +74,6 @@ class GroupChangeFragment : Fragment() {
          */
         return v
     }
+
+ */
 }

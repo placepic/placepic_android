@@ -41,9 +41,12 @@ class MyPageSettingFragment : Fragment() {
         v.cl_btn_admin_page.setOnClickListener {
             (activity as MyPageSettingActivity).replaceFragment(AdminFragment.newInstance(),"AdminFragment")
         }
+        /*
         v.cl_btn_group_change.setOnClickListener {
             (activity as MyPageSettingActivity).replaceFragment(GroupChangeFragment.newInstance(),"GroupChangeFragment")
         }
+        */
+
         v.cl_btn_logout.setOnClickListener{
             SimpleDialog(activity as MyPageSettingActivity).apply {
                 setContent(R.string.logout_message)
