@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".ui.main.mypage.MyPageFragment">
 
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cl_mypage"
         android:layout_width="match_parent"
@@ -43,178 +44,142 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/cl_mypage_profile"
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="24dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cl_mypage">
-
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/img_profile"
-            android:layout_width="81dp"
-            android:layout_height="81dp"
-            android:padding="1dp"
-            app:civ_border_width="0dp"
-            app:layout_constraintEnd_toEndOf="@+id/tv_profile_kind"
-            app:layout_constraintStart_toStartOf="@+id/tv_profile_name"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/tv_profile_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:fontFamily="@font/noto_sans_bold"
-            android:text=""
-            android:textColor="@color/black36"
-            android:textSize="20dp"
-            app:layout_constraintEnd_toStartOf="@+id/tv_profile_kind"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintHorizontal_chainStyle="packed"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/img_profile" />
-
-        <TextView
-            android:id="@+id/tv_profile_kind"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:background="@drawable/round_rectangle_gray_4dp"
-            android:fontFamily="@font/noto_sans_regular"
-            android:paddingStart="6dp"
-            android:paddingTop="2dp"
-            android:paddingEnd="6dp"
-            android:paddingBottom="2dp"
-            android:text=""
-            android:textColor="@color/gray838788"
-            android:textSize="12dp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/tv_profile_name"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/tv_profile_name"
-            app:layout_constraintTop_toTopOf="@+id/tv_profile_name" />
-
-        <TextView
-            android:id="@+id/tv_profile_intro"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:fontFamily="@font/noto_sans_regular"
-            android:text=""
-            android:textColor="@color/grayADB6BD"
-            android:textSize="14dp"
-            app:layout_constraintEnd_toEndOf="@+id/tv_profile_kind"
-            app:layout_constraintStart_toStartOf="@+id/tv_profile_name"
-            app:layout_constraintTop_toBottomOf="@+id/tv_profile_name" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout6"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:padding="15dp"
-        app:layout_constraintEnd_toStartOf="@+id/constraintLayout7"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cl_mypage_profile">
-
-        <TextView
-            android:id="@+id/tv_im_write"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-
-            android:fontFamily="@font/noto_sans_regular"
-            android:text="작성한 글"
-            android:textColor="@color/gray868F96"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.466" />
-
-        <TextView
-            android:id="@+id/tv_count_im_write"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:fontFamily="@font/noto_sans_bold"
-            android:text=""
-            android:textColor="@color/black4F"
-            android:textSize="14dp"
-            app:layout_constraintHorizontal_chainStyle="packed"
-            app:layout_constraintStart_toEndOf="@+id/tv_im_write"
-            app:layout_constraintTop_toTopOf="@+id/tv_im_write" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout7"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:padding="15dp"
-        app:layout_constraintBottom_toBottomOf="@+id/constraintLayout6"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintStart_toEndOf="@+id/constraintLayout6"
-        app:layout_constraintTop_toTopOf="@+id/constraintLayout6">
-
-        <TextView
-            android:id="@+id/tv_im_scrap"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:fontFamily="@font/noto_sans_regular"
-            android:text="저장한 장소"
-            android:textColor="@color/gray868F96"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.533" />
-
-        <TextView
-            android:id="@+id/tv_count_im_scrap"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:fontFamily="@font/noto_sans_bold"
-            android:text=""
-            android:textColor="@color/black4F"
-            android:textSize="14dp"
-            app:layout_constraintBottom_toBottomOf="@+id/tv_im_scrap"
-            app:layout_constraintHorizontal_chainStyle="packed"
-            app:layout_constraintStart_toEndOf="@+id/tv_im_scrap"
-            app:layout_constraintTop_toTopOf="@+id/tv_im_scrap"
-            app:layout_constraintVertical_bias="0.0" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <ImageView
-        android:id="@+id/img_mypage_line"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:src="@drawable/line"
-        android:visibility="invisible"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout6"
-        tools:layout_editor_absoluteX="16dp" />
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/mypage_bookmark"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="match_parent"
+        android:layout_marginTop="56dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/img_mypage_line">
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appBarLayout"
+            style="@style/Theme.AppCompat.NoActionBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    app:layout_collapseMode="parallax">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/img_profile"
+                        android:layout_width="81dp"
+                        android:layout_height="81dp"
+                        android:layout_marginTop="16dp"
+                        android:padding="1dp"
+                        app:civ_border_width="0dp"
+                        app:layout_constraintEnd_toEndOf="@+id/tv_profile_kind"
+                        app:layout_constraintStart_toStartOf="@+id/tv_profile_name"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_profile_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:fontFamily="@font/noto_sans_bold"
+                    android:text=""
+                    android:textColor="@color/black36"
+                    android:textSize="20dp"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_profile_kind"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintHorizontal_chainStyle="packed"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/img_profile" />
+
+                <TextView
+                    android:id="@+id/tv_profile_kind"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:background="@drawable/round_rectangle_gray_4dp"
+                    android:fontFamily="@font/noto_sans_regular"
+                    android:paddingStart="6dp"
+                    android:paddingTop="2dp"
+                    android:paddingEnd="6dp"
+                    android:paddingBottom="2dp"
+                    android:text=""
+                    android:textColor="@color/gray838788"
+                    android:textSize="12dp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_profile_name"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/tv_profile_name"
+                    app:layout_constraintTop_toTopOf="@+id/tv_profile_name" />
+
+                    <TextView
+                        android:id="@+id/tv_profile_intro"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginBottom="16dp"
+                        android:fontFamily="@font/noto_sans_regular"
+                        android:text=""
+                        android:textColor="@color/grayADB6BD"
+                        android:textSize="14dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="@+id/tv_profile_kind"
+                        app:layout_constraintStart_toStartOf="@+id/tv_profile_name"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_profile_name" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/vp_mypage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:overScrollMode="never"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tab"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top"
+                app:tabIndicatorColor="@color/black36"
+                app:tabMode="fixed"
+                app:tabSelectedTextColor="@color/black36"
+                app:tabTextColor="@color/grayCD">
+
+                <com.google.android.material.tabs.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <com.google.android.material.tabs.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </com.google.android.material.tabs.TabLayout>
+
+        </androidx.viewpager.widget.ViewPager>
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/nestedScrollView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <FrameLayout
+                android:id="@+id/mypage_bookmark"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            </FrameLayout>
+        </androidx.core.widget.NestedScrollView>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
