@@ -120,6 +120,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
         android:paddingHorizontal="15dp"
+        android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="@id/cl_login_phone_num_view_group"
         app:layout_constraintStart_toStartOf="@id/cl_login_phone_num_view_group"
         app:layout_constraintTop_toBottomOf="@id/btn_login_phone_num_send_message">
@@ -182,6 +183,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.appcompat.widget.AppCompatButton
+        android:visibility="invisible"
         android:id="@+id/btn_login_agree_and_find_group"
         style="?android:attr/borderlessButtonStyle"
         android:layout_width="match_parent"
@@ -201,6 +203,7 @@
         app:layout_constraintTop_toBottomOf="@id/cl_login_phone_auth_num_view_group" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:visibility="invisible"
         android:id="@+id/cl_login_term_and_privary"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

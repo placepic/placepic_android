@@ -1,18 +1,13 @@
 package place.pic.ui.group
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import kotlinx.android.synthetic.main.activity_sign_up_group.*
+import kotlinx.android.synthetic.main.activity_input_user_info.*
 import place.pic.R
-import place.pic.data.PlacepicAuthRepository
-import place.pic.data.remote.PlacePicService
-import place.pic.data.remote.RequestSigninGroup
-import place.pic.ui.util.customEnqueue
 import place.pic.ui.util.customTextChangedListener
 
-class SignUpGroupActivity : AppCompatActivity() {
+class InputUserInfoActivity : AppCompatActivity() {
 
     var groupIdx: Int = 0
 
@@ -21,8 +16,7 @@ class SignUpGroupActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_sign_up_group)
-        groupIdx = intent.extras?.getInt("groupIdx")!!
+        setContentView(R.layout.activity_input_user_info)
         init()
     }
 
@@ -40,7 +34,7 @@ class SignUpGroupActivity : AppCompatActivity() {
     }
 
     private fun editTextChangeEventMapping() {
-        et_sign_up_group.customTextChangedListener {
+        et_input_user_name.customTextChangedListener {
             isInputGroup = !it.isNullOrBlank()
             buttonSetEnabled()
         }
@@ -66,6 +60,14 @@ class SignUpGroupActivity : AppCompatActivity() {
 
     private fun disableSignUpButton() {
         btn_sign_up_group.isEnabled = false
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        overridePendingTransition(
+            R.anim.alpah_slide_in_left_to_right,
+            R.anim.load_fade_out
+        )
     }
 
    /* *//*서버 연결 *//*
