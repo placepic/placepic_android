@@ -33,7 +33,6 @@ class SignUpGroupActivity : AppCompatActivity() {
 
     private fun buttonEventMapping() {
         btn_sign_up_group.setOnClickListener {
-            requestToSignupGroup()
         }
         img_sign_up_group_top_back_btn.setOnClickListener {
             onBackPressed()
@@ -69,7 +68,7 @@ class SignUpGroupActivity : AppCompatActivity() {
         btn_sign_up_group.isEnabled = false
     }
 
-    /*서버 연결 */
+   /* *//*서버 연결 *//*
     private fun requestToSignupGroup() {
         PlacepicAuthRepository.getInstance(this).userToken?.let {
             PlacePicService.getInstance()
@@ -94,5 +93,5 @@ class SignUpGroupActivity : AppCompatActivity() {
                     }
                 )
         }
-    }
+    }*/
 }

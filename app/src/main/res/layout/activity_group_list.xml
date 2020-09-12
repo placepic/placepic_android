@@ -1,110 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
-    <data>
-        <variable
-            name="waitGroupCount"
-            type="String" />
-    </data>
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.group.GroupListActivity">
 
+    <!--그룹 리스트 상단바-->
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".ui.group.GroupListActivity">
+        android:id="@+id/cl_group_list_top_bar"
+        android:layout_width="0dp"
+        android:layout_height="56dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <!--그룹 리스트 상단바-->
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/cl_group_list_top_bar"
-            android:layout_width="0dp"
-            android:layout_height="56dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <TextView
-                android:id="@+id/tv_group_list_top_bar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="내 그룹"
-                android:textColor="@color/black36"
-                android:textSize="20dp"
-                android:fontFamily="@font/noto_sans_bold"
-                android:textStyle="bold"
-                android:layout_marginStart="16dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <ImageView
-                android:id="@+id/tv_btn_join_group"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/add_group_ic"
-                android:visibility="visible"
-                android:paddingStart="16dp"
-                android:paddingEnd="16dp"
-                android:paddingTop="12dp"
-                android:paddingBottom="12dp"
-                app:layout_constraintBottom_toBottomOf="@+id/tv_group_list_top_bar"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/tv_group_list_top_bar" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <!--승인 대기중인 버튼 뷰 그룹-->
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/cl_wait_group"
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/tv_group_list_top_bar"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="16dp"
-            android:visibility="visible"
-            app:layout_constraintTop_toBottomOf="@+id/cl_group_list_top_bar">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/cl_btn_wait_group_list"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/round_rectangle_gray_8dp"
-                android:backgroundTint="@color/black40"
-                android:padding="16dp"
-                android:visibility="visible"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <TextView
-                    android:id="@+id/tv_wait_group_list"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@{waitGroupCount}"
-                    android:textColor="@android:color/white"
-                    android:textSize="15dp"
-                    android:fontFamily="@font/noto_sans_bold"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/white_next_arrow_ic"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <FrameLayout
-            android:id="@+id/frame_group_list"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_marginStart="14dp"
+            android:fontFamily="@font/noto_sans_bold"
+            android:text="그룹 참여하기"
+            android:textColor="@color/black36"
+            android:textSize="18dp"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cl_group_list_top_bar" />
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-</layout>
+
+    <FrameLayout
+        android:id="@+id/frame_group_list"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cl_group_list_top_bar" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
