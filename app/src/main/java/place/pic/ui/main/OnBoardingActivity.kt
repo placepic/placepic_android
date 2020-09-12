@@ -8,7 +8,12 @@ import kotlinx.android.synthetic.main.activity_on_boarding.*
 import place.pic.R
 import place.pic.ui.login.LoginActivity
 import place.pic.ui.util.animation.BindLayoutAnimation
+import place.pic.ui.util.animation.nextActivityAnimation
 
+
+/*
+TODO 토큰이 있으면 바로 그룹리스트로 이동하게 하기
+*/
 class OnBoardingActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,7 +40,7 @@ class OnBoardingActivity : AppCompatActivity() {
         btn_onboarding_start_place_pic.setOnClickListener {
             val gotoLoginIntent = Intent(applicationContext, LoginActivity::class.java)
             startActivity(gotoLoginIntent)
-            finish()
+            nextActivityAnimation()
         }
     }
 

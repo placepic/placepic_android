@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.group.SignUpGroupActivity">
+    tools:context=".ui.group.InputUserInfoActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cl_sign_up_group_top_bar"
@@ -53,10 +53,10 @@
         >
 
         <TextView
-            android:id="@+id/tv_sign_up_group"
+            android:id="@+id/tv_input_user_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="소속"
+            android:text="이름"
             android:textSize="15dp"
             android:textColor="@color/black36"
             android:fontFamily="@font/noto_sans_bold"
@@ -66,23 +66,34 @@
             />
 
         <EditText
-            android:id="@+id/et_sign_up_group"
+            android:id="@+id/et_input_user_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:background="@drawable/selector_edittext_in_login_view"
-            android:hint="Ex) SOPT 00기 000"
+            android:hint="이름을 입력해주세요"
             app:layout_goneMarginTop="4dp"
             android:layout_marginBottom="25dp"
-            android:inputType="textEmailAddress"
+            android:inputType="textPersonName"
             android:paddingVertical="12dp"
             android:paddingStart="16dp"
             android:textColorHint="@color/grayCED5DA"
             android:textSize="14dp"
             android:fontFamily="@font/noto_sans_regular"
-            app:layout_constraintStart_toStartOf="@+id/tv_sign_up_group"
-            app:layout_constraintTop_toBottomOf="@id/tv_sign_up_group"
+            app:layout_constraintStart_toStartOf="@+id/tv_input_user_name"
+            app:layout_constraintTop_toBottomOf="@id/tv_input_user_name"
             app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <TextView
+            android:id="@+id/tv_user_name_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="실명으로 입력해주세요"
+            android:textSize="9dp"
+            android:textColor="@color/gray838788"
+            app:layout_constraintTop_toBottomOf="@id/et_input_user_name"
+            app:layout_constraintStart_toStartOf="@id/et_input_user_name"
+            />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -99,7 +110,7 @@
             android:id="@+id/tv_sign_up_phone_num"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="핸드폰 번호"
+            android:text="소속"
             android:textSize="15dp"
             android:textColor="@color/black36"
             android:fontFamily="@font/noto_sans_bold"
@@ -117,8 +128,8 @@
             android:background="@drawable/selector_edittext_in_login_view"
             app:layout_goneMarginTop="4dp"
             app:layout_goneMarginBottom="25dp"
-            android:hint="핸드폰 번호를 입력해주세요"
-            android:inputType="numberDecimal"
+            android:hint="Ex) SOPT 00기 000"
+            android:inputType="text"
             android:paddingVertical="12dp"
             android:paddingStart="16dp"
             android:fontFamily="@font/noto_sans_regular"
@@ -137,9 +148,9 @@
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="25dp"
         android:background="@drawable/round_rectangle_gray_8dp"
-        android:backgroundTint="@color/selector_endable_button_gray_to_black"
+        android:backgroundTint="@color/selector_endable_button_gray_to_main_color"
         android:enabled="false"
-        android:text="신청하기"
+        android:text="진짜 시작하기"
         android:textColor="@color/selector_endable_text_gray_to_white"
         android:textSize="15dp"
         android:fontFamily="@font/noto_sans_bold"

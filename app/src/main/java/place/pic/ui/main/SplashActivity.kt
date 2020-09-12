@@ -2,16 +2,13 @@ package place.pic.ui.main
 
 import android.content.Intent
 import android.os.Bundle
-import android.transition.TransitionInflater
 import android.view.WindowManager
-import android.view.animation.Animation
-import android.view.animation.AnimationUtils
-import android.widget.ScrollView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_splash.*
 import place.pic.R
 import place.pic.ui.util.animation.BindLayoutAnimation
+import place.pic.ui.util.animation.nextActivityAnimation
 
 
 class SplashActivity : AppCompatActivity() {
@@ -65,8 +62,12 @@ class SplashActivity : AppCompatActivity() {
     private fun endSplashActivityEvent(){
         val gotoOnBoardingIntent = Intent(applicationContext, OnBoardingActivity::class.java)
         startActivity(gotoOnBoardingIntent)
-        overridePendingTransition(R.anim.load_fade_in,R.anim.alpah_slide_out)
         finish()
+    }
+
+    override fun finish() {
+        super.finish()
+        nextActivityAnimation()
     }
 
 }
