@@ -5,11 +5,9 @@ import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import kotlinx.android.synthetic.main.activity_signup_second.*
 import kotlinx.android.synthetic.main.activity_signuplast.*
 import place.pic.R
 import place.pic.ui.login.LoginActivity
-import place.pic.ui.login.LoginPageActivity
 
 class SignuplastActivity : AppCompatActivity() {
 

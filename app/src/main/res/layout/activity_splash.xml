@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,7 +8,62 @@
     tools:context=".ui.main.SplashActivity"
     android:background="@color/colorPrimary">
 
-    <com.airbnb.lottie.LottieAnimationView
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_splah_title_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="198dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/tv_splash_text1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/noto_sans_regular"
+            android:text="우리들끼리"
+            android:textColor="@android:color/white"
+            android:textSize="32dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_splash_text2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/noto_sans_regular"
+            android:text="공유하는"
+            android:textColor="@android:color/white"
+            android:textSize="32dp"
+            app:layout_constraintStart_toStartOf="@+id/tv_splash_text1"
+            app:layout_constraintTop_toBottomOf="@id/tv_splash_text1" />
+
+        <TextView
+            android:id="@+id/tv_splash_text3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/noto_sans_bold"
+            android:text="최애장소"
+            android:textColor="@android:color/white"
+            android:textSize="32dp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/tv_splash_text2"
+            app:layout_constraintTop_toBottomOf="@id/tv_splash_text2" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:src="@drawable/white_placepic_ic"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+
+    <!--<com.airbnb.lottie.LottieAnimationView
         android:id="@+id/lottie"
         android:layout_width="500dp"
         android:layout_height="500dp"
@@ -20,6 +76,6 @@
         app:lottie_autoPlay="true"
         app:lottie_loop="false"
         app:lottie_rawRes="@raw/pp_splash_final"
-        app:lottie_speed="1.2" />
+        app:lottie_speed="1.2" />-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

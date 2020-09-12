@@ -1,23 +1,18 @@
 package place.pic.ui.login
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Patterns
+import android.os.CountDownTimer
+import android.telephony.PhoneNumberFormattingTextWatcher
 import android.view.View
+import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_login.*
 import place.pic.R
-import place.pic.data.PlacepicAuthRepository
-import place.pic.data.remote.PlacePicService
-import place.pic.data.remote.request.RequestLogin
-import place.pic.data.remote.response.BaseResponse
-import place.pic.data.remote.response.LoginResponse
-import place.pic.ui.util.customTextChangedListener
 import place.pic.ui.group.GroupListActivity
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import place.pic.ui.util.animation.BindLayoutAnimation
+import place.pic.ui.util.customTextChangedListener
 
 
 /*
@@ -25,140 +20,94 @@ import retrofit2.Response
 * 버튼이 활성화 되면
 * 버튼 backgroundTint = black40
 * Text color = white*/
-class LoginActivity : AppCompatActivity(),View.OnClickListener {
+class LoginActivity : AppCompatActivity(), View.OnClickListener {
 
-    private var writeEmail = false
-    private var writePassword = false
+    private var isCanSendAuthMessage = false
+    private val canRetryTime = AUTH_TIME - RETRY_TIME
 
+    private val countDownTimer = object : CountDownTimer(AUTH_TIME, ONE_SEC) {
+        override fun onTick(millisUntilFinished: Long) {
+            canRetrySendAuthMessage(millisUntilFinished)
+        }
 
-    override fun onBackPressed() {
-        super.onBackPressed()
-        val gotoLoginPageIntent = Intent(this,LoginPageActivity::class.java)
-        gotoLoginPageIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-        startActivity(gotoLoginPageIntent)
-        finish()
+        override fun onFinish() {
+            timeOUtAuthNumEvent()
+        }
+
     }
+
+    private fun canRetrySendAuthMessage(millisUntilFinished: Long) {
+        if (millisUntilFinished <= canRetryTime) {
+            btn_login_phone_num_send_message.text = "인증문자 다시 받기"
+            btn_login_phone_num_send_message.isEnabled = true
+            isCanSendAuthMessage = true
+        }
+        tv_login_can_auth_timer.text = convertMillisTime(millisUntilFinished / ONE_SEC)
+    }
+
+    private fun timeOUtAuthNumEvent() {
+        btn_login_phone_num_send_message.text = "인증문자 받기"
+        val bindLayoutAnimation = BindLayoutAnimation<TextView>(
+            applicationContext,
+            tv_login_auth_num_info,
+            R.anim.alpha_splash_text_in
+        )
+        tv_login_auth_num_info.setTextColor(getColor(R.color.design_default_color_error))
+        tv_login_auth_num_info.text = "다시 인증해야 합니다."
+        bindLayoutAnimation.startLayoutAnimation()
+    }
+
+    private fun convertMillisTime(time: Long): String = "0${time/60}:${time%60}"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-
-        val sp = getSharedPreferences("temp", Context.MODE_PRIVATE)
-        val s: String? = sp.getString("id", "")
-        val b: Boolean = sp.getBoolean("cb", false)
-
-        et_login_email.setText(s)
-        et_login_email.background = getDrawable(R.drawable.selector_edittext_in_login_view)
-        tv_login_non_email.visibility = View.INVISIBLE
-        cb_login.isChecked = b
-        writeEmail = true
         init()
     }
 
     private fun init() {
-        buttonMapping()
-        editTextChangedMapping()
+        loginButtonEnableEvent()
+        loginButtonClickEvent()
     }
 
-    private fun buttonMapping(){
-        img_login_top_bar_back_btn.setOnClickListener(this)
-        btn_login.setOnClickListener(this)
-    }
-
-    private fun editTextChangedMapping(){
-        et_login_email.customTextChangedListener {
-            if (isValidEmail(it.toString())) {
-                emailForm()
-                writeEmail = true
-                return@customTextChangedListener
-            }
-            notEmailForm()
-            loginButtonActivation()
+    private fun loginButtonEnableEvent() {
+        et_login_phone_num.addTextChangedListener(PhoneNumberFormattingTextWatcher())
+        et_login_phone_num.customTextChangedListener {
+            btn_login_phone_num_send_message.isEnabled = !it.isNullOrBlank()
         }
-
-        et_login_password.customTextChangedListener {
-            writePassword = !it.isNullOrBlank()
-            loginButtonActivation()
+        et_login_phone_auth_input.customTextChangedListener {
+            btn_login_agree_and_find_group.isEnabled = !it.isNullOrBlank()
         }
     }
 
-    override fun onClick(v: View?) {
-        when (v!!.id) {
-            R.id.img_login_top_bar_back_btn -> {
-                val gotoLoginPageIntent = Intent(this,LoginPageActivity::class.java)
-                gotoLoginPageIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                startActivity(gotoLoginPageIntent)
+    private fun loginButtonClickEvent() {
+        btn_login_phone_num_send_message.setOnClickListener(this)
+        btn_login_agree_and_find_group.setOnClickListener(this)
+    }
+
+    override fun onClick(loginButton: View?) {
+        when (loginButton!!.id) {
+            R.id.btn_login_phone_num_send_message -> sendAuthMessage()
+            R.id.btn_login_agree_and_find_group -> {
+                var gotoGroupListIntent = Intent(applicationContext, GroupListActivity::class.java)
+                startActivity(gotoGroupListIntent)
                 finish()
             }
-            R.id.btn_login -> {
-                PlacePicService.getInstance().requestLogin(
-                    RequestLogin(
-                        et_login_email.text.toString(),
-                        et_login_password.text.toString()
-                    )
-                ).enqueue(object: Callback<BaseResponse<LoginResponse>> {
-                    override fun onFailure(call: Call<BaseResponse<LoginResponse>>, t: Throwable) {
-                        //통신실패
-                    }
-                    override fun onResponse(
-                        call: Call<BaseResponse<LoginResponse>>,
-                        response: Response<BaseResponse<LoginResponse>>) {
-                        if(response.isSuccessful)
-                        {
-                            if(response.body()!!.success)
-                            {
-                                PlacepicAuthRepository
-                                    .getInstance(this@LoginActivity)
-                                    .saveUserToken(response.body()!!.data.accessToken)
-
-                                val intent = Intent(this@LoginActivity, GroupListActivity::class.java)
-                                startActivity(intent)
-                                finish()
-                            }
-
-                        }
-                        else {
-                            tv_login_fail.visibility = View.VISIBLE
-                        }
-                    }
-                })
-            }
         }
-        editTextChangedMapping()
     }
 
-    private fun isValidEmail(email: String): Boolean{
-        return Patterns.EMAIL_ADDRESS.matcher(email).matches()
+    private fun sendAuthMessage() {
+        Toast.makeText(applicationContext, "30초 이후에 인증문자를 다시 받을 수 있습니다.", Toast.LENGTH_LONG).show()
+        countDownTimer.start()
+        btn_login_phone_num_send_message.isEnabled = false
+
     }
 
-    // 잘못된 이메일일 경우 EditText 설정
-    private fun notEmailForm(){
-        et_login_email.background = getDrawable(R.drawable.border_round_rectangle_red_8dp)
-        tv_login_non_email.visibility = View.VISIBLE
+    companion object {
+        const val AUTH_TIME = 300000L //5분
+        const val RETRY_TIME = 30000L//30초
+        const val ONE_SEC = 1000L
     }
 
-    // 이메일 입력이 정확할 경우 EditText 설정
-    private fun emailForm(){
-        et_login_email.background = getDrawable(R.drawable.selector_edittext_in_login_view)
-        tv_login_non_email.visibility = View.INVISIBLE
-    }
-
-    //로그인 버튼 활성화
-    private fun loginButtonActivation(){
-        btn_login.isEnabled = writeEmail && writePassword
-    }
-
-    override fun onStop() {
-        super.onStop()
-        val prefer = getSharedPreferences("temp", Context.MODE_PRIVATE)
-        val editor = prefer.edit()
-
-        if(cb_login.isChecked) {
-            editor.putString("id", et_login_email.text.toString())
-            editor.putBoolean("cb", cb_login.isChecked)
-            editor.putBoolean("bb", btn_login.isEnabled)
-        }
-        editor.apply()
-    }
 }
 
