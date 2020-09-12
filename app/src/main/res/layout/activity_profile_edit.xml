@@ -122,8 +122,8 @@
             android:textColorHint="@color/grayCED5DA"
             android:textSize="14dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_profile_title_name"
-            tools:layout_editor_absoluteX="16dp" />
+            app:layout_constraintStart_toStartOf="@+id/tv_profile_title_name"
+            app:layout_constraintTop_toBottomOf="@+id/tv_profile_title_name" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -166,14 +166,15 @@
             android:layout_marginBottom="24dp"
             android:background="@drawable/selector_edittext_in_login_view"
             android:fontFamily="@font/noto_sans_regular"
+            android:inputType="text"
             android:padding="12dp"
             android:paddingVertical="8dp"
             android:text=""
             android:textColorHint="@color/grayCED5DA"
             android:textSize="14dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_profile_setting_in"
-            tools:layout_editor_absoluteX="16dp" />
+            app:layout_constraintStart_toStartOf="@+id/tv_profile_setting_in"
+            app:layout_constraintTop_toBottomOf="@+id/tv_profile_setting_in" />
 
         <TextView
             android:layout_width="wrap_content"
