@@ -50,4 +50,5 @@
     <string name="are_you_sure">정말로 이 글을 삭제할까요?</string>
     <string name="ask_upload_place">등록하시겠습니까?\n등록 시, 수정은 불가능합니다.</string>
     <string name="title_activity_base">BaseActivity</string>
+    <string name="have_not_written_yet">아직 작성한 글이 없습니다.</string>
 </resources>
