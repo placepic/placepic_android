@@ -35,7 +35,6 @@ class HomeFragment : Fragment() {
         initRcv(view)
 
         loadDatas()
-        //loadDatas()
         //loadDatas() 호출을 통해 infinite scroll을 위한 준비 완료
     }
 
@@ -50,9 +49,12 @@ class HomeFragment : Fragment() {
     }
 
     /*private fun loadDatas() {
-        data = stubUserList() as MutableList<UserData>
-        userListAdapter.addItems(data)
-    }*/
+        data = stubUserList() as MutableList<FriendPicData>
+        friendPicAdapter.addItems(data)
+    }
+
+    private fun getFriendPicListFromServer() {} */
+
 
     private fun loadDatas() {
 
