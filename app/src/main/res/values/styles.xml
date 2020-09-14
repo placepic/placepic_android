@@ -72,4 +72,8 @@
     <style name="FullscreenActionBarStyle" parent="Widget.AppCompat.ActionBar">
         <item name="android:background">@color/black_overlay</item>
     </style>
+
+    <style name="HomeActionBarStyle" parent="Widget.AppCompat.ActionBar">
+        <item name="android:background">@color/white</item>
+    </style>
 </resources>

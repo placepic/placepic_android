@@ -101,6 +101,21 @@ class HomeFragment : Fragment() {
                     content = "영훈이의 픽.. 죽기전에 꼭 한번쯤은.. 먹어보고 싶다.. 인천대 명물 최영훈이 추천하는 그곳.. 인천대 명물 미부떡.. 나같은 떡볶이 광인은 먹어보고싶은그곳..나정말배고프다지금.. 아임헝그리... 눈물나.. 떡볶이 먹고싶어.. 리뷰는 몇줄까지 써야할까요오오오오오오오"
                 )
             )
+
+            add(
+                FriendPicData(
+                    profileImageUrl = "https://img.hankyung.com/photo/201911/03.20725204.1.jpg",
+                    userName = "김다혜",
+                    part = "27기 안드로이드파트",
+                    imageUrl = "https://t1.daumcdn.net/cfile/tistory/2443D04556A6314F0A",
+                    liker = 123,
+                    name = "진성한우곱창",
+                    subways = listOf<String>("합정역", "홍대입구역"),
+                    tags = listOf<String>("최영훈픽", "태그야제발좀", "한번에성공좀"), //list 전체를 넣어
+                    uploadDate = Date(),
+                    content = "영훈이의 픽.. 죽기전에 꼭 한번쯤은.. 먹어보고 싶다.. 인천대 명물 최영훈이 추천하는 그곳.. 인천대 명물 미부떡.. 나같은 떡볶이 광인은 먹어보고싶은그곳..나정말배고프다지금.. 아임헝그리... 눈물나.. 떡볶이 먹고싶어.. 리뷰는 몇줄까지 써야할까요오오오오오오오"
+                )
+            )
         }
 
         friendPicAdapter.datas = datas
