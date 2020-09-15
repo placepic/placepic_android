@@ -68,8 +68,5 @@ class BookmarksFragment : Fragment() {
     companion object {
         const val PLACE_DELETED = 1
         const val BOOKMARK_CANCELED = 2
-        fun newInstance(): BookmarksFragment {
-            return BookmarksFragment()
-        }
     }
 }

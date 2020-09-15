@@ -17,7 +17,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.main.mypage.ProfileEditActivity"/>
+        <activity android:name=".ui.main.mypage.ProfileEditActivity" />
         <activity android:name=".ui.main.mypage.MyPageSettingActivity" />
         <activity android:name=".ui.main.mypage.GroupChangeActivity" />
         <activity android:name=".ui.main.BaseActivity" />
