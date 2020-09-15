@@ -14,22 +14,22 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
         android:background="@android:color/white"
         tools:context=".ui.main.bookmark.BookmarksFragment">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_bookmarks"
-            android:layout_width="match_parent"
+            android:layout_width="334dp"
             android:layout_height="match_parent"
             android:clipToPadding="false"
             android:overScrollMode="never"
-            android:paddingTop="20dp"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+
             app:spanCount="2"
             tools:listitem="@layout/item_bookmark_place" />
 
@@ -48,12 +48,13 @@
             android:id="@+id/zone_empty"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:nestedScrollingEnabled="false"
+            android:layout_marginTop="100dp"
             android:visibility="@{viewModel.bookmarks.empty ? View.VISIBLE : View.GONE}"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.38">
+            app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
                 android:id="@+id/imageView15"

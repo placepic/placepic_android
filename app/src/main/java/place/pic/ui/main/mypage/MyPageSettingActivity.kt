@@ -18,6 +18,11 @@ class MyPageSettingActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_my_page_setting)
 
+        img_top_bar_back_btn.setOnClickListener {
+            finish()
+            fragmentManager?.popBackStack()
+        }
+
         supportFragmentManager.beginTransaction()
             .replace(R.id.mypage_frame, MyPageSettingFragment())
             .commit()

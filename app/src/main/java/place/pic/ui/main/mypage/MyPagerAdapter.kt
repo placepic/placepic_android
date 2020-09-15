@@ -21,6 +21,4 @@ class MyPagerAdapter (fm: FragmentManager) : FragmentPagerAdapter(fm, BEHAVIOR_R
             else -> "저장한 장소"
         }
     }
-
-
 }

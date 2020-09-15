@@ -76,4 +76,6 @@
     <style name="HomeActionBarStyle" parent="Widget.AppCompat.ActionBar">
         <item name="android:background">@color/white</item>
     </style>
+
+
 </resources>
