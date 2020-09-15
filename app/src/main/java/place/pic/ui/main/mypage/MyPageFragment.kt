@@ -101,7 +101,6 @@ class MyPageFragment : Fragment() {
             startActivity(intent)
         }*/
 
-
         v.bt_setting.setOnClickListener {
             val intent2 = Intent(context, MyPageSettingActivity::class.java)
             startActivity(intent2)

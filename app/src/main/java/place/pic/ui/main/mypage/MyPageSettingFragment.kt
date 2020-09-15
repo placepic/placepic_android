@@ -42,7 +42,8 @@ class MyPageSettingFragment : Fragment() {
             (activity as MyPageSettingActivity).replaceFragment(AdminFragment.newInstance(),"AdminFragment")
         }
         v.cl_btn_group_change.setOnClickListener {
-            (activity as MyPageSettingActivity).replaceFragment(GroupChangeFragment(),"GroupChangeFragment")
+            val intent3 = Intent(context, GroupChangeActivity::class.java)
+            startActivity(intent3)
         }
 
         v.cl_btn_logout.setOnClickListener{

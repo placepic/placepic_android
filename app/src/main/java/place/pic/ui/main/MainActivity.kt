@@ -73,7 +73,6 @@ class MainActivity : AppCompatActivity(), WriteFragment.BottomSheetListener {
         fab_write.setOnClickListener {
             WriteFragment().show(supportFragmentManager, "BottomSheetEx")
         }
-
     }
 
     override fun onOptionClick(text: String) {
@@ -101,7 +100,5 @@ class MainActivity : AppCompatActivity(), WriteFragment.BottomSheetListener {
             .addToBackStack(null)
             .commit()
     }
-
-
 }
 

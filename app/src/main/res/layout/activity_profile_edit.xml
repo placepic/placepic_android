@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -40,8 +41,8 @@
             app:layout_constraintStart_toEndOf="@+id/img_profile_edit_top_bar_back_btn"
             app:layout_constraintTop_toTopOf="@+id/img_profile_edit_top_bar_back_btn" />
 
-
         <TextView
+            android:id="@+id/btn_profile_edit_ok"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
@@ -52,6 +53,7 @@
             app:layout_constraintBottom_toBottomOf="@+id/tv_profile_edit_top_bar_title"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/tv_profile_edit_top_bar_title" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -59,7 +61,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="72dp"
+        android:layout_marginTop="28dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cl_profile_edit_setting">
@@ -84,13 +86,14 @@
             android:src="@drawable/editprofile_ic"
             app:layout_constraintBottom_toBottomOf="@+id/img_profile_setting"
             app:layout_constraintEnd_toEndOf="@+id/img_profile_setting" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cl_profile_name_group"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="24dp"
         android:paddingHorizontal="16dp"
         app:layout_constraintEnd_toEndOf="@id/cl_mypage_profile_edit"
         app:layout_constraintStart_toStartOf="@id/cl_mypage_profile_edit"
@@ -104,7 +107,7 @@
             android:fontFamily="@font/noto_sans_bold"
             android:text="이름"
             android:textColor="@color/black36"
-            android:textSize="15dp"
+            android:textSize="16dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -112,15 +115,14 @@
             android:id="@+id/tv_profile_setting_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
             android:layout_marginBottom="24dp"
             android:background="@drawable/selector_edittext_in_login_view"
             android:fontFamily="@font/noto_sans_regular"
             android:padding="12dp"
             android:paddingVertical="8dp"
-            android:text=""
+            android:text="조희연"
             android:textColorHint="@color/grayCED5DA"
-            android:textSize="14dp"
+            android:textSize="18dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@+id/tv_profile_title_name"
             app:layout_constraintTop_toBottomOf="@+id/tv_profile_title_name" />
@@ -128,13 +130,16 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
             android:layout_marginBottom="8dp"
             android:fontFamily="@font/noto_sans_regular"
             android:text="이름은 수정할 수 없습니다."
             android:textColor="@color/gray838788"
-            android:textSize="11dp"
+            android:textSize="12dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/tv_profile_setting_name" />
+            app:layout_constraintStart_toStartOf="@+id/tv_profile_setting_name"
+            app:layout_constraintTop_toBottomOf="@+id/tv_profile_setting_name" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -154,7 +159,7 @@
             android:fontFamily="@font/noto_sans_bold"
             android:text="소속"
             android:textColor="@color/black36"
-            android:textSize="15dp"
+            android:textSize="16dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -162,16 +167,15 @@
             android:id="@+id/et_profile_setting_in_part"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
             android:layout_marginBottom="24dp"
             android:background="@drawable/selector_edittext_in_login_view"
             android:fontFamily="@font/noto_sans_regular"
             android:inputType="text"
             android:padding="12dp"
             android:paddingVertical="8dp"
-            android:text=""
+            android:text="27기 웹파트"
             android:textColorHint="@color/grayCED5DA"
-            android:textSize="14dp"
+            android:textSize="18dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@+id/tv_profile_setting_in"
             app:layout_constraintTop_toBottomOf="@+id/tv_profile_setting_in" />
@@ -179,13 +183,16 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
             android:layout_marginBottom="8dp"
             android:fontFamily="@font/noto_sans_regular"
             android:text="ex) 27기 디자인 파트"
             android:textColor="@color/gray838788"
-            android:textSize="11dp"
+            android:textSize="12dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/et_profile_setting_in_part" />
+            app:layout_constraintStart_toStartOf="@+id/et_profile_setting_in_part"
+            app:layout_constraintTop_toBottomOf="@+id/et_profile_setting_in_part" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
