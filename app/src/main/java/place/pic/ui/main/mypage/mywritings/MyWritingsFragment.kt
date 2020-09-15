@@ -27,7 +27,7 @@ class MyWritingsFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding = FragmentMyWritingsBinding.inflate(inflater)
+        val binding = FragmentMyWritingsBinding.inflate(inflater, container, false)
         initView(binding)
         return binding.root
     }

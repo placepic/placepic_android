@@ -30,10 +30,23 @@ class MyWritingsViewModel(
 
     fun requestMyWritings() {
         _isLoading.value = true
-        MyWritingsRequest().apply {
-            addOnSuccessListener { loadMyWritings(it.data.toMyWritings()) }
-            addOnFailureListener { onRequestFail(it.toString()) }
-        }.send(getUserToken(), getGroupId())
+        loadMyWritings(
+            listOf(
+                MyWriting("", 1, "네임", 123, "이이이이름"),
+                MyWriting("", 1, "네임", 123, "이이이이름"),
+                MyWriting("", 1, "네임", 123, "이이이이름"),
+                MyWriting("", 1, "네임", 123, "이이이이름"),
+                MyWriting("", 1, "네임", 123, "이이이이름"),
+                MyWriting("", 1, "네임", 123, "이이이이름"),
+                MyWriting("", 1, "네임", 123, "이이이이름"),
+                MyWriting("", 1, "네임", 123, "이이이이름"),
+                MyWriting("", 1, "네임", 123, "이이이이름")
+            )
+        )
+//        MyWritingsRequest().apply {
+//            addOnSuccessListener { loadMyWritings(it.data.toMyWritings()) }
+//            addOnFailureListener { onRequestFail(it.toString()) }
+//        }.send(getUserToken(), getGroupId())
     }
 
     private fun loadMyWritings(writings: List<MyWriting>) {
