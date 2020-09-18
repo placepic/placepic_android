@@ -25,6 +25,7 @@ class DateParser(placeCreatedAt: Long) {
 
     private fun convertToTalkDateString(cal: Calendar) : String
             = placePicDateFormat.format(cal.time)
+
     /* 시간차이 계산하여 return*/
     fun calculateDiffDate() : String {
         val parsedDate = parseStringToCalendar(newDateTime)
