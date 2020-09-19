@@ -22,8 +22,8 @@
             android:id="@+id/rv_my_writings"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
             android:clipToPadding="false"
             android:overScrollMode="never"
             android:paddingTop="20dp"
@@ -33,7 +33,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:spanCount="2"
-            tools:listitem="@layout/item_my_writing" />
+            tools:listitem="@layout/grid_item_place" />
 
         <ProgressBar
             android:id="@+id/progressBar"

@@ -1,6 +1,6 @@
 package place.pic.data.remote.response
 
-import place.pic.data.entity.MyWriting
+import place.pic.data.entity.PlaceGridItem
 
 /**
  * Created By Malibin
@@ -11,8 +11,8 @@ data class MyWritingsResponse(
     val UserPlace: List<MyWritingResponse>,
     val placeCount: Int
 ) {
-    fun toMyWritings(): List<MyWriting> {
-        return UserPlace.map { it.toMyWriting() }
+    fun toPlaceGridItems(): List<PlaceGridItem> {
+        return UserPlace.map { it.toPlaceGridItem() }
     }
 }
 
@@ -21,9 +21,9 @@ data class MyWritingResponse(
     val placeImageUrl: String,
     val placeName: String,
     val likeCnt: Int,
-    val subwayName: String
+    val subwayName: List<String>
 ) {
-    fun toMyWriting() = MyWriting(
+    fun toPlaceGridItem() = PlaceGridItem(
         imageUrl = placeImageUrl,
         placeIdx = placeIdx,
         placeName = placeName,

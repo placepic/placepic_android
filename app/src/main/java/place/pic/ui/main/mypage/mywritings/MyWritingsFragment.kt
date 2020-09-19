@@ -6,11 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import place.pic.data.PlacepicAuthRepository
-import place.pic.data.entity.MyWriting
+import place.pic.data.entity.PlaceGridItem
 import place.pic.databinding.FragmentMyWritingsBinding
 import place.pic.ui.main.detail.DetailViewActivity
+import place.pic.ui.main.place.adapter.PlaceGridItemsAdapter
 
 /**
  * Created By Malibin
@@ -19,7 +19,7 @@ import place.pic.ui.main.detail.DetailViewActivity
 
 class MyWritingsFragment : Fragment() {
 
-    private lateinit var myWritingsAdapter: MyWritingsAdapter
+    private lateinit var placeGridItemsAdapter: PlaceGridItemsAdapter
     private lateinit var myWritingsViewModel: MyWritingsViewModel
 
     override fun onCreateView(
@@ -35,9 +35,9 @@ class MyWritingsFragment : Fragment() {
     private fun initView(binding: FragmentMyWritingsBinding) {
         myWritingsViewModel =
             MyWritingsViewModel(PlacepicAuthRepository.getInstance(requireContext()))
-        myWritingsAdapter = MyWritingsAdapter()
-        myWritingsAdapter.setItemClickListener { onMyWritingClick(it) }
-        binding.rvMyWritings.adapter = myWritingsAdapter
+        placeGridItemsAdapter = PlaceGridItemsAdapter()
+        placeGridItemsAdapter.setItemClickListener { onMyWritingClick(it) }
+        binding.rvMyWritings.adapter = placeGridItemsAdapter
         binding.lifecycleOwner = this
         binding.viewModel = myWritingsViewModel
     }
@@ -49,9 +49,9 @@ class MyWritingsFragment : Fragment() {
     }
 
     private fun subscribeMyWritings() {
-        myWritingsViewModel.myWritings.observe(this, Observer {
-            myWritingsAdapter.submitList(it)
-        })
+        myWritingsViewModel.myWritings.observe(viewLifecycleOwner) {
+            placeGridItemsAdapter.submitList(it)
+        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -63,9 +63,9 @@ class MyWritingsFragment : Fragment() {
         }
     }
 
-    private fun onMyWritingClick(myWriting: MyWriting) {
+    private fun onMyWritingClick(placeGridItem: PlaceGridItem) {
         val intent = Intent(requireActivity(), DetailViewActivity::class.java)
-        intent.putExtra("placeIdx", myWriting.placeIdx)
+        intent.putExtra("placeIdx", placeGridItem.placeIdx.toLong())
         startActivityForResult(intent, 5000)
     }
 

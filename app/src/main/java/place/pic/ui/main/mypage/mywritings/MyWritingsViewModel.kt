@@ -4,7 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import place.pic.data.PlacepicAuthRepository
-import place.pic.data.entity.MyWriting
+import place.pic.data.entity.PlaceGridItem
 import place.pic.data.remote.request.MyWritingsRequest
 
 /**
@@ -19,8 +19,8 @@ class MyWritingsViewModel(
     val isLoading: LiveData<Boolean>
         get() = _isLoading
 
-    private val _myWritings = MutableLiveData<List<MyWriting>>()
-    val myWritings: LiveData<List<MyWriting>>
+    private val _myWritings = MutableLiveData<List<PlaceGridItem>>()
+    val myWritings: LiveData<List<PlaceGridItem>>
         get() = _myWritings
 
     fun removeMyWriting(placeId: Int) {
@@ -32,24 +32,24 @@ class MyWritingsViewModel(
         _isLoading.value = true
         loadMyWritings(
             listOf(
-                MyWriting("", 1, "네임", 123, "이이이이름"),
-                MyWriting("", 1, "네임", 123, "이이이이름"),
-                MyWriting("", 1, "네임", 123, "이이이이름"),
-                MyWriting("", 1, "네임", 123, "이이이이름"),
-                MyWriting("", 1, "네임", 123, "이이이이름"),
-                MyWriting("", 1, "네임", 123, "이이이이름"),
-                MyWriting("", 1, "네임", 123, "이이이이름"),
-                MyWriting("", 1, "네임", 123, "이이이이름"),
-                MyWriting("", 1, "네임", 123, "이이이이름")
+                PlaceGridItem("", 1, "네임", 123, listOf("이이이이름", "dd역")),
+                PlaceGridItem("", 1, "네임", 123, listOf("이이이이름")),
+                PlaceGridItem("", 1, "네임", 123, listOf("이이이이름")),
+                PlaceGridItem("", 1, "네임", 123, listOf("이이이이름")),
+                PlaceGridItem("", 1, "네임", 123, listOf("이이이이름")),
+                PlaceGridItem("", 1, "네임", 123, listOf("이이이이름")),
+                PlaceGridItem("", 1, "네임", 123, listOf("이이이이름")),
+                PlaceGridItem("", 1, "네임", 123, listOf("이이이이름")),
+                PlaceGridItem("", 1, "네임", 123, listOf("이이이이름")),
             )
         )
 //        MyWritingsRequest().apply {
-//            addOnSuccessListener { loadMyWritings(it.data.toMyWritings()) }
+//            addOnSuccessListener { loadMyWritings(it.data.toPlaceGridItems()) }
 //            addOnFailureListener { onRequestFail(it.toString()) }
 //        }.send(getUserToken(), getGroupId())
     }
 
-    private fun loadMyWritings(writings: List<MyWriting>) {
+    private fun loadMyWritings(writings: List<PlaceGridItem>) {
         _myWritings.value = writings
         _isLoading.value = false
     }
