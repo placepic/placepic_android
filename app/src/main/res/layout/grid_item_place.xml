@@ -8,12 +8,12 @@
         <import type="android.view.View" />
 
         <variable
-            name="myWriting"
-            type="place.pic.data.entity.MyWriting" />
+            name="item"
+            type="place.pic.data.entity.PlaceGridItem" />
 
         <variable
-            name="itemClickListener"
-            type="android.view.View.OnClickListener" />
+            name="clickListener"
+            type="place.pic.ui.main.place.items.PlaceGridItemClickListener" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -23,7 +23,7 @@
         android:layout_marginEnd="6dp"
         android:layout_marginBottom="16dp"
         android:background="@android:color/white"
-        android:onClick="@{itemClickListener}">
+        android:onClick="@{() -> clickListener.onPlaceGridItemClick(item)}">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView2"
@@ -40,7 +40,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
-                app:imageUrl="@{myWriting.imageUrl}"
+                app:imageUrl="@{item.imageUrl}"
                 app:srcCompat="@drawable/ic_launcher_background" />
 
         </androidx.cardview.widget.CardView>
@@ -61,7 +61,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="6dp"
                 android:fontFamily="@font/noto_sans_bold"
-                android:text="@{String.valueOf(myWriting.likeCount)}"
+                android:text="@{String.valueOf(item.likeCount)}"
                 android:textColor="@android:color/white"
                 android:textSize="10dp"
                 app:layout_constraintBottom_toBottomOf="@+id/imageView13"
@@ -90,7 +90,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/noto_sans_bold"
-            android:text="@{myWriting.placeName}"
+            android:text="@{item.placeName}"
             android:textColor="@color/black36"
             android:textSize="17dp"
             app:layout_constraintStart_toStartOf="parent"
@@ -102,11 +102,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/noto_sans_regular"
-            android:text="@{myWriting.subwayName}"
             android:textColor="@color/grayADB6BD"
             android:textSize="13dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView32"
+            app:subways="@{item.subwayName}"
             tools:text="이정연" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

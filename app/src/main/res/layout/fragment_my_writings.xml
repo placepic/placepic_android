@@ -33,7 +33,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:spanCount="2"
-            tools:listitem="@layout/item_my_writing" />
+            tools:listitem="@layout/grid_item_place" />
 
         <ProgressBar
             android:id="@+id/progressBar"
