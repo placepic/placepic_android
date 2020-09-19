@@ -65,7 +65,7 @@ class MyWritingsFragment : Fragment() {
 
     private fun onMyWritingClick(placeGridItem: PlaceGridItem) {
         val intent = Intent(requireActivity(), DetailViewActivity::class.java)
-        intent.putExtra("placeIdx", placeGridItem.placeIdx)
+        intent.putExtra("placeIdx", placeGridItem.placeIdx.toLong())
         startActivityForResult(intent, 5000)
     }
 

@@ -1,7 +1,7 @@
 package place.pic.data.remote.response
 
-import place.pic.data.entity.Bookmark
 import place.pic.data.entity.Place
+import place.pic.data.entity.PlaceGridItem
 import java.util.*
 
 /**
@@ -37,14 +37,12 @@ data class PlaceItemResponse(
         uploaderProfileUrl = user.profileURL
     )
 
-    fun toBookmark() = Bookmark(
+    fun toPlaceGridItem() = PlaceGridItem(
         imageUrl = imageUrl.getOrElse(0) { "" },
-        placeIdx = placeIdx,
+        placeIdx = placeIdx.toInt(),
         placeName = placeName,
-        uploaderName = user.userName,
         likeCount = likeCount,
-        firstTag = tag.getOrNull(0)?.tagName,
-        secondTag = tag.getOrNull(1)?.tagName
+        subwayName = subway.map { it.subwayName }
     )
 }
 

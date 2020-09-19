@@ -4,7 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import place.pic.data.PlacepicAuthRepository
-import place.pic.data.entity.Bookmark
+import place.pic.data.entity.PlaceGridItem
 import place.pic.data.remote.request.BookmarksRequest
 
 /**
@@ -19,11 +19,11 @@ class BookmarksViewModel(
     val isLoading: LiveData<Boolean>
         get() = _isLoading
 
-    private val _bookmarks = MutableLiveData<List<Bookmark>>()
-    val bookmarks: LiveData<List<Bookmark>>
+    private val _bookmarks = MutableLiveData<List<PlaceGridItem>>()
+    val bookmarks: LiveData<List<PlaceGridItem>>
         get() = _bookmarks
 
-    fun removeBookmark(placeId: Long) {
+    fun removeBookmark(placeId: Int) {
         val currentBookmarks = getCurrentBookmarks().toMutableList()
         val removedBookmarks = currentBookmarks.filter { it.placeIdx != placeId }
         _bookmarks.value = removedBookmarks
@@ -32,12 +32,12 @@ class BookmarksViewModel(
     fun requestBookmarks() {
         _isLoading.value = true
         BookmarksRequest().apply {
-            addOnSuccessListener { loadBookmarks(it.data.toBookmarks()) }
+            addOnSuccessListener { loadBookmarks(it.data.toPlaceGridItems()) }
             addOnFailureListener { onRequestFail(it.toString()) }
         }.send(getUserToken(), getGroupId())
     }
 
-    private fun loadBookmarks(bookmarks: List<Bookmark>) {
+    private fun loadBookmarks(bookmarks: List<PlaceGridItem>) {
         _bookmarks.value = bookmarks
         _isLoading.value = false
     }
