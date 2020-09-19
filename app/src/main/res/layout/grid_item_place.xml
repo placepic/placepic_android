@@ -23,7 +23,7 @@
         android:layout_marginEnd="6dp"
         android:layout_marginBottom="16dp"
         android:background="@android:color/white"
-        android:onClick="@{() -> clickListener.onPlaceGridItemClick(item)}">
+        android:onClick="@{(view) -> clickListener.onPlaceGridItemClick(item)}">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView2"
@@ -99,14 +99,17 @@
 
         <TextView
             android:id="@+id/textView33"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:ellipsize="end"
             android:fontFamily="@font/noto_sans_regular"
+            android:maxLines="1"
+            android:text='@{String.join("/", item.subwayName)}'
             android:textColor="@color/grayADB6BD"
             android:textSize="13dp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView32"
-            app:subways="@{item.subwayName}"
             tools:text="이정연" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
