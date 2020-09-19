@@ -71,7 +71,7 @@
                             app:layout_constraintTop_toTopOf="parent" />
 
                         <ImageView
-                            android:id="@+id/imageView16"
+                            android:id="@+id/img_btn_banner_list"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:paddingStart="16dp"

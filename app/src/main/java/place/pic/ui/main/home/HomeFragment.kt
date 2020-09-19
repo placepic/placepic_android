@@ -1,5 +1,6 @@
 package place.pic.ui.main.home
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -37,6 +38,11 @@ class HomeFragment : Fragment() {
 
         loadDatas()
         //loadDatas() 호출을 통해 infinite scroll을 위한 준비 완료
+
+        img_btn_banner_list.setOnClickListener {
+            val intent = Intent(context, BannerListActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun initViewPager(view: View) {
