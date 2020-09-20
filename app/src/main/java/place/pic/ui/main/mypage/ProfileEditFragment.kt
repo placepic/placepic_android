@@ -26,10 +26,6 @@ class ProfileEditFragment : Fragment() {
         (activity as MyPageSettingActivity).tv_setting_top_bar_title.text="프로필 편집"
         val v = inflater.inflate(R.layout.fragment_profile_edit, container, false)
         v.img_profile_setting.setOnClickListener {
-            
-
-
-
         }
         return v
     }

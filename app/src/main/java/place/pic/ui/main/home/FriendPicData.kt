@@ -18,6 +18,7 @@ data class FriendPicData (
     val subways: List<String>,
     val tags: List<String>,
     //태그의 text를 배열로 받아오고
-    val uploadDate: Date,
+    val uploadDate: String,
+    //서버한테 받는건 Int, 출력하는건 String
     val content: String
 )

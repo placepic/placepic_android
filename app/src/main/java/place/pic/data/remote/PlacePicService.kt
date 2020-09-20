@@ -110,6 +110,13 @@ interface PlacePicService {
         @Path("groupIdx") groupIdx: Int
     ): Call<BaseResponse<MyPageResponse>>
 
+    @GET("/auth/myInfo/places/{groupIdx}")
+    fun requestMyWritings(
+        @Header("Content-Type") contentType: String = "application/json",
+        @Header("token") token: String,
+        @Path("groupIdx") groupIdx: Int
+    ): Call<BaseResponse<MyWritingsResponse>>
+
     /*
     * 관리자 페이지 서버 연결
     */

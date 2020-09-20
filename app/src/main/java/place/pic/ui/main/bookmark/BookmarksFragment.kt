@@ -6,16 +6,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import place.pic.data.PlacepicAuthRepository
-import place.pic.data.entity.Bookmark
+import place.pic.data.entity.PlaceGridItem
 import place.pic.databinding.FragmentBookmarksBinding
 import place.pic.ui.main.detail.DetailViewActivity
-
+import place.pic.ui.main.place.adapter.PlaceGridItemsAdapter
 
 class BookmarksFragment : Fragment() {
 
-    private lateinit var bookmarksAdapter: BookmarksAdapter
+    private lateinit var placeGridItemsAdapter: PlaceGridItemsAdapter
     private lateinit var bookmarksViewModel: BookmarksViewModel
 
     override fun onCreateView(
@@ -39,37 +38,34 @@ class BookmarksFragment : Fragment() {
 
         if (resultCode == BOOKMARK_CANCELED || resultCode == PLACE_DELETED) {
             val placeIdx = data?.getLongExtra("placeIdx", -1) ?: return
-            bookmarksViewModel.removeBookmark(placeIdx)
+            bookmarksViewModel.removeBookmark(placeIdx.toInt())
         }
     }
 
     private fun initView(binding: FragmentBookmarksBinding) {
         bookmarksViewModel =
             BookmarksViewModel(PlacepicAuthRepository.getInstance(requireContext()))
-        bookmarksAdapter = BookmarksAdapter()
-        bookmarksAdapter.setItemClickListener { onBookmarkClick(it) }
+        placeGridItemsAdapter = PlaceGridItemsAdapter()
+        placeGridItemsAdapter.setItemClickListener { onBookmarkClick(it) }
         binding.viewModel = bookmarksViewModel
         binding.lifecycleOwner = this
-        binding.rvBookmarks.adapter = bookmarksAdapter
+        binding.rvBookmarks.adapter = placeGridItemsAdapter
     }
 
     private fun subscribeBookmarks() {
-        bookmarksViewModel.bookmarks.observe(this, Observer {
-            bookmarksAdapter.submitList(it)
-        })
+        bookmarksViewModel.bookmarks.observe(viewLifecycleOwner) {
+            placeGridItemsAdapter.submitList(it)
+        }
     }
 
-    private fun onBookmarkClick(bookmark: Bookmark) {
+    private fun onBookmarkClick(placeGridItem: PlaceGridItem) {
         val intent = Intent(requireActivity(), DetailViewActivity::class.java)
-        intent.putExtra("placeIdx", bookmark.placeIdx)
+        intent.putExtra("placeIdx", placeGridItem.placeIdx.toLong())
         startActivityForResult(intent, 5000)
     }
 
     companion object {
         const val PLACE_DELETED = 1
         const val BOOKMARK_CANCELED = 2
-        fun newInstance(): BookmarksFragment {
-            return BookmarksFragment()
-        }
     }
 }

@@ -6,9 +6,16 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
+import android.text.TextWatcher
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_profile_edit.*
+import kotlinx.android.synthetic.main.activity_signup.*
+import kotlinx.android.synthetic.main.activity_signup_second.*
+import kotlinx.android.synthetic.main.item_like_user_list.*
 import place.pic.R
+import place.pic.ui.util.customTextChangedListener
 import place.pic.ui.util.showToast
 
 class ProfileEditActivity : AppCompatActivity() {
@@ -16,6 +23,10 @@ class ProfileEditActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile_edit)
+
+        img_profile_edit_top_bar_back_btn.setOnClickListener {
+            finish()
+        }
 
         img_profile_setting.setOnClickListener {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
@@ -30,6 +41,15 @@ class ProfileEditActivity : AppCompatActivity() {
             }
             else{
                 pickImageFromGallery()
+            }
+        }
+
+        val user_part=""
+        et_profile_setting_in_part.customTextChangedListener {
+            if (it != user_part){
+                btn_profile_edit_ok.isEnabled = true
+                btn_profile_edit_ok.setTextColor(getColor(R.color.pinkF6))
+                return@customTextChangedListener
             }
         }
     }
@@ -65,5 +85,7 @@ class ProfileEditActivity : AppCompatActivity() {
             img_profile_setting.setImageURI(data?.data)
         }
     }
+
+
 }
 

@@ -36,9 +36,9 @@ class FriendPicAdapter : RecyclerView.Adapter<FriendPicViewHolder>() {
         val size = itemCount + 2
         datas.addAll(items)
         notifyItemRangeInserted(size, items.size)
-    }*/
+    }
 
     private fun clear() {
         datas.clear()
-    }
+    }*/
 }

@@ -9,17 +9,17 @@
 
         <variable
             name="viewModel"
-            type="place.pic.ui.main.bookmark.BookmarksViewModel" />
+            type="place.pic.ui.main.mypage.mywritings.MyWritingsViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@android:color/white"
-        tools:context=".ui.main.bookmark.BookmarksFragment">
+        tools:context=".ui.main.my_writing.BookmarksFragment">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_bookmarks"
+            android:id="@+id/rv_my_writings"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginStart="8dp"
@@ -50,19 +50,18 @@
             android:id="@+id/zone_empty"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="100dp"
-            android:nestedScrollingEnabled="false"
-            android:visibility="@{viewModel.bookmarks.empty ? View.VISIBLE : View.GONE}"
+            android:visibility="@{viewModel.myWritings.empty ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.38">
 
             <ImageView
                 android:id="@+id/imageView15"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/scrap_ic_40px"
+                android:src="@drawable/write_ic_40px"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -72,7 +71,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="14dp"
-                android:text="@string/have_not_bookmarked_yet"
+                android:text="@string/have_not_written_yet"
                 android:textColor="@color/grayCED5DA"
                 android:textSize="15dp"
                 app:layout_constraintBottom_toBottomOf="parent"

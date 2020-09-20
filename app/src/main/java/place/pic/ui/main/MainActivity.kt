@@ -73,7 +73,6 @@ class MainActivity : AppCompatActivity(), WriteFragment.BottomSheetListener {
         fab_write.setOnClickListener {
             WriteFragment().show(supportFragmentManager, "BottomSheetEx")
         }
-
     }
 
     override fun onOptionClick(text: String) {
@@ -83,11 +82,11 @@ class MainActivity : AppCompatActivity(), WriteFragment.BottomSheetListener {
         val mBottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_nav)
         if (System.currentTimeMillis() - mBackWait >= 2000) {
             mBackWait = System.currentTimeMillis()
-            if (mBottomNavigationView.selectedItemId == R.id.action_menu) {
-                mBottomNavigationView.selectedItemId = R.id.action_menu
+            if (mBottomNavigationView.selectedItemId == R.id.action_home) {
+                mBottomNavigationView.selectedItemId = R.id.action_home
                 super.onBackPressed()
             } else {
-                mBottomNavigationView.selectedItemId = R.id.action_menu
+                mBottomNavigationView.selectedItemId = R.id.action_home
             }
             showToast("뒤로가기 버튼을 한번 더 누르면 종료됩니다.")
         } else {
@@ -101,7 +100,5 @@ class MainActivity : AppCompatActivity(), WriteFragment.BottomSheetListener {
             .addToBackStack(null)
             .commit()
     }
-
-
 }
 
