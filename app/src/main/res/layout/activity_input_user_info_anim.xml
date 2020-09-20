@@ -144,7 +144,6 @@
         android:id="@+id/btn_input_user_info_real_start"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
         android:background="@drawable/round_rectangle_gray_8dp"
         android:backgroundTint="@color/selector_enable_button_gray_to_main_color"
         android:visibility="gone"
@@ -161,7 +160,6 @@
         android:id="@+id/btn_input_user_info_end_input_part"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
         android:text="소속 입력 완료"
         android:background="@drawable/round_rectangle_gray_8dp"
         android:backgroundTint="@color/selector_enable_button_gray_to_main_color"
@@ -173,20 +171,5 @@
         app:layout_constraintStart_toStartOf="@+id/cl_input_user_info_part"
         />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_input_user_info_end_input_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
-        android:text="이름 입력 완료"
-        android:background="@drawable/round_rectangle_gray_8dp"
-        android:backgroundTint="@color/colorPrimary"
-        android:textColor="@android:color/white"
-        android:visibility="gone"
-        android:textSize="15dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/cl_input_user_info_part"
-        app:layout_constraintStart_toStartOf="@+id/cl_input_user_info_part"
-        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

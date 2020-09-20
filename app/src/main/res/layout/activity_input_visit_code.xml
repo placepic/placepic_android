@@ -88,7 +88,7 @@
             android:id="@+id/tv_input_visit_code_info"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/find_visit_code_in_sopt_facebook"
+            android:text="@string/goto_facebook_page"
             android:textColor="@color/gray838788"
             android:textSize="9dp"
             app:layout_constraintStart_toStartOf="@id/et_input_visit_code"
