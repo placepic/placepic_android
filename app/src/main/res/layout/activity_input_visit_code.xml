@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.group.InputVisitCodeActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_input_visit_code_top_bar"
+        android:layout_width="0dp"
+        android:layout_height="56dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/img_input_visit_code_top_back_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="12dp"
+            android:paddingBottom="12dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="12dp"
+            android:src="@drawable/back_arrow_ic"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_input_visit_code_top_bar_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/noto_sans_bold"
+            android:text="그룹 코드 입력하기"
+            android:textColor="@color/black36"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/img_input_visit_code_top_back_btn"
+            app:layout_constraintStart_toEndOf="@+id/img_input_visit_code_top_back_btn"
+            app:layout_constraintTop_toTopOf="@+id/img_input_visit_code_top_back_btn" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_input_visit_code_group_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="16dp"
+        app:layout_constraintTop_toBottomOf="@id/cl_input_visit_code_top_bar"
+        app:layout_constraintStart_toStartOf="@+id/cl_input_visit_code_top_bar"
+        app:layout_constraintEnd_toEndOf="@+id/cl_input_visit_code_top_bar"
+        >
+
+        <TextView
+            android:id="@+id/tv_input_visit_code"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="그룹 코드"
+            android:textSize="15dp"
+            android:textColor="@color/black36"
+            android:fontFamily="@font/noto_sans_bold"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+
+        <EditText
+            android:id="@+id/et_input_visit_code"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:background="@drawable/selector_edittext_in_login_view"
+            android:hint="초대 코드를 입력해주세요"
+            app:layout_goneMarginTop="4dp"
+            android:layout_marginBottom="25dp"
+            android:inputType="textPersonName"
+            android:paddingVertical="12dp"
+            android:paddingStart="16dp"
+            android:textColorHint="@color/grayCED5DA"
+            android:textSize="14dp"
+            android:fontFamily="@font/noto_sans_regular"
+            app:layout_constraintStart_toStartOf="@+id/tv_input_visit_code"
+            app:layout_constraintTop_toBottomOf="@id/tv_input_visit_code"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <TextView
+            android:id="@+id/tv_input_visit_code_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/find_visit_code_in_sopt_facebook"
+            android:textColor="@color/gray838788"
+            android:textSize="9dp"
+            app:layout_constraintStart_toStartOf="@id/et_input_visit_code"
+            app:layout_constraintTop_toBottomOf="@id/et_input_visit_code" />
+
+        <TextView
+            android:id="@+id/tv_goto_sopt_facebook"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:fontFamily="@font/noto_sans_bold"
+            android:text="확인하러가기"
+            android:textColor="@color/colorPrimary"
+            android:textSize="9dp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_input_visit_code_info"
+            app:layout_constraintStart_toEndOf="@id/tv_input_visit_code_info"
+            app:layout_constraintTop_toTopOf="@+id/tv_input_visit_code_info" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_into_group"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/round_rectangle_gray_8dp"
+        android:backgroundTint="@color/selector_enable_button_gray_to_main_color"
+        android:enabled="false"
+        android:text="그룹 들어가기"
+        android:textColor="@color/selector_enable_text_gray_to_white"
+        android:textSize="15dp"
+        android:fontFamily="@font/noto_sans_bold"
+        app:layout_constraintEnd_toEndOf="@+id/cl_input_visit_code_group_view"
+        app:layout_constraintStart_toStartOf="@+id/cl_input_visit_code_group_view"
+        app:layout_constraintTop_toBottomOf="@+id/cl_input_visit_code_group_view" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

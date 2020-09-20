@@ -1,10 +1,15 @@
+/*
 package place.pic.ui.group
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.KeyEvent
+import android.widget.EditText
 import kotlinx.android.synthetic.main.activity_input_user_info.*
 import place.pic.R
+import place.pic.ui.util.animation.nextActivityAnimation
+import place.pic.ui.util.animation.previousActivityAnimation
 import place.pic.ui.util.customTextChangedListener
 
 class InputUserInfoActivity : AppCompatActivity() {
@@ -26,9 +31,9 @@ class InputUserInfoActivity : AppCompatActivity() {
     }
 
     private fun buttonEventMapping() {
-        btn_sign_up_group.setOnClickListener {
+        btn_input_user_info_real_start.setOnClickListener {
         }
-        img_sign_up_group_top_back_btn.setOnClickListener {
+        img_input_user_info_top_back_btn.setOnClickListener {
             onBackPressed()
         }
     }
@@ -38,7 +43,7 @@ class InputUserInfoActivity : AppCompatActivity() {
             isInputGroup = !it.isNullOrBlank()
             buttonSetEnabled()
         }
-        et_sign_up_phone_num.customTextChangedListener {
+        et_input_user_info_part.customTextChangedListener {
             isInputPhoneNum = !it.isNullOrBlank()
             buttonSetEnabled()
         }
@@ -55,45 +60,21 @@ class InputUserInfoActivity : AppCompatActivity() {
     }
 
     private fun enableSignUpButton() {
-        btn_sign_up_group.isEnabled = true
+        btn_input_user_info_real_start.isEnabled = true
     }
 
     private fun disableSignUpButton() {
-        btn_sign_up_group.isEnabled = false
+        btn_input_user_info_real_start.isEnabled = false
     }
 
     override fun onBackPressed() {
         super.onBackPressed()
-        overridePendingTransition(
-            R.anim.alpah_slide_in_left_to_right,
-            R.anim.load_fade_out
-        )
+        previousActivityAnimation()
     }
 
-   /* *//*서버 연결 *//*
-    private fun requestToSignupGroup() {
-        PlacepicAuthRepository.getInstance(this).userToken?.let {
-            PlacePicService.getInstance()
-                .requestSigninGroup(
-                    token = it,
-                    body = RequestSigninGroup(
-                        part = et_sign_up_group.text.toString(),
-                        phoneNumber = et_sign_up_phone_num.text.toString(),
-                        groupIdx = groupIdx
-                    )
-                )
-                .customEnqueue(
-                    onSuccess = { response ->
-                        val gotoEndGroupJoinIntent =
-                            Intent(this, EndGroupJoinActivity::class.java)
-                        response.body()?.data?.let { data ->
-                            gotoEndGroupJoinIntent.putExtra("groupName", data.groupName)
-                            gotoEndGroupJoinIntent.putExtra("groupImage", data.groupImage)
-                        }
-                        startActivity(gotoEndGroupJoinIntent)
-                        finishAffinity()
-                    }
-                )
-        }
-    }*/
-}
+    override fun finish() {
+        super.finish()
+        nextActivityAnimation()
+    }
+
+}*/

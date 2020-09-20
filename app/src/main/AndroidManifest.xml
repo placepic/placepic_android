@@ -31,9 +31,9 @@
         </activity>
         <activity android:name=".ui.search.place.PlaceSearchActivity" />
         <activity android:name=".ui.upload.UploadPlaceActivity" />
-        <activity android:name=".ui.group.InputUserInfoActivity" />
-        <activity android:name=".ui.group.joingrouplist.JoinGroupActivity" />
-        <activity android:name=".ui.group.waitgrouplist.WaitGroupActivity" />
+        <activity android:name=".ui.group.InputUserInfoAnimActivity"
+            android:windowSoftInputMode="adjustResize"/>
+        <activity android:name=".ui.group.InputVisitCodeActivity"/>
         <activity android:name=".ui.login.LoginActivity" />
         <activity android:name=".ui.main.MainActivity" />
         <activity android:name=".ui.login.LoginPageActivity" />
