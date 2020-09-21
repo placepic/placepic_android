@@ -94,8 +94,8 @@ class InputUserInfoAnimActivity : AppCompatActivity(), View.OnClickListener {
         previousActivityAnimation()
     }
 
-    override fun finish() {
-        super.finish()
+    override fun finishAffinity() {
+        super.finishAffinity()
         nextActivityAnimation()
     }
 
