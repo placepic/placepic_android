@@ -22,22 +22,29 @@ class BannerAdapter : PagerAdapter() {
     )
 
     override fun isViewFromObject(view: View, `object`: Any): Boolean {
+        //페이지뷰가 키 객체와 연관되는지 확인
         return view === `object`
     }
 
     override fun getCount(): Int {
-        return Images.size
+        //뷰페이저의 전체 페이지 수 결정
+        return Integer.MAX_VALUE
     }
 
     override fun instantiateItem(parent: ViewGroup, position: Int): Any {
+        //화면에 표시할 페이지뷰 생성
+
+        val realPos = position % Images.size
+
         val view =
             LayoutInflater.from(parent.context).inflate(R.layout.item_home_banner, parent, false)
-        val inflater = LayoutInflater.from(parent.context)
         val image = view.findViewById<View>(R.id.img_home_viewpager) as ImageView
 
-        image.setImageResource(Images[position])
+        image.setImageResource(Images[realPos])
         val vp = parent as ViewPager
         vp.addView(view, 0)
+
+        //image.setOnClickListener{}
 
         return view
     }

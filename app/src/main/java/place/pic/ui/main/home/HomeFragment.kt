@@ -65,7 +65,7 @@ class HomeFragment : Fragment() {
 
     private fun loadDatas() {
 
-        val pdate: DateParser = DateParser(1600436820)
+        val pdate: DateParser = DateParser(1600665738)
         val dateResult: String = pdate.calculateDiffDate()
 
         datas.apply {
