@@ -15,7 +15,7 @@ import place.pic.R
 import place.pic.data.PlacepicAuthRepository
 import place.pic.data.entity.Place
 import place.pic.data.remote.PlacePicService
-import place.pic.data.remote.request.RequestToPlacceIdx
+import place.pic.data.remote.request.RequestToPlaceIdx
 import place.pic.data.remote.response.DetailResponse
 import place.pic.data.remote.response.Uploader
 import place.pic.ui.dialog.SimpleDialog
@@ -39,7 +39,7 @@ class DetailViewActivity : AppCompatActivity(), View.OnClickListener,OnMapReadyC
 
     private lateinit var token: String
 
-    private var placeIdx: Long = 0
+    private var placeIdx: Int = 0
 
     private var webUrl: String = ""
     private var webTitle: String = ""
@@ -53,7 +53,7 @@ class DetailViewActivity : AppCompatActivity(), View.OnClickListener,OnMapReadyC
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail_view)
         token = PlacepicAuthRepository.getInstance(this).userToken ?: return
-        placeIdx = intent.getLongExtra("placeIdx", 0)
+        placeIdx = intent.getIntExtra("placeIdx", 0)
         NaverMapSdk.getInstance(this).client =
             NaverMapSdk.NaverCloudPlatformClient("n1d1q8lp28")
         init()
@@ -155,7 +155,7 @@ class DetailViewActivity : AppCompatActivity(), View.OnClickListener,OnMapReadyC
         PlacePicService.getInstance()
             .requestToLike(
                 token = token,
-                body = RequestToPlacceIdx(placeIdx)
+                body = RequestToPlaceIdx(placeIdx)
             ).customEnqueue(
                 onSuccess = { _ ->
                     setMyLikeButtonStatus(true)
@@ -180,7 +180,7 @@ class DetailViewActivity : AppCompatActivity(), View.OnClickListener,OnMapReadyC
         PlacePicService.getInstance()
             .requestToBookmark(
                 token = token,
-                body = RequestToPlacceIdx(placeIdx)
+                body = RequestToPlaceIdx(placeIdx)
             ).customEnqueue(
                 onSuccess = {
                     setMyBookmarkButtonStatus(true)

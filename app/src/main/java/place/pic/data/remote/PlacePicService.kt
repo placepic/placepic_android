@@ -153,7 +153,7 @@ interface PlacePicService {
     fun requestDetail(
         @Header("Content-Type") contentType: String = "application/json",
         @Header("token") token: String,
-        @Path("placeIdx") placeIdx: Long
+        @Path("placeIdx") placeIdx: Int
     ): Call<BaseResponse<DetailResponse>>
 
     @Multipart
@@ -171,7 +171,7 @@ interface PlacePicService {
     fun requestToLike(
         @Header("Content-Type") contentType: String = "application/json",
         @Header("token") token: String,
-        @Body body: RequestToPlacceIdx
+        @Body body: RequestToPlaceIdx
     ): Call<BaseResponse<Unit>>
 
     //좋아요 취소
@@ -179,28 +179,28 @@ interface PlacePicService {
     fun requestToDelLike(
         @Header("Content-Type") contentType: String = "application/json",
         @Header("token") token: String,
-        @Path("placeIdx") placeIdx: Long
+        @Path("placeIdx") placeIdx: Int
     ): Call<BaseResponse<Unit>>
 
     @GET("/places/like/{placeIdx}")
     fun requestToLikeList(
         @Header("Content-Type") contentType: String = "application/json",
         @Header("token") token: String,
-        @Path("placeIdx") placeIdx: Long
+        @Path("placeIdx") placeIdx: Int
     ): Call<BaseResponse<List<Like>>>
 
     @POST("/places/bookmark")
     fun requestToBookmark(
         @Header("Content-Type") contentType: String = "application/json",
         @Header("token") token: String,
-        @Body body: RequestToPlacceIdx
+        @Body body: RequestToPlaceIdx
     ): Call<BaseResponse<Unit>>
 
     @DELETE("/places/bookmark/{placeIdx}")
     fun requestToDelBookmark(
         @Header("Content-Type") contentType: String = "application/json",
         @Header("token") token: String,
-        @Path("placeIdx") placeIdx: Long
+        @Path("placeIdx") placeIdx: Int
     ): Call<BaseResponse<Unit>>
 
     //장소 삭제
@@ -208,7 +208,7 @@ interface PlacePicService {
     fun requestToDeletePlace(
         @Header("Content-Type") contentType: String = "application/json",
         @Header("token") token: String,
-        @Path("placeIdx") placeIdx: Long
+        @Path("placeIdx") placeIdx: Int
     ): Call<BaseResponse<Unit>>
 
     @GET("places/bookmark/group/{groupIdx}")
