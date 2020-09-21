@@ -68,7 +68,7 @@ class GroupListFragment : Fragment() {
     }
 
     private fun clickNonSignGroupEvent(){
-        val gotoGroupSignUpIntent = Intent(requireContext(), InputUserInfoActivity::class.java)
+        val gotoGroupSignUpIntent = Intent(requireContext(), InputVisitCodeActivity::class.java)
         startActivity(gotoGroupSignUpIntent)
         requireActivity().nextActivityAnimation()
     }

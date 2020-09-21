@@ -23,7 +23,6 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
 
     private var isCanSendAuthMessage = true
     private var isShowAnimation = true
-    private var userPhone = ""
     private val canRetryTime = AUTH_TIME - RETRY_TIME
 
     private val countDownTimer = object : CountDownTimer(AUTH_TIME, ONE_SEC) {
@@ -41,7 +40,6 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         if (millisUntilFinished <= canRetryTime) {
             btn_login_phone_num_send_message.text = "인증문자 다시 받기"
             isCanSendAuthMessage = true
-            btn_login_phone_num_send_message.isEnabled = isEnableSendAuthMessageButton()
         }
         tv_login_can_auth_timer.text = convertMillisTime(millisUntilFinished / ONE_SEC)
     }
@@ -75,33 +73,43 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun init() {
+        initAnimation()
         loginButtonEnableEvent()
         loginButtonClickEvent()
     }
 
+    private fun initAnimation(){
+        val initAnimation = BindLayoutAnimation<ConstraintLayout>(
+            applicationContext,
+            cl_login_phone_num_view_group,
+            R.anim.spread_down
+        )
+        val initButtonAnimation = BindLayoutAnimation<Button>(
+            applicationContext,
+            btn_login_phone_num_send_message,
+            R.anim.load_fade_in
+        )
+        initAnimation.setStartOffsetInAnimation(700)
+        initButtonAnimation.setStartOffsetInAnimation(1000)
+        initAnimation.startLayoutAnimation()
+        initButtonAnimation.startLayoutAnimation()
+    }
+
     private fun loginButtonEnableEvent() {
         et_login_phone_num.addTextChangedListener(PhoneNumberFormattingTextWatcher())
-        et_login_phone_num.customTextChangedListener {phoneNumFormTextChangeEvent(it)}
+        et_login_phone_num.customTextChangedListener {
+            btn_login_phone_num_send_message.isEnabled = !it.isNullOrBlank()
+        }
         et_login_phone_auth_input.customTextChangedListener {
             btn_login_agree_and_find_group.isEnabled =
                 !it.isNullOrBlank() && !et_login_phone_num.text.isNullOrBlank()
         }
     }
 
-    private fun phoneNumFormTextChangeEvent(text:CharSequence?){
-        if (text != userPhone){
-            btn_login_phone_num_send_message.isEnabled = true
-            return
-        }
-        btn_login_phone_num_send_message.isEnabled = isEnableSendAuthMessageButton()
-    }
-
-    private fun isEnableSendAuthMessageButton(): Boolean =
-        (!et_login_phone_num.text.isNullOrBlank()) && isCanSendAuthMessage
-
     private fun loginButtonClickEvent() {
         btn_login_phone_num_send_message.setOnClickListener(this)
         btn_login_agree_and_find_group.setOnClickListener(this)
+        img_login_top_bar_back_btn.setOnClickListener(this)
     }
 
     override fun onClick(loginButton: View?) {
@@ -112,24 +120,31 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                 startActivity(gotoGroupListIntent)
                 finish()
             }
+            R.id.img_login_top_bar_back_btn -> {onBackPressed()}
         }
     }
 
     private fun sendAuthMessage() {
+        canShowSendAuthMessageAnimation()
+        if (isCanSendAuthMessage) {
+            countDownTimer.start()
+            isCanSendAuthMessage = false
+            return
+        }
         Toast.makeText(applicationContext, "30초 이후에 인증문자를 다시 받을 수 있습니다.", Toast.LENGTH_LONG).show()
-        countDownTimer.start()
-        userPhone = et_login_phone_num.text.toString()
-        isCanSendAuthMessage = false
-        btn_login_phone_num_send_message.isEnabled = isEnableSendAuthMessageButton()
+
+    }
+
+    private fun canShowSendAuthMessageAnimation(){
         if (isShowAnimation) {
             animationLoginAuth()
+            isShowAnimation = false
         }
-        isShowAnimation = false
     }
 
     private fun animationLoginAuth() {
         val authNumFormAnim = BindLayoutAnimation<ConstraintLayout>(
-            applicationContext, cl_login_phone_auth_num_view_group, R.anim.alpah_slide_up
+            applicationContext, cl_login_phone_auth_num_view_group, R.anim.spread_down
         )
         val buttonAnimation = BindLayoutAnimation<Button>(
             applicationContext, btn_login_agree_and_find_group, R.anim.load_fade_in
@@ -138,9 +153,10 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
             applicationContext, cl_login_term_and_privary, R.anim.load_fade_in
         )
         layoutVisibleSetting()
+        buttonAnimation.setStartOffsetInAnimation(700)
+        textGroupAnim.setStartOffsetInAnimation(700)
         authNumFormAnim.startLayoutAnimation()
         buttonAnimation.startLayoutAnimation()
-        textGroupAnim.setStartOffsetInAnimation(300)
         textGroupAnim.startLayoutAnimation()
     }
 

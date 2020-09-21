@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,7 +8,7 @@
     tools:context=".ui.group.InputUserInfoActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/cl_sign_up_group_top_bar"
+        android:id="@+id/cl_input_user_info_top_bar"
         android:layout_width="0dp"
         android:layout_height="56dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -15,147 +16,160 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/img_sign_up_group_top_back_btn"
+            android:id="@+id/img_input_user_info_top_back_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingTop="12dp"
-            android:paddingBottom="12dp"
             android:paddingStart="16dp"
+            android:paddingTop="12dp"
             android:paddingEnd="12dp"
+            android:paddingBottom="12dp"
             android:src="@drawable/back_arrow_ic"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/tv_sign_up_group_top_bar_title"
+            android:id="@+id/tv_input_user_info_top_bar_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/noto_sans_bold"
-            android:text="그룹 가입 신청하기"
+            android:text="프로필 입력"
             android:textColor="@color/black36"
-            android:textSize="18dp"
+            android:textSize="15dp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/img_sign_up_group_top_back_btn"
-            app:layout_constraintStart_toEndOf="@+id/img_sign_up_group_top_back_btn"
-            app:layout_constraintTop_toTopOf="@+id/img_sign_up_group_top_back_btn" />
+            app:layout_constraintBottom_toBottomOf="@+id/img_input_user_info_top_back_btn"
+            app:layout_constraintStart_toEndOf="@+id/img_input_user_info_top_back_btn"
+            app:layout_constraintTop_toTopOf="@+id/img_input_user_info_top_back_btn" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/cl_sign_up_group"
+        android:id="@+id/cl_input_user_info_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingHorizontal="16dp"
-        app:layout_constraintTop_toBottomOf="@id/cl_sign_up_group_top_bar"
-        app:layout_constraintStart_toStartOf="@+id/cl_sign_up_group_top_bar"
-        app:layout_constraintEnd_toEndOf="@+id/cl_sign_up_group_top_bar"
-        >
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="@+id/cl_input_user_info_top_bar"
+        app:layout_constraintStart_toStartOf="@+id/cl_input_user_info_top_bar"
+        app:layout_constraintTop_toBottomOf="@id/cl_input_user_info_top_bar">
 
         <TextView
             android:id="@+id/tv_input_user_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="이름"
-            android:textSize="15dp"
-            android:textColor="@color/black36"
-            android:fontFamily="@font/noto_sans_bold"
             android:layout_marginTop="8dp"
+            android:fontFamily="@font/noto_sans_bold"
+            android:text="이름"
+            android:textColor="@color/black36"
+            android:textSize="13dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
             android:id="@+id/et_input_user_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:background="@drawable/selector_edittext_in_login_view"
-            android:hint="이름을 입력해주세요"
-            app:layout_goneMarginTop="4dp"
             android:layout_marginBottom="25dp"
+            android:background="@drawable/selector_edittext_in_login_view"
+            android:fontFamily="@font/noto_sans_regular"
+            android:hint="이름을 입력해주세요"
             android:inputType="textPersonName"
             android:paddingVertical="12dp"
             android:paddingStart="16dp"
             android:textColorHint="@color/grayCED5DA"
-            android:textSize="14dp"
-            android:fontFamily="@font/noto_sans_regular"
+            android:textSize="15dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@+id/tv_input_user_name"
             app:layout_constraintTop_toBottomOf="@id/tv_input_user_name"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_goneMarginTop="4dp" />
 
         <TextView
             android:id="@+id/tv_user_name_info"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="실명으로 입력해주세요"
-            android:textSize="9dp"
             android:textColor="@color/gray838788"
-            app:layout_constraintTop_toBottomOf="@id/et_input_user_name"
+            android:textSize="9dp"
             app:layout_constraintStart_toStartOf="@id/et_input_user_name"
-            />
+            app:layout_constraintTop_toBottomOf="@id/et_input_user_name" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/cl_sign_up_phone_num"
+        android:id="@+id/cl_input_user_info_part"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingHorizontal="16dp"
-        app:layout_constraintTop_toBottomOf="@id/cl_sign_up_group"
-        app:layout_constraintStart_toStartOf="@id/cl_sign_up_group"
-        app:layout_constraintEnd_toEndOf="@id/cl_sign_up_group"
-        >
+        app:layout_constraintEnd_toEndOf="@id/cl_input_user_info_name"
+        app:layout_constraintStart_toStartOf="@id/cl_input_user_info_name"
+        app:layout_constraintTop_toBottomOf="@id/cl_input_user_info_name">
 
         <TextView
-            android:id="@+id/tv_sign_up_phone_num"
+            android:id="@+id/tv_input_user_info_part"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="소속"
-            android:textSize="15dp"
-            android:textColor="@color/black36"
-            android:fontFamily="@font/noto_sans_bold"
             android:layout_marginTop="8dp"
+            android:fontFamily="@font/noto_sans_bold"
+            android:text="소속"
+            android:textColor="@color/black36"
+            android:textSize="13dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:id="@+id/et_sign_up_phone_num"
+            android:id="@+id/et_input_user_info_part"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:layout_marginBottom="25dp"
             android:background="@drawable/selector_edittext_in_login_view"
-            app:layout_goneMarginTop="4dp"
-            app:layout_goneMarginBottom="25dp"
+            android:fontFamily="@font/noto_sans_regular"
             android:hint="Ex) SOPT 00기 000"
             android:inputType="text"
             android:paddingVertical="12dp"
             android:paddingStart="16dp"
-            android:fontFamily="@font/noto_sans_regular"
             android:textColorHint="@color/grayCED5DA"
-            android:textSize="14dp"
-            app:layout_constraintTop_toBottomOf="@id/tv_sign_up_phone_num"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            android:textSize="15dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/tv_input_user_info_part"
+            app:layout_constraintTop_toBottomOf="@id/tv_input_user_info_part"
+            app:layout_goneMarginBottom="25dp"
+            app:layout_goneMarginTop="4dp" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_sign_up_group"
+        android:id="@+id/btn_input_user_info_real_start"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="25dp"
         android:background="@drawable/round_rectangle_gray_8dp"
-        android:backgroundTint="@color/selector_endable_button_gray_to_main_color"
+        android:backgroundTint="@color/selector_enable_button_gray_to_main_color"
+        android:visibility="gone"
         android:enabled="false"
-        android:text="진짜 시작하기"
-        android:textColor="@color/selector_endable_text_gray_to_white"
-        android:textSize="15dp"
         android:fontFamily="@font/noto_sans_bold"
-        app:layout_constraintEnd_toEndOf="@+id/cl_sign_up_phone_num"
-        app:layout_constraintStart_toStartOf="@+id/cl_sign_up_phone_num"
-        app:layout_constraintTop_toBottomOf="@+id/cl_sign_up_phone_num" />
+        android:text="진짜 시작하기"
+        android:textColor="@color/selector_enable_text_gray_to_white"
+        android:textSize="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/cl_input_user_info_part"
+        app:layout_constraintStart_toStartOf="@+id/cl_input_user_info_part" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_input_user_info_end_input_part"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="소속 입력 완료"
+        android:background="@drawable/round_rectangle_gray_8dp"
+        android:backgroundTint="@color/selector_enable_button_gray_to_main_color"
+        android:textColor="@color/selector_enable_text_gray_to_white"
+        android:visibility="gone"
+        android:textSize="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/cl_input_user_info_part"
+        app:layout_constraintStart_toStartOf="@+id/cl_input_user_info_part"
+        />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
