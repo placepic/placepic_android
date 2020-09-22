@@ -29,37 +29,29 @@ class BannerListActivity : AppCompatActivity() {
         datas.apply {
             add(
                 BannerData(
-                imageUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQtEpw2BhEgmIHtYkPY1NEiE4mNo8V6hwCbLw&usqp=CAU"
+                    badgeBg = "#5BC9A1",
+                    badge = "공모전",
+                    title = "분위기 좋은 카페",
+                    description = "내 친구들의 최애장소 24곳",
+                    imageUrl = "https://lh3.googleusercontent.com/proxy/NiEg3Nab3esZ1MywwqRkupJu7dpwU2TK_-WVtFghd2OZhD5xDJd1Un9Z2HjRE7e0MzEWte498dzm7vaIDmgAQhHo0sgTVVxCtDkNFYal97XlJHXm6AAck-bp1R1v8ZYD-dS8ZRA"
             ))
 
             add(
                 BannerData(
-                    imageUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQtEpw2BhEgmIHtYkPY1NEiE4mNo8V6hwCbLw&usqp=CAU"
+                    badgeBg = "#5BC9A1",
+                    badge = "공모전",
+                    title = "분위기 좋은 카페",
+                    description = "내 친구들의 최애장소 24곳",
+                    imageUrl = "https://lh3.googleusercontent.com/proxy/NiEg3Nab3esZ1MywwqRkupJu7dpwU2TK_-WVtFghd2OZhD5xDJd1Un9Z2HjRE7e0MzEWte498dzm7vaIDmgAQhHo0sgTVVxCtDkNFYal97XlJHXm6AAck-bp1R1v8ZYD-dS8ZRA"
                 ))
 
             add(
                 BannerData(
-                    imageUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQtEpw2BhEgmIHtYkPY1NEiE4mNo8V6hwCbLw&usqp=CAU"
-                ))
-
-            add(
-                BannerData(
-                    imageUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQtEpw2BhEgmIHtYkPY1NEiE4mNo8V6hwCbLw&usqp=CAU"
-                ))
-
-            add(
-                BannerData(
-                    imageUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQtEpw2BhEgmIHtYkPY1NEiE4mNo8V6hwCbLw&usqp=CAU"
-                ))
-
-            add(
-                BannerData(
-                    imageUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQtEpw2BhEgmIHtYkPY1NEiE4mNo8V6hwCbLw&usqp=CAU"
-                ))
-
-            add(
-                BannerData(
-                    imageUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQtEpw2BhEgmIHtYkPY1NEiE4mNo8V6hwCbLw&usqp=CAU"
+                    badgeBg = "#5BC9A1",
+                    badge = "공모전",
+                    title = "분위기 좋은 카페",
+                    description = "내 친구들의 최애장소 24곳",
+                    imageUrl = "https://lh3.googleusercontent.com/proxy/NiEg3Nab3esZ1MywwqRkupJu7dpwU2TK_-WVtFghd2OZhD5xDJd1Un9Z2HjRE7e0MzEWte498dzm7vaIDmgAQhHo0sgTVVxCtDkNFYal97XlJHXm6AAck-bp1R1v8ZYD-dS8ZRA"
                 ))
         }
         bannerListAdapter.datas = datas

@@ -25,4 +25,65 @@
             app:srcCompat="@drawable/testphoto" />
 
     </androidx.cardview.widget.CardView>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/c_banner_badge_bg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/round_rectangle_banner_4dp"
+        app:layout_constraintStart_toStartOf="@+id/cardView5"
+        app:layout_constraintTop_toTopOf="@+id/cardView5">
+
+
+        <TextView
+            android:id="@+id/tv_banner_badge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="6dp"
+            android:layout_marginBottom="2dp"
+            android:fontFamily="@font/noto_sans_bold"
+            android:text="공모전"
+            android:textColor="@color/white"
+            android:textSize="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/tv_banner_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="29dp"
+        android:fontFamily="@font/noto_sans_bold"
+        android:text="분위기 좋은 카페"
+        android:textColor="@color/white"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="@+id/cardView5"
+        app:layout_constraintStart_toStartOf="@+id/cardView5"
+        app:layout_constraintTop_toTopOf="@+id/cardView5" />
+
+    <TextView
+        android:id="@+id/tv_banner_desc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="1dp"
+        android:layout_marginBottom="26dp"
+        android:fontFamily="@font/noto_sans_regular"
+        android:text="내 친구들의 최애 장소"
+        android:textColor="@color/white"
+        android:textSize="10dp"
+        app:layout_constraintBottom_toBottomOf="@+id/cardView5"
+        app:layout_constraintEnd_toEndOf="@+id/cardView5"
+        app:layout_constraintStart_toStartOf="@+id/cardView5"
+        app:layout_constraintTop_toBottomOf="@+id/tv_banner_title" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

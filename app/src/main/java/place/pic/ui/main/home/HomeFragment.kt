@@ -45,7 +45,7 @@ class HomeFragment : Fragment() {
         }
     }
 
-    private fun initViewPager(view: View) {
+   private fun initViewPager(view: View) {
         bannerAdapter = BannerAdapter()
         vp_banner.adapter = bannerAdapter
     }

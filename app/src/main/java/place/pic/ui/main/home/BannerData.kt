@@ -6,5 +6,9 @@ package place.pic.ui.main.home
  */
  
 class BannerData (
+    val badgeBg: String,
+    val badge: String,
+    val title: String,
+    val description: String,
     val imageUrl: String
 )
