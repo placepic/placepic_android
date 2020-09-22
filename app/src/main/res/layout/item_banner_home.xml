@@ -3,10 +3,10 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="match_parent">
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/c_banner_list"
+        android:id="@+id/c_banner_home"
         android:layout_width="0dp"
         android:layout_height="100dp"
         android:layout_marginStart="16dp"
@@ -16,10 +16,10 @@
         app:cardElevation="0dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent" >
 
         <ImageView
-            android:id="@+id/img_banner_list"
+            android:id="@+id/img_banner_home"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="fitXY"
@@ -28,17 +28,17 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/c_banner_badge_bg"
+        android:id="@+id/c_banner_badge_bg_home"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:background="@drawable/round_rectangle_banner_4dp"
-        app:layout_constraintStart_toStartOf="@+id/c_banner_list"
-        app:layout_constraintTop_toTopOf="@+id/c_banner_list">
+        app:layout_constraintStart_toStartOf="@+id/c_banner_home"
+        app:layout_constraintTop_toTopOf="@id/c_banner_home" >
 
         <TextView
-            android:id="@+id/tv_banner_badge"
+            android:id="@+id/tv_banner_badge_home"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="6dp"
@@ -57,21 +57,21 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
-        android:id="@+id/tv_banner_title"
+        android:id="@+id/tv_banner_title_home"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="29dp"
         android:fontFamily="@font/noto_sans_bold"
-        android:text="분위기 좋은 카페"
+        android:text="분위기 좋은"
         android:textColor="@color/white"
         android:textSize="20dp"
-        app:layout_constraintEnd_toEndOf="@+id/c_banner_list"
-        app:layout_constraintStart_toStartOf="@+id/c_banner_list"
-        app:layout_constraintTop_toTopOf="@+id/c_banner_list" />
+        app:layout_constraintEnd_toEndOf="@+id/c_banner_home"
+        app:layout_constraintStart_toStartOf="@+id/c_banner_home"
+        app:layout_constraintTop_toTopOf="@+id/c_banner_home" />
 
     <TextView
-        android:id="@+id/tv_banner_desc"
+        android:id="@+id/tv_banner_desc_home"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
@@ -81,9 +81,36 @@
         android:text="내 친구들의 최애 장소"
         android:textColor="@color/white"
         android:textSize="10dp"
-        app:layout_constraintBottom_toBottomOf="@+id/c_banner_list"
-        app:layout_constraintEnd_toEndOf="@+id/c_banner_list"
-        app:layout_constraintStart_toStartOf="@+id/c_banner_list"
-        app:layout_constraintTop_toBottomOf="@+id/tv_banner_title" />
+        app:layout_constraintBottom_toBottomOf="@+id/c_banner_home"
+        app:layout_constraintEnd_toEndOf="@+id/c_banner_home"
+        app:layout_constraintStart_toStartOf="@+id/c_banner_home"
+        app:layout_constraintTop_toBottomOf="@+id/tv_banner_title_home" />
+
+    <ImageView
+        android:id="@+id/img_banner_count_home"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/c_banner_home"
+        app:layout_constraintEnd_toEndOf="@+id/c_banner_home"
+        app:srcCompat="@drawable/ic_order" />
+
+    <TextView
+        android:id="@+id/tv_banner_count_home"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="6dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="6dp"
+        android:layout_marginBottom="1dp"
+        android:text="1 / 3"
+        android:textSize="8dp"
+        android:textColor="@color/white"
+        android:fontFamily="@font/noto_sans_regular"
+        app:layout_constraintBottom_toBottomOf="@+id/img_banner_count_home"
+        app:layout_constraintEnd_toEndOf="@+id/img_banner_count_home"
+        app:layout_constraintStart_toStartOf="@+id/img_banner_count_home"
+        app:layout_constraintTop_toTopOf="@+id/img_banner_count_home" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

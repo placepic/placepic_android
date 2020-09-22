@@ -9,18 +9,21 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_home.*
 import place.pic.R
-import place.pic.data.entity.KeywordTag
+import place.pic.ui.main.home.banner.BannerHomeAdapter
+import place.pic.ui.main.home.banner.BannerHomeData
+import place.pic.ui.main.home.banner.BannerListActivity
+import place.pic.ui.main.home.friendpic.FriendPicAdapter
+import place.pic.ui.main.home.friendpic.FriendPicData
 import place.pic.ui.util.DateParser
-import java.util.*
 
 class HomeFragment : Fragment() {
 
-    lateinit var bannerAdapter: BannerAdapter
+    lateinit var bannerHomeAdapter: BannerHomeAdapter
     lateinit var friendPicAdapter: FriendPicAdapter
     lateinit var layoutManager: LinearLayoutManager
 
-    private val tagChipList = mutableListOf<KeywordTag>()
-    val datas = mutableListOf<FriendPicData>()
+    val bannerDatas = mutableListOf<BannerHomeData>()
+    val friendPicDatas = mutableListOf<FriendPicData>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,10 +36,11 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        initViewPager(view)
-        initRcv(view)
+        initViewPager()
+        initRcv()
 
-        loadDatas()
+        loadBannerDatas()
+        loadFriendPicDatas()
         //loadDatas() 호출을 통해 infinite scroll을 위한 준비 완료
 
         img_btn_banner_list.setOnClickListener {
@@ -45,12 +49,12 @@ class HomeFragment : Fragment() {
         }
     }
 
-   private fun initViewPager(view: View) {
-        bannerAdapter = BannerAdapter()
-        vp_banner.adapter = bannerAdapter
+   private fun initViewPager() {
+        bannerHomeAdapter = BannerHomeAdapter()
+        vp_banner.adapter = bannerHomeAdapter
     }
 
-    private fun initRcv(view: View) {
+    private fun initRcv() {
         friendPicAdapter = FriendPicAdapter()
         rv_friendPic.adapter = friendPicAdapter
     }
@@ -63,12 +67,51 @@ class HomeFragment : Fragment() {
     private fun getFriendPicListFromServer() {} */
 
 
-    private fun loadDatas() {
+    private fun loadBannerDatas() {
+        bannerDatas.apply {
+            add(
+                BannerHomeData(
+                    badgeBg = "#5BC9A1",
+                    badge = "공모전",
+                    title = "분위기 좋은 카페",
+                    description = "내 친구들의 최애장소 24곳",
+                    imageUrl = "https://lh3.googleusercontent.com/proxy/NiEg3Nab3esZ1MywwqRkupJu7dpwU2TK_-WVtFghd2OZhD5xDJd1Un9Z2HjRE7e0MzEWte498dzm7vaIDmgAQhHo0sgTVVxCtDkNFYal97XlJHXm6AAck-bp1R1v8ZYD-dS8ZRA",
+                    count = "1 / 3"
+                )
+            )
+
+            add(
+                BannerHomeData(
+                    badgeBg = "#5BC9A1",
+                    badge = "PICK",
+                    title = "제목 테스트",
+                    description = "내 친구들의 최애장소 24곳",
+                    imageUrl = "https://images.homify.com/c_fill,f_auto,q_0,w_740/v1495806612/p/photo/image/2031170/%C3%A3_-_%C3%A3%C3%B5_%C3%8E_%C3%9B%C3%80%C3%BA%C3%81%C3%95%C3%81_%C3%BA_8.jpg",
+                    count = "2 / 3"
+                )
+            )
+
+            add(
+                BannerHomeData(
+                    badgeBg = "#5BC9A1",
+                    badge = "공모전",
+                    title = "알고보니 리사이클러가 안되는중",
+                    description = "내 친구들의 최애장소 24곳",
+                    imageUrl = "https://odden1.speedgabia.com/static/bb/lists/spot-n03-s02/spot_f_n03-s02-01.jpg",
+                    count = "3 / 3"
+                )
+            )
+        }
+        bannerHomeAdapter.datas = bannerDatas
+        bannerHomeAdapter.notifyDataSetChanged()
+    }
+    
+    private fun loadFriendPicDatas() {
 
         val pdate: DateParser = DateParser(1600665738)
-        val dateResult: String = pdate.calculateDiffDate()
+        val dateResult: String = pdate.calculateDiffDate() //UNIX 타임 변환
 
-        datas.apply {
+        friendPicDatas.apply {
             add(
                 FriendPicData(
                     profileImageUrl = "https://img.hankyung.com/photo/201911/03.20725204.1.jpg",
@@ -87,7 +130,7 @@ class HomeFragment : Fragment() {
             add(
                 FriendPicData(
                     profileImageUrl = "https://img.hankyung.com/photo/201911/03.20725204.1.jpg",
-                    userName = "김다혜",
+                    userName = "최영훈",
                     part = "27기 안드로이드파트",
                     imageUrl = "https://t1.daumcdn.net/cfile/tistory/2443D04556A6314F0A",
                     liker = 123,
@@ -102,7 +145,7 @@ class HomeFragment : Fragment() {
             add(
                 FriendPicData(
                     profileImageUrl = "https://img.hankyung.com/photo/201911/03.20725204.1.jpg",
-                    userName = "김다혜",
+                    userName = "배민주",
                     part = "27기 안드로이드파트",
                     imageUrl = "https://t1.daumcdn.net/cfile/tistory/2443D04556A6314F0A",
                     liker = 123,
@@ -117,7 +160,7 @@ class HomeFragment : Fragment() {
             add(
                 FriendPicData(
                     profileImageUrl = "https://img.hankyung.com/photo/201911/03.20725204.1.jpg",
-                    userName = "김다혜",
+                    userName = "이정연",
                     part = "27기 안드로이드파트",
                     imageUrl = "https://t1.daumcdn.net/cfile/tistory/2443D04556A6314F0A",
                     liker = 123,
@@ -129,8 +172,7 @@ class HomeFragment : Fragment() {
                 )
             )
         }
-
-        friendPicAdapter.datas = datas
+        friendPicAdapter.datas = friendPicDatas
         friendPicAdapter.notifyDataSetChanged()
     }
 }

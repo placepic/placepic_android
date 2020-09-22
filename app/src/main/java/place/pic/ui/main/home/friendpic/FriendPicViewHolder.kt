@@ -1,4 +1,4 @@
-package place.pic.ui.main.home
+package place.pic.ui.main.home.friendpic
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,7 +6,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
 import place.pic.R
 import place.pic.ui.tag.ChipFactory
