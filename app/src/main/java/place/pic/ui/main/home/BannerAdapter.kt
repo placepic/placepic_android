@@ -12,7 +12,7 @@ import place.pic.R
  * Created By kimdahyee
  * on 09월 12일, 2020
  */
- 
+
 class BannerAdapter : PagerAdapter() {
 
     private val Images = arrayOf(
@@ -37,8 +37,8 @@ class BannerAdapter : PagerAdapter() {
         val realPos = position % Images.size
 
         val view =
-            LayoutInflater.from(parent.context).inflate(R.layout.item_home_banner, parent, false)
-        val image = view.findViewById<View>(R.id.img_home_viewpager) as ImageView
+            LayoutInflater.from(parent.context).inflate(R.layout.item_banner_list, parent, false)
+        val image = view.findViewById<View>(R.id.img_banner_list) as ImageView
 
         image.setImageResource(Images[realPos])
         val vp = parent as ViewPager
