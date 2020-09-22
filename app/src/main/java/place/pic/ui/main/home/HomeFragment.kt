@@ -80,7 +80,7 @@ class HomeFragment : Fragment() {
 
             add(
                 BannerHomeData(
-                    badgeBg = "#5BC9A1",
+                    badgeBg = "#F6CB5C",
                     badge = "PICK",
                     title = "제목 테스트",
                     description = "내 친구들의 최애장소 24곳",

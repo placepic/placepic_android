@@ -1,5 +1,6 @@
 package place.pic.ui.main.home.banner
 
+import android.graphics.Color
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -22,7 +23,7 @@ class BannerHomeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     val count: TextView = itemView.findViewById(R.id.tv_banner_count_home)
 
     fun bind(bannerHomeData: BannerHomeData, position: String) {
-        //badgeBg.setBackgroundColor(Color.parseColor("#F6CB5C"))
+        badgeBg.setBackgroundColor(Color.parseColor(bannerHomeData.badgeBg))
         badge.text = bannerHomeData.badge
         title.text = bannerHomeData.title
         description.text = bannerHomeData.description

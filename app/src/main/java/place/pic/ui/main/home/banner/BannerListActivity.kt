@@ -39,7 +39,7 @@ class BannerListActivity : AppCompatActivity() {
 
             add(
                 BannerListData(
-                    badgeBg = "#5BC9A1",
+                    badgeBg = "#F6CB5C",
                     badge = "PICK",
                     title = "제목 2",
                     description = "내 친구들의 최애장소 24곳",
@@ -69,7 +69,7 @@ class BannerListActivity : AppCompatActivity() {
 
             add(
                 BannerListData(
-                    badgeBg = "#5BC9A1",
+                    badgeBg = "#F6CB5C",
                     badge = "PICK",
                     title = "제목 5",
                     description = "내 친구들의 최애장소 24곳",
@@ -79,7 +79,7 @@ class BannerListActivity : AppCompatActivity() {
 
             add(
                 BannerListData(
-                    badgeBg = "#5BC9A1",
+                    badgeBg = "#F6CB5C",
                     badge = "PICK",
                     title = "제목 6",
                     description = "내 친구들의 최애장소 24곳",
