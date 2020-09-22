@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import place.pic.R
+import java.lang.StringBuilder
 
 /**
  * Created By kimdahyee
@@ -21,10 +22,15 @@ class BannerHomeAdapter : RecyclerView.Adapter<BannerHomeViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: BannerHomeViewHolder, position: Int) {
-        holder.bind(datas[position])
+        val realPos = position % datas.size
+        val sb = StringBuilder("")
+        sb.append((realPos + 1).toString())
+        sb.append(" / ")
+        sb.append(datas.size)
+        holder.bind(datas[realPos], sb.toString())
     }
 
     override fun getItemCount(): Int {
-        return datas.size
+        return Integer.MAX_VALUE
     }
 }

@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.viewpager2.widget.ViewPager2
 import kotlinx.android.synthetic.main.fragment_home.*
 import place.pic.R
 import place.pic.ui.main.home.banner.BannerHomeAdapter
@@ -22,8 +23,8 @@ class HomeFragment : Fragment() {
     lateinit var friendPicAdapter: FriendPicAdapter
     lateinit var layoutManager: LinearLayoutManager
 
-    val bannerDatas = mutableListOf<BannerHomeData>()
-    val friendPicDatas = mutableListOf<FriendPicData>()
+    private val bannerDatas = mutableListOf<BannerHomeData>()
+    private val friendPicDatas = mutableListOf<FriendPicData>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,8 +37,7 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        initViewPager()
-        initRcv()
+        init()
 
         loadBannerDatas()
         loadFriendPicDatas()
@@ -49,14 +49,13 @@ class HomeFragment : Fragment() {
         }
     }
 
-   private fun initViewPager() {
-        bannerHomeAdapter = BannerHomeAdapter()
-        vp_banner.adapter = bannerHomeAdapter
-    }
+   private fun init() {
+       bannerHomeAdapter = BannerHomeAdapter()
+       vp_banner.adapter = bannerHomeAdapter
+       vp_banner.orientation = ViewPager2.ORIENTATION_HORIZONTAL
 
-    private fun initRcv() {
-        friendPicAdapter = FriendPicAdapter()
-        rv_friendPic.adapter = friendPicAdapter
+       friendPicAdapter = FriendPicAdapter()
+       rv_friendPic.adapter = friendPicAdapter
     }
 
     /*private fun loadDatas() {
@@ -66,7 +65,6 @@ class HomeFragment : Fragment() {
 
     private fun getFriendPicListFromServer() {} */
 
-
     private fun loadBannerDatas() {
         bannerDatas.apply {
             add(
@@ -75,8 +73,8 @@ class HomeFragment : Fragment() {
                     badge = "공모전",
                     title = "분위기 좋은 카페",
                     description = "내 친구들의 최애장소 24곳",
-                    imageUrl = "https://lh3.googleusercontent.com/proxy/NiEg3Nab3esZ1MywwqRkupJu7dpwU2TK_-WVtFghd2OZhD5xDJd1Un9Z2HjRE7e0MzEWte498dzm7vaIDmgAQhHo0sgTVVxCtDkNFYal97XlJHXm6AAck-bp1R1v8ZYD-dS8ZRA",
-                    count = "1 / 3"
+                    imageUrl = "https://images.homify.com/c_fill,f_auto,q_0,w_740/v1495806612/p/photo/image/2031170/%C3%A3_-_%C3%A3%C3%B5_%C3%8E_%C3%9B%C3%80%C3%BA%C3%81%C3%95%C3%81_%C3%BA_8.jpg",
+                    count = "1 / 8"
                 )
             )
 
@@ -87,7 +85,7 @@ class HomeFragment : Fragment() {
                     title = "제목 테스트",
                     description = "내 친구들의 최애장소 24곳",
                     imageUrl = "https://images.homify.com/c_fill,f_auto,q_0,w_740/v1495806612/p/photo/image/2031170/%C3%A3_-_%C3%A3%C3%B5_%C3%8E_%C3%9B%C3%80%C3%BA%C3%81%C3%95%C3%81_%C3%BA_8.jpg",
-                    count = "2 / 3"
+                    count = "2 / 8"
                 )
             )
 
@@ -98,7 +96,7 @@ class HomeFragment : Fragment() {
                     title = "알고보니 리사이클러가 안되는중",
                     description = "내 친구들의 최애장소 24곳",
                     imageUrl = "https://odden1.speedgabia.com/static/bb/lists/spot-n03-s02/spot_f_n03-s02-01.jpg",
-                    count = "3 / 3"
+                    count = "3 / 7"
                 )
             )
         }

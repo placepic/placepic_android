@@ -5,7 +5,7 @@ package place.pic.ui.main.home.banner
  * on 09월 19일, 2020
  */
  
-class BannerListData (
+data class BannerListData (
     val badgeBg: String,
     val badge: String,
     val title: String,

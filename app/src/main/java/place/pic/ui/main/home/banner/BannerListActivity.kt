@@ -30,10 +30,20 @@ class BannerListActivity : AppCompatActivity() {
             add(
                 BannerListData(
                     badgeBg = "#5BC9A1",
+                    badge = "공모전",
+                    title = "제목 1",
+                    description = "내 친구들의 최애장소 24곳",
+                    imageUrl = "https://odden1.speedgabia.com/static/bb/lists/spot-n03-s02/spot_f_n03-s02-01.jpg"
+                )
+            )
+
+            add(
+                BannerListData(
+                    badgeBg = "#5BC9A1",
                     badge = "PICK",
-                    title = "이게 뭘까",
+                    title = "제목 2",
                     description = "내 친구들의 최애장소 24곳",
-                    imageUrl = "https://lh3.googleusercontent.com/proxy/NiEg3Nab3esZ1MywwqRkupJu7dpwU2TK_-WVtFghd2OZhD5xDJd1Un9Z2HjRE7e0MzEWte498dzm7vaIDmgAQhHo0sgTVVxCtDkNFYal97XlJHXm6AAck-bp1R1v8ZYD-dS8ZRA"
+                    imageUrl = "https://odden1.speedgabia.com/static/bb/lists/spot-n03-s02/spot_f_n03-s02-01.jpg"
                 )
             )
 
@@ -41,9 +51,9 @@ class BannerListActivity : AppCompatActivity() {
                 BannerListData(
                     badgeBg = "#5BC9A1",
                     badge = "공모전",
-                    title = "지금 매우 당황",
+                    title = "제목 3",
                     description = "내 친구들의 최애장소 24곳",
-                    imageUrl = "https://lh3.googleusercontent.com/proxy/NiEg3Nab3esZ1MywwqRkupJu7dpwU2TK_-WVtFghd2OZhD5xDJd1Un9Z2HjRE7e0MzEWte498dzm7vaIDmgAQhHo0sgTVVxCtDkNFYal97XlJHXm6AAck-bp1R1v8ZYD-dS8ZRA"
+                    imageUrl = "https://odden1.speedgabia.com/static/bb/lists/spot-n03-s02/spot_f_n03-s02-01.jpg"
                 )
             )
 
@@ -51,69 +61,29 @@ class BannerListActivity : AppCompatActivity() {
                 BannerListData(
                     badgeBg = "#5BC9A1",
                     badge = "공모전",
-                    title = "분위기 좋은 카페",
+                    title = "제목 4",
                     description = "내 친구들의 최애장소 24곳",
-                    imageUrl = "https://lh3.googleusercontent.com/proxy/NiEg3Nab3esZ1MywwqRkupJu7dpwU2TK_-WVtFghd2OZhD5xDJd1Un9Z2HjRE7e0MzEWte498dzm7vaIDmgAQhHo0sgTVVxCtDkNFYal97XlJHXm6AAck-bp1R1v8ZYD-dS8ZRA"
+                    imageUrl = "https://odden1.speedgabia.com/static/bb/lists/spot-n03-s02/spot_f_n03-s02-01.jpg"
                 )
             )
 
             add(
                 BannerListData(
                     badgeBg = "#5BC9A1",
-                    badge = "공모전",
-                    title = "분위기 좋은 카페",
+                    badge = "PICK",
+                    title = "제목 5",
                     description = "내 친구들의 최애장소 24곳",
-                    imageUrl = "https://lh3.googleusercontent.com/proxy/NiEg3Nab3esZ1MywwqRkupJu7dpwU2TK_-WVtFghd2OZhD5xDJd1Un9Z2HjRE7e0MzEWte498dzm7vaIDmgAQhHo0sgTVVxCtDkNFYal97XlJHXm6AAck-bp1R1v8ZYD-dS8ZRA"
+                    imageUrl = "https://odden1.speedgabia.com/static/bb/lists/spot-n03-s02/spot_f_n03-s02-01.jpg"
                 )
             )
 
             add(
                 BannerListData(
                     badgeBg = "#5BC9A1",
-                    badge = "공모전",
-                    title = "분위기 좋은 카페",
+                    badge = "PICK",
+                    title = "제목 6",
                     description = "내 친구들의 최애장소 24곳",
-                    imageUrl = "https://lh3.googleusercontent.com/proxy/NiEg3Nab3esZ1MywwqRkupJu7dpwU2TK_-WVtFghd2OZhD5xDJd1Un9Z2HjRE7e0MzEWte498dzm7vaIDmgAQhHo0sgTVVxCtDkNFYal97XlJHXm6AAck-bp1R1v8ZYD-dS8ZRA"
-                )
-            )
-
-            add(
-                BannerListData(
-                    badgeBg = "#5BC9A1",
-                    badge = "공모전",
-                    title = "분위기 좋은 카페",
-                    description = "내 친구들의 최애장소 24곳",
-                    imageUrl = "https://lh3.googleusercontent.com/proxy/NiEg3Nab3esZ1MywwqRkupJu7dpwU2TK_-WVtFghd2OZhD5xDJd1Un9Z2HjRE7e0MzEWte498dzm7vaIDmgAQhHo0sgTVVxCtDkNFYal97XlJHXm6AAck-bp1R1v8ZYD-dS8ZRA"
-                )
-            )
-
-            add(
-                BannerListData(
-                    badgeBg = "#5BC9A1",
-                    badge = "공모전",
-                    title = "분위기 좋은 카페",
-                    description = "내 친구들의 최애장소 24곳",
-                    imageUrl = "https://lh3.googleusercontent.com/proxy/NiEg3Nab3esZ1MywwqRkupJu7dpwU2TK_-WVtFghd2OZhD5xDJd1Un9Z2HjRE7e0MzEWte498dzm7vaIDmgAQhHo0sgTVVxCtDkNFYal97XlJHXm6AAck-bp1R1v8ZYD-dS8ZRA"
-                )
-            )
-
-            add(
-                BannerListData(
-                    badgeBg = "#5BC9A1",
-                    badge = "공모전",
-                    title = "분위기 좋은 카페",
-                    description = "내 친구들의 최애장소 24곳",
-                    imageUrl = "https://lh3.googleusercontent.com/proxy/NiEg3Nab3esZ1MywwqRkupJu7dpwU2TK_-WVtFghd2OZhD5xDJd1Un9Z2HjRE7e0MzEWte498dzm7vaIDmgAQhHo0sgTVVxCtDkNFYal97XlJHXm6AAck-bp1R1v8ZYD-dS8ZRA"
-                )
-            )
-
-            add(
-                BannerListData(
-                    badgeBg = "#5BC9A1",
-                    badge = "공모전",
-                    title = "분위기 좋은 카페",
-                    description = "내 친구들의 최애장소 24곳",
-                    imageUrl = "https://lh3.googleusercontent.com/proxy/NiEg3Nab3esZ1MywwqRkupJu7dpwU2TK_-WVtFghd2OZhD5xDJd1Un9Z2HjRE7e0MzEWte498dzm7vaIDmgAQhHo0sgTVVxCtDkNFYal97XlJHXm6AAck-bp1R1v8ZYD-dS8ZRA"
+                    imageUrl = "https://odden1.speedgabia.com/static/bb/lists/spot-n03-s02/spot_f_n03-s02-01.jpg"
                 )
             )
         }

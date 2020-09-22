@@ -24,9 +24,9 @@ class BannerListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     fun bind(bannerListData: BannerListData) {
         //badgeBg.setBackgroundColor(Color.parseColor("#F6CB5C"))
-        badge.text = badge.text
-        title.text = title.text
-        description.text = description.text
+        badge.text = bannerListData.badge
+        title.text = bannerListData.title
+        description.text = bannerListData.description
         Glide.with(itemView).load(bannerListData.imageUrl).into(imageUrl)
     }
 }
