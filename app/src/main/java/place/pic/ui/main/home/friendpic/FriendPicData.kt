@@ -1,8 +1,5 @@
 package place.pic.ui.main.home.friendpic
 
-import com.google.android.material.chip.ChipGroup
-import java.util.*
-
 /**
  * Created By kimdahyee
  * on 09월 05일, 2020

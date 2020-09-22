@@ -6,7 +6,6 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import place.pic.R
-import place.pic.ui.main.home.banner.BannerHomeData
 
 /**
  * Created By kimdahyee
@@ -22,12 +21,12 @@ class BannerHomeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     val imageUrl: ImageView = itemView.findViewById(R.id.img_banner_home)
     val count: TextView = itemView.findViewById(R.id.tv_banner_count_home)
 
-    fun bind(bannerHomeData: BannerHomeData) {
+    fun bind(bannerHomeData: BannerHomeData, position: String) {
         //badgeBg.setBackgroundColor(Color.parseColor("#F6CB5C"))
-        badge.text = badge.text
-        title.text = title.text
-        description.text = description.text
+        badge.text = bannerHomeData.badge
+        title.text = bannerHomeData.title
+        description.text = bannerHomeData.description
         Glide.with(itemView).load(bannerHomeData.imageUrl).into(imageUrl)
-        count.text = count.text
+        count.text = position
     }
 }
