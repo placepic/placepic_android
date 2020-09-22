@@ -1,10 +1,9 @@
-package place.pic.ui.main.home
+package place.pic.ui.main.home.friendpic
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import place.pic.R
-import place.pic.ui.main.userlist.UserData
 
 /**
  * Created By kimdahyee
@@ -19,7 +18,10 @@ class FriendPicAdapter : RecyclerView.Adapter<FriendPicViewHolder>() {
         val view =
             LayoutInflater.from(parent.context).inflate(R.layout.item_friend_pic, parent, false)
         val inflater = LayoutInflater.from(parent.context)
-        return FriendPicViewHolder(view, inflater)
+        return FriendPicViewHolder(
+            view,
+            inflater
+        )
     }
 
     override fun onBindViewHolder(holder: FriendPicViewHolder, position: Int) {
