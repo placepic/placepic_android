@@ -17,8 +17,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-
-        <activity android:name=".ui.main.home.banner.BannerListActivity"></activity>
+        <activity android:name=".ui.main.home.banner.detail.BannerDetailActivity"></activity>
+        <activity android:name=".ui.main.home.banner.BannerListActivity" />
         <activity android:name=".ui.main.mypage.ProfileEditActivity" />
         <activity android:name=".ui.main.mypage.MyPageSettingActivity" />
         <activity android:name=".ui.main.mypage.GroupChangeActivity" />
@@ -33,11 +33,12 @@
         </activity>
         <activity android:name=".ui.search.place.PlaceSearchActivity" />
         <activity android:name=".ui.upload.UploadPlaceActivity" />
-        <activity android:name=".ui.group.InputUserInfoAnimActivity"
-            android:windowSoftInputMode="adjustResize"/>
+        <activity
+            android:name=".ui.group.InputUserInfoAnimActivity"
+            android:windowSoftInputMode="adjustResize" />
         <activity android:name=".ui.login.LoginActivity" />
-        <activity android:name=".ui.main.MainActivity"/>
-        <activity android:name=".ui.group.InputVisitCodeActivity"/>
+        <activity android:name=".ui.main.MainActivity" />
+        <activity android:name=".ui.group.InputVisitCodeActivity" />
         <activity android:name=".ui.login.LoginPageActivity" />
         <activity android:name=".ui.main.detail.DetailViewActivity" />
         <activity android:name=".ui.tag.UsefulTagActivity" />
