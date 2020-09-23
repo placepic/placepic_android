@@ -34,7 +34,7 @@ class PlaceItemsViewModel(
     val totalItemCount: LiveData<Int>
         get() = _totalItemCount
 
-    fun removePlace(placeId: Long) {
+    fun removePlace(placeId: Int) {
         val currentItems = getCurrentPlaceItems().toMutableList()
         val filteredItems = currentItems.filter { it.id != placeId }
         _placeItems.value = filteredItems

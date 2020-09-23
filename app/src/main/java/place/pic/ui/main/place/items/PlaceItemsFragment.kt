@@ -60,9 +60,9 @@ class PlaceItemsFragment(private val placeType: Place.Type) : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        placeItemsViewModel.placeItems.observe(this, Observer {
+        placeItemsViewModel.placeItems.observe(viewLifecycleOwner) {
             placeItemsAdapter.submitList(it)
-        })
+        }
     }
 
     override fun onResume() {
@@ -81,7 +81,7 @@ class PlaceItemsFragment(private val placeType: Place.Type) : Fragment() {
 
         if (requestCode == 6000) {
             if (resultCode == PLACE_DELETED) {
-                val deletedPlaceId = data?.getLongExtra("placeIdx", -1) ?: return
+                val deletedPlaceId = data?.getIntExtra("placeIdx", -1) ?: return
                 placeItemsViewModel.removePlace(deletedPlaceId)
             }
             tlqkfFlag = true
@@ -89,7 +89,7 @@ class PlaceItemsFragment(private val placeType: Place.Type) : Fragment() {
     }
 
     private fun inflateAsyncLayout(target: FragmentLoadingBinding, container: ViewGroup?) {
-        AsyncLayoutInflater(context!!).inflate(
+        AsyncLayoutInflater(requireContext()).inflate(
             R.layout.fragment_place_items,
             container
         ) { view, _, _ ->

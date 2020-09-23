@@ -58,14 +58,14 @@ class MyWritingsFragment : Fragment() {
         super.onActivityResult(requestCode, resultCode, data)
 
         if (resultCode == PLACE_DELETED) {
-            val placeIdx = data?.getLongExtra("placeIdx", -1) ?: return
-            myWritingsViewModel.removeMyWriting(placeIdx.toInt())
+            val placeIdx = data?.getIntExtra("placeIdx", -1) ?: return
+            myWritingsViewModel.removeMyWriting(placeIdx)
         }
     }
 
     private fun onMyWritingClick(placeGridItem: PlaceGridItem) {
         val intent = Intent(requireActivity(), DetailViewActivity::class.java)
-        intent.putExtra("placeIdx", placeGridItem.placeIdx.toLong())
+        intent.putExtra("placeIdx", placeGridItem.placeIdx)
         startActivityForResult(intent, 5000)
     }
 
