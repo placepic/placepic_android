@@ -17,7 +17,7 @@ data class PlaceResponse(
 }
 
 data class PlaceItemResponse(
-    val placeIdx: Long,
+    val placeIdx: Int,
     val placeName: String,
     val placeCreatedAt: Long,
     val tag: List<TagResponse>,
@@ -39,7 +39,7 @@ data class PlaceItemResponse(
 
     fun toPlaceGridItem() = PlaceGridItem(
         imageUrl = imageUrl.getOrElse(0) { "" },
-        placeIdx = placeIdx.toInt(),
+        placeIdx = placeIdx,
         placeName = placeName,
         likeCount = likeCount,
         subwayName = subway.map { it.subwayName }
