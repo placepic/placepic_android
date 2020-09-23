@@ -91,6 +91,16 @@ class MyPageFragment : Fragment() {
                             }
                             else -> tv_profile_kind.text = "승인대기중"
                         }
+
+                        v.bt_setting.setOnClickListener {
+                            val intent2 = Intent(context, MyPageSettingActivity::class.java)
+                            intent2.putExtra("name",user_name)
+                            intent2.putExtra("state", user_state!!)
+                            intent2.putExtra("part",user_part)
+                            intent2.putExtra("image",user_image)
+                            startActivity(intent2)
+                            //activity?.finish()
+                        }
                     }
                 }
             }
@@ -101,11 +111,7 @@ class MyPageFragment : Fragment() {
             startActivity(intent)
         }*/
 
-        v.bt_setting.setOnClickListener {
-            val intent2 = Intent(context, MyPageSettingActivity::class.java)
-            startActivity(intent2)
-            //activity?.finish()
-        }
+
         return v
     }
 
