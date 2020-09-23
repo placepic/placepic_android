@@ -33,13 +33,6 @@ class MyWritingsViewModel(
         loadMyWritings(
             listOf(
                 MyWriting("", 1, "네임", 123, "이이이이름"),
-                MyWriting("", 1, "네임", 123, "이이이이름"),
-                MyWriting("", 1, "네임", 123, "이이이이름"),
-                MyWriting("", 1, "네임", 123, "이이이이름"),
-                MyWriting("", 1, "네임", 123, "이이이이름"),
-                MyWriting("", 1, "네임", 123, "이이이이름"),
-                MyWriting("", 1, "네임", 123, "이이이이름"),
-                MyWriting("", 1, "네임", 123, "이이이이름"),
                 MyWriting("", 1, "네임", 123, "이이이이름")
             )
         )
