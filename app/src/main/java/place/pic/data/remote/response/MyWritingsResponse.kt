@@ -8,26 +8,10 @@ import place.pic.data.entity.PlaceGridItem
  */
 
 data class MyWritingsResponse(
-    val UserPlace: List<MyWritingResponse>,
+    val UserPlace: List<PlaceGridItemResponse>,
     val placeCount: Int
 ) {
     fun toPlaceGridItems(): List<PlaceGridItem> {
         return UserPlace.map { it.toPlaceGridItem() }
     }
-}
-
-data class MyWritingResponse(
-    val placeIdx: Int,
-    val placeImageUrl: String,
-    val placeName: String,
-    val likeCnt: Int,
-    val subwayName: List<String>
-) {
-    fun toPlaceGridItem() = PlaceGridItem(
-        imageUrl = placeImageUrl,
-        placeIdx = placeIdx,
-        placeName = placeName,
-        likeCount = likeCnt,
-        subwayName = subwayName
-    )
 }
