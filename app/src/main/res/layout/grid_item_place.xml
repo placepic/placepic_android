@@ -41,7 +41,7 @@
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
                 app:imageUrl="@{item.imageUrl}"
-                app:srcCompat="@drawable/ic_launcher_background" />
+                tools:src="@tools:sample/avatars"/>
 
         </androidx.cardview.widget.CardView>
 

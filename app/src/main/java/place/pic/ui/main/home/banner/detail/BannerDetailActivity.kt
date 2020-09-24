@@ -29,17 +29,17 @@ class BannerDetailActivity : AppCompatActivity() {
         val binding = ActivityBannerDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        initBanner(binding.banner)
+        initBanner()
         placeGridItemsAdapter.setItemClickListener { deployPlaceDetail(it) }
         binding.lifecycleOwner = this
         binding.rvPlaceGridItems.adapter = placeGridItemsAdapter
         binding.btnBack.setOnClickListener { onBackPressed() }
     }
 
-    private fun initBanner(banner: View) {
-        banner.findViewById<TextView>(R.id.tv_banner_title).text = "제목"
-        banner.findViewById<TextView>(R.id.tv_banner_desc).text = "소제목"
-        banner.findViewById<TextView>(R.id.tv_banner_badge).text = "뱃지"
+    private fun initBanner() {
+        findViewById<TextView>(R.id.tv_banner_title).text = "제목"
+        findViewById<TextView>(R.id.tv_banner_desc).text = "소제목"
+        findViewById<TextView>(R.id.tv_banner_badge).text = "뱃지"
     }
 
     private fun deployPlaceDetail(placeItem: PlaceGridItem) {
