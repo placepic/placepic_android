@@ -40,7 +40,7 @@ class MyWritingsViewModel(
                 PlaceGridItem("", 1, "네임", 123, listOf("이이이이름")),
                 PlaceGridItem("", 1, "네임", 123, listOf("이이이이름")),
                 PlaceGridItem("", 1, "네임", 123, listOf("이이이이름")),
-                PlaceGridItem("", 1, "네임", 123, listOf("이이이이름")),
+                PlaceGridItem("", 1, "네임", 123, listOf("이이이이름"))
             )
         )
 //        MyWritingsRequest().apply {

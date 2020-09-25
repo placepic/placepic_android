@@ -8,7 +8,7 @@ import java.util.*
  */
 
 data class Place(
-    val id: Long,
+    val id: Int,
     val name: String,
     val imageUrl: String,
     val subways: List<Subway>,

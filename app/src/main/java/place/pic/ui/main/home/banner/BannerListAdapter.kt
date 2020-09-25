@@ -1,4 +1,4 @@
-package place.pic.ui.main.home
+package place.pic.ui.main.home.banner
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -12,7 +12,7 @@ import place.pic.R
  
 class BannerListAdapter  : RecyclerView.Adapter<BannerListViewHolder>() {
 
-    var datas: MutableList<BannerData> = mutableListOf()
+    var listDatas: MutableList<BannerListData> = mutableListOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BannerListViewHolder {
         val view =
@@ -21,11 +21,11 @@ class BannerListAdapter  : RecyclerView.Adapter<BannerListViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: BannerListViewHolder, position: Int) {
-        holder.bind(datas[position])
+        holder.bind(listDatas[position])
     }
 
     override fun getItemCount(): Int {
-        return datas.size
+        return listDatas.size
     }
 
 }

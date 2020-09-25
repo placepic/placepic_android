@@ -2,10 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="place.pic">
 
-    <uses-permission android:name="android.permission.WAKE_LOCK" />
-
-    <uses-feature android:name="android.hardware.type.watch" />
-
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -17,7 +13,17 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.main.home.BannerListActivity"/>
+
+        <meta-data
+            android:name="firebase_analytics_collection_enabled"
+            android:value="@bool/FIREBASE_ANALYTICS_COLLECTION_ENABLED" />
+
+        <meta-data
+            android:name="firebase_crashlytics_collection_enabled"
+            android:value="@bool/FIREBASE_CRASHLYTICS_COLLECTION_ENABLED" />
+
+        <activity android:name=".ui.main.home.banner.BannerListActivity" />
+        <activity android:name=".ui.main.home.banner.detail.BannerDetailActivity" />
         <activity android:name=".ui.main.mypage.ProfileEditActivity" />
         <activity android:name=".ui.main.mypage.MyPageSettingActivity" />
         <activity android:name=".ui.main.mypage.GroupChangeActivity" />
@@ -32,11 +38,12 @@
         </activity>
         <activity android:name=".ui.search.place.PlaceSearchActivity" />
         <activity android:name=".ui.upload.UploadPlaceActivity" />
-        <activity android:name=".ui.group.InputUserInfoAnimActivity"
-            android:windowSoftInputMode="adjustResize"/>
+        <activity
+            android:name=".ui.group.InputUserInfoAnimActivity"
+            android:windowSoftInputMode="adjustResize" />
         <activity android:name=".ui.login.LoginActivity" />
-        <activity android:name=".ui.main.MainActivity"/>
-        <activity android:name=".ui.group.InputVisitCodeActivity"/>
+        <activity android:name=".ui.main.MainActivity" />
+        <activity android:name=".ui.group.InputVisitCodeActivity" />
         <activity android:name=".ui.login.LoginPageActivity" />
         <activity android:name=".ui.main.detail.DetailViewActivity" />
         <activity android:name=".ui.tag.UsefulTagActivity" />

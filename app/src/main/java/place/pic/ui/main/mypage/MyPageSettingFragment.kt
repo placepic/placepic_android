@@ -15,10 +15,13 @@ import kotlinx.android.synthetic.main.activity_my_page_setting.*
 import kotlinx.android.synthetic.main.fragment_my_page.view.*
 import kotlinx.android.synthetic.main.fragment_my_page_setting.*
 import kotlinx.android.synthetic.main.fragment_my_page_setting.view.*
+import kotlinx.android.synthetic.main.fragment_write.view.*
 import place.pic.R
+import place.pic.data.entity.Place
 import place.pic.ui.dialog.SimpleDialog
 import place.pic.ui.login.LoginPageActivity
 import place.pic.ui.main.MainActivity
+import place.pic.ui.search.place.PlaceSearchActivity
 
 
 class MyPageSettingFragment : Fragment() {
@@ -35,6 +38,7 @@ class MyPageSettingFragment : Fragment() {
         (activity as MyPageSettingActivity).tv_setting_top_bar_title.text="설정"
         v.cl_btn_profile_edit.setOnClickListener {
             val intent = Intent(context, ProfileEditActivity::class.java)
+
             startActivity(intent)
             //activity?.finish()
         }

@@ -33,11 +33,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/noto_sans_bold"
-            android:src="@drawable/setting_ic_24"
-            android:paddingEnd="16dp"
-            android:paddingTop="12dp"
-            android:paddingBottom="12dp"
             android:paddingStart="16dp"
+            android:paddingTop="12dp"
+            android:paddingEnd="16dp"
+            android:paddingBottom="12dp"
+            android:src="@drawable/setting_ic_24"
             app:layout_constraintBottom_toBottomOf="@+id/tv_sign_top_bar_title2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/tv_sign_top_bar_title2" />
@@ -46,19 +46,18 @@
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="56dp"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/cl_mypage">
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/appBarLayout"
             style="@style/Theme.AppCompat.NoActionBar"
-            app:elevation="0dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            app:elevation="0dp">
 
             <com.google.android.material.appbar.CollapsingToolbarLayout
                 android:layout_width="match_parent"
@@ -77,47 +76,47 @@
                         android:layout_height="81dp"
                         android:layout_marginTop="20dp"
                         android:padding="1dp"
-                        app:civ_border_width="0dp"
                         android:src="@drawable/ic_user"
+                        app:civ_border_width="0dp"
                         app:layout_constraintEnd_toEndOf="@+id/tv_profile_kind"
                         app:layout_constraintStart_toStartOf="@+id/tv_profile_name"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
-                    android:id="@+id/tv_profile_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
-                    android:fontFamily="@font/noto_sans_bold"
-                    android:text=""
-                    android:textColor="@color/black36"
-                    android:textSize="20dp"
-                    app:layout_constraintEnd_toStartOf="@+id/tv_profile_kind"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintHorizontal_chainStyle="packed"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/img_profile" />
+                    <TextView
+                        android:id="@+id/tv_profile_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:fontFamily="@font/noto_sans_bold"
+                        android:text=""
+                        android:textColor="@color/black36"
+                        android:textSize="20dp"
+                        app:layout_constraintEnd_toStartOf="@+id/tv_profile_kind"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintHorizontal_chainStyle="packed"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/img_profile" />
 
-                <TextView
-                    android:id="@+id/tv_profile_kind"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="4dp"
-                    android:background="@drawable/round_rectangle_gray_4dp"
-                    android:fontFamily="@font/noto_sans_regular"
-                    android:paddingStart="6dp"
-                    android:paddingTop="2dp"
-                    android:paddingEnd="6dp"
-                    android:paddingBottom="2dp"
-                    android:text=""
-                    android:textColor="@color/gray838788"
-                    android:textSize="12dp"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="@+id/tv_profile_name"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toEndOf="@+id/tv_profile_name"
-                    app:layout_constraintTop_toTopOf="@+id/tv_profile_name" />
+                    <TextView
+                        android:id="@+id/tv_profile_kind"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:background="@drawable/round_rectangle_gray_4dp"
+                        android:fontFamily="@font/noto_sans_regular"
+                        android:paddingStart="6dp"
+                        android:paddingTop="2dp"
+                        android:paddingEnd="6dp"
+                        android:paddingBottom="2dp"
+                        android:text=""
+                        android:textColor="@color/gray838788"
+                        android:textSize="12dp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="@+id/tv_profile_name"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toEndOf="@+id/tv_profile_name"
+                        app:layout_constraintTop_toTopOf="@+id/tv_profile_name" />
 
                     <TextView
                         android:id="@+id/tv_profile_intro"
@@ -143,9 +142,8 @@
             android:id="@+id/vp_mypage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:overScrollMode="never"
-            android:paddingStart="16dp"
-            android:paddingEnd="16dp"
+            android:paddingStart="14dp"
+            android:paddingEnd="14dp"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
             <com.google.android.material.tabs.TabLayout

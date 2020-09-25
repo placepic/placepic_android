@@ -37,8 +37,8 @@ class BookmarksFragment : Fragment() {
         super.onActivityResult(requestCode, resultCode, data)
 
         if (resultCode == BOOKMARK_CANCELED || resultCode == PLACE_DELETED) {
-            val placeIdx = data?.getLongExtra("placeIdx", -1) ?: return
-            bookmarksViewModel.removeBookmark(placeIdx.toInt())
+            val placeIdx = data?.getIntExtra("placeIdx", -1) ?: return
+            bookmarksViewModel.removeBookmark(placeIdx)
         }
     }
 
@@ -60,7 +60,7 @@ class BookmarksFragment : Fragment() {
 
     private fun onBookmarkClick(placeGridItem: PlaceGridItem) {
         val intent = Intent(requireActivity(), DetailViewActivity::class.java)
-        intent.putExtra("placeIdx", placeGridItem.placeIdx.toLong())
+        intent.putExtra("placeIdx", placeGridItem.placeIdx)
         startActivityForResult(intent, 5000)
     }
 
