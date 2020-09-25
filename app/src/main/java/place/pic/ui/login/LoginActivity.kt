@@ -87,10 +87,10 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         val initButtonAnimation = BindLayoutAnimation<Button>(
             applicationContext,
             btn_login_phone_num_send_message,
-            R.anim.load_fade_in
+            R.anim.spread_down
         )
-        initAnimation.setStartOffsetInAnimation(700)
-        initButtonAnimation.setStartOffsetInAnimation(1000)
+        initAnimation.setStartOffsetInAnimation(500)
+        initButtonAnimation.setStartOffsetInAnimation(500)
         initAnimation.startLayoutAnimation()
         initButtonAnimation.startLayoutAnimation()
     }
