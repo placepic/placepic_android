@@ -9,6 +9,7 @@ import kotlinx.android.synthetic.main.activity_input_visit_code.*
 import place.pic.R
 import place.pic.ui.util.animation.BindLayoutAnimation
 import place.pic.ui.util.animation.nextActivityAnimation
+import place.pic.ui.util.animation.previousActivityAnimation
 import place.pic.ui.util.customTextChangedListener
 
 class InputVisitCodeActivity : AppCompatActivity() {
@@ -33,15 +34,8 @@ class InputVisitCodeActivity : AppCompatActivity() {
             cl_input_visit_code_group_view,
             R.anim.spread_down
         )
-        val intoGroupButtonAnim = BindLayoutAnimation<Button>(
-            applicationContext,
-            btn_into_group,
-            R.anim.load_fade_in
-        )
         inputVisitCodeFormAnim.setStartOffsetInAnimation(700)
-        intoGroupButtonAnim.setStartOffsetInAnimation(1000)
         inputVisitCodeFormAnim.startLayoutAnimation()
-        intoGroupButtonAnim.startLayoutAnimation()
     }
 
     private fun buttonEventMapping() {
@@ -52,6 +46,7 @@ class InputVisitCodeActivity : AppCompatActivity() {
     }
 
     private fun intoGroupEvent(){
+        //TODO: 서버 연결로직(초대 코드 입력)
         val gotoInputUserInfoIntent = Intent(applicationContext, InputUserInfoAnimActivity::class.java)
         startActivity(gotoInputUserInfoIntent)
         nextActivityAnimation()
@@ -66,9 +61,6 @@ class InputVisitCodeActivity : AppCompatActivity() {
 
     override fun onBackPressed() {
         super.onBackPressed()
-        overridePendingTransition(
-            R.anim.alpah_slide_in_left_to_right,
-            R.anim.load_fade_out
-        )
+        previousActivityAnimation()
     }
 }

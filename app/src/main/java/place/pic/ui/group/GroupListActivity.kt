@@ -13,6 +13,7 @@ class GroupListActivity : AppCompatActivity(),BindGroupListEvent {
     private var groupListFragment = GroupListFragment()
 
     override fun requestToGroupListData() {
+        //TODO:이곳에서 그룹 리스트 받아오는 로직 만들기. 서버 연결.
         loadData()
         groupListFragment.setAdapter(groupListData)
     }
