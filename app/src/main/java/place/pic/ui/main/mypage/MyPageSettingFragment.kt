@@ -4,24 +4,15 @@ import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.text.TextUtils.replace
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentTransaction
 import kotlinx.android.synthetic.main.activity_my_page_setting.*
-import kotlinx.android.synthetic.main.fragment_my_page.view.*
-import kotlinx.android.synthetic.main.fragment_my_page_setting.*
 import kotlinx.android.synthetic.main.fragment_my_page_setting.view.*
-import kotlinx.android.synthetic.main.fragment_write.view.*
 import place.pic.R
-import place.pic.data.entity.Place
 import place.pic.ui.dialog.SimpleDialog
-import place.pic.ui.login.LoginPageActivity
-import place.pic.ui.main.MainActivity
-import place.pic.ui.search.place.PlaceSearchActivity
+import place.pic.ui.login.LoginActivity
 
 
 class MyPageSettingFragment : Fragment() {
@@ -58,7 +49,7 @@ class MyPageSettingFragment : Fragment() {
                     dismiss()
                     val preferences = (activity as MyPageSettingActivity).getSharedPreferences("temp", Context.MODE_PRIVATE)
                     val editor : SharedPreferences.Editor= preferences!!.edit()
-                    val intent2 = Intent(context, LoginPageActivity::class.java)
+                    val intent2 = Intent(context, LoginActivity::class.java)
                     editor.clear()
                     editor.apply()
                     startActivity(intent2)

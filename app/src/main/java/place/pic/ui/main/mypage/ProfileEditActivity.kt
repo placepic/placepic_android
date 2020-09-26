@@ -11,8 +11,6 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_profile_edit.*
-import kotlinx.android.synthetic.main.activity_signup.*
-import kotlinx.android.synthetic.main.activity_signup_second.*
 import kotlinx.android.synthetic.main.item_like_user_list.*
 import place.pic.R
 import place.pic.ui.util.customTextChangedListener

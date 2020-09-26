@@ -17,7 +17,7 @@ class GroupListAdapter : RecyclerView.Adapter<GroupListAdapter.ViewHolder>() {
     var datas: List<ResponseGroupList> = listOf()
     private var saveGroupIDListener: ((id: Int) -> Unit)? = null
     private var clickSignGroupListener: (() -> Unit)? = null
-    private var clickNonSignGroupListener: (() -> Unit)? = null
+    private var clickNonSignGroupListener: ((groupCode:String) -> Unit)? = null
 
     fun setSaveGroupIDListener(listener: (id: Int) -> Unit) {
         this.saveGroupIDListener = listener
@@ -27,7 +27,7 @@ class GroupListAdapter : RecyclerView.Adapter<GroupListAdapter.ViewHolder>() {
         this.clickSignGroupListener = listener
     }
 
-    fun setClickNonSignGroupListener(listener: () -> Unit) {
+    fun setClickNonSignGroupListener(listener: (groupCode:String) -> Unit) {
         this.clickNonSignGroupListener = listener
     }
 
@@ -73,12 +73,12 @@ class GroupListAdapter : RecyclerView.Adapter<GroupListAdapter.ViewHolder>() {
         }
 
         private fun itemViewClickEvent(customData: ResponseGroupList) {
+            saveGroupIDListener?.invoke(customData.groupIdx)
             if (customData.state == 1) {
-                saveGroupIDListener?.invoke(customData.groupIdx)
                 clickSignGroupListener?.invoke()
                 return
             }
-            clickNonSignGroupListener?.invoke()
+            clickNonSignGroupListener?.invoke(customData.groupCode)
         }
     }
 

@@ -3,20 +3,27 @@ package place.pic.ui.login
 import android.content.Intent
 import android.os.Bundle
 import android.os.CountDownTimer
-import android.telephony.PhoneNumberFormattingTextWatcher
 import android.view.View
-import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import kotlinx.android.synthetic.main.activity_login.*
 import place.pic.R
+import place.pic.data.PlacepicAuthRepository
+import place.pic.data.remote.PlacePicService
+import place.pic.data.remote.request.LoginAndSignUpAuthNumRequest
+import place.pic.data.remote.request.LoginAndSignUpPhoneNumRequest
+import place.pic.data.remote.response.BaseResponse
+import place.pic.data.remote.response.LoginAndSignUpPhoneNumResponse
+import place.pic.data.remote.response.LoginResponse
 import place.pic.ui.group.GroupListActivity
 import place.pic.ui.util.animation.BindLayoutAnimation
 import place.pic.ui.util.animation.nextActivityAnimation
 import place.pic.ui.util.animation.previousActivityAnimation
+import place.pic.ui.util.customEnqueue
 import place.pic.ui.util.customTextChangedListener
+import retrofit2.Response
 
 
 class LoginActivity : AppCompatActivity(), View.OnClickListener {
@@ -78,25 +85,17 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         loginButtonClickEvent()
     }
 
-    private fun initAnimation(){
+    private fun initAnimation() {
         val initAnimation = BindLayoutAnimation<ConstraintLayout>(
             applicationContext,
             cl_login_phone_num_view_group,
             R.anim.spread_down
         )
-        val initButtonAnimation = BindLayoutAnimation<Button>(
-            applicationContext,
-            btn_login_phone_num_send_message,
-            R.anim.spread_down
-        )
         initAnimation.setStartOffsetInAnimation(500)
-        initButtonAnimation.setStartOffsetInAnimation(500)
         initAnimation.startLayoutAnimation()
-        initButtonAnimation.startLayoutAnimation()
     }
 
     private fun loginButtonEnableEvent() {
-        et_login_phone_num.addTextChangedListener(PhoneNumberFormattingTextWatcher())
         et_login_phone_num.customTextChangedListener {
             btn_login_phone_num_send_message.isEnabled = !it.isNullOrBlank()
         }
@@ -114,28 +113,28 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onClick(loginButton: View?) {
         when (loginButton!!.id) {
-            R.id.btn_login_phone_num_send_message -> { sendAuthMessage() }
-            R.id.btn_login_agree_and_find_group -> {
-                val gotoGroupListIntent = Intent(applicationContext, GroupListActivity::class.java)
-                startActivity(gotoGroupListIntent)
-                finish()
+            R.id.btn_login_phone_num_send_message -> {
+                sendAuthMessage()
             }
-            R.id.img_login_top_bar_back_btn -> {onBackPressed()}
+            R.id.btn_login_agree_and_find_group -> {
+                requestLoginToServer()
+            }
+            R.id.img_login_top_bar_back_btn -> {
+                onBackPressed()
+            }
         }
     }
 
     private fun sendAuthMessage() {
         canShowSendAuthMessageAnimation()
         if (isCanSendAuthMessage) {
-            countDownTimer.start()
-            isCanSendAuthMessage = false
+            requestPhoneAuthNumberToServer()
             return
         }
         Toast.makeText(applicationContext, "30초 이후에 인증문자를 다시 받을 수 있습니다.", Toast.LENGTH_LONG).show()
-
     }
 
-    private fun canShowSendAuthMessageAnimation(){
+    private fun canShowSendAuthMessageAnimation() {
         if (isShowAnimation) {
             animationLoginAuth()
             isShowAnimation = false
@@ -146,24 +145,89 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         val authNumFormAnim = BindLayoutAnimation<ConstraintLayout>(
             applicationContext, cl_login_phone_auth_num_view_group, R.anim.spread_down
         )
-        val buttonAnimation = BindLayoutAnimation<Button>(
-            applicationContext, btn_login_agree_and_find_group, R.anim.load_fade_in
-        )
-        val textGroupAnim = BindLayoutAnimation<ConstraintLayout>(
-            applicationContext, cl_login_term_and_privary, R.anim.load_fade_in
-        )
         layoutVisibleSetting()
-        buttonAnimation.setStartOffsetInAnimation(700)
-        textGroupAnim.setStartOffsetInAnimation(700)
         authNumFormAnim.startLayoutAnimation()
-        buttonAnimation.startLayoutAnimation()
-        textGroupAnim.startLayoutAnimation()
     }
 
     private fun layoutVisibleSetting() {
         cl_login_phone_auth_num_view_group.visibility = View.VISIBLE
-        btn_login_agree_and_find_group.visibility = View.VISIBLE
-        cl_login_term_and_privary.visibility = View.VISIBLE
+    }
+
+    private fun requestPhoneAuthNumberToServer() {
+        PlacePicService.getInstance()
+            .requestLoginAndSignUpPhoneNum(
+                LoginAndSignUpPhoneNumRequest(
+                    phoneNumber = et_login_phone_num.text.toString()
+                )
+            )
+            .customEnqueue(
+                onSuccess = {
+                    countDownTimer.start()
+                    isCanSendAuthMessage = false
+                },
+                onError = { response ->
+                    requestErrorInPhoneNum(response)
+                }
+            )
+
+    }
+
+    private fun requestErrorInPhoneNum(
+        response: Response<BaseResponse<LoginAndSignUpPhoneNumResponse>>
+    ) {
+        when (response.body()?.status) {
+            400 -> {
+                Toast.makeText(applicationContext, response.body()?.message, Toast.LENGTH_SHORT)
+                    .show()
+            }
+            500 -> {
+                Toast.makeText(applicationContext, response.body()?.message, Toast.LENGTH_SHORT)
+                    .show()
+            }
+        }
+    }
+
+    private fun requestLoginToServer() {
+        //TODO:서버연결 로직 붙이기(인증번호 인증)
+        PlacePicService.getInstance()
+            .requestLoginAndSignUpAuthNum(
+                LoginAndSignUpAuthNumRequest(
+                    phoneNumber = et_login_phone_num.text.toString(),
+                    certificationNumber = et_login_phone_auth_input.text.toString()
+                )
+            )
+            .customEnqueue(
+                onSuccess = { response ->
+                    requestSuccessInLogin(response)
+                },
+                onError = { response ->
+                    requestErrorInLogin(response)
+                }
+            )
+        val gotoGroupListIntent = Intent(applicationContext, GroupListActivity::class.java)
+        startActivity(gotoGroupListIntent)
+        finish()
+    }
+
+    private fun requestSuccessInLogin(response: Response<BaseResponse<LoginResponse>>) {
+        PlacepicAuthRepository.getInstance(applicationContext)
+            .saveUserToken(response.body()?.data?.accessToken!!)
+        val gotoGroupListIntent = Intent(applicationContext, GroupListActivity::class.java)
+        startActivity(gotoGroupListIntent)
+        finish()
+    }
+
+    private fun requestErrorInLogin(response: Response<BaseResponse<LoginResponse>>) {
+        when (response.body()?.status) {
+            400 -> {
+                Toast.makeText(applicationContext, response.body()?.message, Toast.LENGTH_SHORT)
+                    .show()
+            }
+            500 -> {
+                Toast.makeText(applicationContext, response.body()?.message, Toast.LENGTH_SHORT)
+                    .show()
+            }
+        }
     }
 
     override fun onBackPressed() {

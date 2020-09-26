@@ -11,9 +11,6 @@ data class ResponseGroupList(
     val groupIdx: Int,
     val groupImage: String,
     val groupName: String,
-    val groupUserIdx: Int,
-    val part: String,
-    val phoneNumber: String,
     val state: Int,
-    val userIdx: Int
+    val groupCode:String
 )

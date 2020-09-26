@@ -16,8 +16,7 @@ fun <ResponseType> Call<ResponseType>.customEnqueue(
     val networkLog = "Network"
     this.enqueue(object : Callback<ResponseType>{
         override fun onFailure(call: Call<ResponseType>, t: Throwable) {
-            Log.d(networkLog, t.message)
-            Log.d(networkLog, call.request().toString())
+            Log.d(networkLog,"${t.message}\n ${t.localizedMessage}")
             Log.d(NETWORK, "통신에 실패했습니다.")
             onFail()
         }

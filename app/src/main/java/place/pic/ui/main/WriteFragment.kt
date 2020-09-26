@@ -6,13 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import kotlinx.android.synthetic.main.activity_signup.*
 import kotlinx.android.synthetic.main.fragment_write.view.*
 import place.pic.R
 import place.pic.data.entity.Place
-import place.pic.ui.login.LoginActivity
 import place.pic.ui.search.place.PlaceSearchActivity
-import place.pic.ui.signup.SignupSecondActivity
 
 
 class WriteFragment : BottomSheetDialogFragment(){

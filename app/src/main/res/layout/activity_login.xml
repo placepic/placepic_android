@@ -86,33 +86,32 @@
             android:id="@+id/tv_login_phone_num_info"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
             android:fontFamily="@font/noto_sans_regular"
             android:text="핸드폰 번호만으로 가입이 완료됩니다. 번호는 안전하게 보관되며 공개되지 않습니다."
             android:textColor="@color/gray838788"
             android:textSize="9dp"
-            app:layout_constraintBottom_toBottomOf="@id/cl_login_phone_num_view_group"
             app:layout_constraintStart_toStartOf="@+id/et_login_phone_num"
             app:layout_constraintTop_toBottomOf="@+id/et_login_phone_num" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_login_phone_num_send_message"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/border_round_rectangle_white_8dp"
+            android:backgroundTint="@color/selector_enable_button_gray_to_black"
+            android:enabled="false"
+            android:fontFamily="@font/noto_sans_regular"
+            android:paddingVertical="13dp"
+            android:text="인증문자 받기"
+            android:textColor="@color/selector_enable_text_gray_to_white"
+            android:textSize="15dp"
+            app:layout_constraintEnd_toEndOf="@+id/et_login_phone_num"
+            app:layout_constraintStart_toStartOf="@+id/et_login_phone_num"
+            app:layout_constraintTop_toBottomOf="@+id/tv_login_phone_num_info" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_login_phone_num_send_message"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="14dp"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/border_round_rectangle_white_8dp"
-        android:backgroundTint="@color/selector_enable_button_gray_to_black"
-        android:enabled="false"
-        android:fontFamily="@font/noto_sans_regular"
-        android:paddingVertical="13dp"
-        android:text="인증문자 받기"
-        android:textColor="@color/selector_enable_text_gray_to_white"
-        android:textSize="15dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/cl_login_phone_num_view_group"
-        app:layout_constraintTop_toBottomOf="@+id/cl_login_phone_num_view_group" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cl_login_phone_auth_num_view_group"
@@ -123,7 +122,7 @@
         android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="@id/cl_login_phone_num_view_group"
         app:layout_constraintStart_toStartOf="@id/cl_login_phone_num_view_group"
-        app:layout_constraintTop_toBottomOf="@id/btn_login_phone_num_send_message">
+        app:layout_constraintTop_toBottomOf="@id/cl_login_phone_num_view_group">
 
         <TextView
             android:id="@+id/tv_login_auth_num"
@@ -132,9 +131,9 @@
             android:layout_marginTop="8dp"
             android:fontFamily="@font/noto_sans_bold"
             android:text="인증번호"
-            android:textStyle="bold"
             android:textColor="@color/black36"
             android:textSize="13dp"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -171,111 +170,104 @@
             android:id="@+id/tv_login_auth_num_info"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
             android:fontFamily="@font/noto_sans_regular"
             android:text="5분 내에 인증번호 입력을 완료해주세요."
             android:textColor="@color/gray838788"
             android:textSize="9dp"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@+id/et_login_phone_auth_input"
             app:layout_constraintTop_toBottomOf="@+id/et_login_phone_auth_input" />
 
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_login_agree_and_find_group"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/round_rectangle_gray_8dp"
+            android:backgroundTint="@color/selector_enable_button_gray_to_main_color"
+            android:enabled="false"
+            android:fontFamily="@font/noto_sans_bold"
+            android:paddingVertical="13dp"
+            android:text="동의하고 그룹 찾으러 떠나기"
+            android:textColor="@color/selector_enable_text_gray_to_white"
+            android:textSize="15dp"
+            app:layout_constraintEnd_toEndOf="@+id/et_login_phone_auth_input"
+            app:layout_constraintStart_toStartOf="@+id/et_login_phone_auth_input"
+            app:layout_constraintTop_toBottomOf="@id/tv_login_auth_num_info" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_login_term_and_privary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="22dp"
+            app:layout_constraintEnd_toEndOf="@+id/btn_login_agree_and_find_group"
+            app:layout_constraintStart_toStartOf="@+id/btn_login_agree_and_find_group"
+            app:layout_constraintTop_toBottomOf="@+id/btn_login_agree_and_find_group">
+
+            <TextView
+                android:id="@+id/tv_login_term"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/noto_sans_regular"
+                android:text="이용약관"
+                android:textColor="@color/gray63"
+                android:textSize="10dp"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_login_and"
+                app:layout_constraintEnd_toStartOf="@+id/tv_login_and"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tv_login_and" />
+
+            <TextView
+                android:id="@+id/tv_login_and"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="4dp"
+                android:fontFamily="@font/noto_sans_regular"
+                android:text="및"
+                android:textColor="@color/gray63"
+                android:textSize="10dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/tv_login_privary"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/tv_login_term"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_login_privary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/noto_sans_regular"
+                android:text="개인정보 취급 방침"
+                android:textColor="@color/gray63"
+                android:textSize="10dp"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_login_and"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/tv_login_and"
+                app:layout_constraintTop_toTopOf="@+id/tv_login_and" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:background="@color/gray63"
+                app:layout_constraintEnd_toEndOf="@id/tv_login_term"
+                app:layout_constraintStart_toStartOf="@id/tv_login_term"
+                app:layout_constraintTop_toBottomOf="@id/tv_login_term" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:background="@color/gray63"
+                app:layout_constraintEnd_toEndOf="@id/tv_login_privary"
+                app:layout_constraintStart_toStartOf="@id/tv_login_privary"
+                app:layout_constraintTop_toBottomOf="@id/tv_login_privary" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:visibility="invisible"
-        android:id="@+id/btn_login_agree_and_find_group"
-        style="?android:attr/borderlessButtonStyle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/round_rectangle_gray_8dp"
-        android:backgroundTint="@color/selector_enable_button_gray_to_main_color"
-        android:enabled="false"
-        android:fontFamily="@font/noto_sans_bold"
-        android:paddingVertical="13dp"
-        android:text="동의하고 그룹 찾으러 떠나기"
-        android:textColor="@color/selector_enable_text_gray_to_white"
-        android:textSize="15dp"
-        app:layout_constraintEnd_toEndOf="@id/cl_login_phone_auth_num_view_group"
-        app:layout_constraintStart_toStartOf="@id/cl_login_phone_auth_num_view_group"
-        app:layout_constraintTop_toBottomOf="@id/cl_login_phone_auth_num_view_group" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:visibility="invisible"
-        android:id="@+id/cl_login_term_and_privary"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="22dp"
-        app:layout_constraintEnd_toEndOf="@+id/btn_login_agree_and_find_group"
-        app:layout_constraintStart_toStartOf="@+id/btn_login_agree_and_find_group"
-        app:layout_constraintTop_toBottomOf="@+id/btn_login_agree_and_find_group">
-
-        <TextView
-            android:id="@+id/tv_login_term"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="이용약관"
-            android:textSize="10dp"
-            android:textColor="@color/gray63"
-            android:fontFamily="@font/noto_sans_regular"
-            app:layout_constraintBottom_toBottomOf="@+id/tv_login_and"
-            app:layout_constraintEnd_toStartOf="@+id/tv_login_and"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/tv_login_and"
-            />
-
-        <TextView
-            android:id="@+id/tv_login_and"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:layout_marginEnd="4dp"
-            android:text="및"
-            android:textSize="10dp"
-            android:textColor="@color/gray63"
-            android:fontFamily="@font/noto_sans_regular"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/tv_login_privary"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/tv_login_term"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/tv_login_privary"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="개인정보 취급 방침"
-            android:textSize="10dp"
-            android:textColor="@color/gray63"
-            android:fontFamily="@font/noto_sans_regular"
-            app:layout_constraintBottom_toBottomOf="@+id/tv_login_and"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/tv_login_and"
-            app:layout_constraintTop_toTopOf="@+id/tv_login_and" />
-
-        <View
-            android:layout_width="0dp"
-            android:layout_height="1dp"
-            android:background="@color/gray63"
-            app:layout_constraintStart_toStartOf="@id/tv_login_term"
-            app:layout_constraintEnd_toEndOf="@id/tv_login_term"
-            app:layout_constraintTop_toBottomOf="@id/tv_login_term"
-            />
-
-        <View
-            android:layout_width="0dp"
-            android:layout_height="1dp"
-            android:background="@color/gray63"
-            app:layout_constraintStart_toStartOf="@id/tv_login_privary"
-            app:layout_constraintEnd_toEndOf="@id/tv_login_privary"
-            app:layout_constraintTop_toBottomOf="@id/tv_login_privary"
-            />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

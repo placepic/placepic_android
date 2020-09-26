@@ -71,18 +71,16 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:background="@drawable/selector_edittext_in_login_view"
+            android:fontFamily="@font/noto_sans_regular"
             android:hint="초대 코드를 입력해주세요"
-            app:layout_goneMarginTop="4dp"
-            android:layout_marginBottom="25dp"
             android:inputType="textPersonName"
             android:paddingVertical="12dp"
             android:paddingStart="16dp"
             android:textColorHint="@color/grayCED5DA"
             android:textSize="14dp"
-            android:fontFamily="@font/noto_sans_regular"
             app:layout_constraintStart_toStartOf="@+id/tv_input_visit_code"
             app:layout_constraintTop_toBottomOf="@id/tv_input_visit_code"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_goneMarginTop="4dp" />
 
         <TextView
             android:id="@+id/tv_input_visit_code_info"
@@ -108,24 +106,25 @@
             app:layout_constraintStart_toEndOf="@id/tv_input_visit_code_info"
             app:layout_constraintTop_toTopOf="@+id/tv_input_visit_code_info" />
 
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_into_group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/round_rectangle_gray_8dp"
+            android:backgroundTint="@color/selector_enable_button_gray_to_main_color"
+            android:enabled="false"
+            android:fontFamily="@font/noto_sans_bold"
+            android:text="그룹 들어가기"
+            android:textColor="@color/selector_enable_text_gray_to_white"
+            android:textSize="15dp"
+            app:layout_constraintEnd_toEndOf="@+id/et_input_visit_code"
+            app:layout_constraintStart_toStartOf="@+id/et_input_visit_code"
+            app:layout_constraintTop_toBottomOf="@+id/tv_input_visit_code_info" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_into_group"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="25dp"
-        android:background="@drawable/round_rectangle_gray_8dp"
-        android:backgroundTint="@color/selector_enable_button_gray_to_main_color"
-        android:enabled="false"
-        android:text="그룹 들어가기"
-        android:textColor="@color/selector_enable_text_gray_to_white"
-        android:textSize="15dp"
-        android:fontFamily="@font/noto_sans_bold"
-        app:layout_constraintEnd_toEndOf="@+id/cl_input_visit_code_group_view"
-        app:layout_constraintStart_toStartOf="@+id/cl_input_visit_code_group_view"
-        app:layout_constraintTop_toBottomOf="@+id/cl_input_visit_code_group_view" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

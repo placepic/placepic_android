@@ -47,8 +47,7 @@
         android:id="@+id/cl_input_user_info_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingHorizontal="16dp"
-        android:visibility="gone"
+        android:paddingHorizontal="14dp"
         app:layout_constraintEnd_toEndOf="@+id/cl_input_user_info_top_bar"
         app:layout_constraintStart_toStartOf="@+id/cl_input_user_info_top_bar"
         app:layout_constraintTop_toBottomOf="@id/cl_input_user_info_top_bar">
@@ -100,7 +99,7 @@
         android:id="@+id/cl_input_user_info_part"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingHorizontal="16dp"
+        android:paddingHorizontal="14dp"
         app:layout_constraintEnd_toEndOf="@id/cl_input_user_info_name"
         app:layout_constraintStart_toStartOf="@id/cl_input_user_info_name"
         app:layout_constraintTop_toBottomOf="@id/cl_input_user_info_name">
@@ -144,32 +143,17 @@
         android:id="@+id/btn_input_user_info_real_start"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="14dp"
+        android:layout_marginTop="24dp"
         android:background="@drawable/round_rectangle_gray_8dp"
         android:backgroundTint="@color/selector_enable_button_gray_to_main_color"
-        android:visibility="gone"
         android:enabled="false"
         android:fontFamily="@font/noto_sans_bold"
         android:text="진짜 시작하기"
         android:textColor="@color/selector_enable_text_gray_to_white"
         android:textSize="15dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/cl_input_user_info_part"
-        app:layout_constraintStart_toStartOf="@+id/cl_input_user_info_part" />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_input_user_info_end_input_part"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="소속 입력 완료"
-        android:background="@drawable/round_rectangle_gray_8dp"
-        android:backgroundTint="@color/selector_enable_button_gray_to_main_color"
-        android:textColor="@color/selector_enable_text_gray_to_white"
-        android:visibility="gone"
-        android:textSize="15dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/cl_input_user_info_part"
         app:layout_constraintStart_toStartOf="@+id/cl_input_user_info_part"
-        />
-
+        app:layout_constraintTop_toBottomOf="@+id/cl_input_user_info_part" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

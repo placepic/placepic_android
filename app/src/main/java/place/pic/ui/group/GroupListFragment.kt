@@ -16,14 +16,14 @@ import place.pic.ui.util.animation.nextActivityAnimation
 
 class GroupListFragment : Fragment() {
 
-    private var groupListAdapter:GroupListAdapter? = null
+    private var groupListAdapter: GroupListAdapter? = null
 
-    private var bindGroupListEvent:BindGroupListEvent?=null
+    private var bindGroupListEvent: BindGroupListEvent? = null
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
         if (context !is BindGroupListEvent) {
-            throw RuntimeException(context.toString()+"GroupListFragment 를 사용하기 위해서는 BindGroupListEvent 를 implement 해야합니다.")
+            throw RuntimeException(context.toString() + "GroupListFragment 를 사용하기 위해서는 BindGroupListEvent 를 implement 해야합니다.")
         }
         bindGroupListEvent = context
     }
@@ -46,29 +46,35 @@ class GroupListFragment : Fragment() {
         bindGroupListEvent?.requestToGroupListData()
     }
 
-    fun setAdapter(groupListData:List<ResponseGroupList>) {
+    fun setAdapter(groupListData: List<ResponseGroupList>) {
         groupListAdapter = GroupListAdapter()
         groupListAdapter?.datas = groupListData
-        groupListAdapter?.setSaveGroupIDListener { id -> saveGroupIdEvent(id)  }
+        groupListAdapter?.setSaveGroupIDListener { id -> saveGroupIdEvent(id) }
         groupListAdapter?.setClickSignGroupListener { clickSignGroupEvent() }
-        groupListAdapter?.setClickNonSignGroupListener { clickNonSignGroupEvent() }
+        groupListAdapter?.setClickNonSignGroupListener { groupCode ->
+            clickNonSignGroupEvent(
+                groupCode
+            )
+        }
         groupListAdapter?.notifyDataSetChanged()
         rv_exist_group_list.adapter = groupListAdapter
     }
 
-    private fun saveGroupIdEvent(groupId:Int){
-        PlacepicAuthRepository.getInstance(requireContext())
-            .saveGroupId(groupId)
+    private fun saveGroupIdEvent(groupId: Int) {
+        val placePicRepository = PlacepicAuthRepository.getInstance(requireContext())
+        placePicRepository.removeGroupId()
+        placePicRepository.saveGroupId(groupId)
     }
 
-    private fun clickSignGroupEvent(){
+    private fun clickSignGroupEvent() {
         val gotoMainIntent = Intent(requireContext(), MainActivity::class.java)
         startActivity(gotoMainIntent)
         requireActivity().finishAffinity()
     }
 
-    private fun clickNonSignGroupEvent(){
+    private fun clickNonSignGroupEvent(groupCode: String) {
         val gotoGroupSignUpIntent = Intent(requireContext(), InputVisitCodeActivity::class.java)
+        gotoGroupSignUpIntent.putExtra("groupCode", groupCode)
         startActivity(gotoGroupSignUpIntent)
         requireActivity().nextActivityAnimation()
     }
