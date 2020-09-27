@@ -18,10 +18,7 @@ class FriendPicAdapter : RecyclerView.Adapter<FriendPicViewHolder>() {
         val view =
             LayoutInflater.from(parent.context).inflate(R.layout.item_friend_pic, parent, false)
         val inflater = LayoutInflater.from(parent.context)
-        return FriendPicViewHolder(
-            view,
-            inflater
-        )
+        return FriendPicViewHolder(view, inflater)
     }
 
     override fun onBindViewHolder(holder: FriendPicViewHolder, position: Int) {
@@ -32,15 +29,14 @@ class FriendPicAdapter : RecyclerView.Adapter<FriendPicViewHolder>() {
         return datas.size
     }
 
-    /* infinite scroll 준비
+    /* infinite scroll 준비 */
     fun addItems (items: List<FriendPicData>) {
         clear()
         val size = itemCount + 2
         datas.addAll(items)
         notifyItemRangeInserted(size, items.size)
     }
-
     private fun clear() {
         datas.clear()
-    }*/
+    }
 }

@@ -36,6 +36,14 @@ interface PlacePicService {
         @Query("query") query: String
     ): Call<BaseResponse<PlaceSearchResponse>>
 
+    @GET("/places/home/page/{groupIdx}")
+    fun requestFriendPic(
+        @Header("Content-Type") contentType: String = "application/json",
+        @Header("token") token: String,
+        @Path("groupIdx") groupIdx: Int,
+        @Query("page") page: Int
+    ): Call<BaseResponse<FriendPicResponse>>
+
     @GET("/auth/groups/userlist/{groupIdx}")
     fun requestUserList(
         @Header("Content-Type") contentType: String = "application/json",
