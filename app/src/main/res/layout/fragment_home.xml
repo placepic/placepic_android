@@ -25,7 +25,7 @@
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="56dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -89,9 +89,9 @@
                         android:layout_width="0dp"
                         android:layout_height="0dp"
                         android:layout_marginBottom="24dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/constraintLayout5" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
@@ -125,23 +125,34 @@
                             app:layout_constraintTop_toTopOf="parent" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/rv_friendPic"
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/constraintLayout4"
-                        tools:listitem="@layout/item_friend_pic" />
+                        app:layout_constraintTop_toBottomOf="@+id/constraintLayout4">
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rv_friendPic"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                            tools:listitem="@layout/item_friend_pic">
+
+                        </androidx.recyclerview.widget.RecyclerView>
+
+                        <ProgressBar
+                            android:id="@+id/progressbar_fp"
+                            style="?android:attr/progressBarStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal" />
+                    </LinearLayout>
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
-
             </com.google.android.material.appbar.CollapsingToolbarLayout>
         </com.google.android.material.appbar.AppBarLayout>
-
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
-
-
 </FrameLayout>
