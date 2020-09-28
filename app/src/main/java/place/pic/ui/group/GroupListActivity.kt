@@ -1,28 +1,55 @@
 package place.pic.ui.group
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import place.pic.R
+import place.pic.data.PlacepicAuthRepository
+import place.pic.data.remote.PlacePicService
+import place.pic.data.remote.response.BaseResponse
 import place.pic.data.remote.response.ResponseGroupList
 import place.pic.ui.util.animation.nextActivityAnimation
 import place.pic.ui.util.animation.previousActivityAnimation
+import place.pic.ui.util.customEnqueue
+import retrofit2.Response
 
-class GroupListActivity : AppCompatActivity(),BindGroupListEvent {
+class GroupListActivity : AppCompatActivity(), BindGroupListEvent {
 
-    private val groupListData: MutableList<ResponseGroupList> = mutableListOf()
     private var groupListFragment = GroupListFragment()
 
     override fun requestToGroupListData() {
-        //TODO:이곳에서 그룹 리스트 받아오는 로직 만들기. 서버 연결.
-        loadData()
-        groupListFragment.setAdapter(groupListData)
+        PlacePicService.getInstance()
+            .requestGroupList(
+                token = PlacepicAuthRepository.getInstance(applicationContext).userToken!!
+            )
+            .customEnqueue(
+                onSuccess = { response ->
+                    responseSuccessInGroupListData(response)
+                },
+                onError = {response ->
+                    requestErrorInGroupListData(response)
+                }
+            )
+    }
+
+    private fun responseSuccessInGroupListData(response: Response<BaseResponse<List<ResponseGroupList>>>) {
+        groupListFragment.setAdapter(response.body()?.data!!)
+    }
+
+    private fun requestErrorInGroupListData(response: Response<BaseResponse<List<ResponseGroupList>>>) {
+        when (response.body()?.status) {
+            500 -> {
+                Toast.makeText(applicationContext, response.body()?.message, Toast.LENGTH_SHORT)
+                    .show()
+            }
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_group_list)
         val transaction = supportFragmentManager.beginTransaction()
-        transaction.add(R.id.frame_group_list,groupListFragment)
+        transaction.add(R.id.frame_group_list, groupListFragment)
         transaction.commit()
     }
 
@@ -34,82 +61,5 @@ class GroupListActivity : AppCompatActivity(),BindGroupListEvent {
     override fun finish() {
         super.finish()
         nextActivityAnimation()
-    }
-
-
-
-    private fun loadData() {
-        groupListData.apply {
-            add(
-                ResponseGroupList(
-                    postCount = 1111,
-                    userCount = 16,
-                    groupIdx = 4,
-                    groupImage = "https://avatars2.githubusercontent.com/u/67547341?s=200&v=4",
-                    groupName = "가입된 그룹",
-                    groupUserIdx = 0,
-                    part = "어찌구파트",
-                    phoneNumber = "01011112222",
-                    state = 1,
-                    userIdx = 8
-                )
-            )
-            add(
-                ResponseGroupList(
-                    postCount = 1111,
-                    userCount = 16,
-                    groupIdx = 4,
-                    groupImage = "https://avatars2.githubusercontent.com/u/67547341?s=200&v=4",
-                    groupName = "가입된 그룹",
-                    groupUserIdx = 0,
-                    part = "어찌구파트",
-                    phoneNumber = "01011112222",
-                    state = 1,
-                    userIdx = 8
-                )
-            )
-            add(
-                ResponseGroupList(
-                    postCount = 1111,
-                    userCount = 16,
-                    groupIdx = 4,
-                    groupImage = "https://avatars2.githubusercontent.com/u/67547341?s=200&v=4",
-                    groupName = "미가입 그룹",
-                    groupUserIdx = 0,
-                    part = "어찌구파트",
-                    phoneNumber = "01011112222",
-                    state = 2,
-                    userIdx = 8
-                )
-            )
-            add(
-                ResponseGroupList(
-                    postCount = 1111,
-                    userCount = 16,
-                    groupIdx = 4,
-                    groupImage = "https://avatars2.githubusercontent.com/u/67547341?s=200&v=4",
-                    groupName = "가입된 그룹",
-                    groupUserIdx = 0,
-                    part = "어찌구파트",
-                    phoneNumber = "01011112222",
-                    state = 1,
-                    userIdx = 8
-                )
-            )
-            add(
-                ResponseGroupList(
-                    postCount = 1111,
-                    userCount = 16,
-                    groupIdx = 4,
-                    groupImage = "https://avatars2.githubusercontent.com/u/67547341?s=200&v=4",
-                    groupName = "미가입 그룹",
-                    groupUserIdx = 0,
-                    part = "어찌구파트",
-                    phoneNumber = "01011112222",
-                    state = 2,
-                    userIdx = 8
-                )
-            )
-        }
     }
 }

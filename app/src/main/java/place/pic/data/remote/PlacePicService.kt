@@ -57,14 +57,16 @@ interface PlacePicService {
         @Header("token") token: String
     ): Call<BaseResponse<List<SubwayResponse>>>
 
-    @POST("/auth/checkemail")
-    fun requestRegister(@Body body: RequestRegister): Call<BaseResponse<RequestRegister>>
+    @POST("/auth/certificate")
+    fun requestLoginAndSignUpPhoneNum(
+        @Body body: LoginAndSignUpPhoneNumRequest
+    ): Call<BaseResponse<LoginAndSignUpPhoneNumResponse>>
 
-    @POST("/auth/signup")
-    fun requestRegisterSecond(@Body body: RequestRegisterSecond): Call<BaseResponse<Unit>>
+    @POST("/auth/sp3/signin")
+    fun requestLoginAndSignUpAuthNum(
+        @Body body:LoginAndSignUpAuthNumRequest
+    ): Call<BaseResponse<LoginResponse>>
 
-    @POST("/auth/signin")
-    fun requestLogin(@Body body: RequestLogin): Call<BaseResponse<LoginResponse>>
 
     @GET("/category/all")
     fun getPlaceTypeDetails(
@@ -82,35 +84,21 @@ interface PlacePicService {
 
     //그룹 관련 서버 연결
     @GET("/auth/groups")
-    fun requestMyGroupList(
-        @Header("Content-Type") contentType: String = "application/json",
-        @Header("token") token: String
-    ): Call<BaseResponse<List<ResponseGroupList>>>
-
-    @GET("/auth/groups")
     fun requestGroupList(
-        @Header("Content-Type") contentType: String = "application/json",
-        @Header("token") token: String,
-        @Query("filter") filter: String
-    ): Call<BaseResponse<List<ResponseGroupList>>>
-
-    @GET("/auth/groups/apply")
-    fun requestGroupApplyList(
         @Header("Content-Type") contentType: String = "application/json",
         @Header("token") token: String
     ): Call<BaseResponse<List<ResponseGroupList>>>
 
     @POST("/auth/groups/apply")
-    fun requestSigninGroup(
+    fun requestGroupSignUp(
         @Header("Content-Type") contentType: String = "application/json",
         @Header("token") token: String,
-        @Body body: RequestSigninGroup
-    ): Call<BaseResponse<ResponseSingupGroup>>
+        @Body body: GroupSignUpRequest
+    ): Call<BaseResponse<Unit>>
 
     /*
     * 마이 페이지 서버 연결
     */
-
     @GET("/auth/myInfo/{groupIdx}")
     fun requestMyPage(
         @Header("Content-Type") contentType: String = "application/json",

@@ -3,7 +3,6 @@ package place.pic.ui.main.mypage
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_group_change.*
-import kotlinx.android.synthetic.main.activity_signup.*
 import place.pic.R
 import place.pic.data.PlacepicAuthRepository
 import place.pic.data.remote.PlacePicService
@@ -45,48 +44,7 @@ class GroupChangeActivity : AppCompatActivity(), BindGroupListEvent {
 
     private fun loadData() {
         groupListData.apply {
-            add(
-                ResponseGroupList(
-                    postCount = 1111,
-                    userCount = 16,
-                    groupIdx = 4,
-                    groupImage = "https://avatars2.githubusercontent.com/u/67547341?s=200&v=4",
-                    groupName = "안녕하세용",
-                    groupUserIdx = 0,
-                    part = "어찌구파트",
-                    phoneNumber = "01011112222",
-                    state = 1,
-                    userIdx = 8
-                )
-            )
-            add(
-                ResponseGroupList(
-                    postCount = 1111,
-                    userCount = 16,
-                    groupIdx = 4,
-                    groupImage = "https://avatars2.githubusercontent.com/u/67547341?s=200&v=4",
-                    groupName = "진수진짜최고",
-                    groupUserIdx = 0,
-                    part = "어찌구파트",
-                    phoneNumber = "01011112222",
-                    state = 1,
-                    userIdx = 8
-                )
-            )
-            add(
-                ResponseGroupList(
-                    postCount = 1111,
-                    userCount = 16,
-                    groupIdx = 4,
-                    groupImage = "https://avatars2.githubusercontent.com/u/67547341?s=200&v=4",
-                    groupName = "짱짱맨",
-                    groupUserIdx = 0,
-                    part = "어찌구파트",
-                    phoneNumber = "01011112222",
-                    state = 2,
-                    userIdx = 8
-                )
-            )
+
         }
     }
 }

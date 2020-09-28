@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import kotlinx.android.synthetic.main.activity_input_visit_code.*
 import place.pic.R
@@ -14,11 +15,12 @@ import place.pic.ui.util.customTextChangedListener
 
 class InputVisitCodeActivity : AppCompatActivity() {
 
-    var groupIdx: Int = 0
+    private var groupCode:String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_input_visit_code)
+        groupCode = intent.getStringExtra("groupCode")!!
         init()
     }
 
@@ -39,10 +41,18 @@ class InputVisitCodeActivity : AppCompatActivity() {
     }
 
     private fun buttonEventMapping() {
-        btn_into_group.setOnClickListener {intoGroupEvent()}
+        btn_into_group.setOnClickListener {groupCodeInputAndClickButtonEvent()}
         img_input_visit_code_top_back_btn.setOnClickListener {
             onBackPressed()
         }
+    }
+
+    private fun groupCodeInputAndClickButtonEvent(){
+        if (et_input_visit_code.text.toString() == groupCode) {
+            intoGroupEvent()
+            return
+        }
+        notMatchGroupCode()
     }
 
     private fun intoGroupEvent(){
@@ -50,6 +60,11 @@ class InputVisitCodeActivity : AppCompatActivity() {
         val gotoInputUserInfoIntent = Intent(applicationContext, InputUserInfoAnimActivity::class.java)
         startActivity(gotoInputUserInfoIntent)
         nextActivityAnimation()
+    }
+
+    private fun notMatchGroupCode(){
+        Toast.makeText(applicationContext, "그룹코드가 일치하지 않습니다!!", Toast.LENGTH_SHORT)
+            .show()
     }
 
     private fun editTextChangeEventMapping() {
