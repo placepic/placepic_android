@@ -26,6 +26,7 @@
             android:layout_marginEnd="8dp"
             android:clipToPadding="false"
             android:overScrollMode="never"
+            android:paddingTop="20dp"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -54,7 +55,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.231">
+            app:layout_constraintVertical_bias="0.37">
 
             <ImageView
                 android:id="@+id/imageView15"
