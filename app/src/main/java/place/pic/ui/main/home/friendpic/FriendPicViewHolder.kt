@@ -20,13 +20,13 @@ class FriendPicViewHolder(itemView: View, inflater: LayoutInflater) : RecyclerVi
     val profileImageUrl: ImageView = itemView.findViewById(R.id.fp_img_profile)
     val userName: TextView = itemView.findViewById(R.id.fp_user_name)
     val part: TextView = itemView.findViewById(R.id.fp_user_part)
-    val imageUrl: ImageView = itemView.findViewById(R.id.fp_img)
-    val liker: TextView = itemView.findViewById(R.id.fp_liker)
-    val name: TextView = itemView.findViewById(R.id.fp_place_name)
-    val subways: TextView = itemView.findViewById(R.id.fp_subways)
-    val tagsChipGroup: ChipGroup = itemView.findViewById(R.id.fp_chipGroup)
-    val uploadDate: TextView = itemView.findViewById(R.id.fp_upload_date)
-    val content: TextView = itemView.findViewById(R.id.fp_content)
+    val placeName: TextView = itemView.findViewById(R.id.fp_place_name)
+    val placeReview: TextView = itemView.findViewById(R.id.fp_content)
+    val placeImageUrl: ImageView = itemView.findViewById(R.id.fp_img)
+    val placeCreatedAt: TextView = itemView.findViewById(R.id.fp_upload_date)
+    val subway: TextView = itemView.findViewById(R.id.fp_subways)
+    val tag: ChipGroup = itemView.findViewById(R.id.fp_chipGroup)
+    val likeCnt: TextView = itemView.findViewById(R.id.fp_liker)
 
     private val inflater:LayoutInflater = inflater 
     //Chip 생성을 위한 inflater 준비
@@ -49,20 +49,20 @@ class FriendPicViewHolder(itemView: View, inflater: LayoutInflater) : RecyclerVi
         Glide.with(itemView).load(friendPicData.profileImageUrl).into(profileImageUrl)
         userName.text = friendPicData.userName
         part.text = friendPicData.part
-        Glide.with(itemView).load(friendPicData.imageUrl).into(imageUrl)
-        imageUrl.maxHeight = imageUrl.width / 2
-        liker.text = friendPicData.liker.toString()
-        name.text = friendPicData.name
-        subways.text = detailStringForm(friendPicData.subways, "/")
-        uploadDate.text = friendPicData.uploadDate.toString()
-        content.text = friendPicData.content
+        placeImageUrl.maxHeight = placeImageUrl.width / 2
+        placeName.text = friendPicData.placeName
+        placeReview.text = friendPicData.placeReview
+        Glide.with(itemView).load(friendPicData.placeImageUrl).into(placeImageUrl)
+        placeCreatedAt.text = friendPicData.placeCreatedAt.toString()
+        subway.text = detailStringForm(friendPicData.subway, "/")
+        likeCnt.text = friendPicData.likeCnt.toString()
 
-        val tags = friendPicData.tags
+        val tags = friendPicData.tag
         tags.forEach { text ->
             val chip = ChipFactory.createDetailChip(inflater)
             //하나씩 chip 생성
             chip.text = text
-            tagsChipGroup.addView(chip)
+            tag.addView(chip)
         }
     }
 }

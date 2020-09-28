@@ -6,16 +6,36 @@ package place.pic.ui.main.home.friendpic
  */
 
 data class FriendPicData (
-    val profileImageUrl: String,
+    val userIdx: Int,
+    val placeIdx: Int,
+    val groupIdx: Int,
     val userName: String,
     val part: String,
-    val imageUrl: String,
-    val liker: Int,
-    val name: String,
-    val subways: List<String>,
-    val tags: List<String>,
-    //태그의 text를 배열로 받아오고
-    val uploadDate: String,
-    //서버한테 받는건 Int, 출력하는건 String
-    val content: String
-)
+    val profileImageUrl: String,
+    val placeName: String,
+    val placeReview: String,
+    val placeImageUrl: String,
+    val placeCreatedAt: String,
+    //uploadDate 서버한테 받는건 Int, 출력하는건 String
+    val subway: List<String>,
+    val tag: List<String>,
+    val likeCnt: Int
+) {
+    companion object {
+        fun empty() = FriendPicData(
+            userIdx = 0,
+            placeIdx = 0,
+            groupIdx = 0,
+            userName = "",
+            part = "",
+            profileImageUrl = "",
+            placeName = "",
+            placeReview = "",
+            placeImageUrl = "",
+            placeCreatedAt = "",
+            subway = emptyList(),
+            tag = emptyList(),
+            likeCnt = 0
+        )
+    }
+}

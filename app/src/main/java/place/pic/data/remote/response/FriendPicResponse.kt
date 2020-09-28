@@ -9,5 +9,5 @@ import place.pic.data.entity.FriendPic
  
 data class FriendPicResponse (
     val totalPage: Int,
-    val data: ArrayList<FriendPic>
+    val places: ArrayList<FriendPic>
 )

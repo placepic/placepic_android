@@ -27,6 +27,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
+/* 다혜의 많은 수정이 있을 예정입니다 내비둬주시면 감사하겠습니다 (꾸벅) */
 class HomeFragment : Fragment() {
 
     lateinit var bannerHomeAdapter: BannerHomeAdapter
@@ -55,7 +56,7 @@ class HomeFragment : Fragment() {
 
         init(view)
         loadBannerDatas()
-        loadFriendPicDatas()
+        //loadFriendPicDatas()
         //호출을 통해 infinite scroll을 위한 준비 완료
 
         img_btn_banner_list.setOnClickListener {
@@ -75,7 +76,7 @@ class HomeFragment : Fragment() {
                 if (!isLoading) { // isLoading == false
                     if ((visibleItemCount + pastVisibleItem) >= total) {
                         page++
-                        dataMore() // 이때 서버 연결 요청 하고 파라미터로 페이지 넘기기
+                        //dataMore() // 이때 서버 연결 요청 하고 파라미터로 페이지 넘기기
                     }
                 }
 
@@ -95,7 +96,7 @@ class HomeFragment : Fragment() {
         rv_friendPic.adapter = friendPicAdapter
     }
 
-    private fun dataMore() {
+    /*private fun dataMore() {
         isLoading = true
         //progressbar_fp.visibility = View.VISIBLE
         val start = (page - 1) * limit
@@ -133,7 +134,7 @@ class HomeFragment : Fragment() {
             isLoading = false
             //progressbar_fp.visibility = View.GONE
         }, 5000)
-    }
+    } */
 
     private fun loadBannerDatas() {
         bannerDatas.apply {
@@ -174,7 +175,7 @@ class HomeFragment : Fragment() {
         bannerHomeAdapter.notifyDataSetChanged()
     }
 
-    private fun loadFriendPicDatas() {
+    /*private fun loadFriendPicDatas() {
 
         val pdate: DateParser = DateParser(1600665738)
         val dateResult: String = pdate.calculateDiffDate() //UNIX 타임 변환
@@ -196,7 +197,7 @@ class HomeFragment : Fragment() {
             )
         }
         friendPicAdapter.addItems(friendPicDatas)
-    }
+    }*/
 
     private fun getFriendPicListFromServer(groupIdx: Int, page: Int) {
 
