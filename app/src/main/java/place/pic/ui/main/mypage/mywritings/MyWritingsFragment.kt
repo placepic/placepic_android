@@ -17,8 +17,9 @@ import place.pic.ui.main.place.adapter.PlaceGridItemsAdapter
  * on 9월 13, 2020
  */
 
-class MyWritingsFragment : Fragment() {
-
+class MyWritingsFragment(
+    private val otherUserToken: String? = null
+) : Fragment() {
     private lateinit var placeGridItemsAdapter: PlaceGridItemsAdapter
     private lateinit var myWritingsViewModel: MyWritingsViewModel
 
@@ -45,7 +46,7 @@ class MyWritingsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         subscribeMyWritings()
-        myWritingsViewModel.requestMyWritings()
+        myWritingsViewModel.requestMyWritings(otherUserToken)
     }
 
     private fun subscribeMyWritings() {
