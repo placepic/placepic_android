@@ -1,8 +1,10 @@
 package place.pic.ui.main.home.friendpic
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.load.model.FileLoader
 import place.pic.R
 
 /**
@@ -32,10 +34,11 @@ class FriendPicAdapter : RecyclerView.Adapter<FriendPicViewHolder>() {
     /* infinite scroll 준비 */
     fun addItems (items: List<FriendPicData>) {
         clear()
-        val size = itemCount + 2
+        val size = itemCount - 1
         datas.addAll(items)
         notifyItemRangeInserted(size, items.size)
     }
+
     private fun clear() {
         datas.clear()
     }

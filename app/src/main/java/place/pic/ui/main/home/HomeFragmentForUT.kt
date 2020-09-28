@@ -7,6 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.fragment_home_forut.*
 import place.pic.R
 import place.pic.data.PlacepicAuthRepository
@@ -27,6 +29,10 @@ import retrofit2.Response
 class HomeFragmentForUT : Fragment() {
 
     lateinit var friendPicAdapter: FriendPicAdapter
+    lateinit var layoutManager: LinearLayoutManager
+
+    var page = 1
+    var isLoading = false
 
     var totalPage: Int = 0
     val friendPicList = mutableListOf<FriendPicData>()
@@ -48,8 +54,31 @@ class HomeFragmentForUT : Fragment() {
 
         init()
 
+        // initial items
         getFriendPicListFromServer(17, 1)
 
+        layoutManager = LinearLayoutManager(context)
+        rv_friendPic.layoutManager = layoutManager
+        rv_friendPic.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+
+                val visibleItemCount = layoutManager.childCount
+                val pastVisibleItem = layoutManager.findFirstCompletelyVisibleItemPosition()
+                val total = friendPicAdapter.itemCount
+
+                if (!isLoading) { //isLoading == false
+                    if (pastVisibleItem >= total - 1) {
+                        val handler = Handler()
+                        handler.postDelayed({
+                            page += 1
+                            isLoading = true
+                            getFriendPicListFromServer(17, page)
+                        }, 2000)
+                    }
+                }
+            }
+        })
     }
 
     private fun init() {
@@ -109,6 +138,7 @@ class HomeFragmentForUT : Fragment() {
                                 }
                                 friendPicAdapter.addItems(friendPicList)
                                 friendPicAdapter.notifyDataSetChanged()
+                                isLoading = false
                             }
                         }
                     }

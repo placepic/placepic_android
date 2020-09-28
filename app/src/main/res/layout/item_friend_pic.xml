@@ -82,7 +82,7 @@
                 android:id="@+id/fp_img"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:scaleType="fitXY"
+                android:scaleType="centerCrop"
                 app:srcCompat="@drawable/testphoto" />
 
         </androidx.cardview.widget.CardView>
