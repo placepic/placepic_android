@@ -67,7 +67,7 @@ class HomeFragmentForUT : Fragment() {
                 val pastVisibleItem = layoutManager.findFirstCompletelyVisibleItemPosition()
                 val total = friendPicAdapter.itemCount
 
-                if (!isLoading) { //isLoading == false
+                if (!isLoading && page < totalPage) { //isLoading == false
                     if (pastVisibleItem >= total - 1) {
                         val handler = Handler()
                         handler.postDelayed({
