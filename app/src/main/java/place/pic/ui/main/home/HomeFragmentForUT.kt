@@ -36,6 +36,7 @@ class HomeFragmentForUT : Fragment() {
 
     var totalPage: Int = 0
     val friendPicList = mutableListOf<FriendPicData>()
+    val pageList = mutableListOf<FriendPicData>()
 
     private val placePicService = PlacePicService
     val token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZHgiOjE4OCwicGhvbmVOdW1iZXIiOiIwMTA1NDA5OTg1OSIsImlhdCI6MTYwMDY2Mzk0NSwiZXhwIjoxNjA1ODQ3OTQ1LCJpc3MiOiJwbGFjZXBpYyJ9.ZlLonyyYdGye3JECXpkk_FHd3UonwS6QDl4sziDGB6g"
@@ -59,6 +60,7 @@ class HomeFragmentForUT : Fragment() {
 
         layoutManager = LinearLayoutManager(context)
         rv_friendPic.layoutManager = layoutManager
+
         rv_friendPic.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
@@ -69,11 +71,14 @@ class HomeFragmentForUT : Fragment() {
 
                 if (!isLoading && page < totalPage) { //isLoading == false
                     if (pastVisibleItem >= total - 1) {
+                        //progressbar_fp.visibility = View.VISIBLE
                         val handler = Handler()
                         handler.postDelayed({
                             page += 1
                             isLoading = true
+                            friendPicList.clear()
                             getFriendPicListFromServer(17, page)
+                            //progressbar_fp.visibility = View.GONE
                         }, 2000)
                     }
                 }
@@ -117,6 +122,7 @@ class HomeFragmentForUT : Fragment() {
                                 totalPage = response.body()!!.data.totalPage
                                 val pdate = DateParser(response.body()!!.data.places[i].placeCreatedAt)
                                 val dateResult: String = pdate.calculateDiffDate() //UNIX 타임 변환
+
                                 friendPicList.apply {
                                     add (
                                         FriendPicData(
@@ -136,10 +142,10 @@ class HomeFragmentForUT : Fragment() {
                                         )
                                     )
                                 }
-                                friendPicAdapter.addItems(friendPicList)
-                                friendPicAdapter.notifyDataSetChanged()
-                                isLoading = false
                             }
+                            friendPicAdapter.addItems(friendPicList)
+                            friendPicAdapter.notifyDataSetChanged()
+                            isLoading = false
                         }
                     }
                 }
