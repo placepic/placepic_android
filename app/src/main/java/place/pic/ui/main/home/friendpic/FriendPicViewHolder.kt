@@ -1,12 +1,15 @@
 package place.pic.ui.main.home.friendpic
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.view.get
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.google.android.material.chip.ChipGroup
+import kotlinx.android.synthetic.main.item_friend_pic.view.*
 import place.pic.R
 import place.pic.ui.tag.ChipFactory
 
@@ -57,12 +60,13 @@ class FriendPicViewHolder(itemView: View, inflater: LayoutInflater) : RecyclerVi
         subway.text = detailStringForm(friendPicData.subway, "/")
         likeCnt.text = friendPicData.likeCnt.toString()
 
-        val tags = friendPicData.tag
+        /*var tags= friendPicData.tag
+        Log.d("tag check", tags.toString())
         tags.forEach { text ->
             val chip = ChipFactory.createDetailChip(inflater)
             //하나씩 chip 생성
             chip.text = text
             tag.addView(chip)
-        }
+        }*/
     }
 }

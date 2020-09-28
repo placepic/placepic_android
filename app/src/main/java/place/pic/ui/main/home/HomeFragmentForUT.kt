@@ -9,7 +9,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.chip.Chip
+import com.google.android.material.chip.ChipGroup
 import kotlinx.android.synthetic.main.fragment_home_forut.*
+import kotlinx.android.synthetic.main.item_friend_pic.*
 import place.pic.R
 import place.pic.data.PlacepicAuthRepository
 import place.pic.data.remote.PlacePicService
@@ -17,6 +20,7 @@ import place.pic.data.remote.response.BaseResponse
 import place.pic.data.remote.response.FriendPicResponse
 import place.pic.ui.main.home.friendpic.FriendPicAdapter
 import place.pic.ui.main.home.friendpic.FriendPicData
+import place.pic.ui.tag.ChipFactory
 import place.pic.ui.util.DateParser
 import retrofit2.Callback
 import retrofit2.Response
@@ -36,11 +40,11 @@ class HomeFragmentForUT : Fragment() {
 
     var totalPage: Int = 0
     val friendPicList = mutableListOf<FriendPicData>()
-    val pageList = mutableListOf<FriendPicData>()
+    /*var tagList = listOf<String>()
+    val chipList = mutableListOf<Chip>()*/
 
     private val placePicService = PlacePicService
     val token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZHgiOjE4OCwicGhvbmVOdW1iZXIiOiIwMTA1NDA5OTg1OSIsImlhdCI6MTYwMDY2Mzk0NSwiZXhwIjoxNjA1ODQ3OTQ1LCJpc3MiOiJwbGFjZXBpYyJ9.ZlLonyyYdGye3JECXpkk_FHd3UonwS6QDl4sziDGB6g"
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -119,12 +123,21 @@ class HomeFragmentForUT : Fragment() {
                         if (response.body()!!.success) {
                             Log.d("typeCheck", "${response.body()!!.data.javaClass}")
                             for (i in response.body()!!.data.places.indices) {
+
                                 totalPage = response.body()!!.data.totalPage
                                 val pdate = DateParser(response.body()!!.data.places[i].placeCreatedAt)
                                 val dateResult: String = pdate.calculateDiffDate() //UNIX 타임 변환
 
+                                /*tagList = response.body()!!.data.places[i].tag
+                                for (tag in tagList) {
+                                    val chip =
+                                        ChipFactory.createDetailChip(layoutInflater)
+                                    chip.text = tag
+                                    chipList.add(chip)
+                                }*/
+
                                 friendPicList.apply {
-                                    add (
+                                    add(
                                         FriendPicData(
                                             userIdx = response.body()!!.data.places[i].userIdx,
                                             placeIdx = response.body()!!.data.places[i].placeIdx,

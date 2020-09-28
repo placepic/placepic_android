@@ -28,7 +28,6 @@ class FriendPicAdapter : RecyclerView.Adapter<FriendPicViewHolder>() {
     }
 
     override fun getItemCount(): Int {
-        Log.d("데이터사이즈", datas.size.toString())
         return datas.size
     }
 
@@ -37,6 +36,9 @@ class FriendPicAdapter : RecyclerView.Adapter<FriendPicViewHolder>() {
         Log.d("Add Item Check", items.toString())
         val size = itemCount - 1
         datas.addAll(items)
+
+        Log.d("size:", size.toString())
+        Log.d("items.size", items.size.toString())
         notifyItemRangeInserted(size, items.size)
     }
 
