@@ -2,7 +2,6 @@ package place.pic.data
 
 import android.app.Activity
 import android.content.Context
-import place.pic.ui.main.mypage.GroupChangeFragment
 
 
 class PlacepicAuthRepository private constructor(context: Context) {

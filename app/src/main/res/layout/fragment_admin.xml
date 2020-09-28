@@ -8,19 +8,19 @@
 
 
     <TextView
-        android:id="@+id/textView35"
+        android:id="@+id/tv_no_admin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="관리중인 그룹이 없습니다."
         android:textColor="@color/grayCED5DA"
         android:fontFamily="@font/noto_sans_regular"
-        app:layout_constraintEnd_toEndOf="@+id/imageView14"
-        app:layout_constraintStart_toStartOf="@+id/imageView14"
-        app:layout_constraintTop_toBottomOf="@+id/imageView14" />
+        app:layout_constraintEnd_toEndOf="@+id/img_no_admin"
+        app:layout_constraintStart_toStartOf="@+id/img_no_admin"
+        app:layout_constraintTop_toBottomOf="@+id/img_no_admin" />
 
     <ImageView
-        android:id="@+id/imageView14"
+        android:id="@+id/img_no_admin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="412dp"

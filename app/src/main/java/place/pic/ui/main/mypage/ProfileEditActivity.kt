@@ -2,27 +2,38 @@ package place.pic.ui.main.mypage
 
 import android.Manifest.*
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
-import android.text.TextWatcher
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import kotlinx.android.synthetic.main.activity_login.*
+import com.bumptech.glide.Glide
+import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.android.synthetic.main.activity_profile_edit.*
-import kotlinx.android.synthetic.main.activity_signup.*
-import kotlinx.android.synthetic.main.activity_signup_second.*
-import kotlinx.android.synthetic.main.item_like_user_list.*
 import place.pic.R
+import place.pic.data.PlacepicAuthRepository
+import place.pic.data.remote.PlacePicService
+import place.pic.data.remote.request.ProfileEditRequest
+import place.pic.data.remote.response.BaseResponse
+import place.pic.ui.upload.ImageUri
 import place.pic.ui.util.customTextChangedListener
 import place.pic.ui.util.showToast
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class ProfileEditActivity : AppCompatActivity() {
+
+    var change_part: String?=null
+    var change_image: String?=null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile_edit)
+
+        val preferences = this.getSharedPreferences("mypageuser", Context.MODE_PRIVATE)
 
         img_profile_edit_top_bar_back_btn.setOnClickListener {
             finish()
@@ -44,13 +55,50 @@ class ProfileEditActivity : AppCompatActivity() {
             }
         }
 
-        val user_part=""
+        Glide.with(img_profile_setting).load(preferences.getString("mp_user_image","")).into(img_profile_setting)
+        tv_profile_setting_name.text = preferences.getString("mp_user_name","")
+        et_profile_setting_in_part.setText(preferences.getString("mp_user_part","").toString())
+
         et_profile_setting_in_part.customTextChangedListener {
-            if (it != user_part){
+            if (it != et_profile_setting_in_part){
                 btn_profile_edit_ok.isEnabled = true
                 btn_profile_edit_ok.setTextColor(getColor(R.color.pinkF6))
                 return@customTextChangedListener
             }
+        }
+
+        PlacepicAuthRepository.getInstance(this).saveUserToken("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZHgiOjE4OCwicGhvbmVOdW1iZXIiOiIwMTA1NDA5OTg1OSIsImlhdCI6MTYwMDY2Mzk0NSwiZXhwIjoxNjA1ODQ3OTQ1LCJpc3MiOiJwbGFjZXBpYyJ9.ZlLonyyYdGye3JECXpkk_FHd3UonwS6QDl4sziDGB6g")
+        PlacepicAuthRepository.getInstance(this).saveGroupId(17)
+
+        btn_profile_edit_ok.setOnClickListener {
+            change_part=et_profile_setting_in_part.text.toString()
+            //val uri=getURLForResource(img_profile_setting)
+            //change_image= ImageUri(uri!!).toMultipart(this).toString()
+            change_image=img_profile_setting.toString()
+            PlacePicService.getInstance().profileEditRequest(
+                token = PlacepicAuthRepository.getInstance(this).userToken!!,
+                groupIdx = PlacepicAuthRepository.getInstance(this).groupId!!,
+                body = ProfileEditRequest(
+                    userImage =change_image!!,
+                    part = change_part!!
+                )
+            ).enqueue(object :Callback<BaseResponse<Unit>> {
+                override fun onResponse(
+                    call: Call<BaseResponse<Unit>>,
+                    response: Response<BaseResponse<Unit>>
+                ) {
+                    if (response.isSuccessful) {
+                        if (response.body()!!.success) {
+                            showToast(change_part.toString())
+                            finish()
+                        }
+                    }
+                }
+
+                override fun onFailure(call: Call<BaseResponse<Unit>>, t: Throwable) {
+                    TODO("Not yet implemented")
+                }
+            })
         }
     }
 
@@ -68,7 +116,7 @@ class ProfileEditActivity : AppCompatActivity() {
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         when(requestCode){
             PERMISSION_CODE -> {
-                if (grantResults.size>0 && grantResults[0] ==
+                if (grantResults.isNotEmpty() && grantResults[0] ==
                     PackageManager.PERMISSION_GRANTED){
                     pickImageFromGallery()
                 }
@@ -86,6 +134,8 @@ class ProfileEditActivity : AppCompatActivity() {
         }
     }
 
-
+    private fun getURLForResource(id: CircleImageView): Uri? {
+        return Uri.parse("android.resource://$packageName/$id")
+    }
 }
 

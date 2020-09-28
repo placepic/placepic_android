@@ -20,33 +20,28 @@
 
         <activity android:name=".ui.main.home.banner.BannerListActivity"/>
         <activity android:name=".ui.main.mypage.ProfileEditActivity" />
-        <activity android:name=".ui.main.mypage.MyPageSettingActivity" />
+        <activity android:name=".ui.main.mypage.MyPageSettingActivity"/>
         <activity android:name=".ui.main.mypage.GroupChangeActivity" />
         <activity android:name=".ui.main.BaseActivity" />
         <activity android:name=".ui.main.detail.liker.LikerUserListActivity" />
-        <activity android:name=".ui.main.SplashActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".ui.main.SplashActivity"/>
         <activity android:name=".ui.search.place.PlaceSearchActivity" />
         <activity android:name=".ui.upload.UploadPlaceActivity" />
         <activity android:name=".ui.group.InputUserInfoAnimActivity"
             android:windowSoftInputMode="adjustResize"/>
         <activity android:name=".ui.login.LoginActivity" />
-        <activity android:name=".ui.main.MainActivity"/>
+        <activity android:name=".ui.main.MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".ui.group.InputVisitCodeActivity"/>
-        <activity android:name=".ui.login.LoginPageActivity" />
         <activity android:name=".ui.main.detail.DetailViewActivity" />
         <activity android:name=".ui.tag.UsefulTagActivity" />
         <activity android:name=".ui.search.subway.SubwaySearchActivity" />
         <activity android:name=".ui.tag.KeywordTagActivity" />
         <activity android:name=".ui.group.GroupListActivity" />
-        <activity android:name=".ui.signup.SignuplastActivity" />
-        <activity android:name=".ui.signup.SignupSecondActivity" />
-        <activity android:name=".ui.signup.SignupActivity" />
         <activity android:name=".ui.webview.InWebActivity" />
         <activity android:name=".ui.main.OnBoardingActivity" />
     </application>

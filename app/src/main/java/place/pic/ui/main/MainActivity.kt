@@ -55,10 +55,6 @@ class MainActivity : AppCompatActivity(), WriteFragment.BottomSheetListener {
                     val fragmentB = UserListFragment()
                     transaction.replace(R.id.main_frame, fragmentB, "people")
                 }
-                /*R.id.action_scrap -> {
-                    val fragmentD = BookmarksFragment()
-                    transaction.replace(R.id.main_frame, fragmentD, "scrap")
-                }*/
                 R.id.action_mypage -> {
                     val fragmentE = MyPageFragment()
                     transaction.replace(R.id.main_frame, fragmentE, "page")
@@ -96,7 +92,7 @@ class MainActivity : AppCompatActivity(), WriteFragment.BottomSheetListener {
 
     fun replaceFragment(fragment: Fragment, tag: String) {
         supportFragmentManager.beginTransaction()
-            .replace(R.id.mypage_bookmark, fragment, tag)
+            .replace(R.id.rv_bookmarks, fragment, tag)
             .addToBackStack(null)
             .commit()
     }

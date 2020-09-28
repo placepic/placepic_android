@@ -146,7 +146,7 @@ class UploadPlaceActivity : AppCompatActivity() {
 
     private fun subscribeUploadSuccessEvent() {
         uploadPlacesViewModel.successEvent.observe(this, Observer { isSuccess ->
-            if (isSuccess) successUpload()
+                if (isSuccess) successUpload()
         })
     }
 

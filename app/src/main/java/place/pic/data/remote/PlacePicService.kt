@@ -118,6 +118,18 @@ interface PlacePicService {
     ): Call<BaseResponse<MyWritingsResponse>>
 
     /*
+    * 프로필편집 서버연결
+    */
+
+    @PUT("/auth/myInfo/edit/{groupIdx}")
+    fun profileEditRequest(
+        @Header("Content-Type") contentType: String = "application/json",
+        @Header("token") token: String,
+        @Path("groupIdx") groupIdx: Int,
+        @Body body: ProfileEditRequest
+    ):Call<BaseResponse<Unit>>
+
+    /*
     * 관리자 페이지 서버 연결
     */
 

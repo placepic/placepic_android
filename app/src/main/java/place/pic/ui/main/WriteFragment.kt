@@ -12,7 +12,7 @@ import place.pic.R
 import place.pic.data.entity.Place
 import place.pic.ui.login.LoginActivity
 import place.pic.ui.search.place.PlaceSearchActivity
-import place.pic.ui.signup.SignupSecondActivity
+
 
 
 class WriteFragment : BottomSheetDialogFragment(){
