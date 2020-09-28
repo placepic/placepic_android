@@ -4,7 +4,7 @@ import android.util.Log
 import java.text.SimpleDateFormat
 import java.util.*
 
-class DateParser(placeCreatedAt: Long) {
+class DateParser(placeCreatedAt: Int) {
     /*2020-04-23T15:10:26.000Z*/
 
     private val newDateTime:String

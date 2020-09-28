@@ -1,14 +1,11 @@
-package place.pic.ui.main.home.friendpic
-
-import com.google.android.material.chip.Chip
-import com.google.android.material.chip.ChipGroup
+package place.pic.data.entity
 
 /**
  * Created By kimdahyee
- * on 09월 05일, 2020
+ * on 09월 27일, 2020
  */
-
-data class FriendPicData (
+ 
+data class FriendPic (
     val userIdx: Int,
     val placeIdx: Int,
     val groupIdx: Int,
@@ -18,10 +15,9 @@ data class FriendPicData (
     val placeName: String,
     val placeReview: String,
     val placeImageUrl: String,
-    val placeCreatedAt: String,
+    val placeCreatedAt: Int,
     //uploadDate 서버한테 받는건 Int, 출력하는건 String
     val subway: List<String>,
     val tag: List<String>,
-    //val tag: List<Chip>,
     val likeCnt: Int
 )

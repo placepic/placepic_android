@@ -1,8 +1,10 @@
 package place.pic.ui.main.home.friendpic
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.load.model.FileLoader
 import place.pic.R
 
 /**
@@ -18,10 +20,7 @@ class FriendPicAdapter : RecyclerView.Adapter<FriendPicViewHolder>() {
         val view =
             LayoutInflater.from(parent.context).inflate(R.layout.item_friend_pic, parent, false)
         val inflater = LayoutInflater.from(parent.context)
-        return FriendPicViewHolder(
-            view,
-            inflater
-        )
+        return FriendPicViewHolder(view, inflater)
     }
 
     override fun onBindViewHolder(holder: FriendPicViewHolder, position: Int) {
@@ -32,15 +31,18 @@ class FriendPicAdapter : RecyclerView.Adapter<FriendPicViewHolder>() {
         return datas.size
     }
 
-    /* infinite scroll 준비
+    /* infinite scroll 준비 */
     fun addItems (items: List<FriendPicData>) {
-        clear()
-        val size = itemCount + 2
+        Log.d("Add Item Check", items.toString())
+        val size = itemCount - 1
         datas.addAll(items)
+
+        Log.d("size:", size.toString())
+        Log.d("items.size", items.size.toString())
         notifyItemRangeInserted(size, items.size)
     }
 
-    private fun clear() {
+    /*private fun clear() {
         datas.clear()
     }*/
 }

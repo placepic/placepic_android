@@ -28,25 +28,12 @@ class MyWritingsViewModel(
         _myWritings.value = currentWritings.filter { it.placeIdx != placeId }
     }
 
-    fun requestMyWritings() {
+    fun requestMyWritings(otherUserToken: String? = null) {
         _isLoading.value = true
-        loadMyWritings(
-            listOf(
-                PlaceGridItem("", 1, "네임", 123, listOf("이이이이름", "dd역")),
-                PlaceGridItem("", 1, "네임", 123, listOf("이이이이름")),
-                PlaceGridItem("", 1, "네임", 123, listOf("이이이이름")),
-                PlaceGridItem("", 1, "네임", 123, listOf("이이이이름")),
-                PlaceGridItem("", 1, "네임", 123, listOf("이이이이름")),
-                PlaceGridItem("", 1, "네임", 123, listOf("이이이이름")),
-                PlaceGridItem("", 1, "네임", 123, listOf("이이이이름")),
-                PlaceGridItem("", 1, "네임", 123, listOf("이이이이름")),
-                PlaceGridItem("", 1, "네임", 123, listOf("이이이이름"))
-            )
-        )
-//        MyWritingsRequest().apply {
-//            addOnSuccessListener { loadMyWritings(it.data.toPlaceGridItems()) }
-//            addOnFailureListener { onRequestFail(it.toString()) }
-//        }.send(getUserToken(), getGroupId())
+        MyWritingsRequest().apply {
+            addOnSuccessListener { loadMyWritings(it.data.toPlaceGridItems()) }
+            addOnFailureListener { onRequestFail(it.toString()) }
+        }.send(otherUserToken ?: getUserToken(), getGroupId())
     }
 
     private fun loadMyWritings(writings: List<PlaceGridItem>) {

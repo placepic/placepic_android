@@ -13,6 +13,7 @@ import place.pic.R
 import place.pic.ui.util.showToast
 import place.pic.ui.main.home.HomeFragment
 import place.pic.ui.main.bookmark.BookmarksFragment
+import place.pic.ui.main.home.HomeFragmentForUT
 import place.pic.ui.main.mypage.MyPageFragment
 import place.pic.ui.main.place.PlacesFragment
 import place.pic.ui.main.userlist.UserListFragment
@@ -20,6 +21,7 @@ import place.pic.ui.util.showToast
 
 
 class MainActivity : AppCompatActivity(), WriteFragment.BottomSheetListener {
+
     var mBackWait: Long = 0
 
     interface OnBackPressed {
@@ -35,7 +37,7 @@ class MainActivity : AppCompatActivity(), WriteFragment.BottomSheetListener {
 
         //처음 시작 화면 고정
         supportFragmentManager.beginTransaction()
-            .replace(R.id.main_frame, HomeFragment())
+            .replace(R.id.main_frame, HomeFragmentForUT())
             .commit()
 
         //바텀 네비게이션 구현
@@ -44,7 +46,7 @@ class MainActivity : AppCompatActivity(), WriteFragment.BottomSheetListener {
 
             when (it.itemId) {
                 R.id.action_home -> {
-                    val fragmentD = HomeFragment()
+                    val fragmentD = HomeFragmentForUT()
                     transaction.replace(R.id.main_frame, fragmentD, "home")
                 }
                 R.id.action_menu -> {

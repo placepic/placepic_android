@@ -36,6 +36,14 @@ interface PlacePicService {
         @Query("query") query: String
     ): Call<BaseResponse<PlaceSearchResponse>>
 
+    @GET("/places/home/page/{groupIdx}")
+    fun requestFriendPic(
+        @Header("Content-Type") contentType: String = "application/json",
+        @Header("token") token: String,
+        @Path("groupIdx") groupIdx: Int,
+        @Query("page") page: Int
+    ): Call<BaseResponse<FriendPicResponse>>
+
     @GET("/auth/groups/userlist/{groupIdx}")
     fun requestUserList(
         @Header("Content-Type") contentType: String = "application/json",
@@ -229,6 +237,14 @@ interface PlacePicService {
         @Header("token") token: String,
         @Path("groupIdx") groupIdx: Int
     ): Call<BaseResponse<BookmarksResponse>>
+
+    @GET("/places/group/{groupId}/banner/{bannerId}")
+    fun requestBannerDetail(
+        @Header("Content-Type") contentType: String = "application/json",
+        @Header("token") token: String,
+        @Path("groupId") groupId: Int,
+        @Path("bannerId") bannerId: Int,
+    ): Call<BaseResponse<BannerDetailResponse>>
 
     companion object {
         const val BASE_URL = "http://3.34.222.185:3000"

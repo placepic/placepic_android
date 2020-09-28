@@ -2,8 +2,12 @@ package place.pic.ui.main.home.banner
 
 import android.graphics.Color
 import android.view.View
+import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.view.marginTop
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import place.pic.R
@@ -26,7 +30,18 @@ class BannerHomeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         badgeBg.setBackgroundColor(Color.parseColor(bannerHomeData.badgeBg))
         badge.text = bannerHomeData.badge
         title.text = bannerHomeData.title
-        description.text = bannerHomeData.description
+
+        if (description.text == "") {
+            description.visibility = View.GONE
+
+            val lp = title.layoutParams as ConstraintLayout.LayoutParams
+            lp.topMargin = 60
+            title.layoutParams = lp
+
+        } else {
+            description.text = bannerHomeData.description
+        }
+
         Glide.with(itemView).load(bannerHomeData.imageUrl).into(imageUrl)
         count.text = position
     }

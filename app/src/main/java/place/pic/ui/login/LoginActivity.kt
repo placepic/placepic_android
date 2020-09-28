@@ -84,15 +84,8 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
             cl_login_phone_num_view_group,
             R.anim.spread_down
         )
-        val initButtonAnimation = BindLayoutAnimation<Button>(
-            applicationContext,
-            btn_login_phone_num_send_message,
-            R.anim.load_fade_in
-        )
-        initAnimation.setStartOffsetInAnimation(700)
-        initButtonAnimation.setStartOffsetInAnimation(1000)
+        initAnimation.setStartOffsetInAnimation(500)
         initAnimation.startLayoutAnimation()
-        initButtonAnimation.startLayoutAnimation()
     }
 
     private fun loginButtonEnableEvent() {
@@ -129,6 +122,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         if (isCanSendAuthMessage) {
             countDownTimer.start()
             isCanSendAuthMessage = false
+            //TODO: 서버 연결 로직 붙이기(전화번호 인증.)
             return
         }
         Toast.makeText(applicationContext, "30초 이후에 인증문자를 다시 받을 수 있습니다.", Toast.LENGTH_LONG).show()
@@ -146,24 +140,16 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         val authNumFormAnim = BindLayoutAnimation<ConstraintLayout>(
             applicationContext, cl_login_phone_auth_num_view_group, R.anim.spread_down
         )
-        val buttonAnimation = BindLayoutAnimation<Button>(
-            applicationContext, btn_login_agree_and_find_group, R.anim.load_fade_in
-        )
-        val textGroupAnim = BindLayoutAnimation<ConstraintLayout>(
-            applicationContext, cl_login_term_and_privary, R.anim.load_fade_in
-        )
         layoutVisibleSetting()
-        buttonAnimation.setStartOffsetInAnimation(700)
-        textGroupAnim.setStartOffsetInAnimation(700)
         authNumFormAnim.startLayoutAnimation()
-        buttonAnimation.startLayoutAnimation()
-        textGroupAnim.startLayoutAnimation()
     }
 
     private fun layoutVisibleSetting() {
         cl_login_phone_auth_num_view_group.visibility = View.VISIBLE
-        btn_login_agree_and_find_group.visibility = View.VISIBLE
-        cl_login_term_and_privary.visibility = View.VISIBLE
+    }
+
+    private fun authPhoneNumEvent(){
+        //TODO:서버연결 로직 붙이기(인증번호 인증)
     }
 
     override fun onBackPressed() {
