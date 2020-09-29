@@ -48,5 +48,4 @@
         <activity android:name=".ui.webview.InWebActivity" />
         <activity android:name=".ui.main.OnBoardingActivity" />
     </application>
-
 </manifest>
