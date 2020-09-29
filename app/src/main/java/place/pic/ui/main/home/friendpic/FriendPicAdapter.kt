@@ -33,6 +33,7 @@ class FriendPicAdapter : RecyclerView.Adapter<FriendPicViewHolder>() {
 
     /* infinite scroll 준비 */
     fun addItems (items: List<FriendPicData>) {
+        //clear()
         Log.d("Add Item Check", items.toString())
         val size = itemCount - 1
         datas.addAll(items)
