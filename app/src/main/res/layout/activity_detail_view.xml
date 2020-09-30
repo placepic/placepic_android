@@ -202,7 +202,7 @@
                     android:layout_marginEnd="2dp"
                     android:background="@drawable/round_rectagle_white_4dp"
                     android:backgroundTint="@color/grayF8"
-                    android:paddingVertical="12dp"
+                    android:paddingVertical="16dp"
                     android:paddingStart="14dp"
                     android:paddingEnd="12dp"
                     app:layout_constraintEnd_toStartOf="@+id/cl_btn_detail_like"
@@ -218,7 +218,7 @@
                         android:fontFamily="@font/noto_sans_bold"
                         android:text="같이 가고싶은 사람"
                         android:textColor="@color/black40"
-                        android:textSize="13dp"
+                        android:textSize="12dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
