@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import place.pic.R
 import place.pic.data.remote.response.ResponseGroupList
-import place.pic.ui.util.glideProgressLoadingView
 
 class GroupListAdapter : RecyclerView.Adapter<GroupListAdapter.ViewHolder>() {
 
@@ -59,7 +58,6 @@ class GroupListAdapter : RecyclerView.Adapter<GroupListAdapter.ViewHolder>() {
         private fun loadImage(img_url: String) {
             Glide.with(itemView)
                 .load(img_url)
-                .placeholder(itemView.context.glideProgressLoadingView())
                 .into(img_group_profile)
         }
 
