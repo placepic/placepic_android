@@ -235,7 +235,7 @@ interface PlacePicService {
     ): Call<BaseResponse<BannerDetailResponse>>
 
     companion object {
-        const val BASE_URL = "http://3.34.222.185:3000"
+        const val BASE_URL = "https://placepic.ml"
 
         @Volatile
         private var instance: PlacePicService? = null
