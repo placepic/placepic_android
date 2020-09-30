@@ -3,6 +3,7 @@ package place.pic.ui.login
 import android.content.Intent
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.util.Log
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
@@ -23,6 +24,7 @@ import place.pic.ui.util.animation.nextActivityAnimation
 import place.pic.ui.util.animation.previousActivityAnimation
 import place.pic.ui.util.customEnqueue
 import place.pic.ui.util.customTextChangedListener
+import place.pic.ui.webview.InWebActivity
 import retrofit2.Response
 
 
@@ -109,6 +111,8 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         btn_login_phone_num_send_message.setOnClickListener(this)
         btn_login_agree_and_find_group.setOnClickListener(this)
         img_login_top_bar_back_btn.setOnClickListener(this)
+        tv_login_privary.setOnClickListener(this)
+        tv_login_term.setOnClickListener(this)
     }
 
     override fun onClick(loginButton: View?) {
@@ -121,6 +125,14 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
             }
             R.id.img_login_top_bar_back_btn -> {
                 onBackPressed()
+            }
+            R.id.tv_login_privary -> {
+                loadInWebPage(
+                    webTitle = "placepic 개인정보 처리 방침",
+                    webUrl = "https://www.notion.so/27f34b61fef0498aa23e285beeb45850"
+                )
+            }
+            R.id.tv_login_term -> {
             }
         }
     }
@@ -228,6 +240,13 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                     .show()
             }
         }
+    }
+
+    private fun loadInWebPage(webTitle: String, webUrl: String) {
+        val gotoInWebIntent = Intent(applicationContext, InWebActivity::class.java)
+        gotoInWebIntent.putExtra("webUrl", webUrl)
+        gotoInWebIntent.putExtra("webTitle", webTitle)
+        startActivity(gotoInWebIntent)
     }
 
     override fun onBackPressed() {

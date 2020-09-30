@@ -12,6 +12,7 @@ import place.pic.ui.util.animation.BindLayoutAnimation
 import place.pic.ui.util.animation.nextActivityAnimation
 import place.pic.ui.util.animation.previousActivityAnimation
 import place.pic.ui.util.customTextChangedListener
+import place.pic.ui.webview.InWebActivity
 
 class InputVisitCodeActivity : AppCompatActivity() {
 
@@ -44,6 +45,12 @@ class InputVisitCodeActivity : AppCompatActivity() {
         btn_into_group.setOnClickListener {groupCodeInputAndClickButtonEvent()}
         img_input_visit_code_top_back_btn.setOnClickListener {
             onBackPressed()
+        }
+        tv_goto_sopt_facebook.setOnClickListener{
+            val gotoInWebIntent = Intent(applicationContext, InWebActivity::class.java)
+            gotoInWebIntent.putExtra("webUrl", "https://www.facebook.com/groups/1212709279063314")
+            gotoInWebIntent.putExtra("webTitle", "SOPT 27기 FaceBook")
+            startActivity(gotoInWebIntent)
         }
     }
 
