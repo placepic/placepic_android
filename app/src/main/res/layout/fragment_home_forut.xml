@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:clickable="true"
-    tools:context=".ui.main.home.HomeFragment">
+    tools:context=".ui.main.home.HomeFragmentForUT">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/c_home_fp_logo"
@@ -30,7 +29,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/c_home_fp_title"
+        android:id="@+id/c_homeut_fp_title"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginTop="56dp"
@@ -63,7 +62,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/c_home_fp_title"
+        app:layout_constraintTop_toBottomOf="@+id/c_homeut_fp_title"
+        app:layout_constraintVertical_bias="0.0"
         tools:listitem="@layout/item_friend_pic">
 
     </androidx.recyclerview.widget.RecyclerView>

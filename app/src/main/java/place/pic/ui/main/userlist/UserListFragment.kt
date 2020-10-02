@@ -53,7 +53,7 @@ class UserListFragment : Fragment() {
 
     private fun initRcv(view: View) {
         userListAdapter = UserListAdapter()
-        recyclerview_user_list.adapter = userListAdapter
+        rv_user_list.adapter = userListAdapter
     }
 
     /*private fun loadDatas() {

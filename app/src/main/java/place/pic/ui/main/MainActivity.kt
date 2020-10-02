@@ -37,7 +37,7 @@ class MainActivity : AppCompatActivity(), WriteFragment.BottomSheetListener {
 
         //처음 시작 화면 고정
         supportFragmentManager.beginTransaction()
-            .replace(R.id.main_frame, HomeFragmentForUT())
+            .replace(R.id.main_frame, HomeFragment())
             .commit()
 
         //바텀 네비게이션 구현
@@ -46,7 +46,7 @@ class MainActivity : AppCompatActivity(), WriteFragment.BottomSheetListener {
 
             when (it.itemId) {
                 R.id.action_home -> {
-                    val fragmentD = HomeFragmentForUT()
+                    val fragmentD = HomeFragment()
                     transaction.replace(R.id.main_frame, fragmentD, "home")
                 }
                 R.id.action_menu -> {

@@ -23,11 +23,9 @@ import place.pic.ui.main.home.banner.BannerListActivity
 import place.pic.ui.main.home.friendpic.FriendPicAdapter
 import place.pic.ui.main.home.friendpic.FriendPicData
 import place.pic.ui.util.DateParser
-import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-/* 다혜의 많은 수정이 있을 예정입니다 내비둬주시면 감사하겠습니다 (꾸벅) */
 class HomeFragment : Fragment() {
 
     lateinit var bannerHomeAdapter: BannerHomeAdapter
@@ -35,13 +33,15 @@ class HomeFragment : Fragment() {
     lateinit var layoutManager: LinearLayoutManager
 
     private val bannerDatas = mutableListOf<BannerHomeData>()
-    private val friendPicDatas = mutableListOf<FriendPicData>()
-
-    private val placePicService = PlacePicService
 
     var page = 1
     var isLoading = false
-    val limit = 10
+
+    var totalPage: Int = 0
+    val friendPicList = mutableListOf<FriendPicData>()
+
+    private val placePicService = PlacePicService
+    val token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZHgiOjE4OCwicGhvbmVOdW1iZXIiOiIwMTA1NDA5OTg1OSIsImlhdCI6MTYwMDY2Mzk0NSwiZXhwIjoxNjA1ODQ3OTQ1LCJpc3MiOiJwbGFjZXBpYyJ9.ZlLonyyYdGye3JECXpkk_FHd3UonwS6QDl4sziDGB6g"
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -54,87 +54,55 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        init(view)
-        loadBannerDatas()
-        //loadFriendPicDatas()
-        //호출을 통해 infinite scroll을 위한 준비 완료
+        init()
 
-        img_btn_banner_list.setOnClickListener {
+        loadBannerDatas()
+        // initial items
+        getFriendPicListFromServer(17, 1)
+
+        img_banner_next_home.setOnClickListener {
             val intent = Intent(context, BannerListActivity::class.java)
             startActivity(intent)
         }
 
-        // recycler view scroll listener
-        rv_friendPic.addOnScrollListener(object: RecyclerView.OnScrollListener() {
+        layoutManager = LinearLayoutManager(context)
+        rv_friendpic_home.layoutManager = layoutManager
+
+        rv_friendpic_home.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
 
+                Log.d("내가 지금 스크롤 인식이 되긴하니", dx.toString())
                 val visibleItemCount = layoutManager.childCount
                 val pastVisibleItem = layoutManager.findFirstCompletelyVisibleItemPosition()
                 val total = friendPicAdapter.itemCount
 
-                if (!isLoading) { // isLoading == false
-                    if ((visibleItemCount + pastVisibleItem) >= total) {
-                        page++
-                        //dataMore() // 이때 서버 연결 요청 하고 파라미터로 페이지 넘기기
+                if (!isLoading && page < totalPage) { //isLoading == false
+                    if (pastVisibleItem >= total - 1) {
+                        //progressbar_fp.visibility = View.VISIBLE
+                        val handler = Handler()
+                        handler.postDelayed({
+                            page += 1
+                            isLoading = true
+                            friendPicList.clear()
+                            getFriendPicListFromServer(17, page)
+                            //progressbar_fp.visibility = View.GONE
+                        }, 2000)
                     }
                 }
-
             }
         })
+
     }
 
-    private fun init(view: View) {
+    private fun init() {
         bannerHomeAdapter = BannerHomeAdapter()
-        vp_banner.adapter = bannerHomeAdapter
-        vp_banner.orientation = ViewPager2.ORIENTATION_HORIZONTAL
-
-        layoutManager = LinearLayoutManager(view.context)
-        rv_friendPic.layoutManager = layoutManager
+        vp_banner_home.adapter = bannerHomeAdapter
+        vp_banner_home.orientation = ViewPager2.ORIENTATION_HORIZONTAL
 
         friendPicAdapter = FriendPicAdapter()
-        rv_friendPic.adapter = friendPicAdapter
+        rv_friendpic_home.adapter = friendPicAdapter
     }
-
-    /*private fun dataMore() {
-        isLoading = true
-        //progressbar_fp.visibility = View.VISIBLE
-        val start = (page - 1) * limit
-        val end = (page) * limit
-
-        for (i in start..end) {
-            val pdate: DateParser = DateParser(1600665738)
-            val dateResult: String = pdate.calculateDiffDate() //UNIX 타임 변환
-
-            friendPicDatas.apply {
-                add(
-                    FriendPicData(
-                        profileImageUrl = "https://img.hankyung.com/photo/201911/03.20725204.1.jpg",
-                        userName = i.toString(),
-                        part = "27기 안드로이드파트",
-                        imageUrl = "https://t1.daumcdn.net/cfile/tistory/2443D04556A6314F0A",
-                        liker = 123,
-                        name = "진성한우곱창",
-                        subways = listOf<String>("합정역", "홍대입구역"),
-                        tags = listOf<String>("최영훈픽", "태그야제발좀", "한번에성공좀"), //list 전체를 넣어
-                        uploadDate = dateResult,
-                        content = "영훈이의 픽.. 죽기전에 꼭 한번쯤은.. 먹어보고 싶다.. 인천대 명물 최영훈이 추천하는 그곳.. 인천대 명물 미부떡.. 나같은 떡볶이 광인은 먹어보고싶은그곳..나정말배고프다지금.. 아임헝그리... 눈물나.. 떡볶이 먹고싶어.. 리뷰는 몇줄까지 써야할까요오오오오오오오"
-                    )
-                )
-            } // 여기에 서버 호출 코드 들어가
-        }
-
-        Handler().postDelayed({
-            if(::friendPicAdapter.isInitialized) {
-                friendPicAdapter.datas = friendPicDatas
-                friendPicAdapter.notifyDataSetChanged()
-            } else {
-                rv_friendPic.adapter = friendPicAdapter
-            }
-            isLoading = false
-            //progressbar_fp.visibility = View.GONE
-        }, 5000)
-    } */
 
     private fun loadBannerDatas() {
         bannerDatas.apply {
@@ -175,50 +143,26 @@ class HomeFragment : Fragment() {
         bannerHomeAdapter.notifyDataSetChanged()
     }
 
-    /*private fun loadFriendPicDatas() {
-
-        val pdate: DateParser = DateParser(1600665738)
-        val dateResult: String = pdate.calculateDiffDate() //UNIX 타임 변환
-
-        friendPicDatas.apply {
-            add(
-                FriendPicData(
-                    profileImageUrl = "https://img.hankyung.com/photo/201911/03.20725204.1.jpg",
-                    userName = "111김다혜",
-                    part = "27기 안드로이드파트",
-                    imageUrl = "https://t1.daumcdn.net/cfile/tistory/2443D04556A6314F0A",
-                    liker = 123,
-                    name = "진성한우곱창",
-                    subways = listOf<String>("합정역", "홍대입구역"),
-                    tags = listOf<String>("최영훈픽", "태그야제발좀", "한번에성공좀"), //list 전체를 넣어
-                    uploadDate = dateResult,
-                    content = "영훈이의 픽.. 죽기전에 꼭 한번쯤은.. 먹어보고 싶다.. 인천대 명물 최영훈이 추천하는 그곳.. 인천대 명물 미부떡.. 나같은 떡볶이 광인은 먹어보고싶은그곳..나정말배고프다지금.. 아임헝그리... 눈물나.. 떡볶이 먹고싶어.. 리뷰는 몇줄까지 써야할까요오오오오오오오"
-                )
-            )
-        }
-        friendPicAdapter.addItems(friendPicDatas)
-    }*/
-
     private fun getFriendPicListFromServer(groupIdx: Int, page: Int) {
 
         val token = PlacepicAuthRepository.getInstance(requireContext()).userToken ?: return
-        val groupIdx = PlacepicAuthRepository.getInstance(requireContext()).groupId ?: return
+        val groupIdx = groupIdx
 
         placePicService.getInstance()
             .requestFriendPic(
                 token = token,
                 groupIdx = groupIdx,
                 page = page
-            ).enqueue(object : Callback<BaseResponse<FriendPicResponse>>{
+            ).enqueue(object : Callback<BaseResponse<FriendPicResponse>> {
                 override fun onFailure(
-                    call: Call<BaseResponse<FriendPicResponse>>,
+                    call: retrofit2.Call<BaseResponse<FriendPicResponse>>,
                     t: Throwable
-                ) {
+                ) { //통신 실패
                     Log.d("fail", t.message)
                 }
 
                 override fun onResponse(
-                    call: Call<BaseResponse<FriendPicResponse>>,
+                    call: retrofit2.Call<BaseResponse<FriendPicResponse>>,
                     response: Response<BaseResponse<FriendPicResponse>>
                 ) {
                     //통신 성공
@@ -226,6 +170,35 @@ class HomeFragment : Fragment() {
                         Log.d("typeCheck", "통신성공")
                         if (response.body()!!.success) {
                             Log.d("typeCheck", "${response.body()!!.data.javaClass}")
+                            for (i in response.body()!!.data.places.indices) {
+
+                                totalPage = response.body()!!.data.totalPage
+                                val pdate = DateParser(response.body()!!.data.places[i].placeCreatedAt)
+                                val dateResult: String = pdate.calculateDiffDate() //UNIX 타임 변환
+
+                                friendPicList.apply {
+                                    add(
+                                        FriendPicData(
+                                            userIdx = response.body()!!.data.places[i].userIdx,
+                                            placeIdx = response.body()!!.data.places[i].placeIdx,
+                                            groupIdx = response.body()!!.data.places[i].groupIdx,
+                                            userName = response.body()!!.data.places[i].userName,
+                                            part = response.body()!!.data.places[i].part,
+                                            profileImageUrl = response.body()!!.data.places[i].profileImageUrl,
+                                            placeName = response.body()!!.data.places[i].placeName,
+                                            placeReview = response.body()!!.data.places[i].placeReview,
+                                            placeImageUrl = response.body()!!.data.places[i].placeImageUrl,
+                                            placeCreatedAt = dateResult,
+                                            subway = response.body()!!.data.places[i].subway,
+                                            tag = response.body()!!.data.places[i].tag,
+                                            likeCnt = response.body()!!.data.places[i].likeCnt
+                                        )
+                                    )
+                                }
+                            }
+                            friendPicAdapter.addItems(friendPicList)
+                            friendPicAdapter.notifyDataSetChanged()
+                            isLoading = false
                         }
                     }
                 }

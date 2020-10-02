@@ -1,16 +1,12 @@
 package place.pic.ui.main.home.friendpic
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.core.view.get
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.google.android.material.chip.ChipGroup
-import kotlinx.android.synthetic.main.item_friend_pic.view.*
 import place.pic.R
 import place.pic.ui.tag.ChipFactory
 
