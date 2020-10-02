@@ -12,7 +12,7 @@ import place.pic.R
  
 class BannerListAdapter  : RecyclerView.Adapter<BannerListViewHolder>() {
 
-    var listDatas: MutableList<BannerListData> = mutableListOf()
+    var datas: MutableList<BannerListData> = mutableListOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BannerListViewHolder {
         val view =
@@ -21,11 +21,12 @@ class BannerListAdapter  : RecyclerView.Adapter<BannerListViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: BannerListViewHolder, position: Int) {
-        holder.bind(listDatas[position])
+        holder.bind(datas[position])
     }
 
     override fun getItemCount(): Int {
-        return listDatas.size
+        return datas.size
     }
+
 
 }

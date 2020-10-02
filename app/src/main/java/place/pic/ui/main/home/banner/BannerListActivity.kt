@@ -2,92 +2,84 @@ package place.pic.ui.main.home.banner
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import kotlinx.android.synthetic.main.activity_banner_list.*
 import place.pic.R
+import place.pic.data.PlacepicAuthRepository
+import place.pic.data.remote.PlacePicService
+import place.pic.data.remote.response.BannerResponse
+import place.pic.data.remote.response.BaseResponse
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class BannerListActivity : AppCompatActivity() {
 
     lateinit var bannerListAdapter: BannerListAdapter
-    val listDatas : MutableList<BannerListData> = mutableListOf()
+    val bannerListDatas : MutableList<BannerListData> = mutableListOf()
+
+    private val placePicService = PlacePicService
+    val token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZHgiOjE4OCwicGhvbmVOdW1iZXIiOiIwMTA1NDA5OTg1OSIsImlhdCI6MTYwMDY2Mzk0NSwiZXhwIjoxNjA1ODQ3OTQ1LCJpc3MiOiJwbGFjZXBpYyJ9.ZlLonyyYdGye3JECXpkk_FHd3UonwS6QDl4sziDGB6g"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_banner_list)
 
-        initRcv()
-        loadDatas()
+        init()
+        getBannerListFromServer(17)
 
         img_banner_list_back.setOnClickListener { onBackPressed() }
     }
 
-    private fun initRcv() {
+    private fun init() {
         bannerListAdapter = BannerListAdapter()
         rv_banner_list.adapter = bannerListAdapter
     }
 
-    private fun loadDatas() {
-        listDatas.apply {
-            add(
-                BannerListData(
-                    badgeBg = "#5BC9A1",
-                    badge = "공모전",
-                    title = "제목 1",
-                    description = "내 친구들의 최애장소 24곳",
-                    imageUrl = "https://odden1.speedgabia.com/static/bb/lists/spot-n03-s02/spot_f_n03-s02-01.jpg"
-                )
-            )
+    private fun getBannerListFromServer(groupIdx: Int) {
 
-            add(
-                BannerListData(
-                    badgeBg = "#F6CB5C",
-                    badge = "PICK",
-                    title = "제목 2",
-                    description = "내 친구들의 최애장소 24곳",
-                    imageUrl = "https://odden1.speedgabia.com/static/bb/lists/spot-n03-s02/spot_f_n03-s02-01.jpg"
-                )
-            )
+        val token = PlacepicAuthRepository.getInstance(this).userToken ?: return
+        val groupIdx = groupIdx
 
-            add(
-                BannerListData(
-                    badgeBg = "#5BC9A1",
-                    badge = "공모전",
-                    title = "제목 3",
-                    description = "내 친구들의 최애장소 24곳",
-                    imageUrl = "https://odden1.speedgabia.com/static/bb/lists/spot-n03-s02/spot_f_n03-s02-01.jpg"
-                )
-            )
+        placePicService.getInstance()
+            .requestBanner(
+                token = token,
+                groupIdx = groupIdx
+            ).enqueue(object : Callback<BaseResponse<List<BannerResponse>>> {
+                override fun onFailure(
+                    call: Call<BaseResponse<List<BannerResponse>>>,
+                    t: Throwable
+                ) { //통신 실패
+                    Log.d("fail", t.message)
+                }
 
-            add(
-                BannerListData(
-                    badgeBg = "#5BC9A1",
-                    badge = "공모전",
-                    title = "제목 4",
-                    description = "내 친구들의 최애장소 24곳",
-                    imageUrl = "https://odden1.speedgabia.com/static/bb/lists/spot-n03-s02/spot_f_n03-s02-01.jpg"
-                )
-            )
-
-            add(
-                BannerListData(
-                    badgeBg = "#F6CB5C",
-                    badge = "PICK",
-                    title = "제목 5",
-                    description = "내 친구들의 최애장소 24곳",
-                    imageUrl = "https://odden1.speedgabia.com/static/bb/lists/spot-n03-s02/spot_f_n03-s02-01.jpg"
-                )
-            )
-
-            add(
-                BannerListData(
-                    badgeBg = "#F6CB5C",
-                    badge = "PICK",
-                    title = "제목 6",
-                    description = "내 친구들의 최애장소 24곳",
-                    imageUrl = "https://odden1.speedgabia.com/static/bb/lists/spot-n03-s02/spot_f_n03-s02-01.jpg"
-                )
-            )
-        }
-        bannerListAdapter.listDatas = listDatas
-        bannerListAdapter.notifyDataSetChanged()
+                override fun onResponse(
+                    call: Call<BaseResponse<List<BannerResponse>>>,
+                    response: Response<BaseResponse<List<BannerResponse>>>
+                ) {
+                    //통신 성공
+                    if (response.isSuccessful) { //status
+                        Log.d("typeCheck", "통신성공")
+                        if (response.body()!!.success) {
+                            Log.d("typeCheck", "${response.body()!!.data.javaClass}")
+                            for (i in response.body()!!.data.indices) {
+                                bannerListDatas.apply {
+                                    add(
+                                        BannerListData(
+                                            badgeBg = response.body()!!.data[i].bannerBadgeColor,
+                                            badge = response.body()!!.data[i].bannerBadgeName,
+                                            title = response.body()!!.data[i].bannerTitle,
+                                            description = response.body()!!.data[i].bannerDescription,
+                                            imageUrl = response.body()!!.data[i].bannerImageUrl,
+                                        )
+                                    )
+                                }
+                            }
+                            bannerListAdapter.datas = bannerListDatas
+                            bannerListAdapter.notifyDataSetChanged()
+                        }
+                    }
+                }
+            })
     }
 }

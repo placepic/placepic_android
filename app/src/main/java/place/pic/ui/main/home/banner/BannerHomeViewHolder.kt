@@ -43,6 +43,7 @@ class BannerHomeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         } else {
             description.text = bannerHomeData.description
         }
-        count.text = "1 / 3"
+        count.text = "1 / 2"
+        //count.text = position
     }
 }
