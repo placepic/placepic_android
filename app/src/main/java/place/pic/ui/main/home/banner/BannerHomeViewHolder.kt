@@ -26,7 +26,9 @@ class BannerHomeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     val imageUrl: ImageView = itemView.findViewById(R.id.img_banner_home)
     val count: TextView = itemView.findViewById(R.id.tv_banner_count_home)
 
-    fun bind(bannerHomeData: BannerHomeData, position: String) {
+    fun bind(bannerHomeData: BannerHomeData) {
+    //fun bind(bannerHomeData: BannerHomeData, position: String) {
+        Glide.with(itemView).load(bannerHomeData.imageUrl).into(imageUrl)
         badgeBg.setBackgroundColor(Color.parseColor(bannerHomeData.badgeBg))
         badge.text = bannerHomeData.badge
         title.text = bannerHomeData.title
@@ -41,8 +43,6 @@ class BannerHomeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         } else {
             description.text = bannerHomeData.description
         }
-
-        Glide.with(itemView).load(bannerHomeData.imageUrl).into(imageUrl)
-        count.text = position
+        count.text = "1 / 3"
     }
 }

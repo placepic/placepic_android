@@ -153,16 +153,6 @@
             app:subways="@{placeItem.subways}"
             tools:text="합정역/홍대입구역" />
 
-        <!--<TextView
-            android:id="@+id/fp_tags"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="12dp"
-            android:text="최영훈픽"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/fp_subways" />-->
-
         <com.google.android.material.chip.ChipGroup
             android:id="@+id/fp_chipGroup"
             android:layout_width="wrap_content"
@@ -174,21 +164,6 @@
             app:layout_constraintTop_toBottomOf="@+id/fp_subways" >
 
         </com.google.android.material.chip.ChipGroup>
-
-        <!--<androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/fp_keywords"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="12dp"
-            android:orientation="horizontal"
-            android:overScrollMode="never"
-            android:scrollbars="none"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/fp_subways"
-            tools:itemCount="3"
-            tools:listitem="@layout/item_keyword_tag" />-->
 
         <TextView
             android:id="@+id/fp_content"
@@ -203,10 +178,9 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/fp_chipGroup"
-            tools:text="영훈이의 픽.. 죽기전에 꼭 한번쯤은.. 먹어보고 싶다.. 인천대 명물 최영훈이 추천하는 그곳.. 인천대 명물 미부떡.. 나같은 떡볶이 광인은 먹어보고싶은그곳..나정말배고프다지금.. 아임헝그리... 눈물나.. 떡볶이 먹고싶어.. 리뷰는 몇줄까지 써"
+            tools:text="textView"
             android:ellipsize="end"
             android:maxLines="4" />
-
 
         <View
             android:id="@+id/view4"

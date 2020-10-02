@@ -14,6 +14,7 @@ import retrofit2.http.*
 
 interface PlacePicService {
 
+    /*키워드 태그*/
     @GET("/tag/{categoryIdx}")
     fun requestKeywordTag(
         @Header("Content-Type") contentType: String = "application/json",
@@ -21,6 +22,7 @@ interface PlacePicService {
         @Path("categoryIdx") categoryIdx: Int
     ): Call<BaseResponse<List<KeywordTagResponse>>>
 
+    /*유용한 태그*/
     @GET("/tag/default/{categoryIdx}")
     fun requestUsefulTag(
         @Header("Content-Type") contentType: String = "application/json",
@@ -28,6 +30,7 @@ interface PlacePicService {
         @Path("categoryIdx") categoryIdx: Int
     ): Call<BaseResponse<List<UsefulTagResponse>>>
 
+    /*업로드 - 장소 검색*/
     @GET("/search/place/{groupIdx}")
     fun requestPlaceSearch(
         @Header("Content-Type") contentType: String = "application/json",
@@ -36,6 +39,7 @@ interface PlacePicService {
         @Query("query") query: String
     ): Call<BaseResponse<PlaceSearchResponse>>
 
+    /*홈 - 친생픽*/
     @GET("/places/home/page/{groupIdx}")
     fun requestFriendPic(
         @Header("Content-Type") contentType: String = "application/json",
@@ -44,6 +48,7 @@ interface PlacePicService {
         @Query("page") page: Int
     ): Call<BaseResponse<FriendPicResponse>>
 
+    /*유저리스트*/
     @GET("/auth/groups/userlist/{groupIdx}")
     fun requestUserList(
         @Header("Content-Type") contentType: String = "application/json",
@@ -66,7 +71,6 @@ interface PlacePicService {
     fun requestLoginAndSignUpAuthNum(
         @Body body:LoginAndSignUpAuthNumRequest
     ): Call<BaseResponse<LoginResponse>>
-
 
     @GET("/category/all")
     fun getPlaceTypeDetails(
@@ -225,6 +229,14 @@ interface PlacePicService {
         @Header("token") token: String,
         @Path("groupIdx") groupIdx: Int
     ): Call<BaseResponse<BookmarksResponse>>
+
+    /*배너 리스트*/
+    @GET("/places/group/{groupId}/banner")
+    fun requestBanner(
+        @Header("Content-Type") contentType: String = "application/json",
+        @Header("token") token: String,
+        @Path("groupId") groupIdx: Int
+    ): Call<BaseResponse<List<BannerResponse>>>
 
     @GET("/places/group/{groupId}/banner/{bannerId}")
     fun requestBannerDetail(

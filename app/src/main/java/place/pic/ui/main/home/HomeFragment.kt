@@ -15,6 +15,7 @@ import kotlinx.android.synthetic.main.fragment_home.*
 import place.pic.R
 import place.pic.data.PlacepicAuthRepository
 import place.pic.data.remote.PlacePicService
+import place.pic.data.remote.response.BannerResponse
 import place.pic.data.remote.response.BaseResponse
 import place.pic.data.remote.response.FriendPicResponse
 import place.pic.ui.main.home.banner.BannerHomeAdapter
@@ -23,6 +24,7 @@ import place.pic.ui.main.home.banner.BannerListActivity
 import place.pic.ui.main.home.friendpic.FriendPicAdapter
 import place.pic.ui.main.home.friendpic.FriendPicData
 import place.pic.ui.util.DateParser
+import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
@@ -32,7 +34,7 @@ class HomeFragment : Fragment() {
     lateinit var friendPicAdapter: FriendPicAdapter
     lateinit var layoutManager: LinearLayoutManager
 
-    private val bannerDatas = mutableListOf<BannerHomeData>()
+    private val bannerHomeDatas = mutableListOf<BannerHomeData>()
 
     var page = 1
     var isLoading = false
@@ -56,7 +58,7 @@ class HomeFragment : Fragment() {
 
         init()
 
-        loadBannerDatas()
+        getBannerListFromServer(17)
         // initial items
         getFriendPicListFromServer(17, 1)
 
@@ -72,8 +74,6 @@ class HomeFragment : Fragment() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
 
-                Log.d("내가 지금 스크롤 인식이 되긴하니", dx.toString())
-                val visibleItemCount = layoutManager.childCount
                 val pastVisibleItem = layoutManager.findFirstCompletelyVisibleItemPosition()
                 val total = friendPicAdapter.itemCount
 
@@ -104,43 +104,52 @@ class HomeFragment : Fragment() {
         rv_friendpic_home.adapter = friendPicAdapter
     }
 
-    private fun loadBannerDatas() {
-        bannerDatas.apply {
-            add(
-                BannerHomeData(
-                    badgeBg = "#5BC9A1",
-                    badge = "공모전",
-                    title = "분위기 좋은 카페 TOP 10",
-                    description = "",
-                    imageUrl = "https://images.homify.com/c_fill,f_auto,q_0,w_740/v1495806612/p/photo/image/2031170/%C3%A3_-_%C3%A3%C3%B5_%C3%8E_%C3%9B%C3%80%C3%BA%C3%81%C3%95%C3%81_%C3%BA_8.jpg",
-                    count = "1 / 8"
-                )
-            )
+    private fun getBannerListFromServer(groupIdx: Int) {
 
-            add(
-                BannerHomeData(
-                    badgeBg = "#F6CB5C",
-                    badge = "PICK",
-                    title = "제목 테스트",
-                    description = "내 친구들의 최애장소 24곳",
-                    imageUrl = "https://images.homify.com/c_fill,f_auto,q_0,w_740/v1495806612/p/photo/image/2031170/%C3%A3_-_%C3%A3%C3%B5_%C3%8E_%C3%9B%C3%80%C3%BA%C3%81%C3%95%C3%81_%C3%BA_8.jpg",
-                    count = "2 / 8"
-                )
-            )
+        val token = PlacepicAuthRepository.getInstance(requireContext()).userToken ?: return
+        val groupIdx = groupIdx
 
-            add(
-                BannerHomeData(
-                    badgeBg = "#5BC9A1",
-                    badge = "공모전",
-                    title = "알고보니 리사이클러가 안되는중",
-                    description = "내 친구들의 최애장소 24곳",
-                    imageUrl = "https://odden1.speedgabia.com/static/bb/lists/spot-n03-s02/spot_f_n03-s02-01.jpg",
-                    count = "3 / 7"
-                )
-            )
-        }
-        bannerHomeAdapter.datas = bannerDatas
-        bannerHomeAdapter.notifyDataSetChanged()
+        placePicService.getInstance()
+            .requestBanner(
+                token = token,
+                groupIdx = groupIdx
+            ).enqueue(object : Callback<BaseResponse<List<BannerResponse>>> {
+                override fun onFailure(
+                    call: Call<BaseResponse<List<BannerResponse>>>,
+                    t: Throwable
+                ) { //통신 실패
+                    Log.d("fail", t.message)
+                }
+
+                override fun onResponse(
+                    call: Call<BaseResponse<List<BannerResponse>>>,
+                    response: Response<BaseResponse<List<BannerResponse>>>
+                ) {
+                    //통신 성공
+                    if (response.isSuccessful) { //status
+                        Log.d("typeCheck", "통신성공")
+                        if (response.body()!!.success) {
+                            Log.d("typeCheck", "${response.body()!!.data.javaClass}")
+                            for (i in response.body()!!.data.indices) {
+                                bannerHomeDatas.apply {
+                                    add(
+                                        BannerHomeData(
+                                            badgeBg = response.body()!!.data[i].bannerBadgeColor,
+                                            badge = response.body()!!.data[i].bannerBadgeName,
+                                            title = response.body()!!.data[i].bannerTitle,
+                                            description = response.body()!!.data[i].bannerDescription,
+                                            imageUrl = response.body()!!.data[i].bannerImageUrl,
+                                            count = ""
+                                        )
+                                    )
+                                }
+                            }
+                            bannerHomeAdapter.datas = bannerHomeDatas
+                            bannerHomeAdapter.notifyDataSetChanged()
+                        }
+                    }
+                }
+            })
     }
 
     private fun getFriendPicListFromServer(groupIdx: Int, page: Int) {
@@ -205,3 +214,4 @@ class HomeFragment : Fragment() {
             })
     }
 }
+
