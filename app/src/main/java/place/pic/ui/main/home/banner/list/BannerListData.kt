@@ -1,4 +1,4 @@
-package place.pic.ui.main.home.banner
+package place.pic.ui.main.home.banner.list
 
 /**
  * Created By kimdahyee

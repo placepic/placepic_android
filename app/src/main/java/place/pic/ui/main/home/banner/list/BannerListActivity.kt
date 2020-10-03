@@ -1,4 +1,4 @@
-package place.pic.ui.main.home.banner
+package place.pic.ui.main.home.banner.list
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -32,7 +32,8 @@ class BannerListActivity : AppCompatActivity() {
     }
 
     private fun init() {
-        bannerListAdapter = BannerListAdapter()
+        bannerListAdapter =
+            BannerListAdapter()
         rv_banner_list.adapter = bannerListAdapter
     }
 

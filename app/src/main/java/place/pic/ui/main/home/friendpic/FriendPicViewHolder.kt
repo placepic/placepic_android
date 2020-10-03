@@ -57,23 +57,17 @@ class FriendPicViewHolder(itemView: View, inflater: LayoutInflater) : RecyclerVi
         subway.text = detailStringForm(friendPicData.subway, "/")
         likeCnt.text = friendPicData.likeCnt.toString()
 
-        /*friendPicData.tag는 chipList
-          -> 이제 이걸 fp_chipGroup에 addView하고 binding 해주면 돼
-          recyclerView는 뷰가 재활용된다는걸 잊으면 안돼
-        */
-
-        /*var chipList = friendPicData.tag
-        chipList.forEach { chip ->
-            tag.addView(chip)
-        }*/
-
         tag.removeAllViews() //뷰가 재활용이 되기 때문에 지워줘야해
         var tags = friendPicData.tag
+        var count = 0
         tags.forEach { text ->
-            val chip = ChipFactory.createDetailChip(inflater)
-            //하나씩 chip 생성
-            chip.text = text
-            tag.addView(chip)
+            if (count < 3) {
+                val chip = ChipFactory.createDetailChip(inflater)
+                //하나씩 chip 생성
+                chip.text = text
+                tag.addView(chip)
+                count++
+            }
         }
     }
 }

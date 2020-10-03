@@ -20,7 +20,7 @@ import place.pic.data.remote.response.BaseResponse
 import place.pic.data.remote.response.FriendPicResponse
 import place.pic.ui.main.home.banner.BannerHomeAdapter
 import place.pic.ui.main.home.banner.BannerHomeData
-import place.pic.ui.main.home.banner.BannerListActivity
+import place.pic.ui.main.home.banner.list.BannerListActivity
 import place.pic.ui.main.home.friendpic.FriendPicAdapter
 import place.pic.ui.main.home.friendpic.FriendPicData
 import place.pic.ui.util.DateParser
@@ -70,6 +70,7 @@ class HomeFragment : Fragment() {
         layoutManager = LinearLayoutManager(context)
         rv_friendpic_home.layoutManager = layoutManager
 
+        /* infinite scroll */
         rv_friendpic_home.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
