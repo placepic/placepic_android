@@ -25,7 +25,7 @@
         <activity android:name=".ui.main.mypage.GroupChangeActivity" />
         <activity android:name=".ui.main.BaseActivity" />
         <activity android:name=".ui.main.detail.liker.LikerUserListActivity" />
-        <activity android:name=".ui.main.MainActivity">
+        <activity android:name=".ui.main.SplashActivity">
         </activity>
         <activity android:name=".ui.search.place.PlaceSearchActivity" />
         <activity android:name=".ui.upload.UploadPlaceActivity" />
@@ -33,7 +33,7 @@
             android:name=".ui.group.InputUserInfoAnimActivity"
             android:windowSoftInputMode="adjustResize" />
         <activity android:name=".ui.login.LoginActivity" />
-        <activity android:name=".ui.main.SplashActivity">
+        <activity android:name=".ui.main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

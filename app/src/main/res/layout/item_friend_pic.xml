@@ -34,7 +34,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="15dp"
             android:fontFamily="@font/noto_sans_bold"
-            android:text="김다혜"
+            android:text=""
             android:textColor="@color/black40"
             android:textSize="13dp"
             app:layout_constraintStart_toEndOf="@+id/fp_img_profile"
@@ -46,7 +46,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:fontFamily="@font/noto_sans_regular"
-            android:text="27기 안드로이드파트"
+            android:text=""
             android:textColor="@color/grayA3ABB0"
             android:textSize="11dp"
             app:layout_constraintStart_toEndOf="@+id/fp_img_profile"
@@ -59,7 +59,7 @@
             android:layout_marginTop="23dp"
             android:layout_marginEnd="16dp"
             android:fontFamily="@font/noto_sans_regular"
-            android:text="1시간 전"
+            android:text=""
             android:textColor="@color/grayA3ABB0"
             android:textSize="11dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -117,7 +117,7 @@
             android:layout_marginTop="4dp"
             android:layout_marginEnd="4dp"
             android:layout_marginBottom="4dp"
-            android:text="101"
+            android:text=""
             android:textSize="10dp"
             android:textColor="@color/white"
             android:fontFamily="@font/noto_sans_bold"
@@ -133,7 +133,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="12dp"
             android:fontFamily="@font/noto_sans_bold"
-            android:text="미친부부떡볶이"
+            android:text=""
             android:textColor="@color/black40"
             android:textSize="18dp"
             app:layout_constraintStart_toStartOf="parent"
@@ -151,7 +151,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/fp_place_name"
             app:subways="@{placeItem.subways}"
-            tools:text="합정역/홍대입구역" />
+            tools:text="" />
 
         <com.google.android.material.chip.ChipGroup
             android:id="@+id/fp_chipGroup"
@@ -178,7 +178,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/fp_chipGroup"
-            tools:text="textView"
+            tools:text=""
             android:ellipsize="end"
             android:maxLines="4" />
 
