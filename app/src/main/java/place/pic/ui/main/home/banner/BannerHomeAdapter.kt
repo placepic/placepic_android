@@ -1,11 +1,9 @@
 package place.pic.ui.main.home.banner
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import place.pic.R
-import java.lang.StringBuilder
 
 /**
  * Created By kimdahyee
@@ -23,23 +21,16 @@ class BannerHomeAdapter : RecyclerView.Adapter<BannerHomeViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: BannerHomeViewHolder, position: Int) {
-        val realPos = position % itemCount
-        val sb = StringBuilder("")
-        sb.append((realPos + 1).toString())
-        sb.append(" / ")
-        sb.append(itemCount)
-        holder.bind(datas[realPos], sb.toString())
-
-        /*val realPos = position % datas.size
+        var realPos = position % datas.size
         val sb = StringBuilder("")
         sb.append((realPos + 1).toString())
         sb.append(" / ")
         sb.append(datas.size)
-        holder.bind(datas[realPos], sb.toString())*/
+        holder.bind(datas[realPos], sb.toString())
     }
 
     override fun getItemCount(): Int {
-        return datas.size
+        return datas.size * 1000
         //return Integer.MAX_VALUE
     }
 }

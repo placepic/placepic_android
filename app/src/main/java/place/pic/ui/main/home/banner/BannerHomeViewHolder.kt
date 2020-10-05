@@ -16,7 +16,7 @@ import place.pic.R
  
 class BannerHomeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-    val badgeBg: ViewGroup = itemView.findViewById(R.id.c_banner_badge_bg_home)
+    val badgeBg: View = itemView.findViewById(R.id.c_banner_badge_bg_home)
     val badge: TextView = itemView.findViewById(R.id.tv_banner_badge_home)
     val title: TextView = itemView.findViewById(R.id.tv_banner_title_home)
     val description: TextView = itemView.findViewById(R.id.tv_banner_desc_home)
@@ -25,7 +25,7 @@ class BannerHomeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     fun bind(bannerHomeData: BannerHomeData, position: String) {
         Glide.with(itemView).load(bannerHomeData.imageUrl).into(imageUrl)
-        badgeBg.setBackgroundColor(Color.parseColor(bannerHomeData.badgeBg))
+        badgeBg.background.setTint(Color.parseColor(bannerHomeData.badgeBg))
         badge.text = bannerHomeData.badge
         title.text = bannerHomeData.title
         description.text = bannerHomeData.description

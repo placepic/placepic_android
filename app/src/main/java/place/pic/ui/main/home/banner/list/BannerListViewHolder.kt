@@ -7,7 +7,6 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import place.pic.R
-import place.pic.ui.main.home.banner.list.BannerListData
 
 /**
  * Created By kimdahyee
@@ -23,7 +22,7 @@ class BannerListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     val imageUrl: ImageView = itemView.findViewById(R.id.img_banner_list)
 
     fun bind(bannerListData: BannerListData) {
-        badgeBg.setBackgroundColor(Color.parseColor(bannerListData.badgeBg))
+        badgeBg.background.setTint(Color.parseColor(bannerListData.badgeBg))
         badge.text = bannerListData.badge
         title.text = bannerListData.title
         description.text = bannerListData.description
