@@ -26,6 +26,14 @@ class BannerListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         badge.text = bannerListData.badge
         title.text = bannerListData.title
         description.text = bannerListData.description
+
+        if (bannerListData.description == "") {
+            description.visibility = View.GONE
+        } else {
+            description.visibility = View.VISIBLE
+            description.text = bannerListData.description
+        }
+
         Glide.with(itemView).load(bannerListData.imageUrl).into(imageUrl)
     }
 }

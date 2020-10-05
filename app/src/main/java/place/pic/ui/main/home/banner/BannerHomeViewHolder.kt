@@ -28,7 +28,14 @@ class BannerHomeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         badgeBg.background.setTint(Color.parseColor(bannerHomeData.badgeBg))
         badge.text = bannerHomeData.badge
         title.text = bannerHomeData.title
-        description.text = bannerHomeData.description
+
+        if (bannerHomeData.description == "") {
+            description.visibility = View.GONE
+        } else {
+            description.visibility = View.VISIBLE
+            description.text = bannerHomeData.description
+        }
+
         count.text = position
     }
 }
