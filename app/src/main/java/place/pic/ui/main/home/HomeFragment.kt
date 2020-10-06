@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.widget.NestedScrollView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -44,7 +45,6 @@ class HomeFragment : Fragment() {
     val friendPicList = mutableListOf<FriendPicData>()
 
     private val placePicService = PlacePicService
-    val token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZHgiOjE4OCwicGhvbmVOdW1iZXIiOiIwMTA1NDA5OTg1OSIsImlhdCI6MTYwMDY2Mzk0NSwiZXhwIjoxNjA1ODQ3OTQ1LCJpc3MiOiJwbGFjZXBpYyJ9.ZlLonyyYdGye3JECXpkk_FHd3UonwS6QDl4sziDGB6g"
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -71,7 +71,26 @@ class HomeFragment : Fragment() {
         layoutManager = LinearLayoutManager(context)
         rv_friendpic_home.layoutManager = layoutManager
 
-        /* infinite scroll */
+        nestedScrollView_home.setOnScrollChangeListener(NestedScrollView.OnScrollChangeListener { v, scrollX, scrollY, oldScrollX, oldScrollY ->
+            if(v.getChildAt(v.getChildCount() - 1) != null) {
+                if ((scrollY >= (v.getChildAt(v.getChildCount() - 1)
+                        .getMeasuredHeight() - v.getMeasuredHeight())) &&
+                    scrollY > oldScrollY
+                ) {
+                    //code to fetch more data for endless scrolling
+                    val handler = Handler()
+                    handler.postDelayed({
+                        page += 1
+                        isLoading = true
+                        friendPicList.clear()
+                        getFriendPicListFromServer(17, page)
+                        //progressbar_fp.visibility = View.GONE
+                    }, 2000)
+                }
+            }
+        })
+
+        /* infinite scroll *//*
         rv_friendpic_home.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
@@ -93,8 +112,7 @@ class HomeFragment : Fragment() {
                     }
                 }
             }
-        })
-
+        })*/
     }
 
     private fun init() {
@@ -110,6 +128,7 @@ class HomeFragment : Fragment() {
 
         val token = PlacepicAuthRepository.getInstance(requireContext()).userToken ?: return
         val groupIdx = groupIdx
+        //val groupIdx = PlacepicAuthRepository.getInstance(requireContext()).groupId?:return
 
         placePicService.getInstance()
             .requestBanner(
@@ -158,6 +177,7 @@ class HomeFragment : Fragment() {
 
         val token = PlacepicAuthRepository.getInstance(requireContext()).userToken ?: return
         val groupIdx = groupIdx
+        //val groupIdx = PlacepicAuthRepository.getInstance(requireContext()).groupId?:return
 
         placePicService.getInstance()
             .requestFriendPic(
@@ -184,7 +204,8 @@ class HomeFragment : Fragment() {
                             for (i in response.body()!!.data.places.indices) {
 
                                 totalPage = response.body()!!.data.totalPage
-                                val pdate = DateParser(response.body()!!.data.places[i].placeCreatedAt)
+                                val pdate =
+                                    DateParser(response.body()!!.data.places[i].placeCreatedAt)
                                 val dateResult: String = pdate.calculateDiffDate() //UNIX 타임 변환
 
                                 friendPicList.apply {

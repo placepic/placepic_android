@@ -19,7 +19,6 @@ class BannerListActivity : AppCompatActivity() {
     val bannerListDatas : MutableList<BannerListData> = mutableListOf()
 
     private val placePicService = PlacePicService
-    val token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZHgiOjE4OCwicGhvbmVOdW1iZXIiOiIwMTA1NDA5OTg1OSIsImlhdCI6MTYwMDY2Mzk0NSwiZXhwIjoxNjA1ODQ3OTQ1LCJpc3MiOiJwbGFjZXBpYyJ9.ZlLonyyYdGye3JECXpkk_FHd3UonwS6QDl4sziDGB6g"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,6 +40,7 @@ class BannerListActivity : AppCompatActivity() {
 
         val token = PlacepicAuthRepository.getInstance(this).userToken ?: return
         val groupIdx = groupIdx
+        //val groupIdx = PlacepicAuthRepository.getInstance(this).groupId?:return
 
         placePicService.getInstance()
             .requestBanner(
