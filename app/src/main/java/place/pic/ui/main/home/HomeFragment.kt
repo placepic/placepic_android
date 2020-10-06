@@ -78,20 +78,21 @@ class HomeFragment : Fragment() {
                     scrollY > oldScrollY
                 ) {
                     //code to fetch more data for endless scrolling
+                    progressbar_fp.visibility = View.VISIBLE
                     val handler = Handler()
                     handler.postDelayed({
                         page += 1
                         isLoading = true
                         friendPicList.clear()
                         getFriendPicListFromServer(17, page)
-                        //progressbar_fp.visibility = View.GONE
+                        progressbar_fp.visibility = View.GONE
                     }, 2000)
                 }
             }
         })
 
-        /* infinite scroll *//*
-        rv_friendpic_home.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+        /* infinite scroll */
+        /*rv_friendpic_home.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
 
