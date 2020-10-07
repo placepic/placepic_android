@@ -3,6 +3,7 @@ package place.pic.ui.group
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -43,6 +44,7 @@ class GroupListFragment : Fragment() {
     }
 
     private fun init() {
+        Log.d("TestGroupList","GroupList Test")
         bindGroupListEvent?.requestToGroupListData()
     }
 
@@ -52,9 +54,7 @@ class GroupListFragment : Fragment() {
         groupListAdapter?.setSaveGroupIDListener { id -> saveGroupIdEvent(id) }
         groupListAdapter?.setClickSignGroupListener { clickSignGroupEvent() }
         groupListAdapter?.setClickNonSignGroupListener { groupCode ->
-            clickNonSignGroupEvent(
-                groupCode
-            )
+            clickNonSignGroupEvent(groupCode)
         }
         groupListAdapter?.notifyDataSetChanged()
         rv_exist_group_list.adapter = groupListAdapter
