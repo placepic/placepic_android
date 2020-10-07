@@ -6,6 +6,7 @@ package place.pic.ui.main.home.banner.list
  */
  
 data class BannerListData (
+    val bannerIdx: Int,
     val badgeBg: String,
     val badge: String,
     val title: String,

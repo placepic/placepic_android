@@ -8,10 +8,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.widget.NestedScrollView
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import kotlinx.android.synthetic.main.fragment_home.*
 import place.pic.R
@@ -22,6 +20,7 @@ import place.pic.data.remote.response.BaseResponse
 import place.pic.data.remote.response.FriendPicResponse
 import place.pic.ui.main.home.banner.BannerHomeAdapter
 import place.pic.ui.main.home.banner.BannerHomeData
+import place.pic.ui.main.home.banner.detail.BannerDetailActivity
 import place.pic.ui.main.home.banner.list.BannerListActivity
 import place.pic.ui.main.home.friendpic.FriendPicAdapter
 import place.pic.ui.main.home.friendpic.FriendPicData
@@ -36,13 +35,12 @@ class HomeFragment : Fragment() {
     lateinit var friendPicAdapter: FriendPicAdapter
     lateinit var layoutManager: LinearLayoutManager
 
-    private val bannerHomeDatas = mutableListOf<BannerHomeData>()
-
     var page = 1
     var isLoading = false
-
     var totalPage: Int = 0
-    val friendPicList = mutableListOf<FriendPicData>()
+
+    private val bannerHomeDatas = mutableListOf<BannerHomeData>()
+    private val friendPicList = mutableListOf<FriendPicData>()
 
     private val placePicService = PlacePicService
 
@@ -59,14 +57,27 @@ class HomeFragment : Fragment() {
 
         init()
 
-        getBannerListFromServer(17)
+        val groupIdx = PlacepicAuthRepository.getInstance(requireContext()).groupId ?: return
+
+        getBannerListFromServer(groupIdx)
         // initial items
-        getFriendPicListFromServer(17, 1)
+        getFriendPicListFromServer(groupIdx, 1)
 
         img_banner_next_home.setOnClickListener {
             val intent = Intent(context, BannerListActivity::class.java)
             startActivity(intent)
         }
+
+        //banner clickevent listener
+        bannerHomeAdapter.setItemClickListener(object : BannerHomeAdapter.ItemClickListener {
+            override fun onClick(view: View, position: Int) {
+                Log.d("check check", "${bannerHomeDatas[position].title} 선택")
+                val clickedBannerIntent =
+                    Intent(context, BannerDetailActivity::class.java)
+                clickedBannerIntent.putExtra("bannerId", bannerHomeDatas[position].bannerIdx)
+                startActivity(clickedBannerIntent)
+            }
+        })
 
         layoutManager = LinearLayoutManager(context)
         rv_friendpic_home.layoutManager = layoutManager
@@ -85,7 +96,6 @@ class HomeFragment : Fragment() {
                         isLoading = true
                         friendPicList.clear()
                         getFriendPicListFromServer(17, page)
-                        progressbar_fp.visibility = View.GONE
                     }, 2000)
                 }
             }
@@ -128,8 +138,7 @@ class HomeFragment : Fragment() {
     private fun getBannerListFromServer(groupIdx: Int) {
 
         val token = PlacepicAuthRepository.getInstance(requireContext()).userToken ?: return
-        val groupIdx = groupIdx
-        //val groupIdx = PlacepicAuthRepository.getInstance(requireContext()).groupId?:return
+        val groupIdx = PlacepicAuthRepository.getInstance(requireContext()).groupId?:return
 
         placePicService.getInstance()
             .requestBanner(
@@ -156,6 +165,7 @@ class HomeFragment : Fragment() {
                                 bannerHomeDatas.apply {
                                     add(
                                         BannerHomeData(
+                                            bannerIdx = response.body()!!.data[i].bannerIdx,
                                             badgeBg = response.body()!!.data[i].bannerBadgeColor,
                                             badge = response.body()!!.data[i].bannerBadgeName,
                                             title = response.body()!!.data[i].bannerTitle,
@@ -177,8 +187,7 @@ class HomeFragment : Fragment() {
     private fun getFriendPicListFromServer(groupIdx: Int, page: Int) {
 
         val token = PlacepicAuthRepository.getInstance(requireContext()).userToken ?: return
-        val groupIdx = groupIdx
-        //val groupIdx = PlacepicAuthRepository.getInstance(requireContext()).groupId?:return
+        val groupIdx = PlacepicAuthRepository.getInstance(requireContext()).groupId?:return
 
         placePicService.getInstance()
             .requestFriendPic(
@@ -200,6 +209,7 @@ class HomeFragment : Fragment() {
                     //통신 성공
                     if (response.isSuccessful) { //status
                         Log.d("typeCheck", "통신성공")
+                        progressbar_fp.visibility = View.GONE
                         if (response.body()!!.success) {
                             Log.d("typeCheck", "${response.body()!!.data.javaClass}")
                             for (i in response.body()!!.data.places.indices) {

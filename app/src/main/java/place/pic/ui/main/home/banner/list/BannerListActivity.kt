@@ -1,14 +1,17 @@
 package place.pic.ui.main.home.banner.list
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import kotlinx.android.synthetic.main.activity_banner_list.*
 import place.pic.R
 import place.pic.data.PlacepicAuthRepository
 import place.pic.data.remote.PlacePicService
 import place.pic.data.remote.response.BannerResponse
 import place.pic.data.remote.response.BaseResponse
+import place.pic.ui.main.home.banner.detail.BannerDetailActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -25,9 +28,22 @@ class BannerListActivity : AppCompatActivity() {
         setContentView(R.layout.activity_banner_list)
 
         init()
-        getBannerListFromServer(17)
+
+        val groupIdx = PlacepicAuthRepository.getInstance(this).groupId ?: return
+
+        getBannerListFromServer(groupIdx)
 
         img_banner_list_back.setOnClickListener { onBackPressed() }
+
+        //banner clickevent listener
+        bannerListAdapter.setItemClickListener(object : BannerListAdapter.ItemClickListener {
+            override fun onClick(view: View, position: Int) {
+                val clickedBannerIntent =
+                    Intent(this@BannerListActivity, BannerDetailActivity::class.java)
+                clickedBannerIntent.putExtra("bannerId", bannerListDatas[position].bannerIdx)
+                startActivity(clickedBannerIntent)
+            }
+        })
     }
 
     private fun init() {
@@ -39,8 +55,7 @@ class BannerListActivity : AppCompatActivity() {
     private fun getBannerListFromServer(groupIdx: Int) {
 
         val token = PlacepicAuthRepository.getInstance(this).userToken ?: return
-        val groupIdx = groupIdx
-        //val groupIdx = PlacepicAuthRepository.getInstance(this).groupId?:return
+        val groupIdx = PlacepicAuthRepository.getInstance(this).groupId?:return
 
         placePicService.getInstance()
             .requestBanner(
@@ -67,6 +82,7 @@ class BannerListActivity : AppCompatActivity() {
                                 bannerListDatas.apply {
                                     add(
                                         BannerListData(
+                                            bannerIdx = response.body()!!.data[i].bannerIdx,
                                             badgeBg = response.body()!!.data[i].bannerBadgeColor,
                                             badge = response.body()!!.data[i].bannerBadgeName,
                                             title = response.body()!!.data[i].bannerTitle,

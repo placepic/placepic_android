@@ -1,9 +1,11 @@
 package place.pic.ui.main.home.banner
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import place.pic.R
+import place.pic.ui.search.place.PlaceSearchAdapter
 
 /**
  * Created By kimdahyee
@@ -32,5 +34,16 @@ class BannerHomeAdapter : RecyclerView.Adapter<BannerHomeViewHolder>() {
     override fun getItemCount(): Int {
         return datas.size * 1000
         //return Integer.MAX_VALUE
+    }
+
+    //click interface
+    interface ItemClickListener {
+        fun onClick(view: View, position: Int)
+    }
+
+    private lateinit var itemClickListener: ItemClickListener
+
+    fun setItemClickListener(itemClickListener: ItemClickListener) {
+        this.itemClickListener = itemClickListener
     }
 }

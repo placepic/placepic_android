@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_main.*
@@ -12,12 +11,9 @@ import place.pic.R
 
 import place.pic.ui.util.showToast
 import place.pic.ui.main.home.HomeFragment
-import place.pic.ui.main.bookmark.BookmarksFragment
-import place.pic.ui.main.home.HomeFragmentForUT
 import place.pic.ui.main.mypage.MyPageFragment
 import place.pic.ui.main.place.PlacesFragment
 import place.pic.ui.main.userlist.UserListFragment
-import place.pic.ui.util.showToast
 
 
 class MainActivity : AppCompatActivity(), WriteFragment.BottomSheetListener {

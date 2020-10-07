@@ -151,6 +151,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/c_friendpic_title_home"
+                    app:layout_constraintVertical_bias="0.0"
                     tools:listitem="@layout/item_friend_pic" />
 
                 <ProgressBar
