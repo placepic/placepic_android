@@ -49,7 +49,7 @@ class GroupListActivity : AppCompatActivity(), BindGroupListEvent {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_group_list)
         val transaction = supportFragmentManager.beginTransaction()
-        transaction.add(R.id.frame_group_list, groupListFragment)
+        transaction.replace(R.id.frame_group_list, groupListFragment)
         transaction.commit()
     }
 

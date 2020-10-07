@@ -200,7 +200,6 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun requestLoginToServer() {
-        //TODO:서버연결 로직 붙이기(인증번호 인증)
         PlacePicService.getInstance()
             .requestLoginAndSignUpAuthNum(
                 LoginAndSignUpAuthNumRequest(
@@ -216,9 +215,6 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                     requestErrorInLogin(response)
                 }
             )
-        val gotoGroupListIntent = Intent(applicationContext, GroupListActivity::class.java)
-        startActivity(gotoGroupListIntent)
-        finish()
     }
 
     private fun requestSuccessInLogin(response: Response<BaseResponse<LoginResponse>>) {
