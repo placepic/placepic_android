@@ -67,9 +67,6 @@ class ProfileEditActivity : AppCompatActivity() {
             }
         }
 
-        PlacepicAuthRepository.getInstance(this).saveUserToken("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZHgiOjE4OCwicGhvbmVOdW1iZXIiOiIwMTA1NDA5OTg1OSIsImlhdCI6MTYwMDY2Mzk0NSwiZXhwIjoxNjA1ODQ3OTQ1LCJpc3MiOiJwbGFjZXBpYyJ9.ZlLonyyYdGye3JECXpkk_FHd3UonwS6QDl4sziDGB6g")
-        PlacepicAuthRepository.getInstance(this).saveGroupId(17)
-
         btn_profile_edit_ok.setOnClickListener {
             change_part=et_profile_setting_in_part.text.toString()
             //val uri=getURLForResource(img_profile_setting)
