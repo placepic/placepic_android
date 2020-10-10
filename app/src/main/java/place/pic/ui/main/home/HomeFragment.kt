@@ -57,11 +57,12 @@ class HomeFragment : Fragment() {
 
         init()
 
+        val token = PlacepicAuthRepository.getInstance(requireContext()).userToken ?: return
         val groupIdx = PlacepicAuthRepository.getInstance(requireContext()).groupId ?: return
 
-        getBannerListFromServer(groupIdx)
+        getBannerListFromServer(token, groupIdx)
         // initial items
-        getFriendPicListFromServer(groupIdx, 1)
+        getFriendPicListFromServer(token, groupIdx, 1)
 
         img_banner_next_home.setOnClickListener {
             val intent = Intent(context, BannerListActivity::class.java)
@@ -70,7 +71,7 @@ class HomeFragment : Fragment() {
 
         //banner clickevent listener
         bannerHomeAdapter.setItemClickListener(object : BannerHomeAdapter.ItemClickListener {
-            override fun onClick(view: View, position: Int) {
+            override fun onItemClick(view: View, position: Int) {
                 Log.d("check check", "${bannerHomeDatas[position].title} 선택")
                 val clickedBannerIntent =
                     Intent(context, BannerDetailActivity::class.java)
@@ -85,17 +86,14 @@ class HomeFragment : Fragment() {
         nestedScrollView_home.setOnScrollChangeListener(NestedScrollView.OnScrollChangeListener { v, scrollX, scrollY, oldScrollX, oldScrollY ->
             if(v.getChildAt(v.getChildCount() - 1) != null) {
                 if ((scrollY >= (v.getChildAt(v.getChildCount() - 1)
-                        .getMeasuredHeight() - v.getMeasuredHeight())) &&
-                    scrollY > oldScrollY
-                ) {
-                    //code to fetch more data for endless scrolling
+                        .getMeasuredHeight() - v.getMeasuredHeight())) && scrollY > oldScrollY) {
                     progressbar_fp.visibility = View.VISIBLE
                     val handler = Handler()
                     handler.postDelayed({
                         page += 1
                         isLoading = true
                         friendPicList.clear()
-                        getFriendPicListFromServer(17, page)
+                        getFriendPicListFromServer(token, 17, page)
                     }, 2000)
                 }
             }
@@ -135,10 +133,7 @@ class HomeFragment : Fragment() {
         rv_friendpic_home.adapter = friendPicAdapter
     }
 
-    private fun getBannerListFromServer(groupIdx: Int) {
-
-        val token = PlacepicAuthRepository.getInstance(requireContext()).userToken ?: return
-        val groupIdx = PlacepicAuthRepository.getInstance(requireContext()).groupId?:return
+    private fun getBannerListFromServer(token: String, groupIdx: Int) {
 
         placePicService.getInstance()
             .requestBanner(
@@ -184,10 +179,7 @@ class HomeFragment : Fragment() {
             })
     }
 
-    private fun getFriendPicListFromServer(groupIdx: Int, page: Int) {
-
-        val token = PlacepicAuthRepository.getInstance(requireContext()).userToken ?: return
-        val groupIdx = PlacepicAuthRepository.getInstance(requireContext()).groupId?:return
+    private fun getFriendPicListFromServer(token: String, groupIdx: Int, page: Int) {
 
         placePicService.getInstance()
             .requestFriendPic(

@@ -37,7 +37,7 @@ class BannerListActivity : AppCompatActivity() {
 
         //banner clickevent listener
         bannerListAdapter.setItemClickListener(object : BannerListAdapter.ItemClickListener {
-            override fun onClick(view: View, position: Int) {
+            override fun onItemClick(view: View, position: Int) {
                 val clickedBannerIntent =
                     Intent(this@BannerListActivity, BannerDetailActivity::class.java)
                 clickedBannerIntent.putExtra("bannerId", bannerListDatas[position].bannerIdx)
@@ -47,8 +47,7 @@ class BannerListActivity : AppCompatActivity() {
     }
 
     private fun init() {
-        bannerListAdapter =
-            BannerListAdapter()
+        bannerListAdapter = BannerListAdapter()
         rv_banner_list.adapter = bannerListAdapter
     }
 

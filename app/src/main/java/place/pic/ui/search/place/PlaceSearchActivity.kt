@@ -39,10 +39,10 @@ class PlaceSearchActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_place_search)
-        //inflate가 setContentView 안에 있어, 가려져 있는거야
-        //fragment와 activity는 생명 주기가 달라 
-        //fragment는 view가 가려지면 backStack에 들어가고 view가 사라져서 다시 사용하려면
-        //계속해서 inflate를 통해 view를 만들어줘야해
+        /* inflate가 setContentView 안에 있어, 가려져 있는거야
+        fragment와 activity는 생명 주기가 달라
+        fragment는 view가 가려지면 backStack에 들어가고 view가 사라져서 다시 사용하려면
+        계속해서 inflate를 통해 view를 만들어줘야해 */
 
         //groupIdx 꺼내기
         val intent = intent
