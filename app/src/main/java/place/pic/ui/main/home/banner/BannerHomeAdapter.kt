@@ -29,6 +29,10 @@ class BannerHomeAdapter : RecyclerView.Adapter<BannerHomeViewHolder>() {
         sb.append(" / ")
         sb.append(datas.size)
         holder.bind(datas[realPos], sb.toString())
+
+        holder.itemView.setOnClickListener{
+            itemClickListener.onItemClick(it, position)
+        }
     }
 
     override fun getItemCount(): Int {
@@ -38,7 +42,7 @@ class BannerHomeAdapter : RecyclerView.Adapter<BannerHomeViewHolder>() {
 
     //click interface
     interface ItemClickListener {
-        fun onClick(view: View, position: Int)
+        fun onItemClick(view: View, position: Int)
     }
 
     private lateinit var itemClickListener: ItemClickListener

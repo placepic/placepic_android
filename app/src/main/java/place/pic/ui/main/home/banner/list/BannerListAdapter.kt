@@ -5,7 +5,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import place.pic.R
-import place.pic.ui.search.place.PlaceSearchAdapter
 
 /**
  * Created By kimdahyee
@@ -24,6 +23,10 @@ class BannerListAdapter  : RecyclerView.Adapter<BannerListViewHolder>() {
 
     override fun onBindViewHolder(holder: BannerListViewHolder, position: Int) {
         holder.bind(datas[position])
+
+        holder.itemView.setOnClickListener{
+            itemClickListener.onItemClick(it, position)
+        }
     }
 
     override fun getItemCount(): Int {
@@ -32,7 +35,7 @@ class BannerListAdapter  : RecyclerView.Adapter<BannerListViewHolder>() {
 
     //click interface
     interface ItemClickListener {
-        fun onClick(view: View, position: Int)
+        fun onItemClick(view: View, position: Int)
     }
 
     private lateinit var itemClickListener: ItemClickListener
