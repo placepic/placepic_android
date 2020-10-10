@@ -72,7 +72,6 @@ class HomeFragment : Fragment() {
         //banner clickevent listener
         bannerHomeAdapter.setItemClickListener(object : BannerHomeAdapter.ItemClickListener {
             override fun onItemClick(view: View, position: Int) {
-                Log.d("check check", "${bannerHomeDatas[position].title} 선택")
                 val clickedBannerIntent =
                     Intent(context, BannerDetailActivity::class.java)
                 clickedBannerIntent.putExtra("bannerId", bannerHomeDatas[position].bannerIdx)
