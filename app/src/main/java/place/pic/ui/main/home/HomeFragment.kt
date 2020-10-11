@@ -18,6 +18,7 @@ import place.pic.data.remote.PlacePicService
 import place.pic.data.remote.response.BannerResponse
 import place.pic.data.remote.response.BaseResponse
 import place.pic.data.remote.response.FriendPicResponse
+import place.pic.ui.main.detail.DetailViewActivity
 import place.pic.ui.main.home.banner.BannerHomeAdapter
 import place.pic.ui.main.home.banner.BannerHomeData
 import place.pic.ui.main.home.banner.detail.BannerDetailActivity
@@ -41,6 +42,7 @@ class HomeFragment : Fragment() {
 
     private val bannerHomeDatas = mutableListOf<BannerHomeData>()
     private val friendPicList = mutableListOf<FriendPicData>()
+    private val friendPicListAll = mutableListOf<FriendPicData>()
 
     private val placePicService = PlacePicService
 
@@ -98,29 +100,14 @@ class HomeFragment : Fragment() {
             }
         })
 
-        /* infinite scroll */
-        /*rv_friendpic_home.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                super.onScrolled(recyclerView, dx, dy)
-
-                val pastVisibleItem = layoutManager.findFirstCompletelyVisibleItemPosition()
-                val total = friendPicAdapter.itemCount
-
-                if (!isLoading && page < totalPage) { //isLoading == false
-                    if (pastVisibleItem >= total - 1) {
-                        //progressbar_fp.visibility = View.VISIBLE
-                        val handler = Handler()
-                        handler.postDelayed({
-                            page += 1
-                            isLoading = true
-                            friendPicList.clear()
-                            getFriendPicListFromServer(17, page)
-                            //progressbar_fp.visibility = View.GONE
-                        }, 2000)
-                    }
-                }
+        friendPicAdapter.setItemClickListener(object : FriendPicAdapter.ItemClickListener {
+            override fun onItemClick(view: View, position: Int) {
+                val clickedFriendPicIntent =
+                    Intent(context, DetailViewActivity::class.java)
+                clickedFriendPicIntent.putExtra("placeIdx", friendPicListAll[position].placeIdx)
+                startActivity(clickedFriendPicIntent)
             }
-        })*/
+        })
     }
 
     private fun init() {
@@ -230,6 +217,7 @@ class HomeFragment : Fragment() {
                                     )
                                 }
                             }
+                            friendPicListAll.addAll(friendPicList)
                             friendPicAdapter.addItems(friendPicList)
                             friendPicAdapter.notifyDataSetChanged()
                             isLoading = false

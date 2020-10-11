@@ -2,6 +2,7 @@ package place.pic.ui.main.home.friendpic
 
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import place.pic.R
@@ -24,6 +25,10 @@ class FriendPicAdapter : RecyclerView.Adapter<FriendPicViewHolder>() {
 
     override fun onBindViewHolder(holder: FriendPicViewHolder, position: Int) {
         holder.bind(datas[position])
+
+        holder.itemView.setOnClickListener{
+            itemClickListener.onItemClick(it, position)
+        }
     }
 
     override fun getItemCount(): Int {
@@ -45,4 +50,15 @@ class FriendPicAdapter : RecyclerView.Adapter<FriendPicViewHolder>() {
     /*private fun clear() {
         datas.clear()
     }*/
+
+    //click interface
+    interface ItemClickListener {
+        fun onItemClick(view: View, position: Int)
+    }
+
+    private lateinit var itemClickListener: ItemClickListener
+
+    fun setItemClickListener(itemClickListener: ItemClickListener) {
+        this.itemClickListener = itemClickListener
+    }
 }
