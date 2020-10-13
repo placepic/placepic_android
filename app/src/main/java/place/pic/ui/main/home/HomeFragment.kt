@@ -4,13 +4,12 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.core.widget.NestedScrollView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_home.*
 import place.pic.R
 import place.pic.data.PlacepicAuthRepository
@@ -29,6 +28,7 @@ import place.pic.ui.util.DateParser
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.lang.NullPointerException
 
 class HomeFragment : Fragment() {
 
@@ -84,6 +84,7 @@ class HomeFragment : Fragment() {
         layoutManager = LinearLayoutManager(context)
         rv_friendpic_home.layoutManager = layoutManager
 
+        // infinite scroll
         nestedScrollView_home.setOnScrollChangeListener(NestedScrollView.OnScrollChangeListener { v, scrollX, scrollY, oldScrollX, oldScrollY ->
             if(v.getChildAt(v.getChildCount() - 1) != null) {
                 if ((scrollY >= (v.getChildAt(v.getChildCount() - 1)
