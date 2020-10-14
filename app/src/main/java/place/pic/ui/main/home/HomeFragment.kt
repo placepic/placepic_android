@@ -5,11 +5,11 @@ import android.os.Bundle
 import android.os.Handler
 import android.util.Log
 import android.view.*
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.core.widget.NestedScrollView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_home.*
 import place.pic.R
 import place.pic.data.PlacepicAuthRepository
@@ -17,6 +17,7 @@ import place.pic.data.remote.PlacePicService
 import place.pic.data.remote.response.BannerResponse
 import place.pic.data.remote.response.BaseResponse
 import place.pic.data.remote.response.FriendPicResponse
+import place.pic.ui.main.OnBoardingActivity
 import place.pic.ui.main.detail.DetailViewActivity
 import place.pic.ui.main.home.banner.BannerHomeAdapter
 import place.pic.ui.main.home.banner.BannerHomeData
@@ -28,7 +29,6 @@ import place.pic.ui.util.DateParser
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.lang.NullPointerException
 
 class HomeFragment : Fragment() {
 
@@ -160,7 +160,9 @@ class HomeFragment : Fragment() {
                             }
                             bannerHomeAdapter.datas = bannerHomeDatas
                             bannerHomeAdapter.notifyDataSetChanged()
+                            return
                         }
+                        getBannerlistTokenErrorFromServer(response)
                     }
                 }
             })
@@ -222,10 +224,45 @@ class HomeFragment : Fragment() {
                             friendPicAdapter.addItems(friendPicList)
                             friendPicAdapter.notifyDataSetChanged()
                             isLoading = false
+                            return
                         }
+                        getFriendPicListErrorFromServer(response)
                     }
                 }
             })
+    }
+
+
+    private fun getBannerlistTokenErrorFromServer(response: Response<BaseResponse<List<BannerResponse>>>) {
+        when (response.body()?.status) {
+            400,401 ->{
+                gotoOnBoardingEvent()
+            }
+            else -> {
+                gotoOnBoardingEvent()
+                Toast.makeText(requireContext(), response.body()?.message + "서버 에러가 있습니다.", Toast.LENGTH_SHORT)
+                    .show()
+            }
+        }
+    }
+
+    private fun getFriendPicListErrorFromServer(response: Response<BaseResponse<FriendPicResponse>>) {
+        when (response.body()?.status) {
+            400,401 ->{
+                gotoOnBoardingEvent()
+            }
+            else -> {
+                gotoOnBoardingEvent()
+                Toast.makeText(requireContext(), response.body()?.message + "서버 에러가 있습니다.", Toast.LENGTH_SHORT)
+                    .show()
+            }
+        }
+    }
+
+    private fun gotoOnBoardingEvent() {
+        val gotoOnBoardingIntent = Intent(requireContext(), OnBoardingActivity::class.java)
+        startActivity(gotoOnBoardingIntent)
+        requireActivity().finish()
     }
 }
 
