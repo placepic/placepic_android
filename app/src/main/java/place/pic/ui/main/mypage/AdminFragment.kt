@@ -16,6 +16,7 @@ import place.pic.R
 
 class AdminFragment : Fragment(){
     companion object {
+        
         fun newInstance(): AdminFragment {
             return AdminFragment()
         }

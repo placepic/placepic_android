@@ -1,8 +1,10 @@
 package place.pic.ui.main.home.banner.detail
 
 import android.content.Intent
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import place.pic.R
@@ -59,6 +61,7 @@ class BannerDetailActivity : AppCompatActivity() {
     }
 
     private fun updateBanner(banner: Banner) {
+        findViewById<View>(R.id.c_banner_badge_bg).background.setTint(Color.parseColor(banner.badgeColorCode))
         findViewById<TextView>(R.id.tv_banner_title).text = banner.title
         findViewById<TextView>(R.id.tv_banner_desc).text = banner.description
         findViewById<TextView>(R.id.tv_banner_badge).text = banner.badgeName

@@ -55,8 +55,6 @@ class MyPageFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val v = inflater.inflate(R.layout.fragment_my_page, container, false)
-        PlacepicAuthRepository.getInstance(requireContext()).saveUserToken("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZHgiOjE4OCwicGhvbmVOdW1iZXIiOiIwMTA1NDA5OTg1OSIsImlhdCI6MTYwMDY2Mzk0NSwiZXhwIjoxNjA1ODQ3OTQ1LCJpc3MiOiJwbGFjZXBpYyJ9.ZlLonyyYdGye3JECXpkk_FHd3UonwS6QDl4sziDGB6g")
-        PlacepicAuthRepository.getInstance(requireContext()).saveGroupId(17)
         PlacePicService.getInstance().requestMyPage(
             token = PlacepicAuthRepository.getInstance(requireContext()).userToken!!,
             groupIdx = PlacepicAuthRepository.getInstance(requireContext()).groupId!!

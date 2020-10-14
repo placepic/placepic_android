@@ -4,10 +4,9 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
+import android.view.*
+import android.widget.Toast
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.core.widget.NestedScrollView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
@@ -18,6 +17,8 @@ import place.pic.data.remote.PlacePicService
 import place.pic.data.remote.response.BannerResponse
 import place.pic.data.remote.response.BaseResponse
 import place.pic.data.remote.response.FriendPicResponse
+import place.pic.ui.main.OnBoardingActivity
+import place.pic.ui.main.detail.DetailViewActivity
 import place.pic.ui.main.home.banner.BannerHomeAdapter
 import place.pic.ui.main.home.banner.BannerHomeData
 import place.pic.ui.main.home.banner.detail.BannerDetailActivity
@@ -41,6 +42,7 @@ class HomeFragment : Fragment() {
 
     private val bannerHomeDatas = mutableListOf<BannerHomeData>()
     private val friendPicList = mutableListOf<FriendPicData>()
+    private val friendPicListAll = mutableListOf<FriendPicData>()
 
     private val placePicService = PlacePicService
 
@@ -57,11 +59,12 @@ class HomeFragment : Fragment() {
 
         init()
 
+        val token = PlacepicAuthRepository.getInstance(requireContext()).userToken ?: return
         val groupIdx = PlacepicAuthRepository.getInstance(requireContext()).groupId ?: return
 
-        getBannerListFromServer(groupIdx)
+        getBannerListFromServer(token, groupIdx)
         // initial items
-        getFriendPicListFromServer(groupIdx, 1)
+        getFriendPicListFromServer(token, groupIdx, 1)
 
         img_banner_next_home.setOnClickListener {
             val intent = Intent(context, BannerListActivity::class.java)
@@ -70,8 +73,7 @@ class HomeFragment : Fragment() {
 
         //banner clickevent listener
         bannerHomeAdapter.setItemClickListener(object : BannerHomeAdapter.ItemClickListener {
-            override fun onClick(view: View, position: Int) {
-                Log.d("check check", "${bannerHomeDatas[position].title} 선택")
+            override fun onItemClick(view: View, position: Int) {
                 val clickedBannerIntent =
                     Intent(context, BannerDetailActivity::class.java)
                 clickedBannerIntent.putExtra("bannerId", bannerHomeDatas[position].bannerIdx)
@@ -82,48 +84,31 @@ class HomeFragment : Fragment() {
         layoutManager = LinearLayoutManager(context)
         rv_friendpic_home.layoutManager = layoutManager
 
+        // infinite scroll
         nestedScrollView_home.setOnScrollChangeListener(NestedScrollView.OnScrollChangeListener { v, scrollX, scrollY, oldScrollX, oldScrollY ->
             if(v.getChildAt(v.getChildCount() - 1) != null) {
                 if ((scrollY >= (v.getChildAt(v.getChildCount() - 1)
-                        .getMeasuredHeight() - v.getMeasuredHeight())) &&
-                    scrollY > oldScrollY
-                ) {
-                    //code to fetch more data for endless scrolling
+                        .getMeasuredHeight() - v.getMeasuredHeight())) && scrollY > oldScrollY) {
                     progressbar_fp.visibility = View.VISIBLE
                     val handler = Handler()
                     handler.postDelayed({
                         page += 1
                         isLoading = true
                         friendPicList.clear()
-                        getFriendPicListFromServer(17, page)
+                        getFriendPicListFromServer(token, 17, page)
                     }, 2000)
                 }
             }
         })
 
-        /* infinite scroll */
-        /*rv_friendpic_home.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                super.onScrolled(recyclerView, dx, dy)
-
-                val pastVisibleItem = layoutManager.findFirstCompletelyVisibleItemPosition()
-                val total = friendPicAdapter.itemCount
-
-                if (!isLoading && page < totalPage) { //isLoading == false
-                    if (pastVisibleItem >= total - 1) {
-                        //progressbar_fp.visibility = View.VISIBLE
-                        val handler = Handler()
-                        handler.postDelayed({
-                            page += 1
-                            isLoading = true
-                            friendPicList.clear()
-                            getFriendPicListFromServer(17, page)
-                            //progressbar_fp.visibility = View.GONE
-                        }, 2000)
-                    }
-                }
+        friendPicAdapter.setItemClickListener(object : FriendPicAdapter.ItemClickListener {
+            override fun onItemClick(view: View, position: Int) {
+                val clickedFriendPicIntent =
+                    Intent(context, DetailViewActivity::class.java)
+                clickedFriendPicIntent.putExtra("placeIdx", friendPicListAll[position].placeIdx)
+                startActivity(clickedFriendPicIntent)
             }
-        })*/
+        })
     }
 
     private fun init() {
@@ -135,10 +120,7 @@ class HomeFragment : Fragment() {
         rv_friendpic_home.adapter = friendPicAdapter
     }
 
-    private fun getBannerListFromServer(groupIdx: Int) {
-
-        val token = PlacepicAuthRepository.getInstance(requireContext()).userToken ?: return
-        val groupIdx = PlacepicAuthRepository.getInstance(requireContext()).groupId?:return
+    private fun getBannerListFromServer(token: String, groupIdx: Int) {
 
         placePicService.getInstance()
             .requestBanner(
@@ -178,16 +160,15 @@ class HomeFragment : Fragment() {
                             }
                             bannerHomeAdapter.datas = bannerHomeDatas
                             bannerHomeAdapter.notifyDataSetChanged()
+                            return
                         }
+                        getBannerlistTokenErrorFromServer(response)
                     }
                 }
             })
     }
 
-    private fun getFriendPicListFromServer(groupIdx: Int, page: Int) {
-
-        val token = PlacepicAuthRepository.getInstance(requireContext()).userToken ?: return
-        val groupIdx = PlacepicAuthRepository.getInstance(requireContext()).groupId?:return
+    private fun getFriendPicListFromServer(token: String, groupIdx: Int, page: Int) {
 
         placePicService.getInstance()
             .requestFriendPic(
@@ -239,13 +220,49 @@ class HomeFragment : Fragment() {
                                     )
                                 }
                             }
+                            friendPicListAll.addAll(friendPicList)
                             friendPicAdapter.addItems(friendPicList)
                             friendPicAdapter.notifyDataSetChanged()
                             isLoading = false
+                            return
                         }
+                        getFriendPicListErrorFromServer(response)
                     }
                 }
             })
+    }
+
+
+    private fun getBannerlistTokenErrorFromServer(response: Response<BaseResponse<List<BannerResponse>>>) {
+        when (response.body()?.status) {
+            400,401 ->{
+                gotoOnBoardingEvent()
+            }
+            else -> {
+                gotoOnBoardingEvent()
+                Toast.makeText(requireContext(), response.body()?.message + "서버 에러가 있습니다.", Toast.LENGTH_SHORT)
+                    .show()
+            }
+        }
+    }
+
+    private fun getFriendPicListErrorFromServer(response: Response<BaseResponse<FriendPicResponse>>) {
+        when (response.body()?.status) {
+            400,401 ->{
+                gotoOnBoardingEvent()
+            }
+            else -> {
+                gotoOnBoardingEvent()
+                Toast.makeText(requireContext(), response.body()?.message + "서버 에러가 있습니다.", Toast.LENGTH_SHORT)
+                    .show()
+            }
+        }
+    }
+
+    private fun gotoOnBoardingEvent() {
+        val gotoOnBoardingIntent = Intent(requireContext(), OnBoardingActivity::class.java)
+        startActivity(gotoOnBoardingIntent)
+        requireActivity().finish()
     }
 }
 

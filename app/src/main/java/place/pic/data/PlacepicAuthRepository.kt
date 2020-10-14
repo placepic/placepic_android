@@ -11,7 +11,7 @@ class PlacepicAuthRepository private constructor(context: Context) {
     private var editor = sharedPreferences.edit()
 
     val userToken : String?
-        get() = sharedPreferences.getString(PLACEPIC_AUTH+"token","")
+        get() = sharedPreferences.getString(PLACEPIC_AUTH+"token",null)
 
    val groupId : Int?
         get() = sharedPreferences.getInt(PLACEPIC_AUTH+"groupId",0)
