@@ -12,7 +12,7 @@
         android:roundIcon="@drawable/placepic_logo_circle"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        >
+        android:usesCleartextTraffic="true">
 
         <meta-data
             android:name="firebase_crashlytics_collection_enabled"
@@ -21,7 +21,7 @@
         <activity android:name=".ui.main.home.banner.list.BannerListActivity" />
         <activity android:name=".ui.main.home.banner.detail.BannerDetailActivity" />
         <activity android:name=".ui.main.mypage.ProfileEditActivity" />
-        <activity android:name=".ui.main.mypage.MyPageSettingActivity"/>
+        <activity android:name=".ui.main.mypage.MyPageSettingActivity" />
         <activity android:name=".ui.main.mypage.GroupChangeActivity" />
         <activity android:name=".ui.main.BaseActivity" />
         <activity android:name=".ui.main.detail.liker.LikerUserListActivity" />
@@ -38,8 +38,7 @@
             android:name=".ui.group.InputUserInfoAnimActivity"
             android:windowSoftInputMode="adjustResize" />
         <activity android:name=".ui.login.LoginActivity" />
-        <activity android:name=".ui.main.MainActivity">
-        </activity>
+        <activity android:name=".ui.main.MainActivity"></activity>
         <activity android:name=".ui.group.InputVisitCodeActivity" />
         <activity android:name=".ui.main.detail.DetailViewActivity" />
         <activity android:name=".ui.tag.UsefulTagActivity" />

@@ -3,13 +3,11 @@ package place.pic.ui.main.place.items
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.asynclayoutinflater.view.AsyncLayoutInflater
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import place.pic.R
 import place.pic.data.PlacepicAuthRepository
 import place.pic.data.entity.KeywordTag
@@ -33,7 +31,7 @@ class PlaceItemsFragment(private val placeType: Place.Type) : Fragment() {
     private lateinit var placeItemsAdapter: PlacesAdapter
 
     private var isUpdatedFromFilter = false
-    private var tlqkfFlag = false
+    private var deleteFlag = false
     // 일단 빠르게 막기위한 플래그인거시다
     // 디테일보고 뒤로 넘어오는걸 두번 하면 필터링 없어지는 현상 제거
     // 하 ^^ 설계의 중요성 시발
@@ -68,12 +66,21 @@ class PlaceItemsFragment(private val placeType: Place.Type) : Fragment() {
     override fun onResume() {
         super.onResume()
 
-        if (tlqkfFlag) {
-            isUpdatedFromFilter = false // 왜갑자기 이게 안먹히누 if에서 삭제
-            tlqkfFlag = false
+        if (isUpdatedFromFilter) {
+            isUpdatedFromFilter = false
+            return
+        }
+        if (deleteFlag) {
+            isUpdatedFromFilter = false
+            deleteFlag = false
             return
         } //쉬바
-        placeItemsViewModel.loadPlaceItems()
+        placeItemsViewModel.loadPlaceItems() // loadAll
+    }
+
+    override fun onPause() {
+        super.onPause()
+        isUpdatedFromFilter = false
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -84,7 +91,7 @@ class PlaceItemsFragment(private val placeType: Place.Type) : Fragment() {
                 val deletedPlaceId = data?.getIntExtra("placeIdx", -1) ?: return
                 placeItemsViewModel.removePlace(deletedPlaceId)
             }
-            tlqkfFlag = true
+            deleteFlag = true
         }
     }
 
