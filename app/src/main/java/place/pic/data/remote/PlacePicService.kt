@@ -120,13 +120,13 @@ interface PlacePicService {
     /*
     * 프로필편집 서버연결
     */
-
+    @Multipart
     @PUT("/auth/myInfo/edit/{groupIdx}")
-    fun profileEditRequest(
-        @Header("Content-Type") contentType: String = "application/json",
+    fun profileEdit(
         @Header("token") token: String,
         @Path("groupIdx") groupIdx: Int,
-        @Body body: ProfileEditRequest
+        @Part profileImageUrl: MultipartBody.Part?,
+        @Part("part") part: RequestBody?
     ):Call<BaseResponse<Unit>>
 
     /*
@@ -245,6 +245,9 @@ interface PlacePicService {
         @Path("groupId") groupId: Int,
         @Path("bannerId") bannerId: Int,
     ): Call<BaseResponse<BannerDetailResponse>>
+
+    abstract fun profileEditRequest(token: String, groupIdx: Int, body: ProfileEditRequest): Call<BaseResponse<Unit>>
+
 
     companion object {
         const val BASE_URL = "https://placepic.ml"

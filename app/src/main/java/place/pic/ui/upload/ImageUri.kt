@@ -47,9 +47,10 @@ data class ImageUri(
     }
 
     companion object {
-        private const val IMAGE_FILE_EXTENSION = "image/*"
-        private const val REQUEST_IMAGE_KEY = "image"
+        const val IMAGE_FILE_EXTENSION = "image/*"
+        const val REQUEST_IMAGE_KEY = "image"
 
         val EMPTY = ImageUri(Uri.EMPTY, "empty")
     }
+
 }

@@ -17,7 +17,6 @@
         <meta-data
             android:name="firebase_crashlytics_collection_enabled"
             android:value="@bool/FIREBASE_CRASHLYTICS_COLLECTION_ENABLED" />
-
         <activity android:name=".ui.main.home.banner.list.BannerListActivity" />
         <activity android:name=".ui.main.home.banner.detail.BannerDetailActivity" />
         <activity android:name=".ui.main.mypage.ProfileEditActivity" />
@@ -25,20 +24,20 @@
         <activity android:name=".ui.main.mypage.GroupChangeActivity" />
         <activity android:name=".ui.main.BaseActivity" />
         <activity android:name=".ui.main.detail.liker.LikerUserListActivity" />
-        <activity android:name=".ui.main.SplashActivity">
+        <activity android:name=".ui.main.SplashActivity"/>
+        <activity android:name=".ui.search.place.PlaceSearchActivity" />
+        <activity android:name=".ui.upload.UploadPlaceActivity" />
+        <activity
+            android:name=".ui.group.InputUserInfoAnimActivity"
+            android:windowSoftInputMode="adjustResize" />
+        <activity android:name=".ui.login.LoginActivity"/>
+        <activity android:name=".ui.main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.search.place.PlaceSearchActivity" />
-        <activity android:name=".ui.upload.UploadPlaceActivity" />
-        <activity
-            android:name=".ui.group.InputUserInfoAnimActivity"
-            android:windowSoftInputMode="adjustResize" />
-        <activity android:name=".ui.login.LoginActivity" />
-        <activity android:name=".ui.main.MainActivity"></activity>
         <activity android:name=".ui.group.InputVisitCodeActivity" />
         <activity android:name=".ui.main.detail.DetailViewActivity" />
         <activity android:name=".ui.tag.UsefulTagActivity" />
