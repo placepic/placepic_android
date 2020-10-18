@@ -65,14 +65,10 @@ class ProfileEditActivity : AppCompatActivity() {
                 }
                 else{
                     pickImageFromGallery()
-                    btn_profile_edit_ok.isEnabled = true
-                    btn_profile_edit_ok.setTextColor(getColor(R.color.pinkF6))
                 }
             }
             else{
                 pickImageFromGallery()
-                btn_profile_edit_ok.isEnabled = true
-                btn_profile_edit_ok.setTextColor(getColor(R.color.pinkF6))
             }
         }
 
@@ -168,6 +164,8 @@ class ProfileEditActivity : AppCompatActivity() {
             index = cursor.getColumnIndex(MediaStore.Images.Media.DATA)
             imgPath = cursor.getString(index)
             Log.d("realPathFromURI2", "realPathFromURI: $imgPath")
+            btn_profile_edit_ok.isEnabled = true
+            btn_profile_edit_ok.setTextColor(getColor(R.color.pinkF6))
             cursor.close()
         } else {
             showToast("커서가 비었습니다.")

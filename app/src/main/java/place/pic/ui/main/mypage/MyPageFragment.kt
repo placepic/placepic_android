@@ -72,7 +72,7 @@ class MyPageFragment : Fragment() {
                         user_part = response.body()!!.data.part
                         user_image = response.body()!!.data.userImage
                         user_post_count = response.body()!!.data.postCount
-                        user_write_count = response.body()!!.data.writeCount
+                        user_write_count = response.body()!!.data.bookMarkCnt
 
                         tv_profile_name?.text = user_name
                         tv_profile_intro?.text = user_part
@@ -120,8 +120,6 @@ class MyPageFragment : Fragment() {
             val intent = Intent(context, WaitUserListActivity::class.java)
             startActivity(intent)
         }*/
-
-
         return v
     }
 

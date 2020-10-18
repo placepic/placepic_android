@@ -53,9 +53,8 @@ class MyPageSettingFragment : Fragment() {
                 setCancelClickListener(R.string.cancel) { dismiss() }
                 setOkClickListener(R.string.logout) {
                     dismiss()
-
-                    //PlacepicAuthRepository.getInstance(requireContext()).removeUserToken()
-                    //PlacepicAuthRepository.getInstance(requireContext()).removeGroupId()
+                    PlacepicAuthRepository.getInstance(requireContext()).removeUserToken()
+                    PlacepicAuthRepository.getInstance(requireContext()).removeGroupId()
                     val intent2 = Intent(context, OnBoardingActivity::class.java)
                     intent2.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
                     startActivity(intent2)
@@ -63,10 +62,7 @@ class MyPageSettingFragment : Fragment() {
                 }
             }.show()
         }
-
         return v
     }
-
-
 }
 
