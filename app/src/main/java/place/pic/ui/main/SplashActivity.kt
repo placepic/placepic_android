@@ -2,6 +2,7 @@ package place.pic.ui.main
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.WindowManager
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -69,12 +70,14 @@ class SplashActivity : AppCompatActivity() {
     }
 
     private fun haveTokenEvent(){
+        Log.d("TokenTest",PlacepicAuthRepository.getInstance(applicationContext).userToken?:"null")
         val gotoMainIntent = Intent(applicationContext, MainActivity::class.java)
         startActivity(gotoMainIntent)
         finish()
     }
 
     private fun nullTokenEvent(){
+        Log.d("TokenTest",PlacepicAuthRepository.getInstance(applicationContext).userToken?:"null")
         val gotoOnBoardingIntent = Intent(applicationContext, OnBoardingActivity::class.java)
         startActivity(gotoOnBoardingIntent)
         finish()

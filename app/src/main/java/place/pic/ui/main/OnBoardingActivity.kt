@@ -32,7 +32,6 @@ class OnBoardingActivity : AppCompatActivity() {
             img_onboarding_img,
             R.anim.load_fade_in
         )
-        imageAnimation.setStartOffsetInAnimation(700)
         imageAnimation.startLayoutAnimation()
     }
 
