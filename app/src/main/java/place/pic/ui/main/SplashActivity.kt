@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_splash.*
 import place.pic.R
 import place.pic.data.PlacepicAuthRepository
+import place.pic.ui.group.GroupListActivity
 import place.pic.ui.util.animation.BindLayoutAnimation
 import place.pic.ui.util.animation.nextActivityAnimation
 
@@ -18,7 +19,10 @@ class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
-        window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN)
+        window.setFlags(
+            WindowManager.LayoutParams.FLAG_FULLSCREEN,
+            WindowManager.LayoutParams.FLAG_FULLSCREEN
+        )
         showSplashTextAnimation()
     }
 
@@ -29,7 +33,7 @@ class SplashActivity : AppCompatActivity() {
         lastSplashAnimationEvent()
     }
 
-    private fun firstSplashAnimationEvent(){
+    private fun firstSplashAnimationEvent() {
         val firstSplashAnimation = BindLayoutAnimation<TextView>(
             applicationContext,
             tv_splash_text1,
@@ -38,7 +42,7 @@ class SplashActivity : AppCompatActivity() {
         firstSplashAnimation.startLayoutAnimation()
     }
 
-    private fun secondSplashAnimationEvent(){
+    private fun secondSplashAnimationEvent() {
         val secondSplashAnimation = BindLayoutAnimation<TextView>(
             applicationContext,
             tv_splash_text2,
@@ -48,7 +52,7 @@ class SplashActivity : AppCompatActivity() {
         secondSplashAnimation.startLayoutAnimation()
     }
 
-    private fun lastSplashAnimationEvent(){
+    private fun lastSplashAnimationEvent() {
         val lastSplashAnimation = BindLayoutAnimation<TextView>(
             applicationContext,
             tv_splash_text3,
@@ -56,30 +60,53 @@ class SplashActivity : AppCompatActivity() {
         )
         lastSplashAnimation.setStartOffsetInAnimation(800)
         lastSplashAnimation.setAnimationListener(
-            onAnimationEndListener = {endSplashActivityEvent()}
+            onAnimationEndListener = { endSplashActivityEvent() }
         )
         lastSplashAnimation.startLayoutAnimation()
     }
 
-    private fun endSplashActivityEvent(){
+    private fun endSplashActivityEvent() {
         if (PlacepicAuthRepository.getInstance(applicationContext).userToken != null) {
             haveTokenEvent()
             return
         }
-        nullTokenEvent()
+        gotoOnboardingEventWithoutToken()
     }
 
-    private fun haveTokenEvent(){
-        Log.d("TokenTest",PlacepicAuthRepository.getInstance(applicationContext).userToken?:"null")
-        val gotoMainIntent = Intent(applicationContext, MainActivity::class.java)
-        startActivity(gotoMainIntent)
-        finish()
+    private fun haveTokenEvent() {
+        if (PlacepicAuthRepository.getInstance(applicationContext).groupId != 0) {
+            gotoMainEvent()
+            return
+        }
+        gotoSelectGroupEvent()
     }
 
-    private fun nullTokenEvent(){
-        Log.d("TokenTest",PlacepicAuthRepository.getInstance(applicationContext).userToken?:"null")
-        val gotoOnBoardingIntent = Intent(applicationContext, OnBoardingActivity::class.java)
-        startActivity(gotoOnBoardingIntent)
+    private fun gotoOnboardingEventWithoutToken() {
+        Log.d(
+            "TokenTest",
+            PlacepicAuthRepository.getInstance(applicationContext).userToken ?: "null"
+        )
+        changeActivityAndFinishEvent(OnBoardingActivity::class.java)
+    }
+
+    private fun gotoSelectGroupEvent(){
+        Log.d(
+            "GroupIdTest",
+            PlacepicAuthRepository.getInstance(applicationContext).groupId.toString()
+        )
+        changeActivityAndFinishEvent(GroupListActivity::class.java)
+    }
+
+    private fun gotoMainEvent() {
+        Log.d(
+            "TokenTest",
+            PlacepicAuthRepository.getInstance(applicationContext).userToken ?: "null"
+        )
+        changeActivityAndFinishEvent(MainActivity::class.java)
+    }
+    private fun changeActivityAndFinishEvent(activityClass: Class<*>) {
+        val activityChangeIntent = Intent(applicationContext, activityClass)
+        startActivity(activityChangeIntent)
         finish()
     }
 
