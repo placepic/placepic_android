@@ -41,5 +41,39 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/zone_empty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="166dp"
+            android:visibility="@{viewModel.placeItems.empty ? View.VISIBLE : View.GONE}"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/iv_empty"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/pins"
+                app:layout_constraintLeft_toLeftOf="@id/zone_empty"
+                app:layout_constraintRight_toRightOf="@id/zone_empty"
+                app:layout_constraintTop_toTopOf="@id/zone_empty" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/noto_sans_bold"
+                android:text="해당하는 결과가 없습니다."
+                android:textColor="@color/grayCED5DA"
+                android:textSize="15dp"
+                app:layout_constraintLeft_toLeftOf="@id/zone_empty"
+                app:layout_constraintRight_toRightOf="@id/zone_empty"
+                app:layout_constraintTop_toBottomOf="@id/iv_empty" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

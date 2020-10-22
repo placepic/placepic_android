@@ -25,11 +25,11 @@ class PlacepicAuthRepository private constructor(context: Context) {
     }
 
     fun removeUserToken(){
-        editor.remove(PLACEPIC_AUTH+"token")
+        editor.remove(PLACEPIC_AUTH+"token").commit()
     }
 
     fun removeGroupId(){
-        editor.remove(PLACEPIC_AUTH+"groupId")
+        editor.remove(PLACEPIC_AUTH+"groupId").commit()
     }
 
     companion object {

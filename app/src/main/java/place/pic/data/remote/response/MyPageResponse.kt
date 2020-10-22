@@ -5,6 +5,6 @@ data class MyPageResponse (
     val part : String,
     val userImage : String,
     val state : Int,
-    val writeCount : Int,
+    val bookMarkCnt : Int,
     val postCount : Int
 )
