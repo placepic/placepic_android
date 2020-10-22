@@ -58,7 +58,7 @@ class MyPageSettingFragment : Fragment() {
                     val intent2 = Intent(context, OnBoardingActivity::class.java)
                     intent2.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
                     startActivity(intent2)
-                    activity?.finish()
+                    activity?.finishAffinity()
                 }
             }.show()
         }
