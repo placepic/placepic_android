@@ -135,6 +135,7 @@ class PlaceSearchActivity : AppCompatActivity() {
                     //통신 성공
                     if (response.isSuccessful) { //status
                         Log.d("typeCheck", "통신성공")
+                        constraintLayout_empty_placeSearch.visibility = View.GONE
                         if (response.body()!!.success) {
                             Log.d("typeCheck", "${response.body()!!.data.javaClass}")
                             placeDatas.clear()

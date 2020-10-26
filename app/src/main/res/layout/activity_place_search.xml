@@ -112,7 +112,49 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/view_box"
-            tools:listitem="@layout/item_place_search" />
+            tools:listitem="@layout/item_place_search" >
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout_empty_placeSearch"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/recyclerview_place_search">
+
+            <ImageView
+                android:id="@+id/img_empty_placeSearch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="160dp"
+                android:layout_marginTop="158dp"
+                android:layout_marginEnd="160dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.539"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/pins" />
+
+            <TextView
+                android:id="@+id/tv_empty_placesearch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="123dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="123dp"
+                android:textSize="13dp"
+                android:fontFamily="@font/noto_sans_bold"
+                android:text="@string/empty_placeSearch"
+                android:textColor="@color/grayCED5DA"
+                android:textAlignment="center"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/img_empty_placeSearch" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
         <!-- xml에서 layoutManager를 지정해줄 수 있어 -->
 
 
