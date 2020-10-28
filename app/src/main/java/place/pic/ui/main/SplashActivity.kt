@@ -82,26 +82,14 @@ class SplashActivity : AppCompatActivity() {
     }
 
     private fun gotoOnboardingEventWithoutToken() {
-        Log.d(
-            "TokenTest",
-            PlacepicAuthRepository.getInstance(applicationContext).userToken ?: "null"
-        )
         changeActivityAndFinishEvent(OnBoardingActivity::class.java)
     }
 
     private fun gotoSelectGroupEvent(){
-        Log.d(
-            "GroupIdTest",
-            PlacepicAuthRepository.getInstance(applicationContext).groupId.toString()
-        )
         changeActivityAndFinishEvent(GroupListActivity::class.java)
     }
 
     private fun gotoMainEvent() {
-        Log.d(
-            "TokenTest",
-            PlacepicAuthRepository.getInstance(applicationContext).userToken ?: "null"
-        )
         changeActivityAndFinishEvent(MainActivity::class.java)
     }
     private fun changeActivityAndFinishEvent(activityClass: Class<*>) {

@@ -3,7 +3,6 @@ package place.pic.ui.login
 import android.content.Intent
 import android.os.Bundle
 import android.os.CountDownTimer
-import android.util.Log
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
@@ -33,6 +32,8 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
     private var isCanSendAuthMessage = true
     private var isShowAnimation = true
     private val canRetryTime = AUTH_TIME - RETRY_TIME
+
+    private val loginAndSignUpAuthNumRequest = LoginAndSignUpAuthNumRequest()
 
     private val countDownTimer = object : CountDownTimer(AUTH_TIME, ONE_SEC) {
         override fun onTick(millisUntilFinished: Long) {
@@ -200,39 +201,31 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun requestLoginToServer() {
-        PlacePicService.getInstance()
-            .requestLoginAndSignUpAuthNum(
-                LoginAndSignUpAuthNumRequest(
-                    phoneNumber = et_login_phone_num.text.toString(),
-                    certificationNumber = et_login_phone_auth_input.text.toString()
-                )
-            )
-            .customEnqueue(
-                onSuccess = { response ->
-                    requestSuccessInLogin(response)
-                },
-                onError = { response ->
-                    requestErrorInLogin(response)
-                }
-            )
+        loginAndSignUpAuthNumRequest.apply {
+            this.addOnSuccessListener { response -> requestSuccessInLogin(response) }
+            this.addOnFailureListener { response -> requestErrorInLogin(response) }
+        }.sendData(
+            phoneNumber = et_login_phone_num.text.toString(),
+            certificationNumber = et_login_phone_auth_input.text.toString()
+        )
     }
 
-    private fun requestSuccessInLogin(response: Response<BaseResponse<LoginResponse>>) {
+    private fun requestSuccessInLogin(response: BaseResponse<LoginResponse>) {
         PlacepicAuthRepository.getInstance(applicationContext)
-            .saveUserToken(response.body()?.data?.accessToken!!)
+            .saveUserToken(response.data.accessToken)
         val gotoGroupListIntent = Intent(applicationContext, GroupListActivity::class.java)
         startActivity(gotoGroupListIntent)
         finish()
     }
 
-    private fun requestErrorInLogin(response: Response<BaseResponse<LoginResponse>>) {
-        when (response.body()?.status) {
+    private fun requestErrorInLogin(response: BaseResponse<Unit>) {
+        when (response.status) {
             400 -> {
-                Toast.makeText(applicationContext, response.body()?.message, Toast.LENGTH_SHORT)
+                Toast.makeText(applicationContext, response.message , Toast.LENGTH_SHORT)
                     .show()
             }
             500 -> {
-                Toast.makeText(applicationContext, response.body()?.message, Toast.LENGTH_SHORT)
+                Toast.makeText(applicationContext, response.message, Toast.LENGTH_SHORT)
                     .show()
             }
         }

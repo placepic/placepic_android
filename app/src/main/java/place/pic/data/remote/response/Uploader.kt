@@ -5,5 +5,6 @@ data class Uploader(
     val postCount: Int,
     val profileImageUrl: Any,
     val userName: String,
-    val deleteBtn:Boolean
+    val deleteBtn:Boolean,
+    val userIdx: Int
 )

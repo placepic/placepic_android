@@ -69,7 +69,7 @@ interface PlacePicService {
 
     @POST("/auth/sp3/signin")
     fun requestLoginAndSignUpAuthNum(
-        @Body body:LoginAndSignUpAuthNumRequest
+        @Body body:LoginAndSignUpAuthNumRequest.LoginAndSignUpAuthNumParams
     ): Call<BaseResponse<LoginResponse>>
 
     @GET("/category/all")

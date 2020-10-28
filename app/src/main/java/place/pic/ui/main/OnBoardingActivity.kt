@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.widget.ImageView
 import kotlinx.android.synthetic.main.activity_on_boarding.*
 import place.pic.R
+import place.pic.data.PlacepicAuthRepository
 import place.pic.ui.login.LoginActivity
 import place.pic.ui.util.animation.BindLayoutAnimation
 import place.pic.ui.util.animation.nextActivityAnimation
@@ -39,6 +40,7 @@ class OnBoardingActivity : AppCompatActivity() {
         btn_onboarding_start_place_pic.setOnClickListener {
             val gotoLoginIntent = Intent(applicationContext, LoginActivity::class.java)
             startActivity(gotoLoginIntent)
+            finish()
             nextActivityAnimation()
         }
     }
