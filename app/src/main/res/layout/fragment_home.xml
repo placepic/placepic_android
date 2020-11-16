@@ -154,14 +154,14 @@
                     app:layout_constraintVertical_bias="0.0"
                     tools:listitem="@layout/item_friend_pic" />
 
-                <ProgressBar
+                <!-- <ProgressBar
                     android:id="@+id/progressbar_fp"
                     style="?android:attr/progressBarStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:layout_constraintTop_toBottomOf="@+id/rv_friendpic_home"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" />
+                    app:layout_constraintStart_toStartOf="parent" /> -->
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.core.widget.NestedScrollView>

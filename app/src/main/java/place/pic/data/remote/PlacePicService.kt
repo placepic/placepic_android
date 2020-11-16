@@ -39,14 +39,22 @@ interface PlacePicService {
         @Query("query") query: String
     ): Call<BaseResponse<PlaceSearchResponse>>
 
-    /*홈 - 친생픽*/
-    @GET("/places/home/page/{groupIdx}")
+    /*홈 - 친생픽 페이지네이션 O*/
+    /*@GET("/places/home/page/{groupIdx}")
     fun requestFriendPic(
         @Header("Content-Type") contentType: String = "application/json",
         @Header("token") token: String,
         @Path("groupIdx") groupIdx: Int,
         @Query("page") page: Int
-    ): Call<BaseResponse<FriendPicResponse>>
+    ): Call<BaseResponse<FriendPicResponse>>*/
+
+    /*홈 - 친생픽 페이지네이션 X*/
+    @GET("/places/home/{groupIdx}")
+    fun requestFriendPic(
+        @Header("Content-Type") contentType: String = "application/json",
+        @Header("token") token: String,
+        @Path("groupIdx") groupIdx: Int
+    ): Call<BaseResponse<List<FriendPicResponse>>>
 
     /*유저리스트*/
     @GET("/auth/groups/userlist/{groupIdx}")
