@@ -14,8 +14,8 @@ import kotlinx.android.synthetic.main.fragment_home.*
 import place.pic.R
 import place.pic.data.PlacepicAuthRepository
 import place.pic.data.remote.PlacePicService
-import place.pic.data.remote.response.BannerResponse
 import place.pic.data.remote.response.BaseResponse
+import place.pic.data.remote.response.BannerResponse
 import place.pic.data.remote.response.FriendPicResponse
 import place.pic.ui.main.OnBoardingActivity
 import place.pic.ui.main.detail.DetailViewActivity
@@ -36,9 +36,9 @@ class HomeFragment : Fragment() {
     lateinit var friendPicAdapter: FriendPicAdapter
     lateinit var layoutManager: LinearLayoutManager
 
-    var page = 1
+    /*var page = 1
     var isLoading = false
-    var totalPage: Int = 0
+    var totalPage: Int = 0*/
 
     private val bannerHomeDatas = mutableListOf<BannerHomeData>()
     private val friendPicList = mutableListOf<FriendPicData>()
@@ -62,9 +62,11 @@ class HomeFragment : Fragment() {
         val token = PlacepicAuthRepository.getInstance(requireContext()).userToken ?: return
         val groupIdx = PlacepicAuthRepository.getInstance(requireContext()).groupId ?: return
 
+        getFriendPicListFromServer(token, groupIdx)
         getBannerListFromServer(token, groupIdx)
         // initial items
-        getFriendPicListFromServer(token, groupIdx, 1)
+        //getFriendPicListFromServer(token, groupIdx, 1)
+        //getFriendPicListFromServer(token, groupIdx)
 
         img_banner_next_home.setOnClickListener {
             val intent = Intent(context, BannerListActivity::class.java)
@@ -85,7 +87,7 @@ class HomeFragment : Fragment() {
         rv_friendpic_home.layoutManager = layoutManager
 
         // infinite scroll
-        nestedScrollView_home.setOnScrollChangeListener(NestedScrollView.OnScrollChangeListener { v, scrollX, scrollY, oldScrollX, oldScrollY ->
+        /*nestedScrollView_home.setOnScrollChangeListener(NestedScrollView.OnScrollChangeListener { v, scrollX, scrollY, oldScrollX, oldScrollY ->
             if(v.getChildAt(v.getChildCount() - 1) != null) {
                 if ((scrollY >= (v.getChildAt(v.getChildCount() - 1)
                         .getMeasuredHeight() - v.getMeasuredHeight())) && scrollY > oldScrollY) {
@@ -95,11 +97,12 @@ class HomeFragment : Fragment() {
                         page += 1
                         isLoading = true
                         friendPicList.clear()
-                        getFriendPicListFromServer(token, 17, page)
+                        getFriendPicListFromServer(token, groupIdx)
+                        //getFriendPicListFromServer(token, groupIdx, page)
                     }, 2000)
                 }
             }
-        })
+        })*/
 
         friendPicAdapter.setItemClickListener(object : FriendPicAdapter.ItemClickListener {
             override fun onItemClick(view: View, position: Int) {
@@ -140,7 +143,7 @@ class HomeFragment : Fragment() {
                 ) {
                     //통신 성공
                     if (response.isSuccessful) { //status
-                        Log.d("typeCheck", "통신성공")
+                        Log.d("typeCheck", "배너통신성공")
                         if (response.body()!!.success) {
                             Log.d("typeCheck", "${response.body()!!.data.javaClass}")
                             for (i in response.body()!!.data.indices) {
@@ -162,40 +165,45 @@ class HomeFragment : Fragment() {
                             bannerHomeAdapter.notifyDataSetChanged()
                             return
                         }
-                        getBannerlistTokenErrorFromServer(response)
+                        getBannerListTokenErrorFromServer(response)
                     }
                 }
             })
     }
 
-    private fun getFriendPicListFromServer(token: String, groupIdx: Int, page: Int) {
+    //private fun getFriendPicListFromServer(token: String, groupIdx: Int, page: Int) {
+    private fun getFriendPicListFromServer(token: String, groupIdx: Int) {
 
         placePicService.getInstance()
             .requestFriendPic(
                 token = token,
-                groupIdx = groupIdx,
-                page = page
-            ).enqueue(object : Callback<BaseResponse<FriendPicResponse>> {
+                groupIdx = groupIdx
+                //page = page
+            ).enqueue(object : Callback<BaseResponse<List<FriendPicResponse>>> {
+                //).enqueue(object : Callback<BaseResponse<FriendPicResponse>> {
                 override fun onFailure(
-                    call: retrofit2.Call<BaseResponse<FriendPicResponse>>,
+                    call: retrofit2.Call<BaseResponse<List<FriendPicResponse>>>,
+                    //call: retrofit2.Call<BaseResponse<FriendPicResponse>>,
                     t: Throwable
                 ) { //통신 실패
                     Log.d("fail", t.message)
                 }
 
                 override fun onResponse(
-                    call: retrofit2.Call<BaseResponse<FriendPicResponse>>,
-                    response: Response<BaseResponse<FriendPicResponse>>
+                    call: retrofit2.Call<BaseResponse<List<FriendPicResponse>>>,
+                    response: Response<BaseResponse<List<FriendPicResponse>>>
+                    //call: retrofit2.Call<BaseResponse<FriendPicResponse>>,
+                    //response: Response<BaseResponse<FriendPicResponse>>
                 ) {
                     //통신 성공
                     if (response.isSuccessful) { //status
-                        Log.d("typeCheck", "통신성공")
-                        progressbar_fp.visibility = View.GONE
+                        Log.d("typeCheck", "친구픽통신성공")
+                        //progressbar_fp.visibility = View.GONE
                         if (response.body()!!.success) {
                             Log.d("typeCheck", "${response.body()!!.data.javaClass}")
-                            for (i in response.body()!!.data.places.indices) {
+                            /*for (i in response.body()!!.data.places.indices) {
 
-                                totalPage = response.body()!!.data.totalPage
+                                //totalPage = response.body()!!.data.totalPage
                                 val pdate =
                                     DateParser(response.body()!!.data.places[i].placeCreatedAt)
                                 val dateResult: String = pdate.calculateDiffDate() //UNIX 타임 변환
@@ -219,11 +227,39 @@ class HomeFragment : Fragment() {
                                         )
                                     )
                                 }
+                            }*/
+
+                            for (i in response.body()!!.data.indices) {
+
+                                val pdate =
+                                    DateParser(response.body()!!.data[i].placeCreatedAt)
+                                val dateResult: String = pdate.calculateDiffDate() //UNIX 타임 변환
+
+                                friendPicList.apply {
+                                    add(
+                                        FriendPicData(
+                                            userIdx = response.body()!!.data[i].userIdx,
+                                            placeIdx = response.body()!!.data[i].placeIdx,
+                                            groupIdx = response.body()!!.data[i].groupIdx,
+                                            userName = response.body()!!.data[i].userName,
+                                            part = response.body()!!.data[i].part,
+                                            profileImageUrl = response.body()!!.data[i].profileImageUrl,
+                                            placeName = response.body()!!.data[i].placeName,
+                                            placeReview = response.body()!!.data[i].placeReview,
+                                            placeImageUrl = response.body()!!.data[i].placeImageUrl,
+                                            placeCreatedAt = dateResult,
+                                            subway = response.body()!!.data[i].subway,
+                                            tag = response.body()!!.data[i].tag,
+                                            likeCnt = response.body()!!.data[i].likeCnt
+                                        )
+                                    )
+                                }
                             }
-                            friendPicListAll.addAll(friendPicList)
-                            friendPicAdapter.addItems(friendPicList)
+                            friendPicAdapter.datas = friendPicList
+                            /*friendPicListAll.addAll(friendPicList)
+                            friendPicAdapter.addItems(friendPicList)*/
                             friendPicAdapter.notifyDataSetChanged()
-                            isLoading = false
+                            //isLoading = false
                             return
                         }
                         getFriendPicListErrorFromServer(response)
@@ -233,7 +269,7 @@ class HomeFragment : Fragment() {
     }
 
 
-    private fun getBannerlistTokenErrorFromServer(response: Response<BaseResponse<List<BannerResponse>>>) {
+    private fun getBannerListTokenErrorFromServer(response: Response<BaseResponse<List<BannerResponse>>>) {
         when (response.body()?.status) {
             400,401 ->{
                 gotoOnBoardingEvent()
@@ -246,7 +282,8 @@ class HomeFragment : Fragment() {
         }
     }
 
-    private fun getFriendPicListErrorFromServer(response: Response<BaseResponse<FriendPicResponse>>) {
+    private fun getFriendPicListErrorFromServer(response: Response<BaseResponse<List<FriendPicResponse>>>) {
+    //private fun getFriendPicListErrorFromServer(response: Response<BaseResponse<FriendPicResponse>>) {
         when (response.body()?.status) {
             400,401 ->{
                 gotoOnBoardingEvent()
