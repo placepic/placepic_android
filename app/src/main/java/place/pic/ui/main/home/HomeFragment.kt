@@ -36,6 +36,7 @@ class HomeFragment : Fragment() {
     lateinit var friendPicAdapter: FriendPicAdapter
     lateinit var layoutManager: LinearLayoutManager
 
+    /* 커밋해야해서 잠시 주석 좀 달게요.. */
     /*var page = 1
     var isLoading = false
     var totalPage: Int = 0*/
