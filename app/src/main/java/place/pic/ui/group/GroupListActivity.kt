@@ -26,14 +26,29 @@ class GroupListActivity : AppCompatActivity(), BindGroupListEvent {
                 onSuccess = { response ->
                     responseSuccessInGroupListData(response)
                 },
-                onError = {response ->
+                onError = { response ->
                     requestErrorInGroupListData(response)
                 }
             )
     }
 
     private fun responseSuccessInGroupListData(response: Response<BaseResponse<List<ResponseGroupList>>>) {
-        groupListFragment.setAdapter(response.body()?.data!!)
+        val groupList = mutableListOf<ResponseGroupList>()
+        groupList.add(applyGroupButton())
+        groupList.addAll(response.body()?.data!!)
+        groupListFragment.setAdapter(groupList.toList())
+    }
+
+    private fun applyGroupButton(): ResponseGroupList {
+        return ResponseGroupList(
+            postCount = 0,
+            userCount = 0,
+            groupImage = "",
+            groupIdx = -101,
+            groupCode = "",
+            groupName = "",
+            state = 0
+        )
     }
 
     private fun requestErrorInGroupListData(response: Response<BaseResponse<List<ResponseGroupList>>>) {

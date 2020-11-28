@@ -14,6 +14,8 @@ import place.pic.data.PlacepicAuthRepository
 import place.pic.data.remote.response.ResponseGroupList
 import place.pic.ui.main.MainActivity
 import place.pic.ui.util.animation.nextActivityAnimation
+import place.pic.ui.webview.InWebActivity
+import java.security.acl.Group
 
 class GroupListFragment : Fragment() {
 
@@ -44,19 +46,19 @@ class GroupListFragment : Fragment() {
     }
 
     private fun init() {
-        Log.d("TestGroupList","GroupList Test")
         bindGroupListEvent?.requestToGroupListData()
     }
 
     fun setAdapter(groupListData: List<ResponseGroupList>) {
         groupListAdapter = GroupListAdapter()
-        groupListAdapter?.datas = groupListData
-        groupListAdapter?.setSaveGroupIDListener { id -> saveGroupIdEvent(id) }
-        groupListAdapter?.setClickSignGroupListener { clickSignGroupEvent() }
-        groupListAdapter?.setClickNonSignGroupListener { groupCode ->
-            clickNonSignGroupEvent(groupCode)
+        groupListAdapter?.apply {
+            datas = groupListData
+            setSaveGroupIDListener { id -> saveGroupIdEvent(id)  }
+            setClickSignGroupListener { clickSignGroupEvent() }
+            setClickNonSignGroupListener { groupCode -> clickNonSignGroupEvent(groupCode) }
+            setClickApplyNewGroupListener { applyNewGroupEvent() }
+            notifyDataSetChanged()
         }
-        groupListAdapter?.notifyDataSetChanged()
         rv_exist_group_list.adapter = groupListAdapter
     }
 
@@ -77,6 +79,13 @@ class GroupListFragment : Fragment() {
         gotoGroupSignUpIntent.putExtra("groupCode", groupCode)
         startActivity(gotoGroupSignUpIntent)
         requireActivity().nextActivityAnimation()
+    }
+
+    private fun applyNewGroupEvent() {
+        val gotoInWebIntent = Intent(requireContext(), InWebActivity::class.java)
+        gotoInWebIntent.putExtra("webUrl", "https://docs.google.com/forms/d/1mi7R6ac23MMdZy5_eIbfSozg2Z8Zn4NKkWrM-4yxE1c")
+        gotoInWebIntent.putExtra("webTitle", "[placepic] 그룹 신청")
+        startActivity(gotoInWebIntent)
     }
 
 
