@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -43,7 +42,6 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <!--이메일 입력 뷰-->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cl_login_phone_num_view_group"
         android:layout_width="0dp"
@@ -177,6 +175,138 @@
             app:layout_constraintStart_toStartOf="@+id/et_login_phone_auth_input"
             app:layout_constraintTop_toBottomOf="@+id/et_login_phone_auth_input" />
 
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/service_check_condition_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            app:layout_constraintEnd_toEndOf="@+id/et_login_phone_auth_input"
+            app:layout_constraintStart_toStartOf="@+id/et_login_phone_auth_input"
+            app:layout_constraintTop_toBottomOf="@id/tv_login_auth_num_info">
+
+            <CheckBox
+                android:id="@+id/age_condition_check"
+                android:layout_width="14dp"
+                android:layout_height="14dp"
+                android:background="@drawable/check_box_custom"
+                android:button="@color/transparent"
+                android:gravity="clip_vertical"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                 />
+
+            <TextView
+                android:id="@+id/age_condition_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:fontFamily="@font/noto_sans_regular"
+                android:text="@string/age_condition"
+                android:textSize="12dp"
+                android:textColor="@color/gray63"
+                app:layout_constraintBottom_toBottomOf="@id/age_condition_check"
+                app:layout_constraintStart_toEndOf="@id/age_condition_check"
+                app:layout_constraintTop_toTopOf="@+id/age_condition_check" />
+
+            <CheckBox
+                android:id="@+id/agreement_on_terms_and_conditions_check"
+                android:layout_width="14dp"
+                android:layout_height="14dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/check_box_custom"
+                android:button="@color/transparent"
+                android:gravity="clip_vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/age_condition_check"
+                 />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_login_term_and_privary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                app:layout_constraintBottom_toBottomOf="@+id/agreement_on_terms_and_conditions_check"
+                app:layout_constraintStart_toEndOf="@+id/agreement_on_terms_and_conditions_check"
+                app:layout_constraintTop_toTopOf="@+id/agreement_on_terms_and_conditions_check">
+
+                <TextView
+                    android:id="@+id/tv_login_term"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:fontFamily="@font/noto_sans_regular"
+                    android:text="이용약관"
+                    android:textColor="@color/gray63"
+                    android:textSize="12dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_login_and"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/tv_login_and"
+                    />
+
+                <TextView
+                    android:id="@+id/tv_login_and"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginEnd="4dp"
+                    android:fontFamily="@font/noto_sans_regular"
+                    android:text="및"
+                    android:textColor="@color/gray63"
+                    android:textSize="12dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/tv_login_term"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_login_privary"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:fontFamily="@font/noto_sans_regular"
+                    android:text="개인정보 취급 방침"
+                    android:textColor="@color/gray63"
+                    android:textSize="12dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_login_and"
+                    app:layout_constraintStart_toEndOf="@+id/tv_login_and"
+                    app:layout_constraintTop_toTopOf="@+id/tv_login_and"
+                    app:layout_constraintVertical_bias="0.0" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:fontFamily="@font/noto_sans_regular"
+                    android:text="에 동의합니다."
+                    android:textColor="@color/gray63"
+                    android:textSize="12dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_login_privary"
+                    app:layout_constraintStart_toEndOf="@+id/tv_login_privary"
+                    app:layout_constraintTop_toTopOf="@+id/tv_login_privary" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:background="@color/gray63"
+                    app:layout_constraintEnd_toEndOf="@id/tv_login_term"
+                    app:layout_constraintStart_toStartOf="@id/tv_login_term"
+                    app:layout_constraintTop_toBottomOf="@id/tv_login_term" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:background="@color/gray63"
+                    app:layout_constraintEnd_toEndOf="@id/tv_login_privary"
+                    app:layout_constraintStart_toStartOf="@id/tv_login_privary"
+                    app:layout_constraintTop_toBottomOf="@id/tv_login_privary" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_login_agree_and_find_group"
             style="?android:attr/borderlessButtonStyle"
@@ -188,90 +318,15 @@
             android:enabled="false"
             android:fontFamily="@font/noto_sans_bold"
             android:paddingVertical="13dp"
-            android:text="동의하고 그룹 찾으러 떠나기"
+            android:text="그룹 찾으러 떠나기"
             android:textColor="@color/selector_enable_text_gray_to_white"
             android:textSize="15dp"
             app:layout_constraintEnd_toEndOf="@+id/et_login_phone_auth_input"
             app:layout_constraintStart_toStartOf="@+id/et_login_phone_auth_input"
-            app:layout_constraintTop_toBottomOf="@id/tv_login_auth_num_info" />
+            app:layout_constraintTop_toBottomOf="@id/service_check_condition_layout" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/cl_login_term_and_privary"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="22dp"
-            app:layout_constraintEnd_toEndOf="@+id/btn_login_agree_and_find_group"
-            app:layout_constraintStart_toStartOf="@+id/btn_login_agree_and_find_group"
-            app:layout_constraintTop_toBottomOf="@+id/btn_login_agree_and_find_group">
 
-            <TextView
-                android:id="@+id/tv_login_term"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:clickable="true"
-                android:focusable="true"
-                android:fontFamily="@font/noto_sans_regular"
-                android:text="이용약관"
-                android:textColor="@color/gray63"
-                android:textSize="10dp"
-                app:layout_constraintBottom_toBottomOf="@+id/tv_login_and"
-                app:layout_constraintEnd_toStartOf="@+id/tv_login_and"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/tv_login_and" />
-
-            <TextView
-                android:id="@+id/tv_login_and"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:layout_marginEnd="4dp"
-                android:fontFamily="@font/noto_sans_regular"
-                android:text="및"
-                android:textColor="@color/gray63"
-                android:textSize="10dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/tv_login_privary"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/tv_login_term"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/tv_login_privary"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:clickable="true"
-                android:focusable="true"
-                android:fontFamily="@font/noto_sans_regular"
-                android:text="개인정보 취급 방침"
-                android:textColor="@color/gray63"
-                android:textSize="10dp"
-                app:layout_constraintBottom_toBottomOf="@+id/tv_login_and"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/tv_login_and"
-                app:layout_constraintTop_toTopOf="@+id/tv_login_and" />
-
-            <View
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:background="@color/gray63"
-                app:layout_constraintEnd_toEndOf="@id/tv_login_term"
-                app:layout_constraintStart_toStartOf="@id/tv_login_term"
-                app:layout_constraintTop_toBottomOf="@id/tv_login_term" />
-
-            <View
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:background="@color/gray63"
-                app:layout_constraintEnd_toEndOf="@id/tv_login_privary"
-                app:layout_constraintStart_toStartOf="@id/tv_login_privary"
-                app:layout_constraintTop_toBottomOf="@id/tv_login_privary" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

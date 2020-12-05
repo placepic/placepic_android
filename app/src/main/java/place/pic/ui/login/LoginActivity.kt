@@ -100,13 +100,30 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun loginButtonEnableEvent() {
         et_login_phone_num.customTextChangedListener {
-            btn_login_phone_num_send_message.isEnabled = !it.isNullOrBlank()
+            btn_login_phone_num_send_message.isEnabled = validateNotNullOf(it)
         }
         et_login_phone_auth_input.customTextChangedListener {
-            btn_login_agree_and_find_group.isEnabled =
-                !it.isNullOrBlank() && !et_login_phone_num.text.isNullOrBlank()
+            btn_login_agree_and_find_group.isEnabled = enableFindGroupButtonCondition(it)
+        }
+        age_condition_check.setOnClickListener {
+            val authNum = et_login_phone_auth_input.text
+            btn_login_agree_and_find_group.isEnabled = enableFindGroupButtonCondition(authNum)
+        }
+        agreement_on_terms_and_conditions_check.setOnClickListener {
+            val authNum = et_login_phone_auth_input.text
+            btn_login_agree_and_find_group.isEnabled = enableFindGroupButtonCondition(authNum)
         }
     }
+
+    private fun validateNotNullOf(value: CharSequence?): Boolean = value?.isNotBlank() ?: false
+
+    private fun enableFindGroupButtonCondition(value: CharSequence?): Boolean {
+        return validateNotNullOf(value) && validateNotNullOf(et_login_phone_num.text) && isCheckAllCondition()
+    }
+
+    private fun isCheckAllCondition(): Boolean =
+        age_condition_check.isChecked && agreement_on_terms_and_conditions_check.isChecked
+
 
     private fun loginButtonClickEvent() {
         btn_login_phone_num_send_message.setOnClickListener(this)
@@ -221,7 +238,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
     private fun requestErrorInLogin(response: BaseResponse<Unit>) {
         when (response.status) {
             400 -> {
-                Toast.makeText(applicationContext, response.message , Toast.LENGTH_SHORT)
+                Toast.makeText(applicationContext, response.message, Toast.LENGTH_SHORT)
                     .show()
             }
             500 -> {
