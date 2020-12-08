@@ -109,7 +109,8 @@ class HomeFragment : Fragment() {
             override fun onItemClick(view: View, position: Int) {
                 val clickedFriendPicIntent =
                     Intent(context, DetailViewActivity::class.java)
-                clickedFriendPicIntent.putExtra("placeIdx", friendPicListAll[position].placeIdx)
+                clickedFriendPicIntent.putExtra("placeIdx", friendPicList[position].placeIdx)
+                //clickedFriendPicIntent.putExtra("placeIdx", friendPicListAll[position].placeIdx)
                 startActivity(clickedFriendPicIntent)
             }
         })
