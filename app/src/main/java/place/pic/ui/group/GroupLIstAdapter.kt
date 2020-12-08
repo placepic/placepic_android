@@ -11,12 +11,13 @@ import com.bumptech.glide.Glide
 import place.pic.R
 import place.pic.data.remote.response.ResponseGroupList
 
-class GroupListAdapter : RecyclerView.Adapter<GroupListAdapter.ViewHolder>() {
+class GroupListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     var datas: List<ResponseGroupList> = listOf()
     private var saveGroupIDListener: ((id: Int) -> Unit)? = null
     private var clickSignGroupListener: (() -> Unit)? = null
-    private var clickNonSignGroupListener: ((groupCode:String) -> Unit)? = null
+    private var clickNonSignGroupListener: ((groupCode: String) -> Unit)? = null
+    private var clickApplyNewGroupListener: (() -> Unit)? = null
 
     fun setSaveGroupIDListener(listener: (id: Int) -> Unit) {
         this.saveGroupIDListener = listener
@@ -26,27 +27,43 @@ class GroupListAdapter : RecyclerView.Adapter<GroupListAdapter.ViewHolder>() {
         this.clickSignGroupListener = listener
     }
 
-    fun setClickNonSignGroupListener(listener: (groupCode:String) -> Unit) {
+    fun setClickNonSignGroupListener(listener: (groupCode: String) -> Unit) {
         this.clickNonSignGroupListener = listener
     }
 
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GroupListAdapter.ViewHolder {
-        val view = LayoutInflater.from(parent.context)
-        val itemView = view.inflate(R.layout.item_group_list, parent, false)
-        return ViewHolder(itemView)
+    fun setClickApplyNewGroupListener(listener: () -> Unit) {
+        this.clickApplyNewGroupListener = listener
     }
 
-    override fun onBindViewHolder(holder: GroupListAdapter.ViewHolder, position: Int) {
-        holder.bind(datas[position])
+    override fun getItemViewType(position: Int): Int {
+        return if (datas[position].groupIdx > 0) GROUP_LIST else APPLY_NEW_GROUP
+    }
+
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        val view = LayoutInflater.from(parent.context)
+        return if (viewType == GROUP_LIST) {
+            ViewHolder(view.inflate(R.layout.item_group_list, parent, false))
+        } else {
+            ApplyGroupViewHolder(view.inflate(R.layout.item_apply_new_group_view, parent, false))
+        }
+
+    }
+
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        if (holder is GroupListAdapter.ViewHolder) {
+            holder.bind(datas[position])
+            return
+        }
+        (holder as GroupListAdapter.ApplyGroupViewHolder).bind()
     }
 
     override fun getItemCount(): Int = datas.size
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val img_group_profile = itemView.findViewById<ImageView>(R.id.img_group_profile)
-        val tv_group_title = itemView.findViewById<TextView>(R.id.tv_group_title)
-        val tv_group = itemView.findViewById<TextView>(R.id.tv_group_count)
+        private val img_group_profile: ImageView = itemView.findViewById(R.id.img_group_profile)
+        private val tv_group_title: TextView = itemView.findViewById(R.id.tv_group_title)
+        private val tv_group: TextView = itemView.findViewById(R.id.tv_group_count)
 
         fun bind(customData: ResponseGroupList) {
             tv_group_title.text = customData.groupName
@@ -78,6 +95,17 @@ class GroupListAdapter : RecyclerView.Adapter<GroupListAdapter.ViewHolder>() {
             }
             clickNonSignGroupListener?.invoke(customData.groupCode)
         }
+    }
+
+    inner class ApplyGroupViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        fun bind() {
+            itemView.setOnClickListener{clickApplyNewGroupListener?.invoke()}
+        }
+    }
+
+    companion object {
+        private const val APPLY_NEW_GROUP = 0
+        private const val GROUP_LIST = 1
     }
 
 }

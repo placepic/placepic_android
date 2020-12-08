@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="place.pic">
 
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -14,9 +15,21 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
 
+        <!--
+               Set to true if your app is Standalone, that is, it does not require the handheld
+               app to run.
+        -->
+        <meta-data
+            android:name="com.google.android.wearable.standalone"
+            android:value="true" />
+
         <meta-data
             android:name="firebase_crashlytics_collection_enabled"
             android:value="@bool/FIREBASE_CRASHLYTICS_COLLECTION_ENABLED" />
+
+        <activity
+            android:name=".ui.main.mypage.AdminActivity"
+            android:label="@string/title_activity_admin"/>
         <activity android:name=".ui.main.home.banner.list.BannerListActivity" />
         <activity android:name=".ui.main.home.banner.detail.BannerDetailActivity" />
         <activity android:name=".ui.main.mypage.ProfileEditActivity" />
@@ -36,8 +49,8 @@
         <activity
             android:name=".ui.group.InputUserInfoAnimActivity"
             android:windowSoftInputMode="adjustResize" />
-        <activity android:name=".ui.login.LoginActivity"/>
-        <activity android:name=".ui.main.MainActivity"/>
+        <activity android:name=".ui.login.LoginActivity" />
+        <activity android:name=".ui.main.MainActivity" />
         <activity android:name=".ui.group.InputVisitCodeActivity" />
         <activity android:name=".ui.main.detail.DetailViewActivity" />
         <activity android:name=".ui.tag.UsefulTagActivity" />
@@ -47,4 +60,5 @@
         <activity android:name=".ui.webview.InWebActivity" />
         <activity android:name=".ui.main.OnBoardingActivity" />
     </application>
+
 </manifest>

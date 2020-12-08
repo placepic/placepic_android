@@ -108,9 +108,7 @@ interface PlacePicService {
         @Body body: GroupSignUpRequest
     ): Call<BaseResponse<Unit>>
 
-    /*
-    * 마이 페이지 서버 연결
-    */
+    //마이페이지
     @GET("/auth/myInfo/{groupIdx}")
     fun requestMyPage(
         @Header("Content-Type") contentType: String = "application/json",
@@ -125,9 +123,7 @@ interface PlacePicService {
         @Path("groupIdx") groupIdx: Int
     ): Call<BaseResponse<MyWritingsResponse>>
 
-    /*
-    * 프로필편집 서버연결
-    */
+    //프로필 편집
     @Multipart
     @PUT("/auth/myInfo/edit/{groupIdx}")
     fun profileEdit(
@@ -136,10 +132,6 @@ interface PlacePicService {
         @Part profileImageUrl: MultipartBody.Part?,
         @Part("part") part: RequestBody?
     ):Call<BaseResponse<Unit>>
-
-    /*
-    * 관리자 페이지 서버 연결
-    */
 
     // 그룹 대기중인 유저 리스트 조회
     @GET("/auth/groups/admin/{groupIdx}")

@@ -67,17 +67,18 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/white"
+                    android:background="@color/design_default_color_background"
                     app:layout_collapseMode="parallax">
 
                     <de.hdodenhof.circleimageview.CircleImageView
                         android:id="@+id/img_profile"
-                        android:layout_width="81dp"
-                        android:layout_height="81dp"
+                        android:layout_width="82dp"
+                        android:layout_height="82dp"
                         android:layout_marginTop="20dp"
                         android:padding="1dp"
                         android:src="@drawable/ic_user"
-                        app:civ_border_width="0dp"
+                        app:civ_border_width="1dp"
+                        app:civ_border_color="@color/grayF4"
                         app:layout_constraintEnd_toEndOf="@+id/tv_profile_kind"
                         app:layout_constraintStart_toStartOf="@+id/tv_profile_name"
                         app:layout_constraintTop_toTopOf="parent" />
