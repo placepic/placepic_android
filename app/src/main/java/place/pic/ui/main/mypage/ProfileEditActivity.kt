@@ -14,6 +14,7 @@ import android.provider.MediaStore
 import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
 import com.bumptech.glide.Glide
 import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.android.synthetic.main.activity_profile_edit.*
@@ -26,6 +27,7 @@ import place.pic.data.PlacepicAuthRepository
 import place.pic.data.remote.PlacePicService
 import place.pic.data.remote.request.ProfileEditRequest
 import place.pic.data.remote.response.BaseResponse
+import place.pic.databinding.ActivityProfileEditBinding
 import place.pic.ui.upload.ImageUri
 import place.pic.ui.util.customTextChangedListener
 import place.pic.ui.util.showToast
@@ -36,7 +38,7 @@ import java.io.File
 
 
 class ProfileEditActivity : AppCompatActivity() {
-
+    private lateinit var binding: ActivityProfileEditBinding
     private lateinit var ProfileEditRequest : ProfileEditRequest
     var change_part: String?=null
     var change_image: MultipartBody.Part? = null
@@ -45,18 +47,19 @@ class ProfileEditActivity : AppCompatActivity() {
     var imageurlstring: String?=null
     var uri: Uri? =null
 
-
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_profile_edit)
+
+        binding=DataBindingUtil.setContentView(this,R.layout.activity_profile_edit)
+        binding.profileEditActivity=this
 
         val preferences = this.getSharedPreferences("mypageuser", Context.MODE_PRIVATE)
-        img_profile_edit_top_bar_back_btn.setOnClickListener {
+        binding.imgProfileEditTopBarBackBtn.setOnClickListener {
             finish()
         }
 
-        img_profile_setting.setOnClickListener {
+        binding.imgProfileSetting.setOnClickListener {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
                 if (checkSelfPermission(permission.READ_EXTERNAL_STORAGE) ==
                     PackageManager.PERMISSION_DENIED){
@@ -72,33 +75,31 @@ class ProfileEditActivity : AppCompatActivity() {
             }
         }
 
-        Glide.with(img_profile_setting).load(preferences.getString("mp_user_image", "")).into(
-            img_profile_setting
-        )
+        Glide.with(img_profile_setting).load(preferences.getString("mp_user_image", "")).into(img_profile_setting)
 
-        tv_profile_setting_name.text = preferences.getString("mp_user_name", "")
-        et_profile_setting_in_part.setText(preferences.getString("mp_user_part", "").toString())
+        binding.tvProfileSettingName.text = preferences.getString("mp_user_name", "")
+        binding.etProfileSettingInPart.setText(preferences.getString("mp_user_part", "").toString())
 
-        et_profile_setting_in_part.customTextChangedListener {
-            if (it != et_profile_setting_in_part){
-                btn_profile_edit_ok.isEnabled = true
-                btn_profile_edit_ok.setTextColor(getColor(R.color.pinkF6))
+        binding.etProfileSettingInPart.customTextChangedListener {
+            if (it != binding.etProfileSettingInPart){
+                binding.btnProfileEditOk.isEnabled = true
+                binding.btnProfileEditOk.setTextColor(getColor(R.color.pinkF6))
                 return@customTextChangedListener
             }
         }
 
-        btn_profile_edit_ok.setOnClickListener {
-            change_part=et_profile_setting_in_part.text.toString()
-            val requestBody2 = change_part?.toRequestBody("text/plain".toMediaType())
-            if (requestBody2 != null) {
-                MultipartBody.Part.createFormData("part", "part", requestBody2)
+        binding.btnProfileEditOk.setOnClickListener {
+            change_part=binding.etProfileSettingInPart.text.toString()
+            val requestBody = change_part?.toRequestBody("text/plain".toMediaType())
+            if (requestBody != null) {
+                MultipartBody.Part.createFormData("part", "part", requestBody)
             }
             change_image=toMultipart(imgPath)
 
             PlacePicService.getInstance().profileEdit(
                 token = PlacepicAuthRepository.getInstance(this).userToken!!,
                 groupIdx = PlacepicAuthRepository.getInstance(this).groupId!!,
-                part = requestBody2,
+                part = requestBody,
                 profileImageUrl = change_image
             ).enqueue(object : Callback<BaseResponse<Unit>> {
                 override fun onResponse(
@@ -137,7 +138,7 @@ class ProfileEditActivity : AppCompatActivity() {
                 ) {
                     pickImageFromGallery()
                 } else {
-                    showToast("권한을 확인하여 주세요")
+                    showToast("권한을 확인해주세요")
                 }
             }
         }
@@ -148,7 +149,7 @@ class ProfileEditActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == Activity.RESULT_OK && requestCode == IMAGE_PICK_CODE){
             uri = data?.data
-            img_profile_setting.setImageURI(uri)
+            binding.imgProfileSetting.setImageURI(uri)
             data?.data?.let { imageurlstring=getPicture(this, it) }
         }
     }
@@ -163,9 +164,8 @@ class ProfileEditActivity : AppCompatActivity() {
         } else if (cursor.moveToFirst()) {
             index = cursor.getColumnIndex(MediaStore.Images.Media.DATA)
             imgPath = cursor.getString(index)
-            Log.d("realPathFromURI2", "realPathFromURI: $imgPath")
-            btn_profile_edit_ok.isEnabled = true
-            btn_profile_edit_ok.setTextColor(getColor(R.color.pinkF6))
+            binding.btnProfileEditOk.isEnabled = true
+            binding.btnProfileEditOk.setTextColor(getColor(R.color.pinkF6))
             cursor.close()
         } else {
             showToast("커서가 비었습니다.")
@@ -176,14 +176,12 @@ class ProfileEditActivity : AppCompatActivity() {
     }
 
     private fun toMultipart(context: String?): MultipartBody.Part? {
-        if(context==null)
-        {
-            return null
-        }
-        else {
+        return if(context==null) {
+            null
+        } else {
             val file = File(context)
             val requestBody = file.asRequestBody("image/jpeg".toMediaType())
-            return MultipartBody.Part.createFormData("profileImageUrl", file.name, requestBody)
+            MultipartBody.Part.createFormData("profileImageUrl", file.name, requestBody)
         }
     }
 

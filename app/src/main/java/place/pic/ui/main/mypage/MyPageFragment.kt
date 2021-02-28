@@ -1,5 +1,6 @@
 package place.pic.ui.main.mypage
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
@@ -8,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.google.android.material.tabs.TabLayout
@@ -18,6 +20,7 @@ import place.pic.data.PlacepicAuthRepository
 import place.pic.data.remote.PlacePicService
 import place.pic.data.remote.response.BaseResponse
 import place.pic.data.remote.response.MyPageResponse
+import place.pic.databinding.FragmentMyPageBinding
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -26,6 +29,7 @@ import retrofit2.http.Url
 
 class MyPageFragment : Fragment() {
     private lateinit var pagerAdapter: MyPagerAdapter
+    private lateinit var binding: FragmentMyPageBinding
     companion object {
         fun newInstance(): MyPageFragment {
             return MyPageFragment()
@@ -33,7 +37,7 @@ class MyPageFragment : Fragment() {
     }
 
     var user_name: String? = null
-    var user_state: Int? = null
+    var user_state: Int? = 2
     var user_part: String? = null
     var user_image: String? = null
     var user_write_count: Int? = null
@@ -44,11 +48,8 @@ class MyPageFragment : Fragment() {
         pagerAdapter = MyPagerAdapter(childFragmentManager)
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        val v = inflater.inflate(R.layout.fragment_my_page, container, false)
+    override fun onResume() {
+        super.onResume()
         PlacePicService.getInstance().requestMyPage(
             token = PlacepicAuthRepository.getInstance(requireContext()).userToken!!,
             groupIdx = PlacepicAuthRepository.getInstance(requireContext()).groupId!!
@@ -74,39 +75,44 @@ class MyPageFragment : Fragment() {
                         user_post_count = response.body()!!.data.postCount
                         user_write_count = response.body()!!.data.bookMarkCnt
 
-                        tv_profile_name?.text = user_name
-                        tv_profile_intro?.text = user_part
+                        binding.tvProfileName.text = user_name
+                        binding.tvProfileIntro.text = user_part
 
-                        (tab_mypage.getTabAt(0))?.text = "작성한 글 "+user_post_count?.toString()
-                        (tab_mypage.getTabAt(1))?.text = "저장한 장소 "+user_write_count?.toString()
+                        (binding.tabMypage.getTabAt(0))?.text = "작성한 글 "+user_post_count?.toString()
+                        (binding.tabMypage.getTabAt(1))?.text = "저장한 장소 "+user_write_count?.toString()
 
                         Glide.with(img_profile).load(user_image).into(img_profile)
 
                         when (user_state) {
                             0 -> {
-                                tv_profile_kind.text = "관리자"
+                                binding.tvProfileKind.text = "관리자"
                             }
                             1 -> {
-                                tv_profile_kind.text = "멤버"
+                                binding.tvProfileKind.text = "멤버"
                             }
-                            else -> tv_profile_kind.text = "승인대기중"
+                            else -> binding.tvProfileKind.text = "승인대기중"
                         }
                     }
-                } else {
                 }
             }
         })
+    }
 
-
-
-        v.bt_setting.setOnClickListener {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        binding=DataBindingUtil.inflate(inflater,R.layout.fragment_my_page,container, false)
+        binding.myPageFragment=this
+        binding.lifecycleOwner=this
+        binding.btSetting.setOnClickListener {
             val preferences = context?.getSharedPreferences("mypageuser", Context.MODE_PRIVATE)
-            val editor : SharedPreferences.Editor= preferences!!.edit()
+            val editor: SharedPreferences.Editor = preferences!!.edit()
 
             editor.putString("mp_user_name", user_name)
             editor.putString("mp_user_part", user_part)
             editor.putString("mp_user_image", user_image)
-            editor.putInt("mp_user_state", user_state!!)
+            user_state?.let { it1 -> editor.putInt("mp_user_state", it1) }
 
             editor.clear()
             editor.apply()
@@ -114,27 +120,22 @@ class MyPageFragment : Fragment() {
 
             val intent2 = Intent(context, MyPageSettingActivity::class.java)
             startActivity(intent2)
-            //intent2.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
         }
-        /*v.cl_user_list.setOnClickListener {
-            val intent = Intent(context, WaitUserListActivity::class.java)
-            startActivity(intent)
-        }*/
-        return v
+            return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        vp_mypage.adapter = pagerAdapter
+        binding.vpMypage.adapter = pagerAdapter
 
-        vp_mypage.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(tab_mypage))
-        tab_mypage.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+        binding.vpMypage.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(tab_mypage))
+        binding.tabMypage.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab) {}
             override fun onTabUnselected(tab: TabLayout.Tab) {}
             override fun onTabReselected(tab: TabLayout.Tab) {}
         })
-        tab_mypage.setupWithViewPager(vp_mypage)
+        binding.tabMypage.setupWithViewPager(vp_mypage)
     }
 }
 
