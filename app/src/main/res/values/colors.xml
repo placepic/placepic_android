@@ -32,6 +32,7 @@
 
     <color name="mainColor">#F65C6C</color>
     <color name="placepicDefault">#F4F7F8</color>
+    <color name="whiteCCFFFFFF">#CCFFFFFF</color>
     <color name="whiteE5">#E5E5E5</color>
     <color name="whiteFF">#FFFFFF</color>
     <color name="whiteFEFFFF">#FEFFFF</color>
