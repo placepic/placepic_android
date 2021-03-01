@@ -5,12 +5,15 @@ import android.os.Bundle
 import android.os.Handler
 import android.util.Log
 import android.view.*
+import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.core.widget.NestedScrollView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
 import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.android.synthetic.main.item_banner_home.*
 import place.pic.R
 import place.pic.data.PlacepicAuthRepository
 import place.pic.data.remote.PlacePicService
@@ -36,7 +39,6 @@ class HomeFragment : Fragment() {
     lateinit var friendPicAdapter: FriendPicAdapter
     lateinit var layoutManager: LinearLayoutManager
 
-    /* 커밋해야해서 잠시 주석 좀 달게요.. */
     /*var page = 1
     var isLoading = false
     var totalPage: Int = 0*/
@@ -63,8 +65,8 @@ class HomeFragment : Fragment() {
         val token = PlacepicAuthRepository.getInstance(requireContext()).userToken ?: return
         val groupIdx = PlacepicAuthRepository.getInstance(requireContext()).groupId ?: return
 
-        getFriendPicListFromServer(token, groupIdx)
         getBannerListFromServer(token, groupIdx)
+        getFriendPicListFromServer(token, groupIdx)
         // initial items
         //getFriendPicListFromServer(token, groupIdx, 1)
         //getFriendPicListFromServer(token, groupIdx)
@@ -146,28 +148,48 @@ class HomeFragment : Fragment() {
                     //통신 성공
                     if (response.isSuccessful) { //status
                         Log.d("typeCheck", "배너통신성공")
-                        if (response.body()!!.success) {
+                        if (response.body()?.success!!) {
                             Log.d("typeCheck", "${response.body()!!.data.javaClass}")
-                            for (i in response.body()!!.data.indices) {
+
+                            if (response.body()?.data?.size!! > 0) {
+                                for (i in response.body()?.data?.indices!!) {
+                                    bannerHomeDatas.apply {
+                                        add(
+                                            BannerHomeData(
+                                                bannerIdx = response.body()!!.data[i].bannerIdx,
+                                                badgeBg = response.body()!!.data[i].bannerBadgeColor,
+                                                badge = response.body()!!.data[i].bannerBadgeName,
+                                                title = response.body()!!.data[i].bannerTitle,
+                                                description = response.body()!!.data[i].bannerDescription,
+                                                imageUrl = response.body()!!.data[i].bannerImageUrl,
+                                                count = ""
+                                            )
+                                        )
+                                    }
+                                }
+                                bannerHomeAdapter.datas = bannerHomeDatas
+                                bannerHomeAdapter.notifyDataSetChanged()
+                                return
+                            } else {
                                 bannerHomeDatas.apply {
                                     add(
                                         BannerHomeData(
-                                            bannerIdx = response.body()!!.data[i].bannerIdx,
-                                            badgeBg = response.body()!!.data[i].bannerBadgeColor,
-                                            badge = response.body()!!.data[i].bannerBadgeName,
-                                            title = response.body()!!.data[i].bannerTitle,
-                                            description = response.body()!!.data[i].bannerDescription,
-                                            imageUrl = response.body()!!.data[i].bannerImageUrl,
+                                            bannerIdx = -1,
+                                            badgeBg = "",
+                                            badge = "",
+                                            title = "",
+                                            description = "",
+                                            imageUrl = "",
                                             count = ""
                                         )
                                     )
                                 }
+                                bannerHomeAdapter.datas = bannerHomeDatas
+                                bannerHomeAdapter.notifyDataSetChanged()
+                                return
                             }
-                            bannerHomeAdapter.datas = bannerHomeDatas
-                            bannerHomeAdapter.notifyDataSetChanged()
-                            return
+                            getBannerListTokenErrorFromServer(response)
                         }
-                        getBannerListTokenErrorFromServer(response)
                     }
                 }
             })
