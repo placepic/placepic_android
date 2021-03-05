@@ -4,10 +4,8 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import place.pic.R
-import place.pic.ui.search.place.PlaceSearchAdapter
 
 /**
  * Created By kimdahyee
@@ -18,27 +16,37 @@ class BannerHomeAdapter() : RecyclerView.Adapter<BannerHomeViewHolder>() {
 
     var datas: MutableList<BannerHomeData> = mutableListOf()
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BannerHomeViewHolder {
+    //getItemViewType 2
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BannerHomeViewHolder { //3
         val view =
             LayoutInflater.from(parent.context).inflate(R.layout.item_banner_home, parent, false)
         return BannerHomeViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: BannerHomeViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: BannerHomeViewHolder, position: Int) { //4
         val realPos = position % datas.size
-        val sb = StringBuilder("")
-        sb.append((realPos + 1).toString())
-        sb.append(" / ")
-        sb.append(datas.size)
-        holder.bind(datas[realPos], sb.toString())
+        val stringBuilder = StringBuilder("")
+        stringBuilder.append((realPos + 1).toString())
+        stringBuilder.append(" / ")
+        stringBuilder.append(datas.size)
+        holder.bind(datas[realPos], stringBuilder.toString())
 
         holder.itemView.setOnClickListener{
-            itemClickListener.onItemClick(it, position)
+            if (datas[0].bannerIdx == -1) {
+                itemClickListener.onItemClick(it, -1)
+            } else {
+                itemClickListener.onItemClick(it, position)
+            }
         }
     }
 
-    override fun getItemCount(): Int {
-        return datas.size * 1000
+    override fun getItemCount(): Int { //1
+        return if (datas.size == 1) {
+            datas.size
+        } else {
+            datas.size * 1000
+        }
         //return Integer.MAX_VALUE
     }
 

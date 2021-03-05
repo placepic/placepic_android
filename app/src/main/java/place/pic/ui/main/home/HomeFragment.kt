@@ -79,10 +79,14 @@ class HomeFragment : Fragment() {
         //banner clickevent listener
         bannerHomeAdapter.setItemClickListener(object : BannerHomeAdapter.ItemClickListener {
             override fun onItemClick(view: View, position: Int) {
-                val clickedBannerIntent =
-                    Intent(context, BannerDetailActivity::class.java)
-                clickedBannerIntent.putExtra("bannerId", bannerHomeDatas[position].bannerIdx)
-                startActivity(clickedBannerIntent)
+                if (position == -1) {
+                    Toast.makeText(context, "여러분의 최애 장소를 등록해주세요!\n등록된 플레이스를 바탕으로 플레이스픽이\n배너를 생성해드립니다.", Toast.LENGTH_SHORT).show()
+                } else {
+                    val clickedBannerIntent =
+                        Intent(context, BannerDetailActivity::class.java)
+                    clickedBannerIntent.putExtra("bannerId", bannerHomeDatas[position].bannerIdx)
+                    startActivity(clickedBannerIntent)
+                }
             }
         })
 
@@ -188,8 +192,8 @@ class HomeFragment : Fragment() {
                                 bannerHomeAdapter.notifyDataSetChanged()
                                 return
                             }
-                            getBannerListTokenErrorFromServer(response)
                         }
+                        getBannerListTokenErrorFromServer(response)
                     }
                 }
             })

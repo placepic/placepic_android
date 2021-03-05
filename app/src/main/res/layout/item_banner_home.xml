@@ -123,13 +123,13 @@
         android:id="@+id/constraint_empty_banner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="12dp"
         android:layout_marginEnd="16dp"
+        android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:visibility="invisible" >
+        app:layout_constraintTop_toTopOf="parent">
 
         <View
             android:id="@+id/background_empty_banner"
@@ -148,14 +148,14 @@
             android:layout_marginTop="24dp"
             app:layout_constraintStart_toStartOf="@+id/background_empty_banner"
             app:layout_constraintTop_toTopOf="@+id/background_empty_banner"
-            app:srcCompat="@drawable/ic_pp" />
+            app:srcCompat="@drawable/icon_logo" />
 
         <TextView
             android:id="@+id/tv_empty_banner_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="20dp"
             android:fontFamily="@font/noto_sans_bold"
             android:text="@string/empty_banner_title"
             android:textColor="@color/whiteFF"
