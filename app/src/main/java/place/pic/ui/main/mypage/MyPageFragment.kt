@@ -128,7 +128,6 @@ class MyPageFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.vpMypage.adapter = pagerAdapter
-
         binding.vpMypage.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(tab_mypage))
         binding.tabMypage.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab) {}

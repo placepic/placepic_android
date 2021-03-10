@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="UserProfileActivity"
+            type="place.pic.ui.main.mypage.UserProfileActivity" />
+    </data>
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_other_profile"
+        android:layout_width="0dp"
+        android:layout_height="56dp"
+        android:background="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/img_other_profile_edit_top_bar_back_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="16dp"
+            android:paddingTop="12dp"
+            android:paddingEnd="12dp"
+            android:paddingBottom="12dp"
+            android:src="@drawable/back_arrow_ic"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_other_profile_edit_top_bar_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/noto_sans_bold"
+            android:text="프로필"
+            android:textColor="@color/black36"
+            android:textSize="18dp"
+            app:layout_constraintBottom_toBottomOf="@+id/img_other_profile_edit_top_bar_back_btn"
+            app:layout_constraintStart_toEndOf="@+id/img_other_profile_edit_top_bar_back_btn"
+            app:layout_constraintTop_toTopOf="@+id/img_other_profile_edit_top_bar_back_btn" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/design_default_color_background"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cl_other_profile">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/img_other_profile"
+            android:layout_width="82dp"
+            android:layout_height="82dp"
+            android:layout_marginTop="20dp"
+            android:padding="1dp"
+            android:src="@drawable/ic_user"
+            app:civ_border_color="@color/grayF4"
+            app:civ_border_width="1dp"
+            app:layout_constraintEnd_toEndOf="@+id/tv_other_profile_kind"
+            app:layout_constraintStart_toStartOf="@+id/tv_other_profile_name"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_other_profile_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:fontFamily="@font/noto_sans_bold"
+            android:text=""
+            android:textColor="@color/black36"
+            android:textSize="20dp"
+            app:layout_constraintEnd_toStartOf="@+id/tv_other_profile_kind"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/img_other_profile" />
+
+        <TextView
+            android:id="@+id/tv_other_profile_kind"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:background="@drawable/round_rectangle_gray_4dp"
+            android:fontFamily="@font/noto_sans_regular"
+            android:paddingStart="6dp"
+            android:paddingTop="2dp"
+            android:paddingEnd="6dp"
+            android:paddingBottom="2dp"
+            android:text=""
+            android:textColor="@color/gray838788"
+            android:textSize="12dp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_other_profile_name"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/tv_other_profile_name"
+            app:layout_constraintTop_toTopOf="@+id/tv_other_profile_name" />
+
+        <TextView
+            android:id="@+id/tv_other_profile_intro"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="40dp"
+            android:fontFamily="@font/noto_sans_regular"
+            android:text=""
+            android:textColor="@color/grayADB6BD"
+            android:textSize="14dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_other_profile_name" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/tv_other_writing_count"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/noto_sans_bold"
+        android:text="작성한 글"
+        android:textColor="@color/black36"
+        android:textSize="18dp"
+        android:layout_marginStart="14dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout4" />
+
+    <FrameLayout
+        android:id="@+id/fm_other_writings"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="12dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_other_writing_count" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
