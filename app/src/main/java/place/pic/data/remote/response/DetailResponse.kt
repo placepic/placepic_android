@@ -3,7 +3,7 @@ package place.pic.data.remote.response
 data class DetailResponse(
     val bookmarkCount: Int,
     val categoryIdx: Int,
-    val placeRoadAddress:String,
+    val placeRoadAddress: String,
     val imageUrl: List<String>,
     val isBookmarked: Boolean,
     val isLiked: Boolean,
@@ -16,7 +16,7 @@ data class DetailResponse(
     val placeReview: String,
     val subway: List<String>,
     val uploader: Uploader,
-    val mobileNaverMapLink:String,
-    val placeMapX:Double,
-    val placeMapY:Double
+    val mobileNaverMapLink: String,
+    val placeMapX: Double,
+    val placeMapY: Double
 )

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="CommentResponse"
+            type="place.pic.data.remote.response.CommentResponse" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/comment_parent_user_profile"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="14dp"
+            imageUrl="@{CommentResponse.user.profileImageUrl}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@mipmap/ic_launcher" />
+
+        <TextView
+            android:id="@+id/comment_parent_user_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:fontFamily="@font/noto_sans_bold"
+            android:textColor="@android:color/black"
+            android:textSize="13dp"
+            android:text="@{CommentResponse.user.userName}"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@id/comment_parent_user_profile"
+            app:layout_constraintTop_toTopOf="@id/comment_parent_user_profile"
+            tools:text="내이름" />
+
+        <TextView
+            android:id="@+id/comment_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:fontFamily="@font/noto_sans_regular"
+            android:textColor="@color/grayBD"
+            android:textSize="12dp"
+            android:text="@{CommentResponse.postCountAndCreateAt()}"
+            app:layout_constraintBottom_toBottomOf="@+id/comment_parent_user_name"
+            app:layout_constraintStart_toEndOf="@+id/comment_parent_user_name"
+            app:layout_constraintTop_toTopOf="@+id/comment_parent_user_name"
+            tools:text="작성한글 00 · 2021-00-00" />
+
+        <TextView
+            android:id="@+id/comment_delete_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="삭제"
+            android:layout_marginEnd="14dp"
+            android:fontFamily="@font/noto_sans_bold"
+            android:textSize="12dp"
+            android:textColor="@color/grayBD"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/comment_parent_user_name" />
+
+        <TextView
+            android:id="@+id/comment_content"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@{CommentResponse.comment.content}"
+            app:layout_constraintEnd_toStartOf="@+id/comment_delete_button"
+            app:layout_constraintStart_toStartOf="@+id/comment_parent_user_name"
+            app:layout_constraintTop_toBottomOf="@id/comment_parent_user_name"
+            tools:text="ㅁㄴㅇㄻㄴㅇㄻㄴㅇㄻㄴㅇㄹ\nㅁㄴㅇㄻㄴㅇㄹ\n ㅁㄴㅇㄻㄴㅇㄹ" />
+
+        <TextView
+            android:id="@+id/comment_add_reply"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="답글 달기"
+            android:layout_marginBottom="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/comment_content"
+            app:layout_constraintTop_toBottomOf="@+id/comment_content" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

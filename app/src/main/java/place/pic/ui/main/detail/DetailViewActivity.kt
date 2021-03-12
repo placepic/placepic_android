@@ -3,14 +3,12 @@ package place.pic.ui.main.detail
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.naver.maps.geometry.LatLng
 import com.naver.maps.geometry.Tm128
-import com.naver.maps.map.*
+import com.naver.maps.map.* // ktlint-disable no-wildcard-imports
 import com.naver.maps.map.overlay.Marker
 import com.naver.maps.map.overlay.OverlayImage
-import kotlinx.android.synthetic.main.activity_detail_view.*
 import place.pic.R
 import place.pic.data.PlacepicAuthRepository
 import place.pic.data.entity.Place
@@ -18,13 +16,14 @@ import place.pic.data.remote.PlacePicService
 import place.pic.data.remote.request.RequestToPlaceIdx
 import place.pic.data.remote.response.DetailResponse
 import place.pic.data.remote.response.Uploader
+import place.pic.databinding.ActivityDetailViewBinding
 import place.pic.ui.dialog.SimpleDialog
 import place.pic.ui.main.detail.liker.LikerUserListActivity
 import place.pic.ui.tag.ChipFactory
+import place.pic.ui.util.BindingActivity
 import place.pic.ui.util.customEnqueue
 import place.pic.ui.util.unixDateTimeParser
 import place.pic.ui.webview.InWebActivity
-
 
 /*
 * 글 작성 유저와 글의 장소 ㄹId를 비교하여 글 삭제 버튼의 유무를 지정하기 위해서
@@ -33,9 +32,10 @@ import place.pic.ui.webview.InWebActivity
 * 각각의 키로는 Int로 캐스팅하여 사용합니다.
 */
 
-class DetailViewActivity : AppCompatActivity(), View.OnClickListener,OnMapReadyCallback {
-
-    private lateinit var detailviewPagerAdapter: DetailViewPagerAdapter
+class DetailViewActivity :
+    BindingActivity<ActivityDetailViewBinding>(R.layout.activity_detail_view),
+    OnMapReadyCallback {
+    private lateinit var detailViewPagerAdapter: DetailViewPagerAdapter
 
     private lateinit var token: String
 
@@ -46,12 +46,11 @@ class DetailViewActivity : AppCompatActivity(), View.OnClickListener,OnMapReadyC
 
     private var likeCount: Int = 0
 
-    private lateinit var location:LatLng
-    private var placeMapFragment:MapFragment? = null
+    private lateinit var location: LatLng
+    private var placeMapFragment: MapFragment? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_detail_view)
         token = PlacepicAuthRepository.getInstance(this).userToken ?: return
         placeIdx = intent.getIntExtra("placeIdx", 0)
         NaverMapSdk.getInstance(this).client =
@@ -60,7 +59,7 @@ class DetailViewActivity : AppCompatActivity(), View.OnClickListener,OnMapReadyC
         mapSetting()
     }
 
-    private fun setPlaceMapFragment(mapFragment:MapFragment?){
+    private fun setPlaceMapFragment(mapFragment: MapFragment?) {
         this.placeMapFragment = mapFragment
     }
 
@@ -73,7 +72,6 @@ class DetailViewActivity : AppCompatActivity(), View.OnClickListener,OnMapReadyC
                 .commit()
         }
         setPlaceMapFragment(mapFragment)
-        //mapFragment!!.getMapAsync(this)
     }
 
     private fun init() {
@@ -82,60 +80,49 @@ class DetailViewActivity : AppCompatActivity(), View.OnClickListener,OnMapReadyC
     }
 
     private fun buttonEventMapping() {
-        img_btn_detail_top_back.setOnClickListener(this)
-        cl_btn_detail_shared_people.setOnClickListener(this)
-        cl_btn_detail_like.setOnClickListener(this)
-        cl_btn_detail_more_info.setOnClickListener(this)
-        cl_btn_detail_like.setOnClickListener(this)
-        img_btn_detail_bookmark.setOnClickListener(this)
-        tv_btn_detail_top_del.setOnClickListener(this)
+        with(binding) {
+            imgBtnDetailTopBack.setOnClickListener { onBackPressed() }
+            clBtnDetailSharedPeople.setOnClickListener { showLikerUserActivity() }
+            clBtnDetailLike.setOnClickListener { setLikeButtonClickEvent() }
+            clBtnDetailMoreInfo.setOnClickListener { showMoreDetailInfo() }
+            clBtnDetailLike.setOnClickListener { setLikeButtonClickEvent() }
+            imgBtnDetailBookmark.setOnClickListener { setBookmarkButtonClickEvent() }
+            tvBtnDetailTopDel.setOnClickListener { popDeleteDialog() }
+        }
     }
 
-    override fun onClick(p0: View?) {
-        when (p0!!.id) {
-            R.id.img_btn_detail_top_back -> {
-                onBackPressed()
-            }
-            R.id.cl_btn_detail_shared_people -> {
-                val gotoLikerUserList =
-                    Intent(this, LikerUserListActivity::class.java)
-                gotoLikerUserList.putExtra("placeIdx", placeIdx)
-                startActivity(gotoLikerUserList)
-            }
-            R.id.tv_btn_detail_top_del -> {
-                //TODO 글 삭제시 PlaceList 수정이 필요함.
-                SimpleDialog(this).apply {
-                    setContent(R.string.are_you_sure)
-                    setCancelClickListener(R.string.close) { dismiss() }
-                    setOkClickListener(R.string.delete) { dismiss(); requestToDeletePlace() }
-                }.show()
-            }
-            R.id.cl_btn_detail_like -> {
-                setLikeButtonClickEvent()
-            }
-            R.id.img_btn_detail_bookmark -> {
-                setBookmarkButtonClickEvent()
-            }
-            R.id.cl_btn_detail_more_info -> {
-                val gotoWebViewIntent = Intent(this, InWebActivity::class.java)
-                gotoWebViewIntent.putExtra("webUrl", webUrl)
-                gotoWebViewIntent.putExtra("webTitle", webTitle)
-                startActivity(gotoWebViewIntent)
-            }
-        }
+    private fun showLikerUserActivity() {
+        val gotoLikerUserList = Intent(this, LikerUserListActivity::class.java)
+        gotoLikerUserList.putExtra("placeIdx", placeIdx)
+        startActivity(gotoLikerUserList)
+    }
+
+    private fun popDeleteDialog() {
+        // TODO 글 삭제시 PlaceList 수정이 필요함.
+        SimpleDialog(this).apply {
+            setContent(R.string.are_you_sure)
+            setCancelClickListener(R.string.close) { dismiss() }
+            setOkClickListener(R.string.delete) { dismiss(); requestToDeletePlace() }
+        }.show()
+    }
+
+    private fun showMoreDetailInfo() {
+        val gotoWebViewIntent = Intent(this, InWebActivity::class.java)
+        gotoWebViewIntent.putExtra("webUrl", webUrl)
+        gotoWebViewIntent.putExtra("webTitle", webTitle)
+        startActivity(gotoWebViewIntent)
     }
 
     override fun onBackPressed() {
         if (!getMyBookmarkButtonStatus()) {
-            val intent = Intent().apply { putExtra("placeIdx",placeIdx) }
+            val intent = Intent().apply { putExtra("placeIdx", placeIdx) }
             setResult(2, intent)
         }
         super.onBackPressed()
     }
 
-
     /* 서버 연결 */
-    //리스트 불러오기
+    // 리스트 불러오기
     private fun requestToDetailView() {
         PlacePicService.getInstance()
             .requestDetail(
@@ -150,7 +137,7 @@ class DetailViewActivity : AppCompatActivity(), View.OnClickListener,OnMapReadyC
             )
     }
 
-    //좋아요 관련 서버 연결
+    // 좋아요 관련 서버 연결
     private fun requestToLike() {
         PlacePicService.getInstance()
             .requestToLike(
@@ -175,7 +162,7 @@ class DetailViewActivity : AppCompatActivity(), View.OnClickListener,OnMapReadyC
             )
     }
 
-    //북마크 서버연결
+    // 북마크 서버연결
     private fun requestToBookmark() {
         PlacePicService.getInstance()
             .requestToBookmark(
@@ -200,7 +187,7 @@ class DetailViewActivity : AppCompatActivity(), View.OnClickListener,OnMapReadyC
             )
     }
 
-    //글 삭제 서버 연결
+    // 글 삭제 서버 연결
     private fun requestToDeletePlace() {
         PlacePicService.getInstance()
             .requestToDeletePlace(
@@ -208,7 +195,7 @@ class DetailViewActivity : AppCompatActivity(), View.OnClickListener,OnMapReadyC
                 placeIdx = placeIdx
             ).customEnqueue(
                 onSuccess = {
-                    val intent = Intent().apply { putExtra("placeIdx",placeIdx) }
+                    val intent = Intent().apply { putExtra("placeIdx", placeIdx) }
                     setResult(1, intent)
                     finish()
                 }
@@ -217,60 +204,67 @@ class DetailViewActivity : AppCompatActivity(), View.OnClickListener,OnMapReadyC
 
     /*서버 연결시 뷰에 뿌려주는 함수 작업.*/
     private fun bindingDetail(detailResponse: DetailResponse) {
-        //본격 개막장 함수
+        // 본격 개막장 함수
         insertUploadUserDataInView(detailResponse.uploader)
         insertImageInViewPager(detailResponse.imageUrl)
         insertKeywordInDetailChip(detailResponse.keyword)
         insertDateTime(detailResponse.placeCreatedAt.toLong())
         val title = detailResponse.placeName
-        tv_detail_title.text = title
-        tv_detail_top_title.text = title
-        tv_detail_content.text = detailResponse.placeReview
         insertCategory(detailResponse.categoryIdx)
-        tv_detail_subway_info.text = detailStringForm(detailResponse.subway, "/")
-        tv_detail_address_info.text = detailResponse.placeRoadAddress
-        tv_detail_place_info.text = detailStringForm(detailResponse.placeInfo, " · ")
         likeCount = detailResponse.likeCount
-        tv_detail_shared_people_count.text = ("$likeCount 명")
-        tv_detail_bookmark_count.text = detailResponse.bookmarkCount.toString()
         selectViewOrNotDeleteButton(detailResponse.uploader.deleteBtn)
         setMyLikeButtonStatus(detailResponse.isLiked)
         setMyBookmarkButtonStatus(detailResponse.isBookmarked)
-
-        location = setLatLng(detailResponse.placeMapX,detailResponse.placeMapY)
+        with(binding) {
+            tvDetailTitle.text = title
+            tvDetailTopTitle.text = title
+            tvDetailContent.text = detailResponse.placeReview
+            tvDetailSubwayInfo.text = detailStringForm(detailResponse.subway, "/")
+            tvDetailAddressInfo.text = detailResponse.placeRoadAddress
+            tvDetailPlaceInfo.text = detailStringForm(detailResponse.placeInfo, " · ")
+            tvDetailSharedPeopleCount.text = ("$likeCount 명")
+            tvDetailBookmarkCount.text = detailResponse.bookmarkCount.toString()
+        }
+        location = setLatLng(detailResponse.placeMapX, detailResponse.placeMapY)
 
         webTitle = title
         webUrl = detailResponse.mobileNaverMapLink
     }
 
     private fun insertUploadUserDataInView(uploader: Uploader) {
-        Glide.with(this).load(uploader.profileImageUrl).into(img_detail_user_profile)
-        tv_detail_user_name.text = uploader.userName
-        tv_detail_user_part.text = uploader.part
-        tv_detail_user_post_count.text = ("작성한 글 ${uploader.postCount}")
+        with(binding) {
+            Glide.with(this@DetailViewActivity)
+                .load(uploader.profileImageUrl)
+                .into(imgDetailUserProfile)
+            tvDetailUserName.text = uploader.userName
+            tvDetailUserPart.text = uploader.part
+            tvDetailUserPostCount.text = ("작성한 글 ${uploader.postCount}")
+        }
     }
 
     private fun insertImageInViewPager(imageList: List<String>) {
-        detailviewPagerAdapter = DetailViewPagerAdapter(this, imageList)
-        vp_detail_image_slide.adapter = detailviewPagerAdapter
-        circle_indicator.setupWithViewPager(vp_detail_image_slide)
+        detailViewPagerAdapter = DetailViewPagerAdapter(this, imageList)
+        with(binding) {
+            vpDetailImageSlide.adapter = detailViewPagerAdapter
+            circleIndicator.setupWithViewPager(vpDetailImageSlide)
+        }
     }
 
     private fun insertKeywordInDetailChip(keyword: List<String>) {
         keyword.forEach { text ->
             val chip = ChipFactory.createDetailChip(layoutInflater)
             chip.text = text
-            chip_group_useful_info.addView(chip)
+            binding.chipGroupUsefulInfo.addView(chip)
         }
     }
 
     private fun insertDateTime(placeCreatedAt: Long) {
-        tv_detail_user_create_at.text = unixDateTimeParser(placeCreatedAt)
+        binding.tvDetailUserCreateAt.text = unixDateTimeParser(placeCreatedAt)
     }
 
     private fun insertCategory(categoryIdx: Int) {
         val category = Place.Type.findByPosition(categoryIdx).value
-        tv_detail_category_info.text = category
+        binding.tvDetailCategoryInfo.text = category
     }
 
     private fun detailStringForm(stringList: List<String>, dividerString: String): String {
@@ -289,33 +283,37 @@ class DetailViewActivity : AppCompatActivity(), View.OnClickListener,OnMapReadyC
 
     private fun selectViewOrNotDeleteButton(deleteBtn: Boolean) {
         if (!deleteBtn) {
-            tv_btn_detail_top_del.visibility = View.GONE
+            binding.tvBtnDetailTopDel.visibility = View.GONE
             return
         }
-        tv_btn_detail_top_del.visibility = View.VISIBLE
+        binding.tvBtnDetailTopDel.visibility = View.VISIBLE
     }
 
     private fun likedPage() {
-        cl_btn_detail_like.isSelected = true
-        img_btn_detail_like.isSelected = true
+        with(binding) {
+            clBtnDetailLike.isSelected = true
+            imgBtnDetailLike.isSelected = true
+        }
     }
 
     private fun notLikedPage() {
-        cl_btn_detail_like.isSelected = false
-        img_btn_detail_like.isSelected = false
+        with(binding) {
+            clBtnDetailLike.isSelected = false
+            imgBtnDetailLike.isSelected = false
+        }
     }
 
     private fun setLikeButtonClickEvent() {
         if (getMyLikeButtonStatus()) {
-            //이미 좋아요
+            // 이미 좋아요
             likeCount -= 1
-            tv_detail_shared_people_count.text = ("$likeCount 명")
+            binding.tvDetailSharedPeopleCount.text = ("$likeCount 명")
             requestToDeleteLike()
             return
         }
-        //아직 좋아요 안함
+        // 아직 좋아요 안함
         likeCount += 1
-        tv_detail_shared_people_count.text = ("$likeCount 명")
+        binding.tvDetailSharedPeopleCount.text = ("$likeCount 명")
         requestToLike()
     }
 
@@ -327,29 +325,29 @@ class DetailViewActivity : AppCompatActivity(), View.OnClickListener,OnMapReadyC
         notLikedPage()
     }
 
-    private fun getMyLikeButtonStatus(): Boolean {
-        return img_btn_detail_like.isSelected && cl_btn_detail_like.isSelected
+    private fun getMyLikeButtonStatus(): Boolean = with(binding) {
+        imgBtnDetailLike.isSelected && clBtnDetailLike.isSelected
     }
 
     private fun bookmarkedPage() {
-        img_btn_detail_bookmark.isSelected = true
+        binding.imgBtnDetailBookmark.isSelected = true
     }
 
     private fun notBookmarkedPage() {
-        img_btn_detail_bookmark.isSelected = false
+        binding.imgBtnDetailBookmark.isSelected = false
     }
 
     private fun setBookmarkButtonClickEvent() {
         if (getMyBookmarkButtonStatus()) {
-            //북마크가 이미 되어있는 상황
-            val bookmarkCount = tv_detail_bookmark_count.text.toString().toInt()
-            tv_detail_bookmark_count.text = (bookmarkCount - 1).toString()
+            // 북마크가 이미 되어있는 상황
+            val bookmarkCount = binding.tvDetailBookmarkCount.text.toString().toInt()
+            binding.tvDetailBookmarkCount.text = (bookmarkCount - 1).toString()
             requestToDeleteBookmark()
             return
         }
-        //북마크가 안되어있을때 이벤트
-        val bookmarkCount = tv_detail_bookmark_count.text.toString().toInt()
-        tv_detail_bookmark_count.text = (bookmarkCount + 1).toString()
+        // 북마크가 안되어있을때 이벤트
+        val bookmarkCount = binding.tvDetailBookmarkCount.text.toString().toInt()
+        binding.tvDetailBookmarkCount.text = (bookmarkCount + 1).toString()
         requestToBookmark()
     }
 
@@ -361,14 +359,12 @@ class DetailViewActivity : AppCompatActivity(), View.OnClickListener,OnMapReadyC
         notBookmarkedPage()
     }
 
-    private fun getMyBookmarkButtonStatus(): Boolean {
-        return img_btn_detail_bookmark.isSelected
-    }
+    private fun getMyBookmarkButtonStatus(): Boolean = binding.imgBtnDetailBookmark.isSelected
 
     override fun onMapReady(naverMap: NaverMap) {
-        naverMap.minZoom = 10.0;   //최소
-        naverMap.maxZoom = 19.0;
-        naverMap.cameraPosition = CameraPosition(location,21.0)
+        naverMap.minZoom = 10.0; // 최소
+        naverMap.maxZoom = 19.0
+        naverMap.cameraPosition = CameraPosition(location, 21.0)
         val marker = Marker()
         marker.position = location
         marker.icon = OverlayImage.fromResource(R.drawable.ic_pink_pin)
@@ -376,7 +372,7 @@ class DetailViewActivity : AppCompatActivity(), View.OnClickListener,OnMapReadyC
     }
 
     private fun setLatLng(placeMapX: Double, placeMapY: Double): LatLng {
-        val tm128 = Tm128(placeMapX,placeMapY)
+        val tm128 = Tm128(placeMapX, placeMapY)
         return tm128.toLatLng()
     }
 }
