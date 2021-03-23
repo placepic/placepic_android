@@ -22,11 +22,13 @@ class FriendPicViewHolder(itemView: View, inflater: LayoutInflater) : RecyclerVi
     val part: TextView = itemView.findViewById(R.id.fp_user_part)
     val placeName: TextView = itemView.findViewById(R.id.fp_place_name)
     val placeReview: TextView = itemView.findViewById(R.id.fp_content)
-    val placeImageUrl: ImageView = itemView.findViewById(R.id.fp_img)
+    private val placeImageUrl: ImageView = itemView.findViewById(R.id.fp_img)
     val placeCreatedAt: TextView = itemView.findViewById(R.id.fp_upload_date)
     val subway: TextView = itemView.findViewById(R.id.fp_subways)
     var tag: ChipGroup = itemView.findViewById(R.id.fp_chipGroup)
-    val likeCnt: TextView = itemView.findViewById(R.id.fp_liker)
+    private val likeCnt: TextView = itemView.findViewById(R.id.fp_liker)
+    private val commentImage: ImageView = itemView.findViewById(R.id.img_reply_home)
+    private val commentCnt: TextView = itemView.findViewById(R.id.tv_reply_home)
 
     private val inflater:LayoutInflater = inflater 
     //Chip 생성을 위한 inflater 준비
@@ -57,8 +59,15 @@ class FriendPicViewHolder(itemView: View, inflater: LayoutInflater) : RecyclerVi
         subway.text = detailStringForm(friendPicData.subway, "/")
         likeCnt.text = friendPicData.likeCnt.toString()
 
+        if (friendPicData.commentCnt == 0) {
+            commentImage.visibility = View.GONE
+            commentCnt.visibility = View.GONE
+        } else {
+            commentCnt.text = friendPicData.commentCnt.toString()
+        }
+
         tag.removeAllViews() //뷰가 재활용이 되기 때문에 지워줘야해
-        var tags = friendPicData.tag
+        val tags = friendPicData.tag
         var count = 0
         tags.forEach { text ->
             if (count < 3) {

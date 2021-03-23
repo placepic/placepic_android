@@ -22,5 +22,6 @@ data class FriendPicData (
     //uploadDate 서버한테 받는건 Int, 출력하는건 String
     val subway: List<String>,
     val tag: List<String>,
-    val likeCnt: Int
+    val likeCnt: Int,
+    val commentCnt: Int
 )

@@ -24,7 +24,8 @@ data class PlaceItemResponse(
     val subway: List<SubwayResponse>,
     val user: PlaceUserResponse,
     val imageUrl: List<String>,
-    val likeCount: Int
+    val likeCount: Int,
+    val commentCnt: Int
 ) {
     fun toPlace() = Place(
         id = placeIdx,
@@ -34,7 +35,8 @@ data class PlaceItemResponse(
         keywordTags = tag.map { it.toKeywordTag() },
         uploadDate = Date(placeCreatedAt * 1000),
         uploaderName = user.userName,
-        uploaderProfileUrl = user.profileURL
+        uploaderProfileUrl = user.profileURL,
+        commentCnt = commentCnt
     )
 
     fun toPlaceGridItem() = PlaceGridItem(

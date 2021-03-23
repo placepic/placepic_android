@@ -15,7 +15,8 @@ data class Place(
     val keywordTags: List<KeywordTag>,
     val uploadDate: Date,
     val uploaderName: String,
-    val uploaderProfileUrl: String
+    val uploaderProfileUrl: String,
+    val commentCnt: Int
 ) {
     companion object {
         fun empty() = Place(
@@ -26,7 +27,8 @@ data class Place(
             keywordTags = emptyList(),
             uploadDate = Date(),
             uploaderName = "",
-            uploaderProfileUrl = ""
+            uploaderProfileUrl = "",
+            commentCnt = 0
         )
     }
 

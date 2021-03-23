@@ -278,7 +278,8 @@ class HomeFragment : Fragment() {
                                             placeCreatedAt = dateResult,
                                             subway = response.body()!!.data[i].subway,
                                             tag = response.body()!!.data[i].tag,
-                                            likeCnt = response.body()!!.data[i].likeCnt
+                                            likeCnt = response.body()!!.data[i].likeCnt,
+                                            commentCnt = response.body()!!.data[i].commentCnt,
                                         )
                                     )
                                 }
