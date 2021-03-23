@@ -17,9 +17,11 @@ import place.pic.data.entity.Place
 import place.pic.data.remote.PlacePicService
 import place.pic.data.remote.request.RequestToPlaceIdx
 import place.pic.data.remote.response.DetailResponse
+import place.pic.data.remote.response.OtherProfileResponse
 import place.pic.data.remote.response.Uploader
 import place.pic.ui.dialog.SimpleDialog
 import place.pic.ui.main.detail.liker.LikerUserListActivity
+import place.pic.ui.main.mypage.UserProfileActivity
 import place.pic.ui.tag.ChipFactory
 import place.pic.ui.util.customEnqueue
 import place.pic.ui.util.unixDateTimeParser
@@ -40,6 +42,7 @@ class DetailViewActivity : AppCompatActivity(), View.OnClickListener,OnMapReadyC
     private lateinit var token: String
 
     private var placeIdx: Int = 0
+    private var userIdx: Int = 0
 
     private var webUrl: String = ""
     private var webTitle: String = ""
@@ -89,10 +92,18 @@ class DetailViewActivity : AppCompatActivity(), View.OnClickListener,OnMapReadyC
         cl_btn_detail_like.setOnClickListener(this)
         img_btn_detail_bookmark.setOnClickListener(this)
         tv_btn_detail_top_del.setOnClickListener(this)
+        cl_detail_user_info.setOnClickListener(this)
     }
 
     override fun onClick(p0: View?) {
         when (p0!!.id) {
+            R.id.cl_detail_user_info->{
+                val gotoOtherUserProfile =
+                    Intent(this, UserProfileActivity::class.java)
+                gotoOtherUserProfile.putExtra("userIdx", userIdx)
+                startActivity(gotoOtherUserProfile)
+            }
+
             R.id.img_btn_detail_top_back -> {
                 onBackPressed()
             }
@@ -236,6 +247,8 @@ class DetailViewActivity : AppCompatActivity(), View.OnClickListener,OnMapReadyC
         selectViewOrNotDeleteButton(detailResponse.uploader.deleteBtn)
         setMyLikeButtonStatus(detailResponse.isLiked)
         setMyBookmarkButtonStatus(detailResponse.isBookmarked)
+
+        userIdx = detailResponse.uploader.userIdx
 
         location = setLatLng(detailResponse.placeMapX,detailResponse.placeMapY)
 

@@ -1,9 +1,13 @@
 package place.pic.data.remote.response
 
+import place.pic.data.entity.PlaceGridItem
+import place.pic.data.entity.Profile
+
 data class OtherProfileResponse(
-    val userName : String,
-    val part : String,
-    val userImage : String,
-    val state : Int,
-    val postCount : Int
-)
+    val UserInfo : Profile,
+    val UserPlace: List<PlaceGridItemResponse>?,
+) {
+    fun getPlaceGridItems(): List<PlaceGridItem> {
+        return UserPlace!!.map { it.toPlaceGridItem() }
+    }
+}
