@@ -3,9 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
     <data>
+        <import type="android.view.View" />
         <variable
             name="UserProfileActivity"
-            type="place.pic.ui.main.mypage.UserProfileActivity" />
+            type="place.pic.ui.main.mypage.UserProfileViewModel" />
     </data>
 
 <androidx.constraintlayout.widget.ConstraintLayout
@@ -76,7 +77,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
             android:fontFamily="@font/noto_sans_bold"
-            android:text=""
             android:textColor="@color/black36"
             android:textSize="20dp"
             app:layout_constraintEnd_toStartOf="@+id/tv_other_profile_kind"
@@ -96,7 +96,6 @@
             android:paddingTop="2dp"
             android:paddingEnd="6dp"
             android:paddingBottom="2dp"
-            android:text=""
             android:textColor="@color/gray838788"
             android:textSize="12dp"
             android:textStyle="bold"
@@ -113,7 +112,6 @@
             android:layout_marginTop="4dp"
             android:layout_marginBottom="40dp"
             android:fontFamily="@font/noto_sans_regular"
-            android:text=""
             android:textColor="@color/grayADB6BD"
             android:textSize="14dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -123,8 +121,8 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
-        android:id="@+id/tv_other_writing_count"
-        android:layout_width="match_parent"
+        android:id="@+id/tv_other_writing"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/noto_sans_bold"
         android:text="작성한 글"
@@ -134,12 +132,88 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout4" />
 
-    <FrameLayout
-        android:id="@+id/fm_other_writings"
+    <TextView
+        android:id="@+id/tv_other_writing_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/noto_sans_bold"
+        android:layout_marginStart="8dp"
+        android:textColor="@color/black36"
+        android:textSize="18dp"
+        app:layout_constraintStart_toEndOf="@+id/tv_other_writing"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout4" />
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginTop="12dp"
+        android:layout_height="0dp"
+        android:background="@android:color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_other_writing_count" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_other_writing"
+        tools:context=".ui.main.my_writing.BookmarksFragment">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_place_grid_items"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:clipToPadding="false"
+            android:overScrollMode="never"
+            android:paddingTop="20dp"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:spanCount="2"
+            tools:listitem="@layout/grid_item_place" />
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="@{UserProfileActivity.isLoading() ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/zone_empty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="@{UserProfileActivity.userPlace.empty ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.37">
+
+            <ImageView
+                android:id="@+id/imageView15"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/write_ic_40px"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView30"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:text="@string/have_not_written_yet"
+                android:textColor="@color/grayCED5DA"
+                android:textSize="15dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView15" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

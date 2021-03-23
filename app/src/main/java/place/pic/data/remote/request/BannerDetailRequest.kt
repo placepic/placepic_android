@@ -9,7 +9,6 @@ import place.pic.data.remote.response.BannerDetailResponse
  */
 
 class BannerDetailRequest : BaseRequest<BannerDetailResponse>() {
-
     fun send(token: String, groupId: Int, bannerId: Int) {
         PlacePicService.getInstance()
             .requestBannerDetail(

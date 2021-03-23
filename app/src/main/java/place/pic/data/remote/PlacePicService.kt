@@ -129,7 +129,7 @@ interface PlacePicService {
         @Header("Content-Type") contentType: String = "application/json",
         @Header("token") token: String,
         @Path("groupIdx") groupIdx: Int,
-        @Path("userIdx") userIdx: Int
+        @Path("userIdx") userIdx: Int,
     ):Call<BaseResponse<OtherProfileResponse>>
 
     //프로필 편집

@@ -2,77 +2,72 @@ package place.pic.ui.main.mypage
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.FragmentManager
-import com.bumptech.glide.Glide
-import kotlinx.android.synthetic.main.fragment_my_page.*
 import place.pic.R
 import place.pic.data.PlacepicAuthRepository
-import place.pic.data.remote.PlacePicService
-import place.pic.data.remote.response.BaseResponse
-import place.pic.data.remote.response.OtherProfileResponse
+import place.pic.data.entity.PlaceGridItem
+import place.pic.data.entity.Profile
 import place.pic.databinding.ActivityUserProfileBinding
-import place.pic.ui.main.mypage.mywritings.MyWritingsFragment
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import place.pic.ui.main.detail.DetailViewActivity
+import place.pic.ui.main.place.adapter.PlaceGridItemsAdapter
+import place.pic.ui.util.loadImageFrom
 
 
 class UserProfileActivity : AppCompatActivity() {
-    var user_name: String? = null
-    var user_state: Int? = 2
-    var user_part: String? = null
-    var user_image: String? = null
-    var user_write_count: Int? = null
-    var user_post_count: Int? = null
+    private val placeGridItemsAdapter by lazy { PlaceGridItemsAdapter() }
+    private val userWritingsViewModel by lazy { UserProfileViewModel(PlacepicAuthRepository.getInstance(this))}
 
-    private lateinit var binding: ActivityUserProfileBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding= DataBindingUtil.setContentView(this, R.layout.activity_user_profile)
-        binding.userProfileActivity=this
-        val intent: Intent? = null
-        val fm: FragmentManager = supportFragmentManager
-        fm.beginTransaction().apply {
-            add(R.id.fm_other_writings, MyWritingsFragment()).commit()
-        }
+        val binding= ActivityUserProfileBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        PlacePicService.getInstance().requestOtherProfile(
-            token = PlacepicAuthRepository.getInstance(this).userToken!!,
-            groupIdx = PlacepicAuthRepository.getInstance(this).groupId!!,
-            userIdx = intent!!.getIntExtra("userIdx",-1)
-        ).enqueue(object : Callback<BaseResponse<OtherProfileResponse>> {
-            override fun onFailure(call: Call<BaseResponse<OtherProfileResponse>>, t: Throwable) {
-                TODO("Not yet implemented")
-            }
+        placeGridItemsAdapter.setItemClickListener { onUserWritingClick(it) }
+        binding.rvPlaceGridItems.adapter = placeGridItemsAdapter
+        binding.lifecycleOwner = this
+        binding.imgOtherProfileEditTopBarBackBtn.setOnClickListener { onBackPressed() }
 
-            override fun onResponse(
-                call: Call<BaseResponse<OtherProfileResponse>>,
-                response: Response<BaseResponse<OtherProfileResponse>>
-            ) {
-                user_name = response.body()!!.data.userName
-                user_state = response.body()!!.data.state
-                user_part = response.body()!!.data.part
-                user_image = response.body()!!.data.userImage
-                user_post_count = response.body()!!.data.postCount
-
-                binding.tvOtherProfileName.text = user_name
-                binding.tvOtherProfileIntro.text = user_part
-                binding.tvOtherWritingCount.text = user_post_count.toString()
-
-                Glide.with(img_profile).load(user_image).into(img_profile)
-
-                when (user_state) {
-                    0 -> {
-                        binding.tvOtherProfileKind.text = "관리자"
-                    }
-                    1 -> {
-                        binding.tvOtherProfileKind.text = "멤버"
-                    }
-                    else -> binding.tvOtherProfileKind.text = "승인대기중"
-                }
-            }
-        })
+        subscribeUserWritings()
+        subscribeUserProfiles()
+        userWritingsViewModel.requestUserWritings(getUserId())
     }
+
+    private fun subscribeUserWritings() {
+        userWritingsViewModel.userPlace.observe(this) {
+            placeGridItemsAdapter.submitList(it)
+        }
+    }
+
+    private fun subscribeUserProfiles(){
+        userWritingsViewModel.profile.observe(this){
+            updateProfile(it)
+        }
+    }
+
+    private fun updateProfile(profile: Profile?) {
+        profile?.userImage.let { findViewById<ImageView>(R.id.img_other_profile).loadImageFrom(it!!) }
+        findViewById<TextView>(R.id.tv_other_profile_name).text = profile?.userName
+        findViewById<TextView>(R.id.tv_other_profile_kind).text = profileState(profile?.state)
+        findViewById<TextView>(R.id.tv_other_profile_intro).text = profile?.part
+        findViewById<TextView>(R.id.tv_other_writing_count).text = profile?.postCount.toString()
+    }
+
+    private fun profileState(state: Int?): String {
+        return if(state==0){
+            "관리자"
+        } else{
+            "멤버"
+        }
+    }
+
+
+    private fun onUserWritingClick(placeGridItem: PlaceGridItem) {
+        val intent = Intent(this, DetailViewActivity::class.java)
+        intent.putExtra("placeIdx", placeGridItem.placeIdx)
+        startActivityForResult(intent, 5000)
+    }
+
+    private fun getUserId(): Int = intent.getIntExtra("userIdx", -1)
 }
