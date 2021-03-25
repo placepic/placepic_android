@@ -25,6 +25,7 @@ data class PlaceItemResponse(
     val user: PlaceUserResponse,
     val imageUrl: List<String>,
     val likeCount: Int,
+    val likeCnt: Int,
     val commentCnt: Int
 ) {
     fun toPlace() = Place(
@@ -36,6 +37,7 @@ data class PlaceItemResponse(
         uploadDate = Date(placeCreatedAt * 1000),
         uploaderName = user.userName,
         uploaderProfileUrl = user.profileURL,
+        likeCnt = likeCnt,
         commentCnt = commentCnt
     )
 

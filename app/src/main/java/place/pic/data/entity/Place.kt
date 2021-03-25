@@ -16,6 +16,8 @@ data class Place(
     val uploadDate: Date,
     val uploaderName: String,
     val uploaderProfileUrl: String,
+    //dahye
+    val likeCnt: Int,
     val commentCnt: Int
 ) {
     companion object {
@@ -28,6 +30,7 @@ data class Place(
             uploadDate = Date(),
             uploaderName = "",
             uploaderProfileUrl = "",
+            likeCnt = 0,
             commentCnt = 0
         )
     }
