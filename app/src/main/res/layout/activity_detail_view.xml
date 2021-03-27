@@ -183,7 +183,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/noto_sans_regular"
-                    android:lineSpacingMultiplier="1.4"
+                    android:lineSpacingMultiplier="1.0"
                     android:paddingHorizontal="14dp"
                     android:paddingTop="24dp"
                     android:paddingBottom="60dp"
@@ -239,6 +239,7 @@
                     <ImageView
                         android:id="@+id/img_detail_shared_btn_asset"
                         android:layout_width="wrap_content"
+                        android:paddingTop="2dp"
                         android:layout_height="wrap_content"
                         android:src="@drawable/next_arrow_ic"
                         app:layout_constraintBottom_toBottomOf="@+id/tv_detail_shared_people"
@@ -477,17 +478,21 @@
                             app:layout_constraintTop_toTopOf="@id/tv_detail_place"
                             tools:text="place_info" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
-                    
-                    <fragment
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/map"
+                        android:name="com.naver.maps.map.MapFragment"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_marginTop="24dp"
                         android:layout_marginBottom="8dp"
+                        app:cardElevation="0dp"
+                        app:cardCornerRadius="8dp"
+                        app:layout_constraintBottom_toTopOf="@id/cl_btn_detail_more_info"
                         app:layout_constraintDimensionRatio="h, 16:9"
-                        android:id="@+id/map"
-                        android:name="com.naver.maps.map.MapFragment"
-                        app:layout_constraintTop_toBottomOf="@id/cl_detail_place"
-                        app:layout_constraintBottom_toTopOf="@id/cl_btn_detail_more_info"/>
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/cl_detail_place" />
 
 
                     <androidx.constraintlayout.widget.ConstraintLayout

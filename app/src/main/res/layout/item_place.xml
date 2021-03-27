@@ -25,13 +25,12 @@
             android:id="@+id/imageView5"
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginLeft="16dp"
             android:layout_marginBottom="12dp"
             android:scaleType="centerCrop"
             app:imageUrl="@{placeItem.uploaderProfileUrl}"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/constraintLayout"
-            app:layout_constraintTop_toBottomOf="@+id/rv_keywords"
+            app:layout_constraintStart_toStartOf="parent"
             tools:srcCompat="@tools:sample/avatars" />
 
         <TextView
@@ -42,7 +41,7 @@
             android:fontFamily="@font/noto_sans_regular"
             android:text="@{placeItem.uploaderName}"
             android:textColor="@color/black40"
-            android:textSize="14dp"
+            android:textSize="12dp"
             app:layout_constraintBottom_toBottomOf="@+id/imageView5"
             app:layout_constraintStart_toEndOf="@+id/imageView5"
             app:layout_constraintTop_toTopOf="@+id/imageView5"
@@ -57,7 +56,7 @@
             android:fontFamily="@font/noto_sans_bold"
             android:text="@{placeItem.name}"
             android:textColor="@color/black36"
-            android:textSize="17dp"
+            android:textSize="15dp"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@id/constraintLayout"
             app:layout_constraintStart_toStartOf="parent"
@@ -75,7 +74,6 @@
             android:overScrollMode="never"
             android:scrollbars="none"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintBottom_toTopOf="@id/imageView5"
             app:layout_constraintEnd_toStartOf="@+id/cardView"
             app:layout_constraintStart_toStartOf="@+id/constraintLayout"
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
@@ -108,58 +106,58 @@
             android:id="@+id/empty_view"
             android:layout_width="14dp"
             android:layout_height="14dp"
-            android:layout_marginTop="19dp"
+            app:layout_constraintBottom_toBottomOf="@+id/img_like_place"
             app:layout_constraintEnd_toStartOf="@+id/cardView"
-            app:layout_constraintTop_toBottomOf="@+id/rv_keywords" />
+            app:layout_constraintTop_toTopOf="@+id/img_like_place" />
 
-            
+
         <TextView
             android:id="@+id/tv_reply_place"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="19dp"
             android:layout_marginEnd="2dp"
+            android:text="@{Integer.toString(placeItem.commentCnt)}"
             android:textColor="@color/black36"
             android:textSize="11dp"
-            android:text="@{Integer.toString(placeItem.commentCnt)}"
             android:visibility="@{placeItem.commentCnt == 0? View.GONE : View.VISIBLE}"
+            app:layout_constraintBottom_toBottomOf="@+id/img_like_place"
             app:layout_constraintEnd_toStartOf="@+id/empty_view"
-            app:layout_constraintTop_toBottomOf="@+id/rv_keywords" />
+            app:layout_constraintTop_toTopOf="@+id/img_like_place" />
 
         <ImageView
             android:id="@+id/img_reply_place"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="19dp"
             android:layout_marginEnd="2dp"
             android:src="@drawable/ic_reply_placelist"
             android:visibility="@{placeItem.commentCnt == 0? View.GONE : View.VISIBLE}"
+            app:layout_constraintBottom_toBottomOf="@+id/img_like_place"
             app:layout_constraintEnd_toStartOf="@+id/tv_reply_place"
-            app:layout_constraintTop_toBottomOf="@+id/rv_keywords" />
+            app:layout_constraintTop_toTopOf="@+id/img_like_place" />
 
         <TextView
             android:id="@+id/tv_like_place"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="19dp"
             android:layout_marginEnd="4dp"
             android:text="@{Integer.toString(placeItem.likeCnt)}"
             android:textColor="@color/black36"
             android:textSize="11dp"
             android:visibility="@{placeItem.likeCnt == 0? View.GONE : View.VISIBLE}"
+            app:layout_constraintBottom_toBottomOf="@+id/img_like_place"
             app:layout_constraintEnd_toStartOf="@id/img_reply_place"
-            app:layout_constraintTop_toBottomOf="@+id/rv_keywords" />
+            app:layout_constraintTop_toTopOf="@+id/img_like_place" />
 
         <ImageView
             android:id="@+id/img_like_place"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="19dp"
             android:layout_marginEnd="2dp"
             android:src="@drawable/ic_heart_placelist"
             android:visibility="@{placeItem.likeCnt == 0? View.GONE : View.VISIBLE}"
+            app:layout_constraintBottom_toBottomOf="@+id/textView10"
             app:layout_constraintEnd_toStartOf="@+id/tv_like_place"
-            app:layout_constraintTop_toBottomOf="@+id/rv_keywords" />
+            app:layout_constraintTop_toTopOf="@+id/textView10" />
 
         <View
             android:id="@+id/line"
@@ -188,7 +186,7 @@
                 android:ellipsize="end"
                 android:fontFamily="@font/noto_sans_regular"
                 android:textColor="@color/grayA3ABB0"
-                android:textSize="13dp"
+                android:textSize="12dp"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintHorizontal_chainStyle="packed"
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -213,7 +211,7 @@
                     android:layout_marginStart="6dp"
                     android:fontFamily="@font/noto_sans_regular"
                     android:textColor="@color/grayA3ABB0"
-                    android:textSize="13dp"
+                    android:textSize="12dp"
                     app:date="@{placeItem.uploadDate}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
