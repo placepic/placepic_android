@@ -21,7 +21,7 @@
 
     <style name="AppTheme.SmallTagChip" parent="Widget.MaterialComponents.Chip.Choice">
         <item name="android:textColor">@color/black40</item>
-        <item name="android:textSize">10dp</item>
+        <item name="android:textSize">12dp</item>
     </style>
 
     <style name="AppTheme.detailTagChip" parent="Widget.MaterialComponents.Chip.Choice">
