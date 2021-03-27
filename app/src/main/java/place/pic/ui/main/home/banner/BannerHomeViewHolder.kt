@@ -30,6 +30,8 @@ class BannerHomeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         if (bannerHomeData.bannerIdx == -1) {
             constraintEmptyBanner.visibility = View.VISIBLE
         } else {
+            constraintEmptyBanner.visibility = View.GONE
+            
             Glide.with(itemView).load(bannerHomeData.imageUrl).into(imageUrl)
             badgeBg.background.setTint(Color.parseColor(bannerHomeData.badgeBg))
             badge.text = bannerHomeData.badge

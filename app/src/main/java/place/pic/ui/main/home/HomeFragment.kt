@@ -188,6 +188,8 @@ class HomeFragment : Fragment() {
                                         )
                                     )
                                 }
+                                img_banner_next_home.visibility = View.GONE
+                                //img_banner_next_home.isClickable = false
                                 bannerHomeAdapter.datas = bannerHomeDatas
                                 bannerHomeAdapter.notifyDataSetChanged()
                                 return
