@@ -6,6 +6,7 @@ import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import com.google.android.material.chip.Chip
 import kotlinx.android.synthetic.main.activity_useful_tag.*
 import place.pic.R
@@ -93,7 +94,7 @@ class UsefulTagActivity : AppCompatActivity() {
                     if (response.isSuccessful) { //status
                         if (response.body()!!.success) {
                             for (i in response.body()!!.data.indices) {
-                                var usefulTag = UsefulTag(
+                                val usefulTag = UsefulTag(
                                     tagIdx = response.body()!!.data[i].tagIdx,
                                     tagName = response.body()!!.data[i].tagName
                                 )
@@ -154,20 +155,24 @@ class UsefulTagActivity : AppCompatActivity() {
 
     private fun onSaveClick() {
         //선택된 chip 관련 정보 ArrayList<UsefulTag>에 넣어서 전달
-        var checkedTagList = ArrayList<UsefulTag>()
+        val checkedTagList = ArrayList<UsefulTag>()
 
         for (i in 0 until usefulTagChipList.size) {
             if (usefulTagChipList[i].isChecked) {
-                var usefulTag = UsefulTag(usefulTagList[i].tagIdx, usefulTagList[i].tagName)
+                val usefulTag = UsefulTag(usefulTagList[i].tagIdx, usefulTagList[i].tagName)
                 checkedTagList.add(usefulTag)
                 Log.d("selected checking", usefulTag.toString())
             }
         }
 
-        val checkedChipIntent = Intent()
-        checkedChipIntent.putExtra("checkedChip", checkedTagList)
-        setResult(Activity.RESULT_OK, checkedChipIntent)
-        finish()
+        if (checkedTagList.size > 3) {
+            Toast.makeText(this, "최대 3개까지만 선택할 수 있습니다.", Toast.LENGTH_SHORT).show()
+        } else {
+            val checkedChipIntent = Intent()
+            checkedChipIntent.putExtra("checkedChip", checkedTagList)
+            setResult(Activity.RESULT_OK, checkedChipIntent)
+            finish()
+        }
     }
 
     companion object {
