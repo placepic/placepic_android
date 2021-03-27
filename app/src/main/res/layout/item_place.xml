@@ -104,17 +104,26 @@
                 tools:src="@drawable/ic_launcher_background" />
         </androidx.cardview.widget.CardView>
 
+        <View
+            android:id="@+id/empty_view"
+            android:layout_width="14dp"
+            android:layout_height="14dp"
+            android:layout_marginTop="19dp"
+            app:layout_constraintEnd_toStartOf="@+id/cardView"
+            app:layout_constraintTop_toBottomOf="@+id/rv_keywords" />
+
+            
         <TextView
             android:id="@+id/tv_reply_place"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="19dp"
-            android:layout_marginEnd="16dp"
+            android:layout_marginEnd="2dp"
             android:textColor="@color/black36"
             android:textSize="11dp"
             android:text="@{Integer.toString(placeItem.commentCnt)}"
             android:visibility="@{placeItem.commentCnt == 0? View.GONE : View.VISIBLE}"
-            app:layout_constraintEnd_toStartOf="@+id/cardView"
+            app:layout_constraintEnd_toStartOf="@+id/empty_view"
             app:layout_constraintTop_toBottomOf="@+id/rv_keywords" />
 
         <ImageView
