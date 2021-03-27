@@ -69,6 +69,7 @@ class FriendPicViewHolder(itemView: View, inflater: LayoutInflater) : RecyclerVi
         tag.removeAllViews() //뷰가 재활용이 되기 때문에 지워줘야해
         val tags = friendPicData.tag
         var count = 0
+
         tags.forEach { text ->
             if (count < 3) {
                 val chip = ChipFactory.createDetailChip(inflater)
