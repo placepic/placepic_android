@@ -45,9 +45,9 @@
             android:paddingEnd="16dp"
             android:paddingBottom="12dp"
             android:src="@drawable/setting_ic_24"
-            app:layout_constraintBottom_toBottomOf="@+id/tv_sign_top_bar_title2"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_group_name"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/tv_sign_top_bar_title2" />
+            app:layout_constraintTop_toTopOf="@+id/tv_group_name" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

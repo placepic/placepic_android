@@ -83,8 +83,8 @@ class UploadPlaceActivity : AppCompatActivity() {
     override fun onBackPressed() {
         SimpleDialog(this).apply {
             setContent(R.string.writing_data_will_be_deleted)
-            setCancelClickListener(R.string.close) { dismiss() }
-            setOkClickListener(R.string.write_cancel) { dismiss(); super.onBackPressed() }
+            setCancelClickListener(R.string.write_cancel) { dismiss(); super.onBackPressed() }
+            setOkClickListener(R.string.close) { dismiss() }
         }.show()
     }
 

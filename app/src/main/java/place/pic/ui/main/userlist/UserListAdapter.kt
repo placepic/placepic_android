@@ -48,6 +48,9 @@ class UserListAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         if (holder is UserViewHolder) {
             holder.bind(datas[position])
         }
+        holder.itemView.setOnClickListener{
+            itemClickListener.onItemClick(it, position)
+        }
     }
 
     inner class MemberViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
@@ -97,5 +100,16 @@ class UserListAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private fun clear() {
         datas.clear()
+    }
+
+    //click interface
+    interface ItemClickListener {
+        fun onItemClick(view: View, position: Int)
+    }
+
+    private lateinit var itemClickListener: ItemClickListener
+
+    fun setItemClickListener(itemClickListener: ItemClickListener) {
+        this.itemClickListener = itemClickListener
     }
 }
