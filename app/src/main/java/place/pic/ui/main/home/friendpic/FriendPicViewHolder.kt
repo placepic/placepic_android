@@ -1,14 +1,21 @@
 package place.pic.ui.main.home.friendpic
 
+import android.os.Build
+import android.text.Html
+import android.text.Html.*
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.google.android.material.chip.ChipGroup
 import place.pic.R
 import place.pic.ui.tag.ChipFactory
+import java.net.URLDecoder
+import java.net.URLEncoder
 
 /**
  * Created By kimdahyee
@@ -47,12 +54,13 @@ class FriendPicViewHolder(itemView: View, inflater: LayoutInflater) : RecyclerVi
         return detailStringBuilder.toString()
     }
 
+    @RequiresApi(Build.VERSION_CODES.N)
     fun bind(friendPicData: FriendPicData) {
         Glide.with(itemView).load(friendPicData.profileImageUrl).into(profileImageUrl)
         userName.text = friendPicData.userName
         part.text = friendPicData.part
         placeImageUrl.maxHeight = placeImageUrl.width / 2
-        placeName.text = friendPicData.placeName
+        placeName.text = Html.fromHtml(friendPicData.placeName, Html.FROM_HTML_MODE_LEGACY).toString()
         placeReview.text = friendPicData.placeReview
         Glide.with(itemView).load(friendPicData.placeImageUrl).into(placeImageUrl)
         placeCreatedAt.text = friendPicData.placeCreatedAt.toString()
