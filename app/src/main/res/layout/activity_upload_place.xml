@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <import type="android.text.Html" />
         <import type="android.view.View" />
 
         <variable
@@ -96,7 +96,7 @@
                     android:layout_marginTop="16dp"
                     android:fontFamily="@font/noto_sans_bold"
                     android:gravity="top"
-                    android:text="@{viewModel.placeTitle}"
+                    android:text="@{Html.fromHtml(viewModel.placeTitle, Html.FROM_HTML_MODE_LEGACY).toString()}"
                     android:textColor="@color/black36"
                     android:textSize="22dp"
                     android:textStyle="bold"

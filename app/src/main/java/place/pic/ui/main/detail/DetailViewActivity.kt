@@ -1,8 +1,11 @@
 package place.pic.ui.main.detail
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
+import android.text.Html
 import android.view.View
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.naver.maps.geometry.LatLng
@@ -227,6 +230,7 @@ class DetailViewActivity : AppCompatActivity(), View.OnClickListener,OnMapReadyC
     }
 
     /*서버 연결시 뷰에 뿌려주는 함수 작업.*/
+    @RequiresApi(Build.VERSION_CODES.N)
     private fun bindingDetail(detailResponse: DetailResponse) {
         //본격 개막장 함수
         insertUploadUserDataInView(detailResponse.uploader)
@@ -234,8 +238,8 @@ class DetailViewActivity : AppCompatActivity(), View.OnClickListener,OnMapReadyC
         insertKeywordInDetailChip(detailResponse.keyword)
         insertDateTime(detailResponse.placeCreatedAt.toLong())
         val title = detailResponse.placeName
-        tv_detail_title.text = title
-        tv_detail_top_title.text = title
+        tv_detail_title.text = Html.fromHtml(title, Html.FROM_HTML_MODE_LEGACY).toString()
+        tv_detail_top_title.text = Html.fromHtml(title, Html.FROM_HTML_MODE_LEGACY).toString()
         tv_detail_content.text = detailResponse.placeReview
         insertCategory(detailResponse.categoryIdx)
         tv_detail_subway_info.text = detailStringForm(detailResponse.subway, "/")

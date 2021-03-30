@@ -2,6 +2,9 @@ package place.pic.ui.upload
 
 import android.content.Context
 import android.content.Intent
+import android.os.Build
+import android.text.Html
+import androidx.annotation.RequiresApi
 import androidx.annotation.StringRes
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

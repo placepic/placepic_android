@@ -1,5 +1,8 @@
 package place.pic.data.remote.response
 
+import android.os.Build
+import android.text.Html
+import androidx.annotation.RequiresApi
 import place.pic.data.entity.Place
 import place.pic.data.entity.PlaceGridItem
 import java.util.*
@@ -28,9 +31,10 @@ data class PlaceItemResponse(
     val likeCnt: Int,
     val commentCnt: Int
 ) {
+    @RequiresApi(Build.VERSION_CODES.N)
     fun toPlace() = Place(
         id = placeIdx,
-        name = placeName,
+        name = Html.fromHtml(placeName, Html.FROM_HTML_MODE_LEGACY).toString(),
         imageUrl = imageUrl.getOrElse(0) { "" },
         subways = subway.map { it.toSubway() },
         keywordTags = tag.map { it.toKeywordTag() },
@@ -41,10 +45,11 @@ data class PlaceItemResponse(
         commentCnt = commentCnt
     )
 
+    @RequiresApi(Build.VERSION_CODES.N)
     fun toPlaceGridItem() = PlaceGridItem(
         imageUrl = imageUrl.getOrElse(0) { "" },
         placeIdx = placeIdx,
-        placeName = placeName,
+        placeName = Html.fromHtml(placeName, Html.FROM_HTML_MODE_LEGACY).toString(),
         likeCount = likeCount,
         subwayName = subway.map { it.subwayName }
     )
