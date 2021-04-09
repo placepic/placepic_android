@@ -42,7 +42,9 @@
             style="@style/Theme.AppCompat.NoActionBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:elevation="0dp">
+            android:elevation="0dp"
+            android:gravity="top"
+            android:layout_gravity="top">
 
             <com.google.android.material.appbar.CollapsingToolbarLayout
                 android:layout_width="match_parent"
@@ -52,7 +54,7 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/c_banner_home"
                     android:layout_width="match_parent"
-                    android:layout_height="200dp"
+                    android:layout_height="240dp"
                     android:background="@color/white"
                     app:layout_collapseMode="parallax">
 
@@ -98,73 +100,56 @@
                         android:id="@+id/vp_banner_home"
                         android:layout_width="0dp"
                         android:layout_height="0dp"
-                        android:layout_marginBottom="24dp"
+                        android:layout_marginBottom="64dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/c_banner_title_home" />
 
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/c_friendpic_title_home"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="24dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/vp_banner_home">
+
+                        <TextView
+                            android:id="@+id/tv_friendpic_title_home"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:fontFamily="@font/noto_sans_bold"
+                            android:text="친구들의 생생한 픽"
+                            android:textColor="@color/black36"
+                            android:textSize="15dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </com.google.android.material.appbar.CollapsingToolbarLayout>
         </com.google.android.material.appbar.AppBarLayout>
 
-        <androidx.core.widget.NestedScrollView
-            android:id="@+id/nestedScrollView_home"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_friendpic_home"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            tools:listitem="@layout/item_friend_pic" />
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/c_friendpic_home"
-                android:layout_width="match_parent"
-                android:layout_height="0dp">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/c_friendpic_title_home"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
-
-                    <TextView
-                        android:id="@+id/tv_friendpic_title_home"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginBottom="10dp"
-                        android:fontFamily="@font/noto_sans_bold"
-                        android:text="친구들의 생생한 픽"
-                        android:textColor="@color/black36"
-                        android:textSize="15dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_friendpic_home"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/c_friendpic_title_home"
-                    app:layout_constraintVertical_bias="0.0"
-                    tools:listitem="@layout/item_friend_pic" />
-
-                <!-- <ProgressBar
-                    android:id="@+id/progressbar_fp"
-                    style="?android:attr/progressBarStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintTop_toBottomOf="@+id/rv_friendpic_home"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" /> -->
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </androidx.core.widget.NestedScrollView>
+        <!-- <ProgressBar
+            android:id="@+id/progressbar_fp"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/rv_friendpic_home"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" /> -->
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
