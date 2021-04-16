@@ -26,6 +26,7 @@ import place.pic.data.remote.response.Uploader
 import place.pic.databinding.ActivityDetailViewBinding
 import place.pic.ui.dialog.SimpleDialog
 import place.pic.ui.main.detail.liker.LikerUserListActivity
+import place.pic.ui.main.mypage.UserProfileActivity
 import place.pic.ui.tag.ChipFactory
 import place.pic.ui.util.BindingActivity
 import place.pic.ui.util.customEnqueue
@@ -126,10 +127,10 @@ class DetailViewActivity :
             tvBtnDetailTopDel.setOnClickListener { popDeleteDialog() }
             commentRegisterTextButton.setOnClickListener { applyCommentClickEvent() }
             clDetailUserInfo.setOnClickListener {
-                val gotoLikerUserList =
-                    Intent(this@DetailViewActivity, LikerUserListActivity::class.java)
-                gotoLikerUserList.putExtra("placeIdx", placeIdx)
-                startActivity(gotoLikerUserList)
+                val gotoOtherUserProfile =
+                    Intent(this@DetailViewActivity, UserProfileActivity::class.java)
+                gotoOtherUserProfile.putExtra("userIdx", userIdx)
+                startActivity(gotoOtherUserProfile)
             }
         }
     }
