@@ -3,6 +3,9 @@ package place.pic.ui.main.detail
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import androidx.activity.viewModels
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.naver.maps.geometry.LatLng
 import com.naver.maps.geometry.Tm128
@@ -36,6 +39,14 @@ class DetailViewActivity :
     BindingActivity<ActivityDetailViewBinding>(R.layout.activity_detail_view),
     OnMapReadyCallback {
     private lateinit var detailViewPagerAdapter: DetailViewPagerAdapter
+    private val detailViewModel: DetailViewModel by viewModels {
+        object : ViewModelProvider.Factory {
+            override fun <T : ViewModel?> create(modelClass: Class<T>): T =
+                DetailViewModel(PlacepicAuthRepository.getInstance(this@DetailViewActivity)) as T
+        }
+    }
+
+    private lateinit var detailViewCommentAdapter: DetailViewCommentAdapter
 
     private lateinit var token: String
 
@@ -55,6 +66,8 @@ class DetailViewActivity :
         placeIdx = intent.getIntExtra("placeIdx", 0)
         NaverMapSdk.getInstance(this).client =
             NaverMapSdk.NaverCloudPlatformClient("n1d1q8lp28")
+        binding.viewModel = detailViewModel
+        binding.lifecycleOwner = this
         init()
         mapSetting()
     }
@@ -75,8 +88,26 @@ class DetailViewActivity :
     }
 
     private fun init() {
+        observeCommentInput()
         requestToDetailView()
         buttonEventMapping()
+    }
+
+    private fun observeCommentInput() {
+        detailViewModel.commentInput.observe(this) {
+            detailViewModel.validateComment()
+        }
+    }
+
+    private fun observeCommentList() {
+        detailViewModel.comments.observe(this) {
+            detailViewCommentAdapter.addAllComments(it)
+        }
+    }
+
+    private fun setCommentAdapter() {
+        binding.listDetailComment.adapter = detailViewCommentAdapter
+        observeCommentList()
     }
 
     private fun buttonEventMapping() {
@@ -88,7 +119,18 @@ class DetailViewActivity :
             clBtnDetailLike.setOnClickListener { setLikeButtonClickEvent() }
             imgBtnDetailBookmark.setOnClickListener { setBookmarkButtonClickEvent() }
             tvBtnDetailTopDel.setOnClickListener { popDeleteDialog() }
+            commentRegisterTextButton.setOnClickListener { applyCommentClickEvent() }
         }
+    }
+
+    private fun applyCommentClickEvent() {
+        detailViewModel.commentApplyClickEvent(placeIdx) {
+            binding.detailContentScroll.smoothScrollTo(
+                0,
+                binding.detailContentScroll.getChildAt(0).height
+            )
+        }
+        detailViewModel.commentInput.value = ""
     }
 
     private fun showLikerUserActivity() {
@@ -135,6 +177,15 @@ class DetailViewActivity :
                     placeMapFragment!!.getMapAsync(this)
                 }
             )
+    }
+
+    private fun requestToComments() {
+        detailViewModel.loadComments(placeIdx)
+    }
+
+    private fun requestToUserInfo() {
+        detailViewModel.loadUserInfo()
+        setCommentAdapter()
     }
 
     // 좋아요 관련 서버 연결
@@ -226,7 +277,9 @@ class DetailViewActivity :
             tvDetailBookmarkCount.text = detailResponse.bookmarkCount.toString()
         }
         location = setLatLng(detailResponse.placeMapX, detailResponse.placeMapY)
-
+        detailViewCommentAdapter = DetailViewCommentAdapter()
+        requestToComments()
+        requestToUserInfo()
         webTitle = title
         webUrl = detailResponse.mobileNaverMapLink
     }

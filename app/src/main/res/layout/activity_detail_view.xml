@@ -3,12 +3,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+        <variable
+            name="viewModel"
+            type="place.pic.ui.main.detail.DetailViewModel" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.main.detail.DetailViewActivity">
 
         <androidx.core.widget.NestedScrollView
+            android:id="@+id/detail_content_scroll"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:overScrollMode="never">
@@ -528,12 +535,15 @@
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <ExpandableListView
+                <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/list_detail_comment"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/grayF8"
                     app:layout_constrainedHeight="true"
+                    android:overScrollMode="never"
+                    tools:listitem="@layout/item_comment_parent_not_has_recomment"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     app:layout_constraintStart_toStartOf="@id/cl_detail_info"
                     app:layout_constraintEnd_toEndOf="@id/cl_detail_info"
                     app:layout_constraintTop_toBottomOf="@id/cl_detail_info" />
@@ -541,7 +551,6 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="156dp"
-                    android:layout_marginTop="16dp"
                     android:background="@color/grayF8"
                     app:layout_constraintEnd_toEndOf="@id/cl_detail_info"
                     app:layout_constraintStart_toStartOf="@id/cl_detail_info"
@@ -573,6 +582,7 @@
                 android:layout_width="36dp"
                 android:layout_height="36dp"
                 android:layout_marginStart="14dp"
+                imageUrl="@{viewModel.userImage}"
                 android:layout_marginVertical="6dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -587,6 +597,7 @@
                 android:fontFamily="@font/noto_sans_regular"
                 android:backgroundTint="@color/grayF1F4F5"
                 android:hint="친구의 플레이스에 반응해보세요"
+                android:text="@={viewModel.commentInput}"
                 android:paddingHorizontal="16dp"
                 android:textSize="13dp"
                 app:layout_constraintBottom_toBottomOf="@id/image_comment_input_form_profile"
@@ -600,8 +611,10 @@
                 android:layout_height="match_parent"
                 android:padding="14dp"
                 android:text="등록"
+                android:enabled="@{viewModel.hasComment}"
                 android:fontFamily="@font/noto_sans_bold"
                 android:textSize="14dp"
+                tools:enabled="false"
                 android:textColor="@color/selector_enable_main_graycd_color"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
