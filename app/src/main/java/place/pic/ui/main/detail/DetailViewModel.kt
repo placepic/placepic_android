@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import place.pic.data.PlacepicAuthRepository
 import place.pic.data.remote.request.CommentApplyRequest
+import place.pic.data.remote.request.DeleteCommentRequest
 import place.pic.data.remote.request.DetailCommentRequest
 import place.pic.data.remote.request.UserInfoRequest
 import place.pic.data.remote.response.CommentResponse
@@ -68,6 +69,15 @@ class DetailViewModel(
                 loadComments(placeIdx)
                 onScrollEvent?.invoke()
             }
+        }.send(userToken)
+    }
+
+    fun commentDeleteClickEvent(placeIdx: Int, commentIdx: Int) {
+        DeleteCommentRequest(
+            placeIdx = placeIdx,
+            commentIdx = commentIdx
+        ).apply {
+            addOnSuccessListener { loadComments(placeIdx) }
         }.send(userToken)
     }
 }

@@ -11,6 +11,11 @@ class DetailViewCommentAdapter() : RecyclerView.Adapter<RecyclerView.ViewHolder>
 
     private val comments = mutableListOf<CommentResponse>()
 
+    private var popUpCommentDelEvent: ((commentIdx: Int) -> Unit)? = null
+    fun setPopUpCommentDelEvent(listener: (commentIdx: Int) -> Unit) {
+        this.popUpCommentDelEvent = listener
+    }
+
     fun addAllComments(newComment: List<CommentResponse>) {
         comments.clear()
         comments.addAll(newComment)
@@ -52,6 +57,9 @@ class DetailViewCommentAdapter() : RecyclerView.Adapter<RecyclerView.ViewHolder>
     ) : RecyclerView.ViewHolder(binding.root) {
         fun onBind(commentResponse: CommentResponse) {
             binding.commentResponse = commentResponse
+            binding.commentDeleteButton.setOnClickListener {
+                popUpCommentDelEvent?.invoke(commentResponse.comment.commentIdx)
+            }
         }
     }
 

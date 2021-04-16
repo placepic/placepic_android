@@ -26,6 +26,14 @@ interface PlacePicDetailService {
         @Body body: Comment
     ): Call<BaseResponse<Unit>>
 
+    @DELETE("/places/{placeIdx}/comment/{commentIdx}")
+    fun requestDeleteComment(
+        @Header("Content-Type") contentType: String = "application/json",
+        @Header("token") token: String,
+        @Path("placeIdx") placeIdx: Int,
+        @Path("commentIdx") commentIdx: Int
+    ): Call<BaseResponse<Unit>>
+
     companion object {
         @Volatile
         private var instance: PlacePicDetailService? = null

@@ -2,6 +2,7 @@ package place.pic.ui.main.detail
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.activity.viewModels
 import androidx.lifecycle.ViewModel
@@ -185,7 +186,20 @@ class DetailViewActivity :
 
     private fun requestToUserInfo() {
         detailViewModel.loadUserInfo()
+        detailViewCommentAdapter = DetailViewCommentAdapter()
+        detailViewCommentAdapter.setPopUpCommentDelEvent { commentIdx ->
+            Log.d("test","댓글 삭제")
+            SimpleDialog(this).apply {
+                setContent("정말로 이 댓글을 삭제할까요?")
+                setCancelClickListener(R.string.close) { dismiss() }
+                setOkClickListener(R.string.delete) { dismiss(); requestToDelComment(commentIdx) }
+            }.show()
+        }
         setCommentAdapter()
+    }
+
+    private fun requestToDelComment(commentIdx: Int) {
+        detailViewModel.commentDeleteClickEvent(placeIdx, commentIdx)
     }
 
     // 좋아요 관련 서버 연결
@@ -277,9 +291,8 @@ class DetailViewActivity :
             tvDetailBookmarkCount.text = detailResponse.bookmarkCount.toString()
         }
         location = setLatLng(detailResponse.placeMapX, detailResponse.placeMapY)
-        detailViewCommentAdapter = DetailViewCommentAdapter()
-        requestToComments()
         requestToUserInfo()
+        requestToComments()
         webTitle = title
         webUrl = detailResponse.mobileNaverMapLink
     }

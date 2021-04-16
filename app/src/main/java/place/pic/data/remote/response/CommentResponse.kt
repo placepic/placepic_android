@@ -7,7 +7,7 @@ data class CommentResponse(
     val comment: Comment,
 ) {
     fun postCountAndCreateAt(): String =
-        "작성한글 ${user.postCount} · ${unixDateTimeParser(comment.updatedAt.toLong())}2021-00-00"
+        "작성한글 ${user.postCount} · ${unixDateTimeParser(comment.updatedAt.toLong())}"
 }
 
 data class User(
@@ -31,7 +31,7 @@ data class SubComment(
     val comment: SubCommentElement,
 ) {
     fun postCountAndCreateAt(): String =
-        "작성한글 ${user.postCount} · ${unixDateTimeParser(comment.updatedAt.toLong())}2021-00-00"
+        "작성한글 ${user.postCount} · ${unixDateTimeParser(comment.updatedAt.toLong())}"
 }
 
 data class SubCommentElement(
