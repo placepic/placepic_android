@@ -28,7 +28,7 @@
             android:fontFamily="@font/noto_sans_regular"
             android:text="@{keyword}"
             android:textColor="@color/black40"
-            android:textSize="13dp"
+            android:textSize="12dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

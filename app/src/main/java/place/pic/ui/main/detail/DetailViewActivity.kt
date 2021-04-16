@@ -1,10 +1,13 @@
 package place.pic.ui.main.detail
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
+import android.text.Html
 import android.util.Log
 import android.view.View
 import androidx.activity.viewModels
+import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
@@ -52,6 +55,7 @@ class DetailViewActivity :
     private lateinit var token: String
 
     private var placeIdx: Int = 0
+    private var userIdx: Int = 0
 
     private var webUrl: String = ""
     private var webTitle: String = ""
@@ -121,6 +125,12 @@ class DetailViewActivity :
             imgBtnDetailBookmark.setOnClickListener { setBookmarkButtonClickEvent() }
             tvBtnDetailTopDel.setOnClickListener { popDeleteDialog() }
             commentRegisterTextButton.setOnClickListener { applyCommentClickEvent() }
+            clDetailUserInfo.setOnClickListener {
+                val gotoLikerUserList =
+                    Intent(this@DetailViewActivity, LikerUserListActivity::class.java)
+                gotoLikerUserList.putExtra("placeIdx", placeIdx)
+                startActivity(gotoLikerUserList)
+            }
         }
     }
 
@@ -188,7 +198,7 @@ class DetailViewActivity :
         detailViewModel.loadUserInfo()
         detailViewCommentAdapter = DetailViewCommentAdapter()
         detailViewCommentAdapter.setPopUpCommentDelEvent { commentIdx ->
-            Log.d("test","댓글 삭제")
+            Log.d("test", "댓글 삭제")
             SimpleDialog(this).apply {
                 setContent("정말로 이 댓글을 삭제할까요?")
                 setCancelClickListener(R.string.close) { dismiss() }
@@ -268,6 +278,7 @@ class DetailViewActivity :
     }
 
     /*서버 연결시 뷰에 뿌려주는 함수 작업.*/
+    @RequiresApi(Build.VERSION_CODES.N)
     private fun bindingDetail(detailResponse: DetailResponse) {
         // 본격 개막장 함수
         insertUploadUserDataInView(detailResponse.uploader)
@@ -281,8 +292,8 @@ class DetailViewActivity :
         setMyLikeButtonStatus(detailResponse.isLiked)
         setMyBookmarkButtonStatus(detailResponse.isBookmarked)
         with(binding) {
-            tvDetailTitle.text = title
-            tvDetailTopTitle.text = title
+            tvDetailTitle.text = Html.fromHtml(title, Html.FROM_HTML_MODE_LEGACY).toString()
+            tvDetailTopTitle.text = Html.fromHtml(title, Html.FROM_HTML_MODE_LEGACY).toString()
             tvDetailContent.text = detailResponse.placeReview
             tvDetailSubwayInfo.text = detailStringForm(detailResponse.subway, "/")
             tvDetailAddressInfo.text = detailResponse.placeRoadAddress
@@ -290,6 +301,7 @@ class DetailViewActivity :
             tvDetailSharedPeopleCount.text = ("$likeCount 명")
             tvDetailBookmarkCount.text = detailResponse.bookmarkCount.toString()
         }
+        userIdx = detailResponse.uploader.userIdx
         location = setLatLng(detailResponse.placeMapX, detailResponse.placeMapY)
         requestToUserInfo()
         requestToComments()

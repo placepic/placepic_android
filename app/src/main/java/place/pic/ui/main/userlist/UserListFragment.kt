@@ -1,18 +1,28 @@
 package place.pic.ui.main.userlist
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.fragment_user_list.*
+import kotlinx.android.synthetic.main.item_like_user_list.*
+import kotlinx.android.synthetic.main.item_like_user_list.view.*
 import place.pic.R
 import place.pic.data.PlacepicAuthRepository
 import place.pic.data.remote.PlacePicService
 import place.pic.data.remote.response.BaseResponse
 import place.pic.data.remote.response.UserListResponse
+import place.pic.ui.main.detail.DetailViewActivity
+import place.pic.ui.main.home.friendpic.FriendPicAdapter
+import place.pic.ui.main.mypage.MyPageSettingActivity
+import place.pic.ui.main.mypage.UserProfileActivity
 import retrofit2.Callback
 import retrofit2.Response
 
@@ -23,6 +33,7 @@ class UserListFragment : Fragment() {
     lateinit var layoutManager: LinearLayoutManager
     //private var data: MutableList<UserData> = mutableListOf()
 
+    var userIdx: Int = 0
     var userCount: Int = 0
     val userInUserList: MutableList<UserData> =
         mutableListOf<UserData>()?.apply { add(0, UserData.empty()) }
@@ -42,11 +53,15 @@ class UserListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val groupIdx = PlacepicAuthRepository.getInstance(requireContext()).groupId?:return
-
         initRcv(view)
-
         getUserListFromServer(groupIdx)
-
+        userListAdapter.setItemClickListener(object : UserListAdapter.ItemClickListener {
+            override fun onItemClick(view: View, position: Int) {
+                val gotoOtherUserProfile = Intent(context, UserProfileActivity::class.java)
+                gotoOtherUserProfile.putExtra("userIdx", userInUserList[position].userIdx)
+                startActivity(gotoOtherUserProfile)
+            }
+        })
         //loadDatas()
         //loadDatas() 호출을 통해 infinite scroll을 위한 준비 완료
     }

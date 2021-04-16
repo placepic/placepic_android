@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <import type="android.view.View"/>
+
         <variable
             name="clickListener"
             type="android.view.View.OnClickListener" />
@@ -68,7 +70,7 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView3"
             android:layout_width="0dp"
-            android:layout_height="144dp"
+            android:layout_height="332dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="13dp"
             android:layout_marginEnd="16dp"
@@ -178,22 +180,44 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/fp_chipGroup"
-            tools:text=""
+            tools:text="뭐라도 보여야 작업을 할 듯"
             android:ellipsize="end"
             android:maxLines="4" />
+
+        <ImageView
+            android:id="@+id/img_reply_home"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:src="@drawable/ic_reply_home"
+            app:layout_constraintStart_toStartOf="@+id/fp_content"
+            app:layout_constraintTop_toBottomOf="@id/fp_content" />
+
+        <TextView
+            android:id="@+id/tv_reply_home"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/noto_sans_regular"
+            android:text="80"
+            android:textColor="@color/black40"
+            android:textSize="14dp"
+            app:layout_constraintStart_toEndOf="@+id/img_reply_home"
+            app:layout_constraintTop_toBottomOf="@+id/fp_content" />
 
         <View
             android:id="@+id/view4"
             android:layout_width="0dp"
             android:layout_height="0.5dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="33dp"
+            android:layout_marginTop="23dp"
             android:layout_marginEnd="16dp"
             android:background="@color/grayEEEFF0"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/fp_content" />
+            app:layout_constraintTop_toBottomOf="@+id/img_reply_home" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

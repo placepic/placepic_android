@@ -123,6 +123,15 @@ interface PlacePicService {
         @Path("groupIdx") groupIdx: Int
     ): Call<BaseResponse<MyWritingsResponse>>
 
+    //다른사람 프로필
+    @GET("/auth/groups/{groupIdx}/userInfo/{userIdx}")
+    fun requestOtherProfile(
+        @Header("Content-Type") contentType: String = "application/json",
+        @Header("token") token: String,
+        @Path("groupIdx") groupIdx: Int,
+        @Path("userIdx") userIdx: Int,
+    ):Call<BaseResponse<OtherProfileResponse>>
+
     //프로필 편집
     @Multipart
     @PUT("/auth/myInfo/edit/{groupIdx}")

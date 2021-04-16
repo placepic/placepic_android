@@ -5,6 +5,7 @@ import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.chip.Chip
 import kotlinx.android.synthetic.main.activity_keyword_tag.*
@@ -106,7 +107,7 @@ class KeywordTagActivity : AppCompatActivity() {
                     if (response.isSuccessful) { //status
                         if (response.body()!!.success) {
                             for (i in response.body()!!.data.indices) {
-                                var keywordTag = KeywordTag(
+                                val keywordTag = KeywordTag(
                                     tagIdx = response.body()!!.data[i].tagIdx,
                                     tagName = response.body()!!.data[i].tagName
                                 )
@@ -166,20 +167,24 @@ class KeywordTagActivity : AppCompatActivity() {
 
     private fun onSaveClick() {
         //선택된 chip 관련 정보 ArrayList<KeywordTag>에 넣어서 전달
-        var checkedTagList = ArrayList<KeywordTag>()
+        val checkedTagList = ArrayList<KeywordTag>()
 
         for (i in 0 until keywordTagChipList.size) {
             if (keywordTagChipList[i].isChecked) {
-                var keywordTag = KeywordTag(keywordTagList[i].tagIdx, keywordTagList[i].tagName)
+                val keywordTag = KeywordTag(keywordTagList[i].tagIdx, keywordTagList[i].tagName)
                 checkedTagList.add(keywordTag)
                 Log.d("selected checking", keywordTag.toString())
             }
         }
 
-        val checkedChipIntent = Intent()
-        checkedChipIntent.putExtra("checkedChip", checkedTagList)
-        setResult(Activity.RESULT_OK, checkedChipIntent)
-        finish()
+        if (checkedTagList.size > 3) {
+            Toast.makeText(this, "최대 3개까지만 선택할 수 있습니다.", Toast.LENGTH_SHORT).show()
+        } else {
+            val checkedChipIntent = Intent()
+            checkedChipIntent.putExtra("checkedChip", checkedTagList)
+            setResult(Activity.RESULT_OK, checkedChipIntent)
+            finish()
+        }
     }
 
     companion object {

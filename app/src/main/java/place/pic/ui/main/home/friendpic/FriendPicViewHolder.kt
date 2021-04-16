@@ -1,14 +1,21 @@
 package place.pic.ui.main.home.friendpic
 
+import android.os.Build
+import android.text.Html
+import android.text.Html.*
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.google.android.material.chip.ChipGroup
 import place.pic.R
 import place.pic.ui.tag.ChipFactory
+import java.net.URLDecoder
+import java.net.URLEncoder
 
 /**
  * Created By kimdahyee
@@ -22,11 +29,13 @@ class FriendPicViewHolder(itemView: View, inflater: LayoutInflater) : RecyclerVi
     val part: TextView = itemView.findViewById(R.id.fp_user_part)
     val placeName: TextView = itemView.findViewById(R.id.fp_place_name)
     val placeReview: TextView = itemView.findViewById(R.id.fp_content)
-    val placeImageUrl: ImageView = itemView.findViewById(R.id.fp_img)
+    private val placeImageUrl: ImageView = itemView.findViewById(R.id.fp_img)
     val placeCreatedAt: TextView = itemView.findViewById(R.id.fp_upload_date)
     val subway: TextView = itemView.findViewById(R.id.fp_subways)
     var tag: ChipGroup = itemView.findViewById(R.id.fp_chipGroup)
-    val likeCnt: TextView = itemView.findViewById(R.id.fp_liker)
+    private val likeCnt: TextView = itemView.findViewById(R.id.fp_liker)
+    private val commentImage: ImageView = itemView.findViewById(R.id.img_reply_home)
+    private val commentCnt: TextView = itemView.findViewById(R.id.tv_reply_home)
 
     private val inflater:LayoutInflater = inflater 
     //Chip 생성을 위한 inflater 준비
@@ -45,21 +54,30 @@ class FriendPicViewHolder(itemView: View, inflater: LayoutInflater) : RecyclerVi
         return detailStringBuilder.toString()
     }
 
+    @RequiresApi(Build.VERSION_CODES.N)
     fun bind(friendPicData: FriendPicData) {
         Glide.with(itemView).load(friendPicData.profileImageUrl).into(profileImageUrl)
         userName.text = friendPicData.userName
         part.text = friendPicData.part
         placeImageUrl.maxHeight = placeImageUrl.width / 2
-        placeName.text = friendPicData.placeName
+        placeName.text = Html.fromHtml(friendPicData.placeName, Html.FROM_HTML_MODE_LEGACY).toString()
         placeReview.text = friendPicData.placeReview
         Glide.with(itemView).load(friendPicData.placeImageUrl).into(placeImageUrl)
         placeCreatedAt.text = friendPicData.placeCreatedAt.toString()
         subway.text = detailStringForm(friendPicData.subway, "/")
         likeCnt.text = friendPicData.likeCnt.toString()
 
+        if (friendPicData.commentCnt == 0) {
+            commentImage.visibility = View.GONE
+            commentCnt.visibility = View.GONE
+        } else {
+            commentCnt.text = friendPicData.commentCnt.toString()
+        }
+
         tag.removeAllViews() //뷰가 재활용이 되기 때문에 지워줘야해
-        var tags = friendPicData.tag
+        val tags = friendPicData.tag
         var count = 0
+
         tags.forEach { text ->
             if (count < 3) {
                 val chip = ChipFactory.createDetailChip(inflater)

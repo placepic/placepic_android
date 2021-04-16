@@ -144,35 +144,36 @@
             android:id="@+id/img_empty_banner"
             android:layout_width="43dp"
             android:layout_height="52dp"
-            android:layout_marginStart="28dp"
             android:layout_marginTop="24dp"
-            app:layout_constraintStart_toStartOf="@+id/background_empty_banner"
-            app:layout_constraintTop_toTopOf="@+id/background_empty_banner"
+            app:layout_constraintEnd_toStartOf="@+id/tv_empty_banner_title"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/icon_logo" />
 
         <TextView
             android:id="@+id/tv_empty_banner_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
             android:layout_marginTop="20dp"
             android:fontFamily="@font/noto_sans_bold"
             android:text="@string/empty_banner_title"
             android:textColor="@color/whiteFF"
             android:textSize="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/img_empty_banner"
-            app:layout_constraintTop_toTopOf="@+id/background_empty_banner" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/tv_empty_banner_description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
             android:layout_marginTop="5dp"
             android:text="등록해주신 플레이스를 바탕으로\n다양한 테마의 장소들을 추천해드릴게요!"
             android:textColor="@color/whiteCCFFFFFF"
             android:textSize="12dp"
-            app:layout_constraintStart_toEndOf="@+id/img_empty_banner"
+            app:layout_constraintStart_toStartOf="@+id/tv_empty_banner_title"
             app:layout_constraintTop_toBottomOf="@+id/tv_empty_banner_title" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

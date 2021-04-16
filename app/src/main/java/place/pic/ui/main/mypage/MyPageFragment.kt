@@ -42,6 +42,7 @@ class MyPageFragment : Fragment() {
     var user_image: String? = null
     var user_write_count: Int? = null
     var user_post_count: Int? = null
+    var group_name : String? = null
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -74,9 +75,11 @@ class MyPageFragment : Fragment() {
                         user_image = response.body()!!.data.userImage
                         user_post_count = response.body()!!.data.postCount
                         user_write_count = response.body()!!.data.bookMarkCnt
+                        group_name=response.body()!!.data.groupName
 
                         binding.tvProfileName.text = user_name
                         binding.tvProfileIntro.text = user_part
+                        binding.tvGroupName.text=group_name
 
                         (binding.tabMypage.getTabAt(0))?.text = "작성한 글 "+user_post_count?.toString()
                         (binding.tabMypage.getTabAt(1))?.text = "저장한 장소 "+user_write_count?.toString()
@@ -128,7 +131,6 @@ class MyPageFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.vpMypage.adapter = pagerAdapter
-
         binding.vpMypage.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(tab_mypage))
         binding.tabMypage.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab) {}

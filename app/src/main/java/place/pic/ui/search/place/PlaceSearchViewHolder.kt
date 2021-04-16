@@ -1,8 +1,11 @@
 package place.pic.ui.search.place
 
 import android.graphics.Color
+import android.os.Build
+import android.text.Html
 import android.view.View
 import android.widget.TextView
+import androidx.annotation.RequiresApi
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.graphics.createBitmap
 import androidx.core.view.isVisible
@@ -22,8 +25,9 @@ class PlaceSearchViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) 
     private val alreadyInView = itemView.findViewById<View>(R.id.view_already)
     private val alreadyInText = itemView.findViewById<TextView>(R.id.tv_already)
 
+    @RequiresApi(Build.VERSION_CODES.N)
     fun bind(placeSearchData : PlaceSearchData) {
-        placeName.text = placeSearchData.placeName
+        placeName.text = Html.fromHtml(placeSearchData.placeName, Html.FROM_HTML_MODE_LEGACY).toString()
         placeLocation.text = placeSearchData.placeLocation
 
         if (placeSearchData.alreadyIn) { // 이미 등록된 view
