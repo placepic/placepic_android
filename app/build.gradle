@@ -13,8 +13,8 @@ android {
         applicationId "place.pic"
         minSdkVersion 24
         targetSdkVersion 29
-        versionCode 9
-        versionName "1.1.7"
+        versionCode 11
+        versionName "1.2.1"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
