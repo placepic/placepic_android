@@ -8,13 +8,11 @@ import androidx.fragment.app.FragmentTransaction
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_main.*
 import place.pic.R
-
-import place.pic.ui.util.showToast
 import place.pic.ui.main.home.HomeFragment
 import place.pic.ui.main.mypage.MyPageFragment
 import place.pic.ui.main.place.PlacesFragment
 import place.pic.ui.main.userlist.UserListFragment
-
+import place.pic.ui.util.showToast
 
 class MainActivity : AppCompatActivity(), WriteFragment.BottomSheetListener {
 
@@ -31,12 +29,12 @@ class MainActivity : AppCompatActivity(), WriteFragment.BottomSheetListener {
         val tb: BottomNavigationView = findViewById(R.id.bottom_nav)
         tb.visibility = View.VISIBLE
 
-        //처음 시작 화면 고정
+        // 처음 시작 화면 고정
         supportFragmentManager.beginTransaction()
             .replace(R.id.main_frame, HomeFragment())
             .commit()
 
-        //바텀 네비게이션 구현
+        // 바텀 네비게이션 구현
         bottom_nav.setOnNavigationItemSelectedListener {
             val transaction: FragmentTransaction = supportFragmentManager.beginTransaction()
 
@@ -84,7 +82,7 @@ class MainActivity : AppCompatActivity(), WriteFragment.BottomSheetListener {
             }
             showToast("뒤로가기 버튼을 한번 더 누르면 종료됩니다.")
         } else {
-            finish() //액티비티 종료
+            finish() // 액티비티 종료
         }
     }
 
@@ -95,4 +93,3 @@ class MainActivity : AppCompatActivity(), WriteFragment.BottomSheetListener {
             .commit()
     }
 }
-

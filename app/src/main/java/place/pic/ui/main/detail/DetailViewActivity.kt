@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.naver.maps.geometry.LatLng
 import com.naver.maps.geometry.Tm128
-import com.naver.maps.map.*
+import com.naver.maps.map.* // ktlint-disable no-wildcard-imports
 import com.naver.maps.map.overlay.Marker
 import com.naver.maps.map.overlay.OverlayImage
 import kotlinx.android.synthetic.main.activity_detail_view.*
@@ -20,7 +20,6 @@ import place.pic.data.entity.Place
 import place.pic.data.remote.PlacePicService
 import place.pic.data.remote.request.RequestToPlaceIdx
 import place.pic.data.remote.response.DetailResponse
-import place.pic.data.remote.response.OtherProfileResponse
 import place.pic.data.remote.response.Uploader
 import place.pic.ui.dialog.SimpleDialog
 import place.pic.ui.main.detail.liker.LikerUserListActivity
@@ -30,7 +29,6 @@ import place.pic.ui.util.customEnqueue
 import place.pic.ui.util.unixDateTimeParser
 import place.pic.ui.webview.InWebActivity
 
-
 /*
 * 글 작성 유저와 글의 장소 ㄹId를 비교하여 글 삭제 버튼의 유무를 지정하기 위해서
 * putExtra에 "placeIdx" 키로 placeIdx:Int를 넘겨주시면 됩니다.
@@ -38,7 +36,7 @@ import place.pic.ui.webview.InWebActivity
 * 각각의 키로는 Int로 캐스팅하여 사용합니다.
 */
 
-class DetailViewActivity : AppCompatActivity(), View.OnClickListener,OnMapReadyCallback {
+class DetailViewActivity : AppCompatActivity(), View.OnClickListener, OnMapReadyCallback {
 
     private lateinit var detailviewPagerAdapter: DetailViewPagerAdapter
 
@@ -52,8 +50,8 @@ class DetailViewActivity : AppCompatActivity(), View.OnClickListener,OnMapReadyC
 
     private var likeCount: Int = 0
 
-    private lateinit var location:LatLng
-    private var placeMapFragment:MapFragment? = null
+    private lateinit var location: LatLng
+    private var placeMapFragment: MapFragment? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -66,7 +64,7 @@ class DetailViewActivity : AppCompatActivity(), View.OnClickListener,OnMapReadyC
         mapSetting()
     }
 
-    private fun setPlaceMapFragment(mapFragment:MapFragment?){
+    private fun setPlaceMapFragment(mapFragment: MapFragment?) {
         this.placeMapFragment = mapFragment
     }
 
@@ -79,7 +77,7 @@ class DetailViewActivity : AppCompatActivity(), View.OnClickListener,OnMapReadyC
                 .commit()
         }
         setPlaceMapFragment(mapFragment)
-        //mapFragment!!.getMapAsync(this)
+        // mapFragment!!.getMapAsync(this)
     }
 
     private fun init() {
@@ -100,7 +98,7 @@ class DetailViewActivity : AppCompatActivity(), View.OnClickListener,OnMapReadyC
 
     override fun onClick(p0: View?) {
         when (p0!!.id) {
-            R.id.cl_detail_user_info->{
+            R.id.cl_detail_user_info -> {
                 val gotoOtherUserProfile =
                     Intent(this, UserProfileActivity::class.java)
                 gotoOtherUserProfile.putExtra("userIdx", userIdx)
@@ -117,7 +115,7 @@ class DetailViewActivity : AppCompatActivity(), View.OnClickListener,OnMapReadyC
                 startActivity(gotoLikerUserList)
             }
             R.id.tv_btn_detail_top_del -> {
-                //TODO 글 삭제시 PlaceList 수정이 필요함.
+                // TODO 글 삭제시 PlaceList 수정이 필요함.
                 SimpleDialog(this).apply {
                     setContent(R.string.are_you_sure)
                     setCancelClickListener(R.string.close) { dismiss() }
@@ -141,15 +139,14 @@ class DetailViewActivity : AppCompatActivity(), View.OnClickListener,OnMapReadyC
 
     override fun onBackPressed() {
         if (!getMyBookmarkButtonStatus()) {
-            val intent = Intent().apply { putExtra("placeIdx",placeIdx) }
+            val intent = Intent().apply { putExtra("placeIdx", placeIdx) }
             setResult(2, intent)
         }
         super.onBackPressed()
     }
 
-
     /* 서버 연결 */
-    //리스트 불러오기
+    // 리스트 불러오기
     private fun requestToDetailView() {
         PlacePicService.getInstance()
             .requestDetail(
@@ -164,7 +161,7 @@ class DetailViewActivity : AppCompatActivity(), View.OnClickListener,OnMapReadyC
             )
     }
 
-    //좋아요 관련 서버 연결
+    // 좋아요 관련 서버 연결
     private fun requestToLike() {
         PlacePicService.getInstance()
             .requestToLike(
@@ -189,7 +186,7 @@ class DetailViewActivity : AppCompatActivity(), View.OnClickListener,OnMapReadyC
             )
     }
 
-    //북마크 서버연결
+    // 북마크 서버연결
     private fun requestToBookmark() {
         PlacePicService.getInstance()
             .requestToBookmark(
@@ -214,7 +211,7 @@ class DetailViewActivity : AppCompatActivity(), View.OnClickListener,OnMapReadyC
             )
     }
 
-    //글 삭제 서버 연결
+    // 글 삭제 서버 연결
     private fun requestToDeletePlace() {
         PlacePicService.getInstance()
             .requestToDeletePlace(
@@ -222,7 +219,7 @@ class DetailViewActivity : AppCompatActivity(), View.OnClickListener,OnMapReadyC
                 placeIdx = placeIdx
             ).customEnqueue(
                 onSuccess = {
-                    val intent = Intent().apply { putExtra("placeIdx",placeIdx) }
+                    val intent = Intent().apply { putExtra("placeIdx", placeIdx) }
                     setResult(1, intent)
                     finish()
                 }
@@ -232,7 +229,7 @@ class DetailViewActivity : AppCompatActivity(), View.OnClickListener,OnMapReadyC
     /*서버 연결시 뷰에 뿌려주는 함수 작업.*/
     @RequiresApi(Build.VERSION_CODES.N)
     private fun bindingDetail(detailResponse: DetailResponse) {
-        //본격 개막장 함수
+        // 본격 개막장 함수
         insertUploadUserDataInView(detailResponse.uploader)
         insertImageInViewPager(detailResponse.imageUrl)
         insertKeywordInDetailChip(detailResponse.keyword)
@@ -254,7 +251,7 @@ class DetailViewActivity : AppCompatActivity(), View.OnClickListener,OnMapReadyC
 
         userIdx = detailResponse.uploader.userIdx
 
-        location = setLatLng(detailResponse.placeMapX,detailResponse.placeMapY)
+        location = setLatLng(detailResponse.placeMapX, detailResponse.placeMapY)
 
         webTitle = title
         webUrl = detailResponse.mobileNaverMapLink
@@ -324,13 +321,13 @@ class DetailViewActivity : AppCompatActivity(), View.OnClickListener,OnMapReadyC
 
     private fun setLikeButtonClickEvent() {
         if (getMyLikeButtonStatus()) {
-            //이미 좋아요
+            // 이미 좋아요
             likeCount -= 1
             tv_detail_shared_people_count.text = ("$likeCount 명")
             requestToDeleteLike()
             return
         }
-        //아직 좋아요 안함
+        // 아직 좋아요 안함
         likeCount += 1
         tv_detail_shared_people_count.text = ("$likeCount 명")
         requestToLike()
@@ -358,14 +355,14 @@ class DetailViewActivity : AppCompatActivity(), View.OnClickListener,OnMapReadyC
 
     private fun setBookmarkButtonClickEvent() {
         if (getMyBookmarkButtonStatus()) {
-            //북마크가 이미 되어있는 상황
+            // 북마크가 이미 되어있는 상황
             val bookmarkCount = tv_detail_bookmark_count.text.toString().toInt()
             tv_detail_bookmark_count.text = (bookmarkCount - 1).toString()
             requestToDeleteBookmark()
             return
         }
-        //북마크가 안되어있을때 이벤트
-        val bookmarkCount = tv_detail_bookmark_count.text.toString().toInt()
+        // 북마크가 안되어있을때 이벤트
+        val bookmarkCount = tv_detail_bookmark_count.text.toString()
         tv_detail_bookmark_count.text = (bookmarkCount + 1).toString()
         requestToBookmark()
     }
@@ -383,9 +380,9 @@ class DetailViewActivity : AppCompatActivity(), View.OnClickListener,OnMapReadyC
     }
 
     override fun onMapReady(naverMap: NaverMap) {
-        naverMap.minZoom = 10.0;   //최소
-        naverMap.maxZoom = 19.0;
-        naverMap.cameraPosition = CameraPosition(location,21.0)
+        naverMap.minZoom = 10.0; // 최소
+        naverMap.maxZoom = 19.0
+        naverMap.cameraPosition = CameraPosition(location, 21.0)
         val marker = Marker()
         marker.position = location
         marker.icon = OverlayImage.fromResource(R.drawable.ic_pink_pin)
@@ -393,7 +390,7 @@ class DetailViewActivity : AppCompatActivity(), View.OnClickListener,OnMapReadyC
     }
 
     private fun setLatLng(placeMapX: Double, placeMapY: Double): LatLng {
-        val tm128 = Tm128(placeMapX,placeMapY)
+        val tm128 = Tm128(placeMapX, placeMapY)
         return tm128.toLatLng()
     }
 }
